@@ -1,5 +1,5 @@
 using System.Text;
-// Делаем что-то новое в коде
+// Делаем что-то новое в коде 2.0
 namespace Count
 {
     /// <summary>
