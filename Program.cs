@@ -1,6 +1,8 @@
 using System.Text;
 // Делаем что-то новое в коде 2.0
 // Делаем что-то из VS
+// Разрабочик "developer1" вставил фрагмент кода
+// И планирует направить в ветку "developer1"
 namespace Count
 {
     /// <summary>
