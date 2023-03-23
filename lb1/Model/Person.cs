@@ -3,6 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace Model
 {
+    /// <summary>
+    /// Класс для пользователя.
+    /// </summary>
     public class Person
     {
         /// <summary>
