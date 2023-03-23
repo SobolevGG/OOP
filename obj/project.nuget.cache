@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "zBjleNx5JnXlK0tlUwDJsaZjVcfhHw3DiiJyIDo9YMf6TGY7xcw/nPolXwwvG1m5cSxjgJWmwZYIMySEDT8dKA==",
+  "dgSpecHash": "yQgRda+uasFR4y/qCI4N2JJoPJ5uVPJaDUW3ibayFPvxxbiuKiJAfO7a2a9z2+j9oO8Nb7VxIbNHRkmhu3YJ3Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sobol\\source\\repos\\ConsoleApp1\\ConsoleApp13\\ConsoleApp13.csproj",
+  "projectFilePath": "C:\\Users\\Sobol\\source\\repos\\SobolevGG\\OOP\\ConsoleApp.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\sobol\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512"
+    "C:\\Users\\Sobol\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512"
   ],
   "logs": []
 }

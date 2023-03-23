@@ -40,19 +40,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sobol\\.nuget\\packages\\": {}
+    "C:\\Users\\Sobol\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sobol\\source\\repos\\ConsoleApp1\\ConsoleApp13\\ConsoleApp13.csproj",
-      "projectName": "ConsoleApp13",
-      "projectPath": "C:\\Users\\sobol\\source\\repos\\ConsoleApp1\\ConsoleApp13\\ConsoleApp13.csproj",
-      "packagesPath": "C:\\Users\\sobol\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sobol\\source\\repos\\ConsoleApp1\\ConsoleApp13\\obj\\",
+      "projectUniqueName": "C:\\Users\\Sobol\\source\\repos\\SobolevGG\\OOP\\ConsoleApp.csproj",
+      "projectName": "ConsoleApp",
+      "projectPath": "C:\\Users\\Sobol\\source\\repos\\SobolevGG\\OOP\\ConsoleApp.csproj",
+      "packagesPath": "C:\\Users\\Sobol\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Sobol\\source\\repos\\SobolevGG\\OOP\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\sobol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Sobol\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -101,7 +101,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
