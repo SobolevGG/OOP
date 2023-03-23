@@ -22,11 +22,6 @@ namespace Model
         English,
 
         /// <summary>
-        /// Китайский язык.
-        /// </summary>
-        Chinese,
-
-        /// <summary>
         /// Неизвестный язык
         /// </summary>
         Unknown
