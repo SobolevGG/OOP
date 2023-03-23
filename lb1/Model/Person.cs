@@ -54,11 +54,11 @@ namespace Model
             { 
                 if (cyrillic.IsMatch(value)) 
                 {
-                    return Language.Russian;
+                    return Language.Russian.ToString();
                 }
                 else if (latin.IsMatch(value)) 
                 {
-                    return Language.English;
+                    return Language.English.ToString();
                 }
                 else 
                 {
@@ -66,7 +66,7 @@ namespace Model
                 }
             }
 
-            return Language.Unknown;
+            return Language.Unknown.ToString();
         }
 
         /// <summary>
