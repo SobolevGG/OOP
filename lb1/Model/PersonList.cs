@@ -40,6 +40,23 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Метод удаления пользователей по индексу.
+        /// </summary>
+        /// <param name="index"></param>
+        public void DeletePerson(int index) 
+        { 
+            CheckIndex(index);
+            for (int i = index; i < _personsArray.Length - 1; i++)
+            { 
+                _personsArray[i] = _personsArray[i + 1];
+            }
+
+            Array.Resize(ref _personsArray, _personsArray.Length - 1);
+        }
+
+
+
 
 
         
