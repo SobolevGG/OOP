@@ -12,9 +12,14 @@ namespace Model
     internal class PersonList
     {
         /// <summary>
-        /// Массив персон.
+        /// Массив пользователей.
         /// </summary>
         private Peson[] _personsArray = new Person[0];
+
+        /// <summary>
+        /// Метод добавления пользователей.
+        /// </summary>
+        /// <param name="person"></param>
         public void AddPerson(Person person) 
         {
             var newPersonsIndex = newPersonsIndex.Length;
@@ -27,12 +32,17 @@ namespace Model
         /// </summary>
         /// <param name="index"></param>
         /// <exception cref="IndexOutOfRangeException"></exception>
-        private void IndexInArray(int index)
+        private void CheckIndex(int index)
         {
             if (index < 0 || index >= _personsArray.Length)
             { 
                 throw new IndexOutOfRangeException("Ошибка: индекс вне допустимого диапазона!");
             }
         }
+
+
+
+        
+
     }
 }
