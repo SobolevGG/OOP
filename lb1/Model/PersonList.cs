@@ -44,15 +44,28 @@ namespace Model
         /// Метод удаления пользователей по индексу.
         /// </summary>
         /// <param name="index"></param>
-        public void DeletePerson(int index) 
+        public void DeletePersonByIndex(int index) 
         { 
             CheckIndex(index);
+
             for (int i = index; i < _personsArray.Length - 1; i++)
             { 
                 _personsArray[i] = _personsArray[i + 1];
             }
 
             Array.Resize(ref _personsArray, _personsArray.Length - 1);
+        }
+
+        /// <summary>
+        /// Метод удаления пользователя по переданной персоне.
+        /// </summary>
+        /// <param name="person"></param>
+        public void DeletePersonByPerson(Person person) 
+        {
+            // Определяем индекс первого вхождения пользователя в массиве
+            int index = Array.IndexOf(_personsArray, person);
+
+            DeletePersonByIndex(index);
         }
 
 
