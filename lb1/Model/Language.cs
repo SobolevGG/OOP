@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    /// <summary>
+    /// Перечисление для языка.
+    /// </summary>
     public enum Language
     {
         /// <summary>

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    /// <summary>
+    /// Перечисление для пола.
+    /// </summary>
     public enum Gender
     {
         /// <summary>
