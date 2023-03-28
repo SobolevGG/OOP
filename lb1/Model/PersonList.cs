@@ -79,10 +79,38 @@ namespace Model
             return _personsArray[index];
         }
 
+        /// <summary>
+        /// Метод поиска индекса по пользователю.
+        /// </summary>
+        /// <param name="person"></param>
+        /// <returns></returns>
+        public int SearchIndex(Person person) 
+        {
+            var index = -1;
+            for (var i = 0; i < _personsArray.Length; i++) 
+            {
+                if (_personsArray[i] == person) 
+                {
+                    index = i;
+                }
+            }
 
+            return index;
+        }
 
+        /// <summary>
+        /// Метод очистки PersonList.
+        /// </summary>
+        public void ClearList()
+        {
+            Array.Resize(ref _personsArray, 0);
+        }
 
-        
+        /// <summary>
+        /// Метод по подсчёту количества пользователей.
+        /// </summary>
+        /// <returns></returns>
+        public int CountPersons() => _personsArray.Length;
 
     }
 }
