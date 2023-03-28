@@ -68,6 +68,16 @@ namespace Model
             DeletePersonByIndex(index);
         }
 
+        /// <summary>
+        /// Метод поиска пользователей.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public Person SearchPersons(int index) 
+        {
+            CheckIndex(index);
+            return _personsArray[index];
+        }
 
 
 
