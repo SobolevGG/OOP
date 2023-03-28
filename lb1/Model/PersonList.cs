@@ -14,7 +14,7 @@ namespace Model
         /// <summary>
         /// Массив пользователей.
         /// </summary>
-        private Peson[] _personsArray = new Person[0];
+        private Person[] _personsArray = new Person[0];
 
         /// <summary>
         /// Метод добавления пользователей.
@@ -22,7 +22,7 @@ namespace Model
         /// <param name="person"></param>
         public void AddPerson(Person person) 
         {
-            var newPersonsIndex = newPersonsIndex.Length;
+            var newPersonsIndex = _personsArray.Length;
             Array.Resize(ref _personsArray, newPersonsIndex + 1);
             _personsArray[newPersonsIndex] = person;
         }
