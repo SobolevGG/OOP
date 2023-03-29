@@ -9,7 +9,7 @@ namespace Model
     /// <summary>
     /// Класс PersonList.
     /// </summary>
-    internal class PersonList
+    public class PersonList
     {
         /// <summary>
         /// Массив пользователей.

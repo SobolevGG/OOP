@@ -16,11 +16,12 @@ namespace Model
         /// <param name="name"></param>
         /// <param name="surname"></param>
         /// <param name="age"></param>
-        public Person(string name, string surname, int age)
+        public Person(string name, string surname, int age, Gender gender)
         {
             _name = name;
             _surname = surname;
             _age = age;
+            _gender = gender;
 
             Regex regex = new Regex("");
             // Если не соответствует шаблону, кинуть исключение!
@@ -55,12 +56,12 @@ namespace Model
         /// <summary>
         /// Минимальный возраст для контроля некорректного ввода.
         /// </summary>
-        private int MinAge = 0;
+        private const int MinAge = 0;
 
         /// <summary>
         /// Максимальный возраст для контроля некорректного ввода.
         /// </summary>
-        private int MaxAge = 200;
+        private const int MaxAge = 200;
 
         /// <summary>
         /// Вывод информации о пользователе.
@@ -73,6 +74,53 @@ namespace Model
             $"Имя: {this._name}\n" +
             $"Фамилия: {this._surname}\n" +
             $"Возраст: {this._age}";
+        }
+
+        /// <summary>
+        /// Создание путого экземпляра класса.
+        /// </summary>
+        public Person()
+        { }
+        
+        /// <summary>
+        /// Метод получения случайных персон.
+        /// </summary>
+        /// <returns></returns>
+        public static Person GetRandomPerson()
+        {
+            string[] maleNames =
+            {
+                "Alex", "Tom", "John", "Vlad", "Eugene",
+                "Viktor", "Ivan", "Petr", "Khariton"
+            };
+
+            string[] femaleNames =
+            {
+                "Darya", "Valentina", "Varvara", "Julia", "Alyona",
+                "Elena", "Katerine", "Olga", "Sofia"
+            };
+
+            string[] surnames =
+            {
+                "Abramson", "Alford", "Anderson", "Bates", "Bethel",
+                "Becker", "Richards", "Pearcy", "Peterson", "Philips"
+            };
+
+            var random = new Random();
+            var tmpNumber = random.Next(1, 3);
+
+            Gender tmpGender = tmpNumber == 1
+                ? Gender.Male
+                : Gender.Female;
+
+            string tmpName = tmpGender == Gender.Male
+                ? maleNames[random.Next(maleNames.Length)]
+                : femaleNames[random.Next(femaleNames.Length)];
+
+            var tmpSurname = surnames[random.Next(surnames.Length)];
+            var tmpAge = random.Next(MinAge, MaxAge);
+
+            return new Person(tmpName, tmpSurname, tmpAge, tmpGender);
         }
 
         /// <summary>
@@ -191,6 +239,10 @@ namespace Model
             return Language.Unknown.ToString();
         }
 
+        /// <summary>
+        /// Проверка на совпадение языка имени и фамилии.
+        /// </summary>
+        /// <exception cref="FormatException"></exception>
         private void CheckName()
         {
             if ((!string.IsNullOrEmpty(Name))
@@ -207,6 +259,11 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Метод преобразование регистра.
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
         private static string FixRegister(string word)
         {
             return CultureInfo.CurrentCulture.TextInfo.

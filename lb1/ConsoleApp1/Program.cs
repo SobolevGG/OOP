@@ -15,16 +15,30 @@ namespace ConsoleApp1
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            try
-            {
-                // string.Empty - передача пустой строки
-                Person person = new Person(string.Empty, "Test1", 23);
-            }
-            catch
-            {
-                Console.WriteLine("Name is empty!");
-            }
-            Console.ReadKey();
+            var actors = new PersonList();
+            var actresses = new PersonList();
+
+            var Robert = new Person("Роберт", "Дауни", 57, Gender.Male);
+            var Dwayne = new Person("Дуэйн", "Джонсон", 50, Gender.Male);
+            var Matthew = new Person("Мэттью", "Макконахи", 53, Gender.Male);
+            var Jackie = new Person("Джеки", "Чан", 68, Gender.Male);
+
+            var Ann = new Person("Энн", "Хэтэуэй", 40, Gender.Female);
+            var Emilia = new Person("Эмилия", "Кларк", 36, Gender.Female);
+            var Angelina = new Person("Анджелина", "Джоли", 47, Gender.Female);
+            var Emma = new Person("Эмма", "Стоун", 32, Gender.Female);
+
+            actors.AddPerson(Robert);
+            actors.AddPerson(Dwayne);
+            actors.AddPerson(Matthew);
+            actors.AddPerson(Jackie);
+
+            actresses.AddPerson(Ann);
+            actresses.AddPerson(Emilia);
+            actresses.AddPerson(Angelina);
+            actresses.AddPerson(Emma);
+
+
         }
     }
 }
