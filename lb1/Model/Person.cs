@@ -13,11 +13,12 @@ namespace Model
         /// <summary>
         /// Конструктор для инициализации данных о пользователе.
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">//TODO: XML</param>
         /// <param name="surname"></param>
         /// <param name="age"></param>
         public Person(string name, string surname, int age, Gender gender)
         {
+            //TODO: to properties
             _name = name;
             _surname = surname;
             _age = age;
@@ -62,9 +63,9 @@ namespace Model
         {
             // Вывод информации о пользователе
             return $"Информация о пользователе:\n" +
-            $"Имя: {this._name}\n" +
-            $"Фамилия: {this._surname}\n" +
-            $"Возраст: {this._age}";
+                $"Имя: {this._name}\n" +
+                $"Фамилия: {this._surname}\n" +
+                $"Возраст: {this._age}";
         }
 
         /// <summary>
@@ -126,6 +127,7 @@ namespace Model
 
             set 
             { 
+                //TODO: переписать
                 _ = CheckLanguage(value);
                 _name = FixRegister(value);
 
@@ -148,6 +150,7 @@ namespace Model
 
             set
             {
+                //TODO: переписать
                 _ = CheckLanguage(value);
                 _surname = FixRegister(value);
 
