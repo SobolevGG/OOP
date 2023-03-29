@@ -81,20 +81,20 @@ namespace Model
         {
             string[] maleNames =
             {
-                "Alex", "Tom", "John", "Vlad", "Eugene",
-                "Viktor", "Ivan", "Petr", "Khariton"
+                "Андрей", "Виктор", "Илья", "Владислав", "Евгений",
+                "Вячеслав", "Пётр", "Иван", "Алексей", "Александр"
             };
 
             string[] femaleNames =
             {
-                "Darya", "Valentina", "Varvara", "Julia", "Alyona",
-                "Elena", "Katerine", "Olga", "Sofia"
+                "Виктория", "Евгения", "Екатерина", "Юлия", "Алёна",
+                "Людмила", "Ольга", "Валентина", "Александра", "Нюша"
             };
 
             string[] surnames =
             {
-                "Abramson", "Alford", "Anderson", "Bates", "Bethel",
-                "Becker", "Richards", "Pearcy", "Peterson", "Philips"
+                "Ким", "Чен", "Фукс", "Икс", "Сок",
+                "Лок", "Лоск", "Кей", "Кац", "Фру"
             };
 
             var random = new Random();
