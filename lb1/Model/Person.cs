@@ -22,15 +22,6 @@ namespace Model
             _surname = surname;
             _age = age;
             _gender = gender;
-
-            Regex regex = new Regex("");
-            // Если не соответствует шаблону, кинуть исключение!
-            if (string.IsNullOrEmpty(name))
-            {
-                throw new System.ArgumentException("Ошибка: " +
-                    "имя введено некорректно!");
-            }
-
         }
 
         /// <summary>
@@ -185,9 +176,9 @@ namespace Model
                 }
                 else
                 {
-                    throw new IndexOutOfRangeException("Ошибка: " +
-                        "подразумевается, что возраст должен быть " +
-                        $"в диапазоне от {MinAge} до {MaxAge} лет!");
+                    throw new IndexOutOfRangeException("Возраст " +
+                        $"должен быть в диапазоне " +
+                        $"от {MinAge} до {MaxAge} лет!");
                 }
             }
         }
@@ -217,8 +208,8 @@ namespace Model
         {
             // + значит 1 и более
             // * значит 0 и более
-            var latin = new Regex(@"^[A-z]+[-][A-z]*$");
-            var cyrillic = new Regex(@"^[А-я]+[-][А-я]*$");
+            var latin = new Regex(@"^[A-z]+([-][A-z])*$");
+            var cyrillic = new Regex(@"^[А-я]+([-][А-я])*$");
 
             if (!string.IsNullOrEmpty(value))
             {
@@ -232,7 +223,8 @@ namespace Model
                 }
                 else
                 {
-                    throw new ArgumentException("Некорректный ввод, попробуйте снова!");
+                    throw new ArgumentException("Имя и фамилия " +
+                        "должны быть введены на одном языке!");
                 }
             }
 
@@ -253,10 +245,19 @@ namespace Model
 
                 if (nameLanguage != surnameLanguage)
                 {
-                    throw new FormatException("Ошибка: язык имени " +
+                    throw new FormatException("Язык имени " +
                         "и фамилии различается!");
                 }
             }
+        }
+
+        /// <summary>
+        /// Специальный метод преобразования к стринговому формату.
+        /// </summary>
+        /// <returns></returns>
+        public string ToStringMy()
+        {
+            return $"Полное имя: {Name} {Surname}, возраст: {Age}, пол: {Gender};";
         }
 
         /// <summary>

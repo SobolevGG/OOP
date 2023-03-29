@@ -15,6 +15,15 @@ namespace ConsoleApp1
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            // Проверяем работоспособность
+            Console.WriteLine("После нажатия любой клавиши " +
+                "сгенерируется случайный пользователь.");
+            _ = Console.ReadKey();
+
+            Console.WriteLine("\nСлучайный пользователь: ");
+            var randomPerson = Person.GetRandomPerson();
+            Console.WriteLine(randomPerson.ToStringMy());
+
             // Согласно заданию создаём два логически разделённых списка
             var actors = new PersonList();
             var actresses = new PersonList();
@@ -44,27 +53,29 @@ namespace ConsoleApp1
             actresses.AddPerson(emma);
 
             // Вывод в консоль 1-го списка
-            Console.WriteLine("После нажатия любой клавиши " +
+            Console.WriteLine("\nПосле нажатия любой клавиши " +
                 "будет выведен список актёров.");
             _ = Console.ReadKey();
-            Console.WriteLine("Список актёров:");
+            Console.WriteLine("\nСписок актёров:");
             PrintConsole(actors);
 
             // Вывод в консоль 2-го списка
-            Console.WriteLine("После нажатия любой клавиши " +
+            Console.WriteLine("\nПосле нажатия любой клавиши " +
                 "будет выведен список актрис.");
             _ = Console.ReadKey();
-            Console.WriteLine("Список актрис:");
+            Console.WriteLine("\nСписок актрис:");
             PrintConsole(actresses);
 
             // Добавим в 1-ый список пользователя
-            Console.WriteLine("После нажатия любой клавиши " +
-                "появится возможность добавления нового актёра.");
+            Console.WriteLine("\nПосле нажатия любой клавиши " +
+                "появится возможность добавления нового актёра " +
+                "в список актёров.");
             _ = Console.ReadKey();
             var kit = new Person
                 ("Кит", "Харингтон", 36, Gender.Male);
             actors.AddPerson(kit);
-            Console.WriteLine("Новый актёр успешно добавлен.");
+            Console.WriteLine("\nНовый актёр успешно добавлен " +
+                "в список актёров.\n");
 
             // Добавим во 2-ый список пользователя
             Console.WriteLine("После нажатия любой клавиши " +
@@ -73,43 +84,156 @@ namespace ConsoleApp1
             var rose = new Person
                 ("Роуз", "Лесли", 36, Gender.Female);
             actresses.AddPerson(rose);
-            Console.WriteLine("Новая актриса успешно добавлена.");
+            Console.WriteLine("\nНовая актриса успешно добавлена.");
 
             // Скопируем второго человека во 2-ой список
-            Console.WriteLine("После нажатия любой клавиши " +
-                "появится возможность копирования второго актёра" +
-                "в список актрис :D \n(так надо).");
+            Console.WriteLine("\nПосле нажатия любой клавиши " +
+                "появится возможность копирования второго актёра " +
+                "в список актрис :D (так надо).");
             _ = Console.ReadKey();
             actresses.AddPerson(actors.SearchPersons(1));
 
-            Console.WriteLine("Да, мы действительно добавили актёра " +
-                $"к актрисам.\n{actors.SearchPersons(1).Name} " +
+            Console.WriteLine("\nДа, мы действительно добавили актёра " +
+                $"к актрисам. {actors.SearchPersons(1).Name} " +
                 $"благодарит Вас :D");
 
-            /// <summary>
-            /// Вывод в консоль.
-            /// </summary>
-            private static void PrintConsole(PersonList personList)
+            // Проверка корректного копирования из списка в список
+            Console.WriteLine("\nПосле нажатия любой клавиши " +
+                "появится возможность просмотра обоих списков.");
+            _ = Console.ReadKey();
+            Console.WriteLine("\nСписок актёров:");
+            PrintConsole(actors);
+            Console.WriteLine("\nСписок актрис:");
+            PrintConsole(actresses);
+
+            // Очистим 2-ой список
+            Console.WriteLine("\nПосле нажатия любой клавиши " +
+                "появится возможность удаления списка актрис.");
+            _ = Console.ReadKey();
+            actresses.ClearList();
+            Console.WriteLine("\nВторой список успешно очищен. " +
+                "Весь список улетел на Бали, " +
+                $"\n{actors.SearchPersons(1).Name} " +
+                $"благодарит Вас ещё раз :D");
+
+            // Проверим возможность ввода с консоли
+            Console.WriteLine("После нажатия любой клавиши " +
+                "появится возможность ввода нового пользователя.");
+            _ = Console.ReadKey();
+            var inputPerson = ConsoleCreatePersons();
+            Console.WriteLine(inputPerson.ToStringMy());
+        }
+
+        /// <summary>
+        /// Вывод в консоль.
+        /// </summary>
+        private static void PrintConsole(PersonList personList)
+        {
+            if (personList == null)
             {
-                if (personList == null)
-                {
-                    throw new NullReferenceException("Извините, но список пока пуст.");
-                }
+                throw new NullReferenceException("Извините, " +
+                    "но список пока пуст.");
+            }
 
-                if (personList.CountPersons() > 0)
+            else if (personList.CountPersons() > 0)
+            {
+                for (int i = 0; i < personList.CountPersons(); i++)
                 {
-                    for (int i = 0; i < personList.CountPersons(); i++)
-                    {
-                        var tmpPerson = personList.SearchPersons(i);
-                        Console.WriteLine(tmpPerson.ToString());
-                    }
-                }
-
-                else
-                {
-                    Console.WriteLine("List is empty.");
+                    var tmpPerson = personList.SearchPersons(i);
+                    Console.WriteLine(tmpPerson.ToStringMy());
                 }
             }
+        }
+
+        /// <summary>
+        /// Метод для вывода исключений в консоль.
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="characteristic"></param>
+        private static void ShowException(Action<string> action, string characteristic)
+        {
+            while (true)
+            {
+                try
+                {
+                    action.Invoke(characteristic);
+                    break;
+                }
+                catch (Exception exception)
+                {
+                    if (exception.GetType()
+                        == typeof(IndexOutOfRangeException)
+                        || exception.GetType() == typeof(FormatException)
+                        || exception.GetType() == typeof(ArgumentException))
+                    {
+                        Console.WriteLine($"К сожалению, характеристика " +
+                            $"*{characteristic}* введена не верно." +
+                        $" Ошибка: {exception.Message}");
+                    }
+                    else
+                    {
+                        throw exception;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Метод создания пользователей из консоли.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="IndexOutOfRangeException"></exception>
+        public static Person ConsoleCreatePersons()
+        {
+            var person = new Person();
+
+            var actionList = new List<(Action<string>, string)>
+            {
+                (
+                new Action<string>((string property) =>
+                {
+                    Console.Write($"\nПользовательское {property}: ");
+                    person.Name = Console.ReadLine();
+                }), "имя"),
+
+                (new Action<string>((string property) =>
+                {
+                    Console.Write($"Пользовательская {property}: ");
+                    person.Surname = Console.ReadLine();
+                }), "фамилия"),
+
+                (new Action<string>((string property) =>
+                {
+                    Console.Write($"Пользовательский {property}: ");
+                    _ = int.TryParse(Console.ReadLine(), out int tmpAge);
+                    person.Age = tmpAge;
+                }), "возраст"),
+
+                (new Action<string>((string property) =>
+                {
+                    Console.Write
+                        ($"Пользовательский {property} (1 - М, 2 - Ж): ");
+                    _ = int.TryParse(Console.ReadLine(), out int tmpGender);
+                    if (tmpGender != 1 || tmpGender != 2)
+                    {
+                        throw new IndexOutOfRangeException
+                            ("Пол вводится или цифрой *1* - мужчина, " +
+                            "или цифрой *2* - женщина.");
+                    }
+
+                    var realGender = tmpGender == 1
+                        ? Gender.Male
+                        : Gender.Female;
+                    person.Gender = realGender;
+                }), "пол")
+            };
+
+            foreach (var action in actionList)
+            {
+                ShowException(action.Item1, action.Item2);
+            }
+
+            return person;
         }
     }
 }
