@@ -36,7 +36,8 @@ namespace Model
         {
             if (index < 0 || index >= _personsArray.Length)
             { 
-                throw new IndexOutOfRangeException("Ошибка: индекс вне допустимого диапазона!");
+                throw new IndexOutOfRangeException("Ошибка: " +
+                    "индекс вне допустимого диапазона!");
             }
         }
 

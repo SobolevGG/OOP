@@ -131,7 +131,7 @@ namespace Model
 
                 if (_surname != null)
                 {
-                    CheckName();
+                    CheckSimilarName();
                 }
             }
         }
@@ -153,7 +153,7 @@ namespace Model
 
                 if (_surname != null)
                 {
-                    CheckName();
+                    CheckSimilarName();
                 }
             }
         }
@@ -223,9 +223,11 @@ namespace Model
                 }
                 else
                 {
-                    throw new ArgumentException("Имя и фамилия " +
+                    throw new ArgumentException("Доступные языки: "
+                        +"английский и русский. Имя и фамилия " +
                         "должны быть введены на одном языке!");
                 }
+ 
             }
 
             return Language.Unknown.ToString();
@@ -235,7 +237,7 @@ namespace Model
         /// Проверка на совпадение языка имени и фамилии.
         /// </summary>
         /// <exception cref="FormatException"></exception>
-        private void CheckName()
+        private void CheckSimilarName()
         {
             if ((!string.IsNullOrEmpty(Name))
                 && (!string.IsNullOrEmpty(Surname)))
