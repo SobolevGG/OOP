@@ -15,6 +15,7 @@ namespace ConsoleApp1
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            //TODO:
             // Проверяем работоспособность
             Console.WriteLine("После нажатия любой клавиши " +
                 "сгенерируется случайный пользователь.");
