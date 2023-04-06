@@ -131,12 +131,15 @@ namespace Model
                 //TODO: переписать
                 var tempValue = Name;
                 CheckNullOrEmpty(tempValue);
-                if (CheckPattern(tempValue) != CheckPattern(_surname))
+                if (!(string.IsNullOrEmpty(_surname)))
                 {
-                    throw new FormatException("Язык имени " +
-                        "и фамилии различается!");
+                    if (CheckPattern(tempValue) != CheckPattern(_surname))
+                    {
+                        throw new FormatException("Язык имени " +
+                            "и фамилии различается!");
+                    }
+                    _name = FixRegister(CheckPattern(tempValue));
                 }
-                _name = FixRegister(CheckPattern(tempValue));
             }
         }
 
@@ -168,12 +171,15 @@ namespace Model
             set
             {
                 //TODO: переписать (+)
-                var tempValue = Surname;
+                var tempValue = value;
                 CheckNullOrEmpty(tempValue);
-                if (CheckPattern(tempValue) != CheckPattern(_name))
+                if (!(string.IsNullOrEmpty(_name))) 
                 {
-                    throw new FormatException("Язык имени " +
-                        "и фамилии различается!");
+                    if (CheckPattern(tempValue) != CheckPattern(_name))
+                    {
+                        throw new FormatException("Язык имени " +
+                            "и фамилии различается!");
+                    }
                 }
                 _surname = FixRegister(CheckPattern(tempValue));
             }
