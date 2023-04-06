@@ -150,7 +150,8 @@ namespace Model
         {
             if (string.IsNullOrEmpty(value))
             {
-                throw new ArgumentNullException("Ввод не может быть пустым!");
+                throw new ArgumentNullException("Ввод не может " +
+                    "быть пустым!");
             }
         }
         
@@ -166,7 +167,7 @@ namespace Model
 
             set
             {
-                //TODO: переписать
+                //TODO: переписать (+)
                 var tempValue = Surname;
                 CheckNullOrEmpty(tempValue);
                 if (CheckPattern(tempValue) != CheckPattern(_name))
