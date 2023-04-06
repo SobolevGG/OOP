@@ -126,15 +126,11 @@ namespace Model
             }
 
             set 
-            { 
+            {
                 //TODO: переписать
                 _ = CheckLanguage(value);
+                CheckSimilarName();
                 _name = FixRegister(value);
-
-                if (_surname != null)
-                {
-                    CheckSimilarName();
-                }
             }
         }
 
@@ -154,10 +150,7 @@ namespace Model
                 _ = CheckLanguage(value);
                 _surname = FixRegister(value);
 
-                if (_surname != null)
-                {
-                    CheckSimilarName();
-                }
+                CheckSimilarName();
             }
         }
 
@@ -203,7 +196,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Проверка соответствия имени шаблону.
+        /// Метод возвращает язык ввода данных и проверяет паттерн.
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -211,26 +204,42 @@ namespace Model
         {
             // + значит 1 и более
             // * значит 0 и более
-            var latin = new Regex(@"^[A-z]+([-][A-z])*$");
-            var cyrillic = new Regex(@"^[А-я]+([-][А-я])*$");
+            // Структура паттерна включает проверку
+            // на совпадение языков в двойных именах и фамилиях  
+            var latin = new Regex(@"^[A-z]+(-[A-z])?[A-z]*$");
+            var cyrillic = new Regex(@"^[А-я]+(-[А-я])?[А-я]*$");
 
+            // Проверка на пустой ввод
             if (!string.IsNullOrEmpty(value))
             {
-                if (cyrillic.IsMatch(value))
+                if (!(cyrillic.IsMatch(value)) & 
+                    !(latin.IsMatch(value))) 
                 {
-                    return Language.Russian.ToString();
+                    throw new ArgumentException("Двойные имена и фамилии " +
+                        "должны быть введены на одном языке! " +
+                        "Символы также не допустимы!");
                 }
-                else if (latin.IsMatch(value))
+                else 
                 {
-                    return Language.English.ToString();
+                    Console.WriteLine("check");
+                    if (cyrillic.IsMatch(value))
+                    {
+                        return Language.Russian.ToString();
+                    }
+                    else if (latin.IsMatch(value))
+                    {
+                        return Language.English.ToString();
+                    }
+                    // Исключение на язык, отличный от RU и EN
+                    else
+                    {
+                        throw new ArgumentException("Неизвестный язык!");
+                    }
                 }
-                else
-                {
-                    throw new ArgumentException("Доступные языки: "
-                        +"английский и русский. Имя и фамилия " +
-                        "должны быть введены на одном языке!");
-                }
- 
+            }
+            else if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("Пустой ввод!");
             }
 
             return Language.Unknown.ToString();
@@ -242,17 +251,13 @@ namespace Model
         /// <exception cref="FormatException"></exception>
         private void CheckSimilarName()
         {
-            if ((!string.IsNullOrEmpty(Name))
-                && (!string.IsNullOrEmpty(Surname)))
-            {
-                var nameLanguage = CheckLanguage(Name);
-                var surnameLanguage = CheckLanguage(Surname);
+            var languagesName = CheckLanguage(Name);
+            var languagesSurname = CheckLanguage(Surname);
 
-                if (nameLanguage != surnameLanguage)
-                {
-                    throw new FormatException("Язык имени " +
-                        "и фамилии различается!");
-                }
+            if (languagesName != languagesSurname)
+            {
+                throw new FormatException("Язык имени " +
+                    "и фамилии различается!");
             }
         }
 

@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\igs14\\Desktop\\Новая папка\\OOP\\lb1\\Model\\Model.csproj": {}
+    "C:\\Users\\Sobol\\source\\repos\\SobolevGG\\OOP\\lb1\\Model\\Model.csproj": {}
   },
   "projects": {
-    "C:\\Users\\igs14\\Desktop\\Новая папка\\OOP\\lb1\\Model\\Model.csproj": {
+    "C:\\Users\\Sobol\\source\\repos\\SobolevGG\\OOP\\lb1\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\igs14\\Desktop\\Новая папка\\OOP\\lb1\\Model\\Model.csproj",
+        "projectUniqueName": "C:\\Users\\Sobol\\source\\repos\\SobolevGG\\OOP\\lb1\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "C:\\Users\\igs14\\Desktop\\Новая папка\\OOP\\lb1\\Model\\Model.csproj",
-        "packagesPath": "C:\\Users\\igs14\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\igs14\\Desktop\\Новая папка\\OOP\\lb1\\Model\\obj\\",
+        "projectPath": "C:\\Users\\Sobol\\source\\repos\\SobolevGG\\OOP\\lb1\\Model\\Model.csproj",
+        "packagesPath": "C:\\Users\\Sobol\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Sobol\\source\\repos\\SobolevGG\\OOP\\lb1\\Model\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\igs14\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Sobol\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -59,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

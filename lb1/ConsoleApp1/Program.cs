@@ -15,7 +15,8 @@ namespace ConsoleApp1
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            //TODO:
+            /*
+            //TODO:+
             // Проверяем работоспособность
             Console.WriteLine("После нажатия любой клавиши " +
                 "сгенерируется случайный пользователь.");
@@ -116,7 +117,7 @@ namespace ConsoleApp1
                 "Весь список улетел на Бали, " +
                 $"\n{actors.SearchPersons(1).Name} " +
                 $"благодарит Вас ещё раз :D");
-
+            */
             // Проверим возможность ввода с консоли
             Console.WriteLine("После нажатия любой клавиши " +
                 "появится возможность ввода нового пользователя.");
@@ -169,7 +170,7 @@ namespace ConsoleApp1
                     {
                         Console.WriteLine($"К сожалению, характеристика " +
                             $"*{characteristic}* введена не верно." +
-                        $" Ошибка: {exception.Message}");
+                        $"\nОшибка: {exception.Message}");
                     }
                     else
                     {
