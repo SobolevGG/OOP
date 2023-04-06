@@ -129,7 +129,7 @@ namespace Model
             set
             {
                 //TODO: переписать
-                var tempValue = Name;
+                var tempValue = value;
                 CheckNullOrEmpty(tempValue);
                 if (!(string.IsNullOrEmpty(_surname)))
                 {
@@ -146,12 +146,12 @@ namespace Model
         /// <summary>
         /// Метод проверки на пустой ввод.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="checkValue"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public void CheckNullOrEmpty(string value) 
+        public void CheckNullOrEmpty(string checkValue) 
         {
-            if (string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(checkValue))
             {
                 throw new ArgumentNullException("Ввод не может " +
                     "быть пустым!");
