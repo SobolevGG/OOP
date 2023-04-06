@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace Model
 {
@@ -19,10 +20,10 @@ namespace Model
         public Person(string name, string surname, int age, Gender gender)
         {
             //TODO: to properties
-            _name = name;
-            _surname = surname;
-            _age = age;
-            _gender = gender;
+            Name = name;
+            Surname = surname;
+            Age = age;
+            Gender = gender;
         }
 
         /// <summary>
@@ -125,15 +126,34 @@ namespace Model
                 return _name;
             }
 
-            set 
+            set
             {
                 //TODO: переписать
-                _ = CheckLanguage(value);
-                CheckSimilarName();
-                _name = FixRegister(value);
+                var tempValue = Name;
+                CheckNullOrEmpty(tempValue);
+                if (CheckPattern(tempValue) != CheckPattern(_surname))
+                {
+                    throw new FormatException("Язык имени " +
+                        "и фамилии различается!");
+                }
+                _name = FixRegister(CheckPattern(tempValue));
             }
         }
 
+        /// <summary>
+        /// Метод проверки на пустой ввод.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public void CheckNullOrEmpty(string value) 
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentNullException("Ввод не может быть пустым!");
+            }
+        }
+        
         /// <summary>
         /// Проверка фамилии.
         /// </summary>
@@ -147,10 +167,14 @@ namespace Model
             set
             {
                 //TODO: переписать
-                _ = CheckLanguage(value);
-                _surname = FixRegister(value);
-
-                CheckSimilarName();
+                var tempValue = Surname;
+                CheckNullOrEmpty(tempValue);
+                if (CheckPattern(tempValue) != CheckPattern(_name))
+                {
+                    throw new FormatException("Язык имени " +
+                        "и фамилии различается!");
+                }
+                _surname = FixRegister(CheckPattern(tempValue));
             }
         }
 
@@ -200,7 +224,7 @@ namespace Model
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public string CheckLanguage(string value)
+        public string CheckPattern(string value)
         {
             // + значит 1 и более
             // * значит 0 и более
@@ -209,55 +233,30 @@ namespace Model
             var latin = new Regex(@"^[A-z]+(-[A-z])?[A-z]*$");
             var cyrillic = new Regex(@"^[А-я]+(-[А-я])?[А-я]*$");
 
-            // Проверка на пустой ввод
-            if (!string.IsNullOrEmpty(value))
+            if (!(cyrillic.IsMatch(value)) &
+                    !(latin.IsMatch(value)))
             {
-                if (!(cyrillic.IsMatch(value)) & 
-                    !(latin.IsMatch(value))) 
-                {
-                    throw new ArgumentException("Двойные имена и фамилии " +
-                        "должны быть введены на одном языке! " +
-                        "Символы также не допустимы!");
-                }
-                else 
-                {
-                    Console.WriteLine("check");
-                    if (cyrillic.IsMatch(value))
-                    {
-                        return Language.Russian.ToString();
-                    }
-                    else if (latin.IsMatch(value))
-                    {
-                        return Language.English.ToString();
-                    }
-                    // Исключение на язык, отличный от RU и EN
-                    else
-                    {
-                        throw new ArgumentException("Неизвестный язык!");
-                    }
-                }
+                throw new ArgumentException("Двойные имена и фамили " +
+                    "необходимо вводить данные в формате: " +
+                    "*ruName-ruName* или *enName-enName*. " +
+                    "Символы также не допустимы!");
             }
-            else if (string.IsNullOrEmpty(value))
+            else
             {
-                throw new ArgumentException("Пустой ввод!");
-            }
-
-            return Language.Unknown.ToString();
-        }
-
-        /// <summary>
-        /// Проверка на совпадение языка имени и фамилии.
-        /// </summary>
-        /// <exception cref="FormatException"></exception>
-        private void CheckSimilarName()
-        {
-            var languagesName = CheckLanguage(Name);
-            var languagesSurname = CheckLanguage(Surname);
-
-            if (languagesName != languagesSurname)
-            {
-                throw new FormatException("Язык имени " +
-                    "и фамилии различается!");
+                Console.WriteLine("check");
+                if (cyrillic.IsMatch(value))
+                {
+                    return Language.Russian.ToString();
+                }
+                else if (latin.IsMatch(value))
+                {
+                    return Language.English.ToString();
+                }
+                // Исключение на язык, отличный от RU и EN
+                else
+                {
+                    throw new ArgumentException("Неизвестный язык!");
+                }
             }
         }
 

@@ -166,7 +166,8 @@ namespace ConsoleApp1
                     if (exception.GetType()
                         == typeof(IndexOutOfRangeException)
                         || exception.GetType() == typeof(FormatException)
-                        || exception.GetType() == typeof(ArgumentException))
+                        || exception.GetType() == typeof(ArgumentException)
+                        || exception.GetType() == typeof(ArgumentNullException))
                     {
                         Console.WriteLine($"К сожалению, характеристика " +
                             $"*{characteristic}* введена не верно." +
