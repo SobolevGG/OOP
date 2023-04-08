@@ -45,7 +45,7 @@ namespace Model
         /// Метод удаления пользователей по индексу.
         /// </summary>
         /// <param name="index"></param>
-        public void DeletePersonByIndex(int index) 
+        public void DeletePerson(int index) 
         { 
             CheckIndex(index);
 
@@ -57,27 +57,31 @@ namespace Model
             Array.Resize(ref _personsArray, _personsArray.Length - 1);
         }
 
-        // TODO: Сделать метод DeletePerson с перегрузкой
+        // TODO(+): Сделать метод DeletePerson с перегрузкой
         /// <summary>
         /// Метод удаления пользователя по переданной персоне.
         /// </summary>
         /// <param name="person"></param>
-        public void DeletePersonByPerson(Person person) 
+        public void DeletePerson(Person person) 
         {
-            // TODO: А если человека нет в массиве?
+            // TODO(+): А если человека нет в массиве?
             // Определяем индекс первого вхождения пользователя в массиве
             int index = Array.IndexOf(_personsArray, person);
-            
-            DeletePersonByIndex(index);
+            if (index == -1) 
+            {
+                throw new ArgumentException("Переданная персона " +
+                    "отсутствует в массиве!");
+            }
+            DeletePerson(index);
         }
 
-        // TODO: Persons --> Person
+        // TODO(+): Persons --> Person
         /// <summary>
         /// Метод поиска пользователей.
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public Person SearchPersons(int index) 
+        public Person SearchPerson(int index)
         {
             CheckIndex(index);
             return _personsArray[index];

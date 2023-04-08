@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Evgeny Tsydenov\\.nuget\\packages\\": {}
+    "C:\\Users\\Sobol\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Evgeny Tsydenov\\Desktop\\OOP\\Sobolev\\lb1\\Model\\Model.csproj",
+      "projectUniqueName": "C:\\Users\\Sobol\\source\\repos\\SobolevGG\\OOP\\lb1\\Model\\Model.csproj",
       "projectName": "Model",
-      "projectPath": "C:\\Users\\Evgeny Tsydenov\\Desktop\\OOP\\Sobolev\\lb1\\Model\\Model.csproj",
-      "packagesPath": "C:\\Users\\Evgeny Tsydenov\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Evgeny Tsydenov\\Desktop\\OOP\\Sobolev\\lb1\\Model\\obj\\",
+      "projectPath": "C:\\Users\\Sobol\\source\\repos\\SobolevGG\\OOP\\lb1\\Model\\Model.csproj",
+      "packagesPath": "C:\\Users\\Sobol\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Sobol\\source\\repos\\SobolevGG\\OOP\\lb1\\Model\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Evgeny Tsydenov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Sobol\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

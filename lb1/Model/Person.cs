@@ -6,6 +6,7 @@ using System.Xml.Linq;
 
 namespace Model
 {
+    //TODO(+): XML
     /// <summary>
     /// Класс для пользователя.
     /// </summary>
@@ -14,12 +15,16 @@ namespace Model
         /// <summary>
         /// Конструктор для инициализации данных о пользователе.
         /// </summary>
-        /// <param name="name">//TODO: XML</param>
-        /// <param name="surname"></param>
-        /// <param name="age"></param>
-        public Person(string name, string surname, int age, Gender gender)
+        /// <param name="name">Имя.</param>
+        /// <param name="surname">Фамилия.</param>
+        /// <param name="age">Возраст.</param>
+        /// /// <param name="gender">Пол.</param>
+        public Person(string name,
+                      string surname,
+                      int age,
+                      Gender gender)
         {
-            //TODO: to properties
+            //TODO(+): to properties
             Name = name;
             Surname = surname;
             Age = age;
@@ -69,13 +74,12 @@ namespace Model
                 $"Возраст: {this._age}";
         }
 
-        // TODO: Избыточно
-        /// <summary>
-        /// Создание путого экземпляра класса.
-        /// </summary>
+        // TODO(+): Избыточно
+        // Всё же нужно для корректной работы Action`ов
         public Person()
-        { }
-        
+        {
+        }
+
         /// <summary>
         /// Метод получения случайных персон.
         /// </summary>
@@ -118,6 +122,21 @@ namespace Model
         }
 
         /// <summary>
+        /// Метод проверки на пустой ввод.
+        /// </summary>
+        /// <param name="value">Проверяемое значение.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public void CheckNullOrEmpty(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentNullException(value, "Ввод не может " +
+                    "быть пустым!");
+            }
+        }
+
+        /// <summary>
         /// Проверка имени.
         /// </summary>
         public string Name
@@ -129,32 +148,18 @@ namespace Model
 
             set
             {
-                // TODO: переписать
+                // TODO(+): переписать
                 CheckNullOrEmpty(value);
+                CheckPattern(value);
                 if (!string.IsNullOrEmpty(Surname))
                 {
-                    if (CheckPattern(value) != CheckPattern(Surname))
+                    if (CheckLanguage(value) != CheckLanguage(Surname))
                     {
                         throw new FormatException("Язык имени " +
                             "и фамилии различается!");
                     }
-                    _name = FixRegister(CheckPattern(value));
+                    _name = FixRegister(value);
                 }
-            }
-        }
-
-        /// <summary>
-        /// Метод проверки на пустой ввод.
-        /// </summary>
-        /// <param name="checkValue"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
-        public void CheckNullOrEmpty(string checkValue) 
-        {
-            if (string.IsNullOrEmpty(checkValue))
-            {
-                throw new ArgumentNullException("Ввод не может " +
-                    "быть пустым!");
             }
         }
         
@@ -170,18 +175,18 @@ namespace Model
 
             set
             {
-                // TODO: переписать (+)
-                var tempValue = value;
-                CheckNullOrEmpty(tempValue);
+                // TODO(+): переписать
+                CheckNullOrEmpty(value);
+                CheckPattern(value);
                 if (!(string.IsNullOrEmpty(_name))) 
                 {
-                    if (CheckPattern(tempValue) != CheckPattern(_name))
+                    if (CheckLanguage(value) != CheckLanguage(_name))
                     {
                         throw new FormatException("Язык имени " +
                             "и фамилии различается!");
                     }
                 }
-                _surname = FixRegister(CheckPattern(tempValue));
+                _surname = FixRegister(value);
             }
         }
 
@@ -226,14 +231,15 @@ namespace Model
             }
         }
 
-        // TODO: Разделить метод на проверку языка CheckLanguage и на проверку паттерна CheckPattern.
+        // TODO (+): Разделить метод на проверку языка CheckLanguage
+        // и на проверку паттерна CheckPattern.
         // Методы возвращают bool. 
         /// <summary>
-        /// Метод возвращает язык ввода данных и проверяет паттерн.
+        /// Метод проверяет паттерн.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">Принимаемый параметр: имя или фамилия</param>
         /// <returns></returns>
-        public string CheckPattern(string value)
+        public void CheckPattern(string value)
         {
             // + значит 1 и более
             // * значит 0 и более
@@ -247,32 +253,45 @@ namespace Model
             {
                 throw new ArgumentException("Двойные имена и фамили " +
                     "необходимо вводить данные в формате: " +
-                    "*ruName-ruName* или *enName-enName*. " +
-                    "Символы также не допустимы!");
-            }
-            else
-            {
-                Console.WriteLine("check");
-                if (cyrillic.IsMatch(value))
-                {
-                    return Language.Russian.ToString();
-                }
-                else if (latin.IsMatch(value))
-                {
-                    return Language.English.ToString();
-                }
-                // Исключение на язык, отличный от RU и EN
-                else
-                {
-                    throw new ArgumentException("Неизвестный язык!");
-                }
+                    "\n*ruName-ruName* или *enName-enName*. " +
+                    "\nСимволы также не допустимы!");
             }
         }
-        
+
+        // Методы возвращают bool. 
+        /// <summary>
+        /// Метод возвращает язык ввода данных.
+        /// </summary>
+        /// <param name="value">Принимаемый параметр: имя или фамилия</param>
+        /// <returns></returns>
+        public string CheckLanguage(string value)
+        {
+            // + значит 1 и более
+            // * значит 0 и более
+            // Структура паттерна включает проверку
+            // на совпадение языков в двойных именах и фамилиях  
+            var latin = new Regex(@"^[A-z]+(-[A-z])?[A-z]*$");
+            var cyrillic = new Regex(@"^[А-я]+(-[А-я])?[А-я]*$");
+
+            if (cyrillic.IsMatch(value))
+            {
+                return Language.Russian.ToString();
+            }
+            else if (latin.IsMatch(value))
+            {
+                return Language.English.ToString();
+            }
+            // Исключение на язык, отличный от RU и EN
+            else
+            {
+                throw new ArgumentException("Неизвестный язык!");
+            }
+        }
+
         /// <summary>
         /// Метод преобразование регистра.
         /// </summary>
-        /// <param name="word"></param>
+        /// <param name="word">Принимаемый параметр: имя или фамилия</param>
         /// <returns></returns>
         private static string FixRegister(string word)
         {

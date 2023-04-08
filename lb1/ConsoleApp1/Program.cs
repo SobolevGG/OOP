@@ -95,10 +95,10 @@ namespace ConsoleApp1
                 "появится возможность копирования второго актёра " +
                 "в список актрис :D (так надо).");
             _ = Console.ReadKey();
-            actresses.AddPerson(actors.SearchPersons(1));
+            actresses.AddPerson(actors.SearchPerson(1));
 
             Console.WriteLine("\nДа, мы действительно добавили актёра " +
-                $"к актрисам. {actors.SearchPersons(1).Name} " +
+                $"к актрисам. {actors.SearchPerson(1).Name} " +
                 $"благодарит Вас :D");
 
             // Проверка корректного копирования из списка в список
@@ -117,7 +117,7 @@ namespace ConsoleApp1
             actresses.ClearList();
             Console.WriteLine("\nВторой список успешно очищен. " +
                 "Весь список улетел на Бали, " +
-                $"\n{actors.SearchPersons(1).Name} " +
+                $"\n{actors.SearchPerson(1).Name} " +
                 $"благодарит Вас ещё раз :D");
             */
             // Проверим возможность ввода с консоли
@@ -125,7 +125,7 @@ namespace ConsoleApp1
                 "появится возможность ввода нового пользователя.");
             _ = Console.ReadKey();
             var inputPerson = ConsoleCreatePersons();
-            Console.WriteLine(inputPerson.ToStringMy());
+            Console.WriteLine(inputPerson.GetInfo());
         }
 
         /// <summary>
@@ -143,8 +143,8 @@ namespace ConsoleApp1
             {
                 for (int i = 0; i < personList.CountPersons(); i++)
                 {
-                    var tmpPerson = personList.SearchPersons(i);
-                    Console.WriteLine(tmpPerson.ToStringMy());
+                    var tmpPerson = personList.SearchPerson(i);
+                    Console.WriteLine(tmpPerson.GetInfo());
                 }
             }
         }
@@ -190,7 +190,7 @@ namespace ConsoleApp1
         /// <exception cref="IndexOutOfRangeException"></exception>
         public static Person ConsoleCreatePersons()
         {
-            var person = new Person();
+            var person = GetPerson();
 
             // TODO: Actions можно убрать
             var actionList = new List<(Action<string>, string)>
@@ -218,7 +218,7 @@ namespace ConsoleApp1
                 (new Action<string>((string property) =>
                 {
                     Console.Write
-                        ($"Пользовательский {property} (1 - М, 2 - Ж): ");
+                        ($"Пользовательский {property} (1 - Мужчина, 2 - Женщина): ");
                     _ = int.TryParse(Console.ReadLine(), out int tmpGender);
                     if (tmpGender != 1 || tmpGender != 2)
                     {
@@ -240,6 +240,11 @@ namespace ConsoleApp1
             }
 
             return person;
+        }
+
+        private static Person GetPerson()
+        {
+            return new Person();
         }
     }
 }
