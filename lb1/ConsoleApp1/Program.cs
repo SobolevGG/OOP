@@ -220,11 +220,11 @@ namespace ConsoleApp1
                     Console.Write
                         ($"Пользовательский {property} (1 - Мужчина, 2 - Женщина): ");
                     _ = int.TryParse(Console.ReadLine(), out int tmpGender);
-                    if (tmpGender != 1 || tmpGender != 2)
+                    if (tmpGender != 1 & tmpGender != 2)
                     {
                         throw new IndexOutOfRangeException
-                            ("Пол вводится или цифрой *1* - мужчина, " +
-                            "или цифрой *2* - женщина.");
+                            ("Пол вводится цифрами: *1* - мужчина, " +
+                            "*2* - женщина.");
                     }
 
                     var realGender = tmpGender == 1

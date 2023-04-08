@@ -69,9 +69,10 @@ namespace Model
         {
             // Вывод информации о пользователе
             return $"Информация о пользователе:\n" +
-                $"Имя: {this._name}\n" +
-                $"Фамилия: {this._surname}\n" +
-                $"Возраст: {this._age}";
+                $"Имя: {this._name}, " +
+                $"Фамилия: {this._surname}, " +
+                $"\nВозраст: {this._age}, " +
+                $"Пол: {this.Gender}" ;
         }
 
         // TODO(+): Избыточно
@@ -88,7 +89,7 @@ namespace Model
         {
             string[] maleNames =
             {
-                "Андрей", "Виктор", "Илья", "Владислав", "Евгений",
+                "Андрей", "ВикТОР", "Илья", "Владисlove", "ЕвГЕНИЙ",
                 "Вячеслав", "Пётр", "Иван", "Алексей", "Александр"
             };
 
@@ -151,15 +152,16 @@ namespace Model
                 // TODO(+): переписать
                 CheckNullOrEmpty(value);
                 CheckPattern(value);
-                if (!string.IsNullOrEmpty(Surname))
+                if (!string.IsNullOrEmpty(_surname))
                 {
-                    if (CheckLanguage(value) != CheckLanguage(Surname))
+                    if (CheckLanguage(value) != CheckLanguage(_surname))
                     {
                         throw new FormatException("Язык имени " +
                             "и фамилии различается!");
                     }
-                    _name = FixRegister(value);
                 }
+
+                _name = FixRegister(value);
             }
         }
         
@@ -186,6 +188,7 @@ namespace Model
                             "и фамилии различается!");
                     }
                 }
+
                 _surname = FixRegister(value);
             }
         }
@@ -233,12 +236,11 @@ namespace Model
 
         // TODO (+): Разделить метод на проверку языка CheckLanguage
         // и на проверку паттерна CheckPattern.
-        // Методы возвращают bool. 
+
         /// <summary>
         /// Метод проверяет паттерн.
         /// </summary>
-        /// <param name="value">Принимаемый параметр: имя или фамилия</param>
-        /// <returns></returns>
+        /// <param name="value">Имя или фамилия пользователя.</param>
         public void CheckPattern(string value)
         {
             // + значит 1 и более
@@ -251,19 +253,17 @@ namespace Model
             if (!(cyrillic.IsMatch(value)) &
                     !(latin.IsMatch(value)))
             {
-                throw new ArgumentException("Двойные имена и фамили " +
+                throw new ArgumentException("Двойные имена и фамилии " +
                     "необходимо вводить данные в формате: " +
-                    "\n*ruName-ruName* или *enName-enName*. " +
-                    "\nСимволы также не допустимы!");
+                    "\n*ruName-ruName* или *enName-enName*.");
             }
         }
 
-        // Методы возвращают bool. 
         /// <summary>
         /// Метод возвращает язык ввода данных.
         /// </summary>
-        /// <param name="value">Принимаемый параметр: имя или фамилия</param>
-        /// <returns></returns>
+        /// <param name="value">Имя или фамилия пользователя.</param>
+        /// <returns>Язык введённого значения. </returns>
         public string CheckLanguage(string value)
         {
             // + значит 1 и более
@@ -286,12 +286,13 @@ namespace Model
             {
                 throw new ArgumentException("Неизвестный язык!");
             }
+            
         }
 
         /// <summary>
         /// Метод преобразование регистра.
         /// </summary>
-        /// <param name="word">Принимаемый параметр: имя или фамилия</param>
+        /// <param name="word">Имя или фамилия пользователя.</param>
         /// <returns></returns>
         private static string FixRegister(string word)
         {
