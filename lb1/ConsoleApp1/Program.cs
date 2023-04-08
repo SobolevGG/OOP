@@ -2,6 +2,8 @@
 using Model;
 using System.Diagnostics;
 
+// TODO: Включить линтеры
+// TODO: gitignore
 namespace ConsoleApp1
 {
     /// <summary>
@@ -190,6 +192,7 @@ namespace ConsoleApp1
         {
             var person = new Person();
 
+            // TODO: Actions можно убрать
             var actionList = new List<(Action<string>, string)>
             {
                 (

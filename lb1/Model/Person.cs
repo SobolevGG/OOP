@@ -69,6 +69,7 @@ namespace Model
                 $"Возраст: {this._age}";
         }
 
+        // TODO: Избыточно
         /// <summary>
         /// Создание путого экземпляра класса.
         /// </summary>
@@ -128,17 +129,16 @@ namespace Model
 
             set
             {
-                //TODO: переписать
-                var tempValue = value;
-                CheckNullOrEmpty(tempValue);
-                if (!(string.IsNullOrEmpty(_surname)))
+                // TODO: переписать
+                CheckNullOrEmpty(value);
+                if (!string.IsNullOrEmpty(Surname))
                 {
-                    if (CheckPattern(tempValue) != CheckPattern(_surname))
+                    if (CheckPattern(value) != CheckPattern(Surname))
                     {
                         throw new FormatException("Язык имени " +
                             "и фамилии различается!");
                     }
-                    _name = FixRegister(CheckPattern(tempValue));
+                    _name = FixRegister(CheckPattern(value));
                 }
             }
         }
@@ -170,7 +170,7 @@ namespace Model
 
             set
             {
-                //TODO: переписать (+)
+                // TODO: переписать (+)
                 var tempValue = value;
                 CheckNullOrEmpty(tempValue);
                 if (!(string.IsNullOrEmpty(_name))) 
@@ -226,6 +226,8 @@ namespace Model
             }
         }
 
+        // TODO: Разделить метод на проверку языка CheckLanguage и на проверку паттерна CheckPattern.
+        // Методы возвращают bool. 
         /// <summary>
         /// Метод возвращает язык ввода данных и проверяет паттерн.
         /// </summary>
@@ -266,16 +268,7 @@ namespace Model
                 }
             }
         }
-
-        /// <summary>
-        /// Специальный метод преобразования к стринговому формату.
-        /// </summary>
-        /// <returns></returns>
-        public string ToStringMy()
-        {
-            return $"Полное имя: {Name} {Surname}, возраст: {Age}, пол: {Gender};";
-        }
-
+        
         /// <summary>
         /// Метод преобразование регистра.
         /// </summary>

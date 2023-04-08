@@ -57,18 +57,21 @@ namespace Model
             Array.Resize(ref _personsArray, _personsArray.Length - 1);
         }
 
+        // TODO: Сделать метод DeletePerson с перегрузкой
         /// <summary>
         /// Метод удаления пользователя по переданной персоне.
         /// </summary>
         /// <param name="person"></param>
         public void DeletePersonByPerson(Person person) 
         {
+            // TODO: А если человека нет в массиве?
             // Определяем индекс первого вхождения пользователя в массиве
             int index = Array.IndexOf(_personsArray, person);
-
+            
             DeletePersonByIndex(index);
         }
 
+        // TODO: Persons --> Person
         /// <summary>
         /// Метод поиска пользователей.
         /// </summary>
