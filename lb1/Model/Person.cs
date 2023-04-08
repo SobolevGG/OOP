@@ -24,7 +24,7 @@ namespace Model
                       int age,
                       Gender gender)
         {
-            //TODO(+): to properties
+            // TODO(+): to properties
             Name = name;
             Surname = surname;
             Age = age;
