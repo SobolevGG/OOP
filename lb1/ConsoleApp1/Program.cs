@@ -242,6 +242,7 @@ namespace ConsoleApp1
             return person;
         }
 
+        //TODO: remove
         private static Person GetPerson()
         {
             return new Person();

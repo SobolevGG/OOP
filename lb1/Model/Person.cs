@@ -6,7 +6,6 @@ using System.Xml.Linq;
 
 namespace Model
 {
-    //TODO(+): XML
     /// <summary>
     /// Класс для пользователя.
     /// </summary>
@@ -24,7 +23,6 @@ namespace Model
                       int age,
                       Gender gender)
         {
-            // TODO(+): to properties
             Name = name;
             Surname = surname;
             Age = age;
@@ -75,7 +73,6 @@ namespace Model
                 $"Пол: {this.Gender}" ;
         }
 
-        // TODO(+): Избыточно
         // Всё же нужно для корректной работы Action`ов
         public Person()
         {
@@ -149,7 +146,7 @@ namespace Model
 
             set
             {
-                // TODO(+): переписать
+                // TODO: дублирование
                 CheckNullOrEmpty(value);
                 CheckPattern(value);
                 if (!string.IsNullOrEmpty(_surname))
@@ -177,7 +174,7 @@ namespace Model
 
             set
             {
-                // TODO(+): переписать
+                // TODO: дублирование
                 CheckNullOrEmpty(value);
                 CheckPattern(value);
                 if (!(string.IsNullOrEmpty(_name))) 
@@ -233,10 +230,6 @@ namespace Model
                 _gender = value;
             }
         }
-
-        // TODO (+): Разделить метод на проверку языка CheckLanguage
-        // и на проверку паттерна CheckPattern.
-
         /// <summary>
         /// Метод проверяет паттерн.
         /// </summary>
@@ -250,6 +243,7 @@ namespace Model
             var latin = new Regex(@"^[A-z]+(-[A-z])?[A-z]*$");
             var cyrillic = new Regex(@"^[А-я]+(-[А-я])?[А-я]*$");
 
+            //TODO: to boolean and
             if (!(cyrillic.IsMatch(value)) &
                     !(latin.IsMatch(value)))
             {
