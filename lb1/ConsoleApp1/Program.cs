@@ -245,7 +245,7 @@ namespace ConsoleApp1
 
         // TODO(+): remove
         // Метод всё же нужен, иначе при удалении
-        // GetPerson не существует в контексте данного метода
+        // GetPerson не существует в контексте данного метода.
         private static Person GetPerson()
         {
             return new Person();
