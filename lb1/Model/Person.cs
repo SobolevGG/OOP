@@ -81,7 +81,7 @@ namespace Model
         /// <summary>
         /// Метод получения случайных персон.
         /// </summary>
-        /// <returns>//TODO: xml</returns>
+        /// <returns>Пользователь с его параметрами.</returns>
         public static Person GetRandomPerson()
         {
             string[] maleNames =
@@ -123,8 +123,7 @@ namespace Model
         /// Метод проверки на пустой ввод.
         /// </summary>
         /// <param name="value">Проверяемое значение.</param>
-        /// <returns>//TODO: xml</returns>
-        /// <exception cref="ArgumentNullException">//TODO: xml</exception>
+        /// <exception cref="ArgumentNullException">Исключение по пустому вводу.</exception>
         public void CheckNullOrEmpty(string value)
         {
             if (string.IsNullOrEmpty(value))
@@ -156,7 +155,8 @@ namespace Model
         /// </summary>
         /// <param name="value">Проверяемое значение.</param>
         /// <returns>Проверенное значение имени или фамилии.</returns>
-        /// <exception cref="FormatException"></exception>
+        /// <exception cref="FormatException">Исключение 
+        /// по различию языков имени и фамилии.</exception>
         public string FullCheck(string value, string nameOrSurname)
         {
             CheckNullOrEmpty(value);
@@ -212,20 +212,14 @@ namespace Model
             }
         }
 
-        //TODO: to autoproperty
+        // TODO(+): to autoproperty
         /// <summary>
-        /// Проверка пола.
+        /// Получение параметра пола.
         /// </summary>
         public Gender Gender
         {
-            get
-            {
-                return _gender;
-            }
-            set
-            {
-                _gender = value;
-            }
+            get;
+            set;
         }
         /// <summary>
         /// Метод проверяет паттерн.
@@ -253,7 +247,7 @@ namespace Model
         /// Метод возвращает язык ввода данных.
         /// </summary>
         /// <param name="value">Имя или фамилия пользователя.</param>
-        /// <returns>Язык введённого значения. </returns>
+        /// <returns>Язык введённого значения.</returns>
         public string CheckLanguage(string value)
         {
             // + значит 1 и более
@@ -283,7 +277,7 @@ namespace Model
         /// Метод преобразование регистра.
         /// </summary>
         /// <param name="word">Имя или фамилия пользователя.</param>
-        /// <returns>//TODO: xml</returns>
+        /// <returns>Имя или фамилия с заглавной буквы.</returns>
         private static string FixRegister(string word)
         {
             return CultureInfo.CurrentCulture.TextInfo.

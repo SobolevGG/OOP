@@ -16,12 +16,12 @@ namespace Model
         /// </summary>
         private Person[] _personsArray = new Person[0];
 
-        //TODO: rename
+        //TODO(+): rename
         /// <summary>
         /// Метод добавления пользователей.
         /// </summary>
-        /// <param name="person">//TODO: xml</param>
-        public void AddPerson(Person person) 
+        /// <param name="person">Пользователь.</param>
+        public void Add(Person person) 
         {
             var newPersonsIndex = _personsArray.Length;
             Array.Resize(ref _personsArray, newPersonsIndex + 1);
@@ -31,8 +31,8 @@ namespace Model
         /// <summary>
         /// Метод проверки допустимости значения индекса.
         /// </summary>
-        /// <param name="index">//TODO: xml</param>
-        /// <exception cref="IndexOutOfRangeException">//TODO: xml</exception>
+        /// <param name="index">Индекс пользователя.</param>
+        /// <exception cref="IndexOutOfRangeException">Исключение по допустимому диапазону.</exception>
         private void CheckIndex(int index)
         {
             if (index < 0 || index >= _personsArray.Length)
@@ -42,12 +42,12 @@ namespace Model
             }
         }
 
-        //TODO: rename
+        // TODO(+): rename
         /// <summary>
         /// Метод удаления пользователей по индексу.
         /// </summary>
-        /// <param name="index">//TODO: xml</param>
-        public void DeletePerson(int index) 
+        /// <param name="index">Индекс пользователя.</param>
+        public void Delete(int index) 
         { 
             CheckIndex(index);
 
@@ -59,11 +59,11 @@ namespace Model
             Array.Resize(ref _personsArray, _personsArray.Length - 1);
         }
 
-        //TODO: rename
+        // TODO(+): rename
         /// <summary>
         /// Метод удаления пользователя по переданной персоне.
         /// </summary>
-        /// <param name="person"></param>
+        /// <param name="person">Пользователь.</param>
         public void DeletePerson(Person person) 
         {
             // Определяем индекс первого вхождения пользователя в массиве
@@ -73,16 +73,16 @@ namespace Model
                 throw new ArgumentException("Переданная персона " +
                     "отсутствует в массиве!");
             }
-            DeletePerson(index);
+            Delete(index);
         }
 
-        //TODO: rename
+        // TODO(+): rename
         /// <summary>
         /// Метод поиска пользователей.
         /// </summary>
-        /// <param name="index">//TODO: xml</param>
-        /// <returns>//TODO: xml</returns>
-        public Person SearchPerson(int index)
+        /// <param name="index">Индекс пользователя.</param>
+        /// <returns>Пользователь по индексу.</returns>
+        public Person Search(int index)
         {
             CheckIndex(index);
             return _personsArray[index];
@@ -91,8 +91,8 @@ namespace Model
         /// <summary>
         /// Метод поиска индекса по пользователю.
         /// </summary>
-        /// <param name="person">//TODO: xml</param>
-        /// <returns>//TODO: xml</returns>
+        /// <param name="person">Пользователь.</param>
+        /// <returns>Индекс пользователя.</returns>
         public int SearchIndex(Person person) 
         {
             var index = -1;
@@ -110,17 +110,17 @@ namespace Model
         /// <summary>
         /// Метод очистки PersonList.
         /// </summary>
-        public void ClearList()
+        public void Clear()
         {
             Array.Resize(ref _personsArray, 0);
         }
 
-        //TODO: rename
+        // TODO(+): rename
         /// <summary>
         /// Метод по подсчёту количества пользователей.
         /// </summary>
-        /// <returns>//TODO: xml</returns>
-        public int CountPersons() => _personsArray.Length;
+        /// <returns>Количество пользователей.</returns>
+        public int Count() => _personsArray.Length;
 
     }
 }

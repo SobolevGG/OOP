@@ -43,17 +43,17 @@ namespace ConsoleApp1
             var angelina = new Person("Анджелина", "Джоли", 47, Gender.Female);
             var emma = new Person("Эмма", "Стоун", 32, Gender.Female);
 
-            // Добавляем пользователей в 1-й список при помощи AddPerson()
-            actors.AddPerson(robert);
-            actors.AddPerson(dwayne);
-            actors.AddPerson(matthew);
-            actors.AddPerson(jackie);
+            // Добавляем пользователей в 1-й список при помощи Add()
+            actors.Add(robert);
+            actors.Add(dwayne);
+            actors.Add(matthew);
+            actors.Add(jackie);
 
-            // Добавляем пользователей в 2-й список при помощи AddPerson()
-            actresses.AddPerson(ann);
-            actresses.AddPerson(emilia);
-            actresses.AddPerson(angelina);
-            actresses.AddPerson(emma);
+            // Добавляем пользователей в 2-й список при помощи Add()
+            actresses.Add(ann);
+            actresses.Add(emilia);
+            actresses.Add(angelina);
+            actresses.Add(emma);
 
             // Вывод в консоль 1-го списка
             Console.WriteLine("\nПосле нажатия любой клавиши " +
@@ -76,7 +76,7 @@ namespace ConsoleApp1
             _ = Console.ReadKey();
             var kit = new Person
                 ("Кит", "Харингтон", 36, Gender.Male);
-            actors.AddPerson(kit);
+            actors.Add(kit);
             Console.WriteLine("\nНовый актёр успешно добавлен " +
                 "в список актёров.\n");
 
@@ -86,7 +86,7 @@ namespace ConsoleApp1
             _ = Console.ReadKey();
             var rose = new Person
                 ("Роуз", "Лесли", 36, Gender.Female);
-            actresses.AddPerson(rose);
+            actresses.Add(rose);
             Console.WriteLine("\nНовая актриса успешно добавлена.");
 
             // Скопируем второго человека во 2-ой список
@@ -94,10 +94,10 @@ namespace ConsoleApp1
                 "появится возможность копирования второго актёра " +
                 "в список актрис :D (так надо).");
             _ = Console.ReadKey();
-            actresses.AddPerson(actors.SearchPerson(1));
+            actresses.Add(actors.Search(1));
 
             Console.WriteLine("\nДа, мы действительно добавили актёра " +
-                $"к актрисам. {actors.SearchPerson(1).Name} " +
+                $"к актрисам. {actors.Search(1).Name} " +
                 $"благодарит Вас :D");
 
             // Проверка корректного копирования из списка в список
@@ -113,10 +113,10 @@ namespace ConsoleApp1
             Console.WriteLine("\nПосле нажатия любой клавиши " +
                 "появится возможность удаления списка актрис.");
             _ = Console.ReadKey();
-            actresses.ClearList();
+            actresses.Clear();
             Console.WriteLine("\nВторой список успешно очищен. " +
                 "Весь список улетел на Бали, " +
-                $"\n{actors.SearchPerson(1).Name} " +
+                $"\n{actors.Search(1).Name} " +
                 $"благодарит Вас ещё раз :D");
             */
             // Проверим возможность ввода с консоли
@@ -138,11 +138,11 @@ namespace ConsoleApp1
                     "но список пока пуст.");
             }
 
-            else if (personList.CountPersons() > 0)
+            else if (personList.Count() > 0)
             {
-                for (int i = 0; i < personList.CountPersons(); i++)
+                for (int i = 0; i < personList.Count(); i++)
                 {
-                    var tmpPerson = personList.SearchPerson(i);
+                    var tmpPerson = personList.Search(i);
                     Console.WriteLine(tmpPerson.GetInfo());
                 }
             }
