@@ -62,10 +62,9 @@ namespace Model
         /// <summary>
         /// Вывод информации о пользователе.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>//TODO: xml</returns>
         public string GetInfo()
         {
-            // Вывод информации о пользователе
             return $"Информация о пользователе:\n" +
                 $"Имя: {this._name}, " +
                 $"Фамилия: {this._surname}, " +
@@ -73,6 +72,7 @@ namespace Model
                 $"Пол: {this.Gender}" ;
         }
 
+        //TODO: xml
         // Всё же нужно для корректной работы Action`ов
         public Person()
         {
@@ -81,7 +81,7 @@ namespace Model
         /// <summary>
         /// Метод получения случайных персон.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>//TODO: xml</returns>
         public static Person GetRandomPerson()
         {
             string[] maleNames =
@@ -123,8 +123,8 @@ namespace Model
         /// Метод проверки на пустой ввод.
         /// </summary>
         /// <param name="value">Проверяемое значение.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <returns>//TODO: xml</returns>
+        /// <exception cref="ArgumentNullException">//TODO: xml</exception>
         public void CheckNullOrEmpty(string value)
         {
             if (string.IsNullOrEmpty(value))
@@ -146,7 +146,6 @@ namespace Model
 
             set
             {
-                // TODO(+): дублирование
                 _name = FullCheck(value, _surname);
             }
         }
@@ -183,10 +182,8 @@ namespace Model
             {
                 return _surname;
             }
-
             set
             {
-                // TODO(+): дублирование
                 _surname = FullCheck(value, _name);
             }
         }
@@ -200,7 +197,6 @@ namespace Model
             {
                 return _age;
             }
-
             set
             {
                 if (value > MinAge && value < MaxAge)
@@ -216,6 +212,7 @@ namespace Model
             }
         }
 
+        //TODO: to autoproperty
         /// <summary>
         /// Проверка пола.
         /// </summary>
@@ -225,7 +222,6 @@ namespace Model
             {
                 return _gender;
             }
-
             set
             {
                 _gender = value;
@@ -244,7 +240,6 @@ namespace Model
             var latin = new Regex(@"^[A-z]+(-[A-z])?[A-z]*$");
             var cyrillic = new Regex(@"^[А-я]+(-[А-я])?[А-я]*$");
 
-            // TODO(+): to boolean and
             if (!(cyrillic.IsMatch(value)) &&
                     !(latin.IsMatch(value)))
             {
@@ -288,7 +283,7 @@ namespace Model
         /// Метод преобразование регистра.
         /// </summary>
         /// <param name="word">Имя или фамилия пользователя.</param>
-        /// <returns></returns>
+        /// <returns>//TODO: xml</returns>
         private static string FixRegister(string word)
         {
             return CultureInfo.CurrentCulture.TextInfo.

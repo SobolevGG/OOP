@@ -1,5 +1,4 @@
-﻿// Подключение namespace *Model* к проекту
-using Model;
+﻿using Model;
 using System.Diagnostics;
 
 // TODO: Включить линтеры
@@ -192,7 +191,6 @@ namespace ConsoleApp1
         {
             var person = GetPerson();
 
-            // TODO: Actions можно убрать
             var actionList = new List<(Action<string>, string)>
             {
                 (
@@ -220,7 +218,7 @@ namespace ConsoleApp1
                     Console.Write
                         ($"Пользовательский {property} (1 - Мужчина, 2 - Женщина): ");
                     _ = int.TryParse(Console.ReadLine(), out int tmpGender);
-                    // TODO(+): to boolean and
+
                     if (tmpGender != 1 && tmpGender != 2)
                     {
                         throw new IndexOutOfRangeException
@@ -243,7 +241,7 @@ namespace ConsoleApp1
             return person;
         }
 
-        // TODO(+): remove
+        // TODO: remove
         // Метод всё же нужен, иначе при удалении
         // GetPerson не существует в контексте данного метода
         private static Person GetPerson()
