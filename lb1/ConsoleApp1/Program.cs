@@ -220,8 +220,8 @@ namespace ConsoleApp1
                     Console.Write
                         ($"Пользовательский {property} (1 - Мужчина, 2 - Женщина): ");
                     _ = int.TryParse(Console.ReadLine(), out int tmpGender);
-                    // TODO: to boolean and
-                    if (tmpGender != 1 & tmpGender != 2)
+                    // TODO(+): to boolean and
+                    if (tmpGender != 1 && tmpGender != 2)
                     {
                         throw new IndexOutOfRangeException
                             ("Пол вводится цифрами: *1* - мужчина, " +
