@@ -139,29 +139,41 @@ namespace Model
         /// </summary>
         public string Name
         {
-            get 
+            get
             {
                 return _name;
             }
 
             set
             {
-                // TODO: дублирование
-                CheckNullOrEmpty(value);
-                CheckPattern(value);
-                if (!string.IsNullOrEmpty(_surname))
-                {
-                    if (CheckLanguage(value) != CheckLanguage(_surname))
-                    {
-                        throw new FormatException("Язык имени " +
-                            "и фамилии различается!");
-                    }
-                }
-
-                _name = FixRegister(value);
+                // TODO(+): дублирование
+                _name = FullCheck(value, _surname);
             }
         }
-        
+
+        /// <summary>
+        /// Метод включает в себя проверку на регистр, 
+        /// совпадение языков и пустой ввод.
+        /// </summary>
+        /// <param name="value">Проверяемое значение.</param>
+        /// <returns>Проверенное значение имени или фамилии.</returns>
+        /// <exception cref="FormatException"></exception>
+        public string FullCheck(string value, string nameOrSurname)
+        {
+            CheckNullOrEmpty(value);
+            CheckPattern(value);
+            if (!string.IsNullOrEmpty(nameOrSurname))
+            {
+                if ((CheckLanguage(value) != CheckLanguage(nameOrSurname)))
+                {
+                    throw new FormatException("Язык имени " +
+                        "и фамилии различается!");
+                }
+            }
+
+            return FixRegister(value);
+        }
+
         /// <summary>
         /// Проверка фамилии.
         /// </summary>
@@ -169,26 +181,7 @@ namespace Model
         {
             get
             {
-                return _surname;
-            }
 
-            set
-            {
-                // TODO: дублирование
-                CheckNullOrEmpty(value);
-                CheckPattern(value);
-                if (!(string.IsNullOrEmpty(_name))) 
-                {
-                    if (CheckLanguage(value) != CheckLanguage(_name))
-                    {
-                        throw new FormatException("Язык имени " +
-                            "и фамилии различается!");
-                    }
-                }
-
-                _surname = FixRegister(value);
-            }
-        }
 
         /// <summary>
         /// Проверка возраста.
