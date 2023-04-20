@@ -129,7 +129,7 @@ namespace ConsoleApp1
         }
 
         /// <summary>
-        /// Вывод в консоль.
+        /// Вывод в консoль.
         /// </summary>
         private static void PrintConsole(PersonList personList)
         {
