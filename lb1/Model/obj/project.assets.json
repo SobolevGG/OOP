@@ -8,24 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\tpu-user\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Sobol\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tpu-user\\source\\repos\\О-5КМ11\\Sobolev\\lb1\\Model\\Model.csproj",
+      "projectUniqueName": "C:\\Users\\Sobol\\Desktop\\NewRepos\\OOP\\lb1\\Model\\Model.csproj",
       "projectName": "Model",
-      "projectPath": "C:\\Users\\tpu-user\\source\\repos\\О-5КМ11\\Sobolev\\lb1\\Model\\Model.csproj",
-      "packagesPath": "C:\\Users\\tpu-user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tpu-user\\source\\repos\\О-5КМ11\\Sobolev\\lb1\\Model\\obj\\",
+      "projectPath": "C:\\Users\\Sobol\\Desktop\\NewRepos\\OOP\\lb1\\Model\\Model.csproj",
+      "packagesPath": "C:\\Users\\Sobol\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Sobol\\Desktop\\NewRepos\\OOP\\lb1\\Model\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\tpu-user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Sobol\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -66,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
