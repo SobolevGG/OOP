@@ -181,7 +181,15 @@ namespace Model
         {
             get
             {
+                return _surname;
+            }
 
+            set
+            {
+                // TODO(+): дублирование
+                _surname = FullCheck(value, _name);
+            }
+        }
 
         /// <summary>
         /// Проверка возраста.
@@ -236,8 +244,8 @@ namespace Model
             var latin = new Regex(@"^[A-z]+(-[A-z])?[A-z]*$");
             var cyrillic = new Regex(@"^[А-я]+(-[А-я])?[А-я]*$");
 
-            //TODO: to boolean and
-            if (!(cyrillic.IsMatch(value)) &
+            // TODO(+): to boolean and
+            if (!(cyrillic.IsMatch(value)) &&
                     !(latin.IsMatch(value)))
             {
                 throw new ArgumentException("Двойные имена и фамилии " +
