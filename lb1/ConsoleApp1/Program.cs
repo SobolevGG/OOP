@@ -1,5 +1,4 @@
-﻿using Model;
-using System.Diagnostics;
+using Model;
 
 // TODO: Включить линтеры
 // TODO: gitignore
@@ -8,13 +7,12 @@ namespace ConsoleApp1
     /// <summary>
     /// Класс Program.
     /// </summary>
-    class Program
+    public class Program
     {
         /// <summary>
-        /// Метод Main.
+        /// Точка входа приложения C#.
         /// </summary>
-        /// <param name="args"></param>
-        static void Main(string[] args)
+        public static void Main()
         {
             /*
             // TODO:+
@@ -151,8 +149,9 @@ namespace ConsoleApp1
         /// <summary>
         /// Метод для вывода исключений в консоль.
         /// </summary>
-        /// <param name="action"></param>
-        /// <param name="characteristic"></param>
+        /// <param name="action">Дейсвтие.</param>
+        /// <param name="characteristic">Одна из характеристик
+        /// пользователя.</param>
         private static void ShowException(Action<string> action, string characteristic)
         {
             while (true)
@@ -185,11 +184,12 @@ namespace ConsoleApp1
         /// <summary>
         /// Метод создания пользователей из консоли.
         /// </summary>
-        /// <returns></returns>
-        /// <exception cref="IndexOutOfRangeException"></exception>
+        /// <returns>Пользователь.</returns>
+        /// <exception cref="IndexOutOfRangeException">Исключение
+        /// на выход из диапазона.</exception>
         public static Person ConsoleCreatePersons()
         {
-            var person = GetPerson();
+            var person = new Person();
 
             var actionList = new List<(Action<string>, string)>
             {
@@ -239,14 +239,6 @@ namespace ConsoleApp1
             }
 
             return person;
-        }
-
-        // TODO: remove
-        // Метод всё же нужен, иначе при удалении
-        // GetPerson не существует в контексте данного метода
-        private static Person GetPerson()
-        {
-            return new Person();
         }
     }
 }

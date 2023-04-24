@@ -1,8 +1,5 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
 
 namespace Model
 {
@@ -52,12 +49,12 @@ namespace Model
         /// <summary>
         /// Минимальный возраст для контроля некорректного ввода.
         /// </summary>
-        private const int MinAge = 0;
+        private const int _minAge = 0;
 
         /// <summary>
         /// Максимальный возраст для контроля некорректного ввода.
         /// </summary>
-        private const int MaxAge = 200;
+        private const int _maxAge = 200;
 
         /// <summary>
         /// Вывод информации о пользователе.
@@ -66,10 +63,10 @@ namespace Model
         public string GetInfo()
         {
             return $"Информация о пользователе:\n" +
-                $"Имя: {this._name}, " +
-                $"Фамилия: {this._surname}, " +
-                $"\nВозраст: {this._age}, " +
-                $"Пол: {this.Gender}" ;
+                $"Имя: {_name}, " +
+                $"Фамилия: {_surname}, " +
+                $"\nВозраст: {_age}, " +
+                $"Пол: {Gender}";
         }
 
         //TODO: xml
@@ -114,7 +111,7 @@ namespace Model
                 : femaleNames[random.Next(femaleNames.Length)];
 
             var tmpSurname = surnames[random.Next(surnames.Length)];
-            var tmpAge = random.Next(MinAge, MaxAge);
+            var tmpAge = random.Next(_minAge, _maxAge);
 
             return new Person(tmpName, tmpSurname, tmpAge, tmpGender);
         }
@@ -199,7 +196,7 @@ namespace Model
             }
             set
             {
-                if (value > MinAge && value < MaxAge)
+                if (_minAge < value && value < _maxAge)
                 {
                     _age = value;
                 }
@@ -207,7 +204,7 @@ namespace Model
                 {
                     throw new IndexOutOfRangeException("Возраст " +
                         $"должен быть в диапазоне " +
-                        $"от {MinAge} до {MaxAge} лет!");
+                        $"от {_minAge} до {_maxAge} лет!");
                 }
             }
         }
@@ -261,16 +258,12 @@ namespace Model
             {
                 return Language.Russian.ToString();
             }
-            else if (latin.IsMatch(value))
-            {
-                return Language.English.ToString();
-            }
-            // Исключение на язык, отличный от RU и EN
             else
             {
-                throw new ArgumentException("Неизвестный язык!");
+                return latin.IsMatch(value)
+                    ? Language.English.ToString()
+                    : throw new ArgumentException("Неизвестный язык!");
             }
-            
         }
 
         /// <summary>
