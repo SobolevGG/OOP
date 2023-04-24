@@ -196,16 +196,16 @@ namespace Model
             }
             set
             {
-                if (_minAge < value && value < _maxAge)
-                {
-                    _age = value;
-                }
-                else
-                {
-                    throw new IndexOutOfRangeException("Возраст " +
+                // Передать значение переменной _age,
+                // однако, прежде провести проверку:
+                // значение входит в НЕправильный диапазон?
+                _age = _minAge >= value || value >= _maxAge
+                    // Если да, то кинуть исключение
+                    ? throw new IndexOutOfRangeException("Возраст " +
                         $"должен быть в диапазоне " +
-                        $"от {_minAge} до {_maxAge} лет!");
-                }
+                        $"от {_minAge} до {_maxAge} лет!")
+                    // Если нет, то продолжить присваивание
+                    : value;
             }
         }
 

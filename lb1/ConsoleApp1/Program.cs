@@ -152,7 +152,8 @@ namespace ConsoleApp1
         /// <param name="action">Дейсвтие.</param>
         /// <param name="characteristic">Одна из характеристик
         /// пользователя.</param>
-        private static void ShowException(Action<string> action, string characteristic)
+        private static void ShowException(Action<string> action,
+            string characteristic)
         {
             while (true)
             {
