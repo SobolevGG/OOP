@@ -254,16 +254,20 @@ namespace Model
             var latin = new Regex(@"^[A-z]+(-[A-z])?[A-z]*$");
             var cyrillic = new Regex(@"^[А-я]+(-[А-я])?[А-я]*$");
 
-            if (cyrillic.IsMatch(value))
-            {
-                return Language.Russian.ToString();
-            }
-            else
-            {
-                return latin.IsMatch(value)
+            // ?: — тернарный условный оператор
+            // Проверка: значение не соответствует кириллице
+            return !cyrillic.IsMatch(value)
+                // Если да, то проверка: соответствует ли латинице?
+                ? latin.IsMatch(value)
+                    // Если да, что вернуть английский язык
                     ? Language.English.ToString()
-                    : throw new ArgumentException("Неизвестный язык!");
-            }
+                    // Если нет, то бросить исключение
+                    : throw new ArgumentException("Неизвестный язык!")
+                // Проверка на "значение не соответствует кириллице"
+                // Завершилась значением "false"
+                // Т.е. значение не не на кириллице
+                // Вернём русский язык
+                : Language.Russian.ToString();
         }
 
         /// <summary>
