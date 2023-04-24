@@ -1,9 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Model
 {
     /// <summary>
@@ -21,7 +15,7 @@ namespace Model
         /// Метод добавления пользователей.
         /// </summary>
         /// <param name="person">Пользователь.</param>
-        public void Add(Person person) 
+        public void Add(Person person)
         {
             var newPersonsIndex = _personsArray.Length;
             Array.Resize(ref _personsArray, newPersonsIndex + 1);
@@ -36,7 +30,7 @@ namespace Model
         private void CheckIndex(int index)
         {
             if (index < 0 || index >= _personsArray.Length)
-            { 
+            {
                 throw new IndexOutOfRangeException("Ошибка: " +
                     "индекс вне допустимого диапазона!");
             }
@@ -47,12 +41,12 @@ namespace Model
         /// Метод удаления пользователей по индексу.
         /// </summary>
         /// <param name="index">Индекс пользователя.</param>
-        public void Delete(int index) 
-        { 
+        public void Delete(int index)
+        {
             CheckIndex(index);
 
             for (int i = index; i < _personsArray.Length - 1; i++)
-            { 
+            {
                 _personsArray[i] = _personsArray[i + 1];
             }
 
@@ -64,11 +58,11 @@ namespace Model
         /// Метод удаления пользователя по переданной персоне.
         /// </summary>
         /// <param name="person">Пользователь.</param>
-        public void DeletePerson(Person person) 
+        public void DeletePerson(Person person)
         {
             // Определяем индекс первого вхождения пользователя в массиве
             int index = Array.IndexOf(_personsArray, person);
-            if (index == -1) 
+            if (index == -1)
             {
                 throw new ArgumentException("Переданная персона " +
                     "отсутствует в массиве!");
@@ -93,12 +87,12 @@ namespace Model
         /// </summary>
         /// <param name="person">Пользователь.</param>
         /// <returns>Индекс пользователя.</returns>
-        public int SearchIndex(Person person) 
+        public int SearchIndex(Person person)
         {
             var index = -1;
-            for (var i = 0; i < _personsArray.Length; i++) 
+            for (var i = 0; i < _personsArray.Length; i++)
             {
-                if (_personsArray[i] == person) 
+                if (_personsArray[i] == person)
                 {
                     index = i;
                 }
