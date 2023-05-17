@@ -78,47 +78,6 @@ namespace Model
         }
 
         /// <summary>
-        /// Метод получения случайных персон.
-        /// </summary>
-        /// <returns>Пользователь с его параметрами.</returns>
-        public static PersonBase GetRandomPerson()
-        {
-            string[] maleNames =
-            {
-                "Андрей", "ВикТОР", "Илья", "Владисlove", "ЕвГЕНИЙ",
-                "Вячеслав", "Пётр", "Иван", "Алексей", "Александр"
-            };
-
-            string[] femaleNames =
-            {
-                "Виктория", "Евгения", "Екатерина", "Юлия", "Алёна",
-                "Людмила", "Ольга", "Валентина", "Александра", "Нюша"
-            };
-
-            string[] surnames =
-            {
-                "Ким", "Чен", "Фукс", "Икс", "Сок",
-                "Лок", "Лоск", "Кей", "Кац", "Фру"
-            };
-
-            var random = new Random();
-            var tmpNumber = random.Next(1, 3);
-
-            Gender tmpGender = tmpNumber == 1
-                ? Gender.Male
-                : Gender.Female;
-
-            string tmpName = tmpGender == Gender.Male
-                ? maleNames[random.Next(maleNames.Length)]
-                : femaleNames[random.Next(femaleNames.Length)];
-
-            var tmpSurname = surnames[random.Next(surnames.Length)];
-            var tmpAge = random.Next(_minAge, _maxAge);
-
-            return new PersonBase(tmpName, tmpSurname, tmpAge, tmpGender);
-        }
-
-        /// <summary>
         /// Метод проверки на пустой ввод.
         /// </summary>
         /// <param name="value">Проверяемое значение.</param>
