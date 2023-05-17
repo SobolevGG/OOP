@@ -59,7 +59,7 @@ namespace Model
         /// <summary>
         /// Вывод информации о пользователе.
         /// </summary>
-        /// <returns>//TODO: xml</returns>
+        /// <returns>Информация о пользователе.</returns>
         public string GetInfo()
         {
             return $"Информация о пользователе:\n" +
@@ -69,8 +69,10 @@ namespace Model
                 $"Пол: {Gender}";
         }
 
-        //TODO: xml
-        // Всё же нужно для корректной работы Action`ов
+        // TODO(+): xml
+        /// <summary>
+        /// Метод для корректной работы Action`ов.
+        /// </summary>
         public Person()
         {
         }
