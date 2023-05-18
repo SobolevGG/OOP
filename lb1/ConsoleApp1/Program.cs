@@ -22,7 +22,7 @@ namespace ConsoleApp1
             _ = Console.ReadKey();
 
             Console.WriteLine("\nСлучайный пользователь: ");
-            var randomPerson = Person.GetRandomPerson();
+            var randomPerson = PersonBase.GetRandomPerson();
             Console.WriteLine(randomPerson.ToStringMy());
 
             // Согласно заданию создаём два логически разделённых списка
@@ -30,16 +30,16 @@ namespace ConsoleApp1
             var actresses = new PersonList();
 
             // Создаём пользователей для 1-го списка
-            var robert = new Person("Роберт", "Дауни", 57, Gender.Male);
-            var dwayne = new Person("Дуэйн", "Джонсон", 50, Gender.Male);
-            var matthew = new Person("Мэттью", "Макконахи", 53, Gender.Male);
-            var jackie = new Person("Джеки", "Чан", 68, Gender.Male);
+            var robert = new PersonBase("Роберт", "Дауни", 57, Gender.Male);
+            var dwayne = new PersonBase("Дуэйн", "Джонсон", 50, Gender.Male);
+            var matthew = new PersonBase("Мэттью", "Макконахи", 53, Gender.Male);
+            var jackie = new PersonBase("Джеки", "Чан", 68, Gender.Male);
 
             // Создаём пользователей для 2-го списка
-            var ann = new Person("Энн", "Хэтэуэй", 40, Gender.Female);
-            var emilia = new Person("Эмилия", "Кларк", 36, Gender.Female);
-            var angelina = new Person("Анджелина", "Джоли", 47, Gender.Female);
-            var emma = new Person("Эмма", "Стоун", 32, Gender.Female);
+            var ann = new PersonBase("Энн", "Хэтэуэй", 40, Gender.Female);
+            var emilia = new PersonBase("Эмилия", "Кларк", 36, Gender.Female);
+            var angelina = new PersonBase("Анджелина", "Джоли", 47, Gender.Female);
+            var emma = new PersonBase("Эмма", "Стоун", 32, Gender.Female);
 
             // Добавляем пользователей в 1-й список при помощи Add()
             actors.Add(robert);
@@ -72,7 +72,7 @@ namespace ConsoleApp1
                 "появится возможность добавления нового актёра " +
                 "в список актёров.");
             _ = Console.ReadKey();
-            var kit = new Person
+            var kit = new PersonBase
                 ("Кит", "Харингтон", 36, Gender.Male);
             actors.Add(kit);
             Console.WriteLine("\nНовый актёр успешно добавлен " +
@@ -82,7 +82,7 @@ namespace ConsoleApp1
             Console.WriteLine("После нажатия любой клавиши " +
                 "появится возможность добавления новой актрисы.");
             _ = Console.ReadKey();
-            var rose = new Person
+            var rose = new PersonBase
                 ("Роуз", "Лесли", 36, Gender.Female);
             actresses.Add(rose);
             Console.WriteLine("\nНовая актриса успешно добавлена.");
@@ -188,9 +188,9 @@ namespace ConsoleApp1
         /// <returns>Пользователь.</returns>
         /// <exception cref="IndexOutOfRangeException">Исключение
         /// на выход из диапазона.</exception>
-        public static Person ConsoleCreatePersons()
+        public static PersonBase ConsoleCreatePersons()
         {
-            var person = new Person();
+            var person = new PersonBase();
 
             var actionList = new List<(Action<string>, string)>
             {

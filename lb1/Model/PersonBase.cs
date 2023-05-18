@@ -69,6 +69,11 @@ namespace Model
                 $"Пол: {Gender}";
         }
 
+        /// <summary>
+        /// Базовый метод по выводу информации о человеке.
+        /// </summary>
+        public abstract string GetInfoBase();
+
         // TODO(+): xml
         /// <summary>
         /// Метод для корректной работы Action`ов.

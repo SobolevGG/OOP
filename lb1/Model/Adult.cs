@@ -1,6 +1,3 @@
-using System.Reflection;
-using System.Xml.Linq;
-
 namespace Model
 {
     /// <summary>
@@ -91,7 +88,7 @@ namespace Model
         /// Метод информирования по взрослому.
         /// </summary>
         /// <returns>Information.</returns>
-        public override string GetInfo()
+        public override string GetInfoBase()
         {
             string marriegeStatus = "Single";
 
@@ -107,7 +104,7 @@ namespace Model
                 job = $"Employed in {PlaceOfWork}";
             }
 
-            return $"{GetPersonInfo()}" +
+            return $"{GetInfo()}" +
                     $"\n{marriegeStatus},\n{job}";
         }
 
@@ -175,7 +172,7 @@ namespace Model
             var tmpSurname = surnames[random.Next(surnames.Length)];
             var tmpAge = random.Next(_minAge, _maxAge);
 
-            return new Adult(name, surname, age, gender,
+            return new Adult(name, surname, age, tmpGender,
                 pasSeriesAndNumber, placeOfWork, partner);
         }
 
