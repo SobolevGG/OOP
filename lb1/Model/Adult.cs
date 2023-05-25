@@ -8,7 +8,7 @@ namespace Model
         /// <summary>
         /// Серия и номер паспорта.
         /// </summary>
-        private int _pasSeriesAndNumber;
+        private long _pasSeriesAndNumber;
 
         /// <summary>
         /// Место работы.
@@ -53,7 +53,7 @@ namespace Model
         /// <summary>
         /// Серия и номер паспорта.
         /// </summary>
-        public int PasSeriesAndNumber
+        public long PasSeriesAndNumber
         {
             get => _pasSeriesAndNumber;
 
@@ -65,7 +65,7 @@ namespace Model
         /// </summary>
         public string PlaceOfWork
         {
-            get => _placeOfWorky;
+            get => _placeOfWork;
 
             set => _placeOfWork = CheckValue(value);
         }
@@ -90,22 +90,24 @@ namespace Model
         /// <returns>Information.</returns>
         public override string GetInfoBase()
         {
-            string marriegeStatus = "Single";
+            string marriegeStatus = "Свободный человек";
 
             if (Partner != null)
             {
-                marriegeStatus = $"Married to {Partner.GetNameSurname()}";
+                marriegeStatus = $"Состоит в браке " +
+                    $"с замечательным человеком по имени " +
+                    $"{Partner.Surname} {Partner.Name}";
             }
 
-            string job = "An unemployed pirate";
+            string job = "Фрилансер (по факту безработный)";
 
             if (!string.IsNullOrEmpty(PlaceOfWork))
             {
-                job = $"Employed in {PlaceOfWork}";
+                job = $"Место работы: {PlaceOfWork}";
             }
 
             return $"{GetInfo()}" +
-                    $"\n{marriegeStatus},\n{job}";
+                    $"\n{marriegeStatus},\n{job}.";
         }
 
         /// <summary>
@@ -119,7 +121,7 @@ namespace Model
         /// <param name="placeOfWork">Место работы.</param>
         /// <param name="partner">Паптнёр.</param>
         public Adult(string name, string surname, int age, Gender gender,
-            int pasSeriesAndNumber, string placeOfWork, Adult partner)
+            long pasSeriesAndNumber, string placeOfWork, Adult partner)
             : base(name, surname, age, gender)
         {
             PasSeriesAndNumber = pasSeriesAndNumber;
@@ -172,8 +174,34 @@ namespace Model
             var tmpSurname = surnames[random.Next(surnames.Length)];
             var tmpAge = random.Next(_minAge, _maxAge);
 
-            return new Adult(name, surname, age, tmpGender,
-                pasSeriesAndNumber, placeOfWork, partner);
+            long pasSeriesAndNumber = random.NextInt64(_fromSeriesAndNumber, _toSeriesAndNumber);
+            string job = placeOfWork[random.Next(placeOfWork.Length)];
+
+            Adult partner = null;
+            int marriegeStatus = random.Next(1, 3);
+            if (marriegeStatus == 1)
+            {
+                partner = new Adult();
+                if (tmpGender == Gender.Male)
+                {
+                    partner.Gender = Gender.Female;
+                    partner.Name = femaleNames
+                        [random.Next(femaleNames.Length)];
+
+                }
+                else
+                {
+                    partner.Gender = Gender.Male;
+                    partner.Name = maleNames
+                        [random.Next(maleNames.Length)];
+                }
+
+                partner.Surname = surnames
+                    [random.Next(surnames.Length)];
+            }
+
+            return new Adult(tmpName, tmpSurname, tmpAge, tmpGender,
+                pasSeriesAndNumber, job, partner);
         }
 
         /// <summary>
@@ -195,6 +223,62 @@ namespace Model
                         $"от {_minAge} до {_maxAge} лет!")
                     // Если нет, то продолжить присваивание
                     : age;
+        }
+
+        /// <summary>
+        /// Check input passport ID.
+        /// </summary>
+        /// <param name="passportID">Passport ID.</param>
+        /// <returns>Correct passport ID.</returns>
+        /// <exception cref="IndexOutOfRangeException">Incorrect.</exception>
+        private int CheckPassportID(int passportID)
+        {
+            if (passportID < _minPassportID || passportID > _maxPassportID)
+            {
+                throw new IndexOutOfRangeException
+                    ($"\nThe passport should be in the " +
+                    $"range from {_minPassportID} to {_maxPassportID}");
+            }
+            else
+            {
+                return passportID;
+            }
+        }
+
+        /// <summary>
+        /// Check gender of adult's partner.
+        /// </summary>
+        /// <param name="partner">Partner.</param>
+        /// <exception cref="ArgumentException">Incorrect input.</exception>
+        private void CheckPartnerGender(Adult partner)
+        {
+            if (partner != null && partner.Gender == Gender)
+            {
+                throw new ArgumentException
+                    ("Кажется");
+            }
+        }
+
+        /// <summary>
+        /// Special method for adult.
+        /// </summary>
+        /// <returns>Name of tempSalary.</returns>
+        public string GetSalary()
+        {
+            string[] salary = new string[]
+            {
+                "100.000 долларов", "20.000 рублей", "Спасибо"
+            };
+            var random = new Random();
+            string tempSalary = salary[random.Next(salary.Length)];
+            return tempSalary;
+        }
+
+        /// <summary>
+        /// Взрослый человек.
+        /// </summary>
+        public Adult()
+        {
         }
     }
 }
