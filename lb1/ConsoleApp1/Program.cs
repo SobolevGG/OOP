@@ -74,19 +74,10 @@ namespace ConsoleApp1
             Console.WriteLine("\nНовый актёр успешно добавлен " +
                 "в список актёров.\n");
 
-            // Добавим во 2-ый список пользователя
-            Console.WriteLine("После нажатия любой клавиши " +
-                "появится возможность добавления новой актрисы.");
-            _ = Console.ReadKey();
-            var rose = new Person
-                ("Роуз", "Лесли", 36, Gender.Female);
-            actresses.Add(rose);
-            Console.WriteLine("\nНовая актриса успешно добавлена.");
-
             // Скопируем второго человека во 2-ой список
-            Console.WriteLine("\nПосле нажатия любой клавиши " +
+            Console.WriteLine("После нажатия любой клавиши " +
                 "появится возможность копирования второго актёра " +
-                "в список актрис :D (так надо).");
+                "в список актрис :D (Да, так надо).");
             _ = Console.ReadKey();
             actresses.Add(actors.Search(1));
 
@@ -103,15 +94,24 @@ namespace ConsoleApp1
             Console.WriteLine("\nСписок актрис:");
             PrintConsole(actresses);
 
+            // Удалим второго человека из первого списка
+            Console.WriteLine("\nПосле нажатия любой клавиши " +
+                "появится \nвозможность удаления скопированного " +
+                "человека из первого списка.\nС выводом обоих списков.");
+            _ = Console.ReadKey();
+            actors.Delete(1);
+            Console.WriteLine("\nСписок актёров:");
+            PrintConsole(actors);
+            Console.WriteLine("\nСписок актрис:");
+            PrintConsole(actresses);
+
             // Очистим 2-ой список
             Console.WriteLine("\nПосле нажатия любой клавиши " +
                 "появится возможность удаления списка актрис.");
             _ = Console.ReadKey();
             actresses.Clear();
             Console.WriteLine("\nВторой список успешно очищен. " +
-                "Весь список улетел на Бали, " +
-                $"\n{actors.Search(1).Name} " +
-                $"благодарит Вас ещё раз :D");
+                "Весь список улетел на Бали :D");
 
             // Проверим возможность ввода с консоли
             Console.WriteLine("После нажатия любой клавиши " +
