@@ -210,12 +210,13 @@ namespace Model
             }
         }
 
+        /// <summary>
         /// Получение параметра пола.
         /// </summary>
         public Gender Gender
         {
-            get;
-            set;
+            get => _gender;
+            set => _gender = value;
         }
 
         /// <summary>
