@@ -41,6 +41,7 @@ namespace Model
         /// </summary>
         private int _age;
 
+        //TODO: не используется
         /// <summary>
         /// Пол пользователя.
         /// </summary>
@@ -69,7 +70,6 @@ namespace Model
                 $"Пол: {Gender}";
         }
 
-        // TODO(+): xml
         /// <summary>
         /// Метод для корректной работы Action`ов.
         /// </summary>
@@ -211,8 +211,6 @@ namespace Model
             }
         }
 
-        // TODO(+): to autoproperty
-        /// <summary>
         /// Получение параметра пола.
         /// </summary>
         public Gender Gender
@@ -220,6 +218,7 @@ namespace Model
             get;
             set;
         }
+
         /// <summary>
         /// Метод проверяет паттерн.
         /// </summary>
@@ -283,6 +282,4 @@ namespace Model
                 ToTitleCase(word.ToLower());
         }
     }
-
-
 }

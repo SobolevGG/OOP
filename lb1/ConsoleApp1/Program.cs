@@ -12,7 +12,6 @@ namespace ConsoleApp1
         /// </summary>
         public static void Main()
         {
-            /*
             // Проверяем работоспособность
             Console.WriteLine("После нажатия любой клавиши " +
                 "сгенерируется случайный пользователь.");
@@ -20,7 +19,7 @@ namespace ConsoleApp1
 
             Console.WriteLine("\nСлучайный пользователь: ");
             var randomPerson = Person.GetRandomPerson();
-            Console.WriteLine(randomPerson.ToStringMy());
+            Console.WriteLine(randomPerson.GetInfo());
 
             // Согласно заданию создаём два логически разделённых списка
             var actors = new PersonList();
@@ -113,7 +112,7 @@ namespace ConsoleApp1
                 "Весь список улетел на Бали, " +
                 $"\n{actors.Search(1).Name} " +
                 $"благодарит Вас ещё раз :D");
-            */
+
             // Проверим возможность ввода с консоли
             Console.WriteLine("После нажатия любой клавиши " +
                 "появится возможность ввода нового пользователя.");

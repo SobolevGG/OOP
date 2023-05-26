@@ -10,7 +10,6 @@ namespace Model
         /// </summary>
         private Person[] _personsArray = new Person[0];
 
-        //TODO(+): rename
         /// <summary>
         /// Метод добавления пользователей.
         /// </summary>
@@ -36,7 +35,6 @@ namespace Model
             }
         }
 
-        // TODO(+): rename
         /// <summary>
         /// Метод удаления пользователей по индексу.
         /// </summary>
@@ -53,7 +51,6 @@ namespace Model
             Array.Resize(ref _personsArray, _personsArray.Length - 1);
         }
 
-        // TODO(+): rename
         /// <summary>
         /// Метод удаления пользователя по переданной персоне.
         /// </summary>
@@ -70,7 +67,6 @@ namespace Model
             Delete(index);
         }
 
-        // TODO(+): rename
         /// <summary>
         /// Метод поиска пользователей.
         /// </summary>
@@ -109,7 +105,6 @@ namespace Model
             Array.Resize(ref _personsArray, 0);
         }
 
-        // TODO(+): rename
         /// <summary>
         /// Метод по подсчёту количества пользователей.
         /// </summary>
