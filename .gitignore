@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/lb1/Model/obj/project.nuget.cache
+/lb1/Model/obj/project.assets.json
+/lb1/Model/obj/Model.csproj.nuget.dgspec.json

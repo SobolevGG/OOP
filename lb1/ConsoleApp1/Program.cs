@@ -1,7 +1,4 @@
 using Model;
-
-// TODO: Включить линтеры
-// TODO: gitignore
 namespace ConsoleApp1
 {
     /// <summary>
