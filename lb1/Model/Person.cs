@@ -41,12 +41,6 @@ namespace Model
         /// </summary>
         private int _age;
 
-        //TODO: не используется
-        /// <summary>
-        /// Пол пользователя.
-        /// </summary>
-        private Gender _gender;
-
         /// <summary>
         /// Минимальный возраст для контроля некорректного ввода.
         /// </summary>
@@ -66,7 +60,7 @@ namespace Model
             return $"Имя: {_name}, " +
                 $"Фамилия: {_surname}, " +
                 $"\nВозраст: {_age}, " +
-                $"Пол: {_gender}";
+                $"Пол: {Gender}";
         }
 
         /// <summary>
@@ -215,8 +209,8 @@ namespace Model
         /// </summary>
         public Gender Gender
         {
-            get => _gender;
-            set => _gender = value;
+            get;
+            set;
         }
 
         /// <summary>
