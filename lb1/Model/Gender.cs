@@ -13,6 +13,11 @@ namespace Model
         /// <summary>
         /// Женский пол.
         /// </summary>
-        Female
+        Female,
+
+        /// <summary>
+        /// Пол по умолчанию.
+        /// </summary>
+        Default
     }
 }

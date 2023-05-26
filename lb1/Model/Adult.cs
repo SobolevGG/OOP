@@ -57,7 +57,7 @@ namespace Model
         {
             get => _pasSeriesAndNumber;
 
-            set => _pasSeriesAndNumber = CheckPassportID(value);
+            set => _pasSeriesAndNumber = CheckPassport(value);
         }
 
         /// <summary>
@@ -133,11 +133,11 @@ namespace Model
         /// Метод получения случайных персон.
         /// </summary>
         /// <returns>Пользователь с его параметрами.</returns>
-        public static PersonBase GetRandomPerson()
+        public static PersonBase GetRandomPerson(Gender gender = Gender.Default)
         {
             string[] maleNames =
             {
-                "Андрей", "ВикТОР", "Илья", "Владисlove", "ЕвГЕНИЙ",
+                "Андрей", "ВикТОР", "Илья", "Владислав", "ЕвГЕНИЙ",
                 "Вячеслав", "Пётр", "Иван", "Алексей", "Александр"
             };
 
@@ -161,15 +161,29 @@ namespace Model
             };
 
             var random = new Random();
-            var tmpNumber = random.Next(1, 3);
+            string tmpName = string.Empty;
 
-            Gender tmpGender = tmpNumber == 1
-                ? Gender.Male
-                : Gender.Female;
+            if (gender == Gender.Default)
+            {
+                var tmpNumber = random.Next(1, 3);
+                gender = tmpNumber == 1
+                    ? Gender.Male
+                    : Gender.Female;
+            }
 
-            string tmpName = tmpGender == Gender.Male
-                ? maleNames[random.Next(maleNames.Length)]
-                : femaleNames[random.Next(femaleNames.Length)];
+            switch (gender)
+            {
+                case Gender.Male:
+                    tmpName = maleNames[random.Next(maleNames.Length)];
+                    break;
+                case Gender.Female:
+                    tmpName = femaleNames[random.Next(femaleNames.Length)];
+                    break;
+                case Gender.Default:
+                    break;
+                default:
+                    break;
+            }
 
             var tmpSurname = surnames[random.Next(surnames.Length)];
             var tmpAge = random.Next(_minAge, _maxAge);
@@ -182,7 +196,7 @@ namespace Model
             if (marriegeStatus == 1)
             {
                 partner = new Adult();
-                if (tmpGender == Gender.Male)
+                if (gender == Gender.Male)
                 {
                     partner.Gender = Gender.Female;
                     partner.Name = femaleNames
@@ -200,7 +214,7 @@ namespace Model
                     [random.Next(surnames.Length)];
             }
 
-            return new Adult(tmpName, tmpSurname, tmpAge, tmpGender,
+            return new Adult(tmpName, tmpSurname, tmpAge, gender,
                 pasSeriesAndNumber, job, partner);
         }
 
@@ -228,12 +242,13 @@ namespace Model
         /// <summary>
         /// Проврека паспортных данных.
         /// </summary>
-        /// <param name="PasSeriesAndNumber">Passport ID.</param>
-        /// <returns>Correct passport ID.</returns>
-        /// <exception cref="IndexOutOfRangeException">Incorrect.</exception>
-        private long CheckPassportID(long PasSeriesAndNumber)
+        /// <param name="PasSeriesAndNumber">Паспортные данные.</param>
+        /// <returns>Корректные паспортные данные.</returns>
+        /// <exception cref="IndexOutOfRangeException">Некорректный
+        /// ввод паспортных данных.</exception>
+        private long CheckPassport(long pasSeriesAndNumber)
         {
-            if (PasSeriesAndNumber < _fromSeriesAndNumber || PasSeriesAndNumber > _toSeriesAndNumber)
+            if (pasSeriesAndNumber < _fromSeriesAndNumber || pasSeriesAndNumber > _toSeriesAndNumber)
             {
                 throw new IndexOutOfRangeException
                     ($"\nВ паспортных данных " +
@@ -242,28 +257,28 @@ namespace Model
             }
             else
             {
-                return PasSeriesAndNumber;
+                return pasSeriesAndNumber;
             }
         }
 
         /// <summary>
         /// Проверка пола партнёра.
         /// </summary>
-        /// <param name="partner">Partner.</param>
-        /// <exception cref="ArgumentException">Incorrect input.</exception>
+        /// <param name="partner">Партнёр.</param>
+        /// <exception cref="ArgumentException">Некорректный ввод.</exception>
         private void CheckPartnerGender(Adult partner)
         {
             if (partner != null && partner.Gender == Gender)
             {
                 throw new ArgumentException
-                    ("Кажется");
+                    ("Кажется, что-то не так с вашим партнёром :D");
             }
         }
 
         /// <summary>
-        /// Special method for adult.
+        /// Специальный метод для взрослых.
         /// </summary>
-        /// <returns>Name of tempSalary.</returns>
+        /// <returns>Зарплата.</returns>
         public string GetSalary()
         {
             string[] salary = new string[]
@@ -273,6 +288,25 @@ namespace Model
             var random = new Random();
             string tempSalary = salary[random.Next(salary.Length)];
             return tempSalary;
+        }
+        /// <summary>
+        /// Проверка на пустой ввод.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>Непустое значение.</returns>
+        /// <exception cref="ArgumentException">Исключение
+        /// на пустой ввод.</exception>
+        protected string CheckValue(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException
+                    ("\nВвод не должен быть пустым.");
+            }
+            else
+            {
+                return value;
+            }
         }
 
         /// <summary>
