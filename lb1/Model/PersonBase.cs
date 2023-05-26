@@ -74,7 +74,6 @@ namespace Model
         /// </summary>
         public abstract string GetInfoBase();
 
-        // TODO(+): xml
         /// <summary>
         /// Метод для корректной работы Action`ов.
         /// </summary>
@@ -86,7 +85,8 @@ namespace Model
         /// Метод проверки на пустой ввод.
         /// </summary>
         /// <param name="value">Проверяемое значение.</param>
-        /// <exception cref="ArgumentNullException">Исключение по пустому вводу.</exception>
+        /// <exception cref="ArgumentNullException">Исключение
+        /// по пустому вводу.</exception>
         public void CheckNullOrEmpty(string value)
         {
             if (string.IsNullOrEmpty(value))
@@ -178,11 +178,11 @@ namespace Model
             // Передать значение переменной _age,
             // однако, прежде провести проверку:
             // значение входит в НЕправильный диапазон?
-            return _minAge >= age || age >= _maxAge
+            return MinAge >= age || age >= MaxAge
                     // Если да, то кинуть исключение
                     ? throw new IndexOutOfRangeException("Возраст " +
                         $"должен быть в диапазоне " +
-                        $"от {_minAge} до {_maxAge} лет!")
+                        $"от {MinAge} до {MaxAge} лет!")
                     // Если нет, то продолжить присваивание
                     : age;
         }
@@ -193,8 +193,8 @@ namespace Model
         /// </summary>
         public Gender Gender
         {
-            get;
-            set;
+            get => _gender;
+            set => _gender = value;
         }
         /// <summary>
         /// Метод проверяет паттерн.

@@ -216,37 +216,38 @@ namespace Model
             // Передать значение переменной _age,
             // однако, прежде провести проверку:
             // значение входит в НЕправильный диапазон?
-            return _minAge >= age || age >= _maxAge
+            return MinAge >= age || age >= MaxAge
                     // Если да, то кинуть исключение
                     ? throw new IndexOutOfRangeException("Возраст " +
                         $"должен быть в диапазоне " +
-                        $"от {_minAge} до {_maxAge} лет!")
+                        $"от {MinAge} до {MaxAge} лет!")
                     // Если нет, то продолжить присваивание
                     : age;
         }
 
         /// <summary>
-        /// Check input passport ID.
+        /// Проврека паспортных данных.
         /// </summary>
-        /// <param name="passportID">Passport ID.</param>
+        /// <param name="PasSeriesAndNumber">Passport ID.</param>
         /// <returns>Correct passport ID.</returns>
         /// <exception cref="IndexOutOfRangeException">Incorrect.</exception>
-        private int CheckPassportID(int passportID)
+        private long CheckPassportID(long PasSeriesAndNumber)
         {
-            if (passportID < _minPassportID || passportID > _maxPassportID)
+            if (PasSeriesAndNumber < _fromSeriesAndNumber || PasSeriesAndNumber > _toSeriesAndNumber)
             {
                 throw new IndexOutOfRangeException
-                    ($"\nThe passport should be in the " +
-                    $"range from {_minPassportID} to {_maxPassportID}");
+                    ($"\nВ паспортных данных " +
+                    $"должно быть {_toSeriesAndNumber.ToString().Length}" +
+                    $"символов");
             }
             else
             {
-                return passportID;
+                return PasSeriesAndNumber;
             }
         }
 
         /// <summary>
-        /// Check gender of adult's partner.
+        /// Проверка пола партнёра.
         /// </summary>
         /// <param name="partner">Partner.</param>
         /// <exception cref="ArgumentException">Incorrect input.</exception>
