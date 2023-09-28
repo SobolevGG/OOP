@@ -1,5 +1,8 @@
 using Model;
 
+/// <summary>
+/// Пространство имён ConsoleApp1.
+/// </summary>
 namespace ConsoleApp1
 {
     /// <summary>
@@ -228,7 +231,9 @@ namespace ConsoleApp1
                         : Gender.Female;
                     person.Gender = realGender;
                 }), "пол")
-            };
+        };
+
+            Console.WriteLine();
 
             foreach (var action in actionList)
             {
