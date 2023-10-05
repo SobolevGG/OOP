@@ -1,7 +1,7 @@
 using Model;
 
 /// <summary>
-/// Пространство имён ConsoleApp1.
+/// Пространство имен ConsoleApp1.
 /// </summary>
 namespace ConsoleApp1
 {
