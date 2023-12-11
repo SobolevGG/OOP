@@ -17,8 +17,10 @@ namespace ConsoleApp1
             var personList = new PersonList();
             var random = new Random();
 
+            var n = 7;
+
             // Генератор взрослых и детей
-            for (var i = 0; i < 7; i++)
+            for (var i = 0; i < n; i++)
             {
                 PersonBase randomPerson = random.Next(1, 3) == 1
                     ? Adult.GetRandomPerson()
@@ -26,20 +28,26 @@ namespace ConsoleApp1
                 personList.Add(randomPerson);
             }
 
-            Console.WriteLine("Список из 7 человек:");
-            PrintConsole(personList);
+            Console.WriteLine("Был сформирован список из 7 человек." +
+                "\nДля его вывода нажмите любую клавишу.\n");
 
             _ = Console.ReadKey();
 
+            Console.WriteLine($"Список, включающий {n} человек:");
+            PrintConsole(personList);
+            Console.WriteLine();
+            _ = Console.ReadKey();
+
             var person = personList.Search(3);
+            Console.WriteLine("Выберите, кого Вы ..........");
             switch (person)
             {
                 case Adult adult:
                     Console.WriteLine($"\n{adult.Surname} {adult.Name}" +
-                        $"({adult.Age} age) prefers {adult.GetFavoriteDrink()}");
+                        $"({adult.Age} age) prefers {adult.GetSalary()}");
                     break;
                 case Child child:
-                    Console.WriteLine($"\n{child.GetNameSurname()}" +
+                    Console.WriteLine($"\n{child.GetShipCollection()}" +
                         $"({child.Age} age) has a model of {child.GetShipCollection()}");
                     break;
                 default:
@@ -54,7 +62,7 @@ namespace ConsoleApp1
         /// </summary>
         private static void PrintConsole(PersonList personList)
         {
-            if (personList.Length == 0)
+            if (personList.Count() == 0)
             {
                 throw new NullReferenceException("Извините, " +
                     "но список пока пуст.");

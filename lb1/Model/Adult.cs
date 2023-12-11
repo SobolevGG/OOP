@@ -3,7 +3,7 @@ namespace Model
     /// <summary>
     /// Класс для взрослого пользователя.
     /// </summary>
-    internal class Adult : PersonBase
+    public class Adult : PersonBase
     {
         /// <summary>
         /// Серия и номер паспорта.
@@ -61,13 +61,34 @@ namespace Model
         }
 
         /// <summary>
+        /// Проврека паспортных данных.
+        /// </summary>
+        /// <param name="PasSeriesAndNumber">Паспортные данные.</param>
+        /// <returns>Корректные паспортные данные.</returns>
+        /// <exception cref="IndexOutOfRangeException">Некорректный
+        /// ввод паспортных данных.</exception>
+        private long CheckPassport(long pasSeriesAndNumber)
+        {
+            return pasSeriesAndNumber < _fromSeriesAndNumber || pasSeriesAndNumber > _toSeriesAndNumber
+
+                // Вызов исключения при удовлетворении условия выше
+                ? throw new IndexOutOfRangeException
+                    ($"\nВ паспортных данных " +
+                    $"должно быть {_toSeriesAndNumber.ToString().Length}" +
+                    $"символов")
+                // Сохранить паспортные данные
+                : pasSeriesAndNumber;
+        }
+
+        /// <summary>
         /// Место работы.
         /// </summary>
         public string PlaceOfWork
         {
             get => _placeOfWork;
 
-            set => _placeOfWork = CheckValue(value);
+            // Да, по условиям задачи человек может быть безработным
+            set => _placeOfWork = value;
         }
 
         /// <summary>
@@ -77,10 +98,25 @@ namespace Model
         {
             get => _partner;
 
+            // По условиям задачи, у человека может и не быть партнёра
             set
             {
                 CheckPartnerGender(value);
                 _partner = value;
+            }
+        }
+
+        /// <summary>
+        /// Проверка пола партнёра.
+        /// </summary>
+        /// <param name="partner">Партнёр.</param>
+        /// <exception cref="ArgumentException">Некорректный ввод.</exception>
+        private void CheckPartnerGender(Adult partner)
+        {
+            if (partner != null && partner.Gender == Gender)
+            {
+                throw new ArgumentException
+                    ("Кажется, что-то не так с вашим партнёром :D");
             }
         }
 
@@ -137,27 +173,23 @@ namespace Model
         {
             string[] maleNames =
             {
-                "Андрей", "ВикТОР", "Илья", "Владислав", "ЕвГЕНИЙ",
-                "Вячеслав", "Пётр", "Иван", "Алексей", "Александр"
+                "Андрей", "Виктор", "Илья", "Владислав"
             };
 
             string[] femaleNames =
             {
-                "Виктория", "Евгения", "Екатерина", "Юлия", "Алёна",
-                "Людмила", "Ольга", "Валентина", "Александра", "Нюша"
+                "Виктория", "Евгения", "Екатерина", "Юлия"
             };
 
             string[] surnames =
             {
-                "Ким", "Чен", "Фукс", "Икс", "Сок",
-                "Лок", "Лоск", "Кей", "Кац", "Фру"
+                "Живаго", "Шапиро", "Грабчак", "Дей", "Штольберг"
             };
 
             string[] placeOfWork = new string[]
             {
-                "Эльдорадо", "М.Видео", "Ситилинк",
-                "Пятёрочка", "Магнит", "Лента",
-                "Чибис", "Абрикос", "Мария Ра"
+                "Росатом", "Администрация президента России",
+                "Федеральная налоговая служба", "Роснефть"
             };
 
             var random = new Random();
@@ -185,31 +217,56 @@ namespace Model
                     break;
             }
 
+            // Генерируем случайное число, но не более длины списка
+            // Обращаемся в массиве к элементу по индексу
             var tmpSurname = surnames[random.Next(surnames.Length)];
+
+            // Генерируем случайное число в диапазоне
             var tmpAge = random.Next(_minAge, _maxAge);
 
+            // Генерируем число, соответвтующее паспортным данным
             long pasSeriesAndNumber = random.NextInt64(_fromSeriesAndNumber, _toSeriesAndNumber);
+
+            // Генерируем случайное число, но не более длины списка
+            // Обращаемся в массиве к элементу по индексу 
             string job = placeOfWork[random.Next(placeOfWork.Length)];
 
+            // Определяем переменную для партнёра
             Adult partner = null;
+
+            // Случайным образом выбираем его статус
             int marriegeStatus = random.Next(1, 3);
+
+            // Если выпала цифра 1, то партнёр имеется
             if (marriegeStatus == 1)
             {
+                // Определяем переменную для партнёра
                 partner = new Adult();
+
+                // Если сам человек мужчина
                 if (gender == Gender.Male)
                 {
+                    // Гендер его партнёра - женский
                     partner.Gender = Gender.Female;
+
+                    // И имя тоже подберём из спика женских имён
                     partner.Name = femaleNames
                         [random.Next(femaleNames.Length)];
 
                 }
+
+                // Если сам человек женщина
                 else
                 {
+                    // Гендер его партнёра - мужской
                     partner.Gender = Gender.Male;
+
+                    // И имя тоже подберём из спика мужских имён
                     partner.Name = maleNames
                         [random.Next(maleNames.Length)];
                 }
 
+                // Фамилия, как и концепция ООП, несклоняемая
                 partner.Surname = surnames
                     [random.Next(surnames.Length)];
             }
@@ -230,49 +287,13 @@ namespace Model
             // Передать значение переменной _age,
             // однако, прежде провести проверку:
             // значение входит в НЕправильный диапазон?
-            return MinAge >= age || age >= MaxAge
+            return MinAge > age || age > MaxAge
                     // Если да, то кинуть исключение
                     ? throw new IndexOutOfRangeException("Возраст " +
                         $"должен быть в диапазоне " +
                         $"от {MinAge} до {MaxAge} лет!")
                     // Если нет, то продолжить присваивание
                     : age;
-        }
-
-        /// <summary>
-        /// Проврека паспортных данных.
-        /// </summary>
-        /// <param name="PasSeriesAndNumber">Паспортные данные.</param>
-        /// <returns>Корректные паспортные данные.</returns>
-        /// <exception cref="IndexOutOfRangeException">Некорректный
-        /// ввод паспортных данных.</exception>
-        private long CheckPassport(long pasSeriesAndNumber)
-        {
-            if (pasSeriesAndNumber < _fromSeriesAndNumber || pasSeriesAndNumber > _toSeriesAndNumber)
-            {
-                throw new IndexOutOfRangeException
-                    ($"\nВ паспортных данных " +
-                    $"должно быть {_toSeriesAndNumber.ToString().Length}" +
-                    $"символов");
-            }
-            else
-            {
-                return pasSeriesAndNumber;
-            }
-        }
-
-        /// <summary>
-        /// Проверка пола партнёра.
-        /// </summary>
-        /// <param name="partner">Партнёр.</param>
-        /// <exception cref="ArgumentException">Некорректный ввод.</exception>
-        private void CheckPartnerGender(Adult partner)
-        {
-            if (partner != null && partner.Gender == Gender)
-            {
-                throw new ArgumentException
-                    ("Кажется, что-то не так с вашим партнёром :D");
-            }
         }
 
         /// <summary>
@@ -283,30 +304,12 @@ namespace Model
         {
             string[] salary = new string[]
             {
-                "100.000 долларов", "20.000 рублей", "Спасибо"
+                "100.000 долларов", "20.000 рублей",
+                "Работает за спасибо :D"
             };
             var random = new Random();
             string tempSalary = salary[random.Next(salary.Length)];
             return tempSalary;
-        }
-        /// <summary>
-        /// Проверка на пустой ввод.
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns>Непустое значение.</returns>
-        /// <exception cref="ArgumentException">Исключение
-        /// на пустой ввод.</exception>
-        protected string CheckValue(string value)
-        {
-            if (string.IsNullOrEmpty(value))
-            {
-                throw new ArgumentException
-                    ("\nВвод не должен быть пустым.");
-            }
-            else
-            {
-                return value;
-            }
         }
 
         /// <summary>

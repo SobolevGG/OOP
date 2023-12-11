@@ -42,11 +42,6 @@ namespace Model
         private int _age;
 
         /// <summary>
-        /// Пол пользователя.
-        /// </summary>
-        private Gender _gender;
-
-        /// <summary>
         /// Минимальный возраст для контроля некорректного ввода.
         /// </summary>
         protected abstract int MinAge { get; }
@@ -60,7 +55,7 @@ namespace Model
         /// Вывод информации о пользователе.
         /// </summary>
         /// <returns>Информация о пользователе.</returns>
-        public string GetInfo()
+        public virtual string GetInfo()
         {
             return $"Информация о пользователе:\n" +
                 $"Имя: {_name}, " +
@@ -173,29 +168,13 @@ namespace Model
         /// <returns>Возраст.</returns>
         /// <exception cref="IndexOutOfRangeException">Исключение
         /// по нарушающему диапазон возрасту.</exception>
-        protected virtual int CheckAge(int age)
-        {
-            // Передать значение переменной _age,
-            // однако, прежде провести проверку:
-            // значение входит в НЕправильный диапазон?
-            return MinAge >= age || age >= MaxAge
-                    // Если да, то кинуть исключение
-                    ? throw new IndexOutOfRangeException("Возраст " +
-                        $"должен быть в диапазоне " +
-                        $"от {MinAge} до {MaxAge} лет!")
-                    // Если нет, то продолжить присваивание
-                    : age;
-        }
+        protected abstract int CheckAge(int age);
 
-        // TODO(+): to autoproperty
         /// <summary>
         /// Получение параметра пола.
         /// </summary>
-        public Gender Gender
-        {
-            get => _gender;
-            set => _gender = value;
-        }
+        public Gender Gender { get; set; }
+
         /// <summary>
         /// Метод проверяет паттерн.
         /// </summary>
@@ -258,7 +237,27 @@ namespace Model
             return CultureInfo.CurrentCulture.TextInfo.
                 ToTitleCase(word.ToLower());
         }
+
+        /// <summary>
+        /// Проверка на пустой ввод.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>Непустое значение.</returns>
+        /// <exception cref="ArgumentException">Исключение
+        /// на пустой ввод.</exception>
+        protected string CheckValue(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException
+                    ("\nВвод не должен быть пустым.");
+            }
+            else
+            {
+                return value;
+            }
+        }
+
+
     }
-
-
 }

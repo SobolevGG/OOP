@@ -6,42 +6,42 @@ namespace Model
     public class Child : PersonBase
     {
         /// <summary>
-        /// Minimum age.
+        /// Минимальный возраст.
         /// </summary>
         private const int _minAge = 0;
 
         /// <summary>
-        /// Maximum age.
+        /// Максимальный возраст.
         /// </summary>
         private const int _maxAge = 17;
 
         /// <summary>
-        /// Minimum age.
+        /// Переопределение базового метода мин. возраста.
         /// </summary>
         protected override int MinAge { get; } = _minAge;
 
         /// <summary>
-        /// Maximum age.
+        /// Переопределение базового метода макс. возраста.
         /// </summary>
         protected override int MaxAge { get; } = _maxAge;
 
         /// <summary>
-        /// Child's mother.
+        /// Мать ребенка.
         /// </summary>
         private Adult _mother;
 
         /// <summary>
-        /// Child's father.
+        /// Отец ребенка.
         /// </summary>
         private Adult _father;
 
         /// <summary>
-        /// Child's school.
+        /// Школа, которую ребенок исправно посещает.
         /// </summary>
         private string _school;
 
         /// <summary>
-        /// Gets or sets child's mother.
+        /// Метод для обращения к полям матери.
         /// </summary>
         public Adult Mother
         {
@@ -50,12 +50,14 @@ namespace Model
             set
             {
                 CheckParentGender(value, Gender.Female);
+
+                // Допускается пустой ввод
                 _mother = value;
             }
         }
 
         /// <summary>
-        /// Gets or sets child's father.
+        /// Метод для обращения к полям отца.
         /// </summary>
         public Adult Father
         {
@@ -64,41 +66,66 @@ namespace Model
             set
             {
                 CheckParentGender(value, Gender.Male);
+
+                // Допускается пустой ввод
                 _father = value;
             }
         }
 
         /// <summary>
-        /// Gets or sets child's school.
+        /// Метод для обращения к полям школы.
         /// </summary>
         public string School
         {
             get => _school;
 
+            // Школа должна быть у всех детей
             set => _school = CheckValue(value);
         }
 
         /// <summary>
-        /// 
+        /// Метод проверки корректности полов родителей.
         /// </summary>
-        /// <param name="parent">Mother or Father.</param>
-        /// <param name="gender">Male or Female.</param>
-        /// <exception cref="ArgumentException">Incorrent input.</exception>
+        /// <param name="parent">Партнёр.</param>
+        /// <param name="gender">Пол.</param>
+        /// <exception cref="ArgumentException">Некорректный ввод.</exception>
         private void CheckParentGender(Adult parent, Gender gender)
         {
             if (parent != null && parent.Gender != gender)
             {
-                throw new ArgumentException("Change parent's gender!");
+                throw new ArgumentException("Быть такого не может, " +
+                    "должно быть, Вы ошиблись при вводе!");
             }
         }
 
         /// <summary>
-        /// Info about child.
+        /// Метод проверки возраста.
         /// </summary>
-        /// <returns>Info.</returns>
-        public override string GetInfo()
+        /// <param name="age"></param>
+        /// <returns>Возраст.</returns>
+        /// <exception cref="IndexOutOfRangeException">Исключение
+        /// по нарушающему диапазон возрасту.</exception>
+        protected override int CheckAge(int age)
         {
-            string motherStatus = "No mother";
+            // Передать значение переменной _age,
+            // однако, прежде провести проверку:
+            // значение входит в НЕправильный диапазон?
+            return MinAge > age || age > MaxAge
+                    // Если да, то кинуть исключение
+                    ? throw new IndexOutOfRangeException("Возраст " +
+                        $"должен быть в диапазоне " +
+                        $"от {MinAge} до {MaxAge} лет!")
+                    // Если нет, то продолжить присваивание
+                    : age;
+        }
+
+        /// <summary>
+        /// Метод вывода информации о ребёнке.
+        /// </summary>
+        /// <returns>Информация о ребёнке.</returns>
+        public override string GetInfoBase()
+        {
+            string motherStatus = "Отсутствует";
             string fatherStatus = "No father";
 
             if (Mother != null)
@@ -229,45 +256,32 @@ namespace Model
         private static Adult GetRandomParent(int numberParent)
         {
             var random = new Random();
-            var parentStatus = random.Next(0, 2);
+            var parentStatus = random.Next(1, 3);
 
-            if (parentStatus == 0)
+            // Если выпала 1, то партнёра нет
+            if (parentStatus == 1)
             {
                 return null;
             }
+
+            // В ином случае будет партнёр
             else
             {
                 switch (numberParent)
                 {
+                    // Если был передан 0, то партнёр - мужчина
                     case 0:
-                        return Adult.GetRandomPerson(Gender.Male);
+                        return (Adult)Adult.GetRandomPerson(Gender.Male);
+
+                    // Если была передана 1, то партнёр - женщина
                     case 1:
-                        return Adult.GetRandomPerson(Gender.Female);
+                        return (Adult)Adult.GetRandomPerson(Gender.Female);
+
+                    // Если передали неожидаемое значение
                     default:
                         throw new ArgumentException
-                            ("Число может может быть или 1, или 2.");
+                            ("Введите, пожалуйста, число 1 или 2");
                 }
-            }
-        }
-
-        /// <summary>
-        /// Check correct age.
-        /// </summary>
-        /// <param name="age">Age.</param>
-        /// <returns>Correct age.</returns>
-        /// <exception cref="IndexOutOfRangeException">
-        /// Incorrect input.</exception>
-        protected override int CheckAge(int age)
-        {
-            if (age < MinAge || age > MaxAge)
-            {
-                throw new IndexOutOfRangeException
-                    ($"\nThe age should be in the " +
-                    $"range from {MinAge} to {MaxAge}");
-            }
-            else
-            {
-                return age;
             }
         }
 
