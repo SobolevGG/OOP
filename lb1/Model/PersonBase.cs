@@ -257,7 +257,5 @@ namespace Model
                 return value;
             }
         }
-
-
     }
 }

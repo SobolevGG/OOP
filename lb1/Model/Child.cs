@@ -188,35 +188,42 @@ namespace Model
         /// <returns>Random person.</returns>
         public static Child GetRandomPerson()
         {
-            string[] maleNames = new string[]
+            string[] maleNames =
             {
-                "Jack", "William", "Davy",
-                "Joshamee", "Hector", "Theodore",
-                "James", "Sao", "Edward"
+                "Александр", "Владимир", "Григорий", "Максим",
+                "Артем", "Егор", "Иван", "Илья"
             };
 
-            string[] femaleNames = new string[]
+            string[] femaleNames =
             {
-                "Elizabeth", "Tia", "Keira",
-                "Carina", "Kaya", "Angelica",
-                "Penelope", "Naomie", "Anamaria"
+                "Светлана", "Татьяна","Ульяна", "Фаина",
+                "Христина", "Цветана", "Эвелина", "Анастасия"
             };
 
-            string[] allSurnames = new string[]
+            string[] surnames =
             {
-                "Sparrow", "Turner", "Jones",
-                "Gibbs", "Barbossa", "Groves",
-                "Norrington", "Feng", "Teague",
-                "Swann", "Dalma", "Smyth"
+                "Живаго",
+                "Шапиро",
+                "Грабчак",
+                "Дей",
+                "Штольберг"
             };
 
-            string[] schoolNames = new string[]
+            string[] kindergartens = new string[]
             {
-                "Imagination", "Flying Spagetti Monster", "Queen of Bubbles",
-                "Scuba-Dubin-Doo", "Cthulhu", "The Kraken", "Unsinkable",
-                "Carpe Diem", "Fantasea", "Aquaholic", "Titanic II",
-                "Little Black Pearl", "Monkeebutt"
+                "Радуга", "Солнышко","Весёлые карапузы","Ласточка",
+                "Дружные малыши","Звёздочка","Улыбка","Мишутка",
+                "Теремок","Сказка","Весёлый мир","Зайчонок",
+                "Смешарики","Волшебный лес","Колобок","Спутничок"
             };
+
+            // string[] schools = new string[]
+            // {
+            //     "Школа №1","Школа №2","Школа №3","Школа 4",
+            //     "Школа №5","Школа №6","Школа №7","Школа 8",
+            //     "Школа №9","Школа №10","Школа №11","Школа 12",
+            //     "Школа №13","Школа №14","Школа №15","Школа 16"
+            // };
 
             var random = new Random();
             string name = string.Empty;
@@ -235,10 +242,10 @@ namespace Model
                     break;
             }
 
-            string surname = allSurnames[random.Next(allSurnames.Length)];
+            string surname = surnames[random.Next(surnames.Length)];
             int age = random.Next(_minAge, _maxAge);
 
-            string school = schoolNames[random.Next(schoolNames.Length)];
+            string school = kindergartens[random.Next(kindergartens.Length)];
 
             Adult mother = GetRandomParent(1);
             Adult father = GetRandomParent(0);
