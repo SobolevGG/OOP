@@ -168,7 +168,7 @@ namespace Model
         /// <summary>
         /// Метод получения случайных персон.
         /// </summary>
-        /// <returns>Пользователь с его параметрами.</returns>
+        /// <returns>Взрослый человек.</returns>
         public static PersonBase GetRandomPerson(Gender gender = Gender.Default)
         {
             string[] maleNames =
@@ -201,7 +201,7 @@ namespace Model
             };
 
             var random = new Random();
-            string tmpName = string.Empty;
+            string name = string.Empty;
 
             if (gender == Gender.Default)
             {
@@ -214,10 +214,10 @@ namespace Model
             switch (gender)
             {
                 case Gender.Male:
-                    tmpName = maleNames[random.Next(maleNames.Length)];
+                    name = maleNames[random.Next(maleNames.Length)];
                     break;
                 case Gender.Female:
-                    tmpName = femaleNames[random.Next(femaleNames.Length)];
+                    name = femaleNames[random.Next(femaleNames.Length)];
                     break;
                 case Gender.Default:
                     break;
@@ -227,10 +227,10 @@ namespace Model
 
             // Генерируем случайное число, но не более длины списка
             // Обращаемся в массиве к элементу по индексу
-            var tmpSurname = surnames[random.Next(surnames.Length)];
+            var surname = surnames[random.Next(surnames.Length)];
 
             // Генерируем случайное число в диапазоне
-            var tmpAge = random.Next(_minAge, _maxAge);
+            var age = random.Next(_minAge, _maxAge);
 
             // Генерируем число, соответвтующее паспортным данным
             long pasSeriesAndNumber = random.NextInt64(_fromSeriesAndNumber, _toSeriesAndNumber);
@@ -279,7 +279,7 @@ namespace Model
                     [random.Next(surnames.Length)];
             }
 
-            return new Adult(tmpName, tmpSurname, tmpAge, gender,
+            return new Adult(name, surname, age, gender,
                 pasSeriesAndNumber, job, partner);
         }
 

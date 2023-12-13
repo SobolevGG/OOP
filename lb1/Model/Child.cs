@@ -36,9 +36,9 @@ namespace Model
         private Adult _father;
 
         /// <summary>
-        /// Школа, которую ребенок исправно посещает.
+        /// Учреждение, которое посещает ребенок.
         /// </summary>
-        private string _school;
+        private string _institute;
 
         /// <summary>
         /// Метод для обращения к полям матери.
@@ -75,12 +75,12 @@ namespace Model
         /// <summary>
         /// Метод для обращения к полям школы.
         /// </summary>
-        public string School
+        public string Institute
         {
-            get => _school;
+            get => _institute;
 
             // Школа должна быть у всех детей
-            set => _school = CheckValue(value);
+            set => _institute = CheckValue(value);
         }
 
         /// <summary>
@@ -125,67 +125,89 @@ namespace Model
         /// <returns>Информация о ребёнке.</returns>
         public override string GetInfoBase()
         {
-            string motherStatus = "Отсутствует";
-            string fatherStatus = "No father";
-
-            if (Mother != null)
+            string instituteStatus = "";
+            if (!string.IsNullOrEmpty(Institute))
             {
-                motherStatus = $"Mother`s name is {Mother.Name}," +
-                    $"surname is {Mother.Surname}";
+                if (Age >= 7)
+                {
+                    instituteStatus = $"учебное заведение: {Institute}";
+                }
+                else if (Age < 7)
+                {
+                    string group = "";
+                    switch (Age)
+                    {
+                        case < 2:
+                            group = "первая младшая группа";
+                            break;
+                        case <= 2 and <= 3:
+                            group = "вторая младшая группа";
+                            break;
+                        case <= 4 and <= 5:
+                            group = "средняя группа";
+                            break;
+                        case > 5 and <= 6:
+                            group = "старшая группа";
+                            break;
+                        default:
+                            break;
+                    }
+
+                    instituteStatus = $"учреждение дошкольного " +
+                        $"образования \"{Institute}\", {group}";
+                }
             }
 
-            if (Father != null)
-            {
-                fatherStatus = $"Father`s name is {Father.Name}," +
-                    $"surname is {Father.Surname}";
-            }
+            string description = "воспитывается без родителей";
 
-            string schoolStatus = "not studing";
-            if (!string.IsNullOrEmpty(School))
+            // Имеется хотя бы 1 родитель
+            if (Mother != null || Father != null)
             {
-                schoolStatus = $"Study in {School}";
+                // Имеется мать
+                if (Mother != null && Father == null)
+                {
+                    description = $"мать: {Mother.Surname} {Mother.Name}, воспитывающийся без отца";
+                }
+                // Имеется отец
+                else if (Mother == null && Father != null)
+                {
+                    description = $"отец {Father.Surname} {Father.Name}, воспитывающийся без матери";
+                }
             }
-
-            if (Mother == null && Father == null)
-            {
-                return Gender == Gender.Female
-                    ? $"{GetInfo()} \n{schoolStatus}" +
-                        $"\nUnfortunately, she is an orphan"
-                    : $"{GetInfo()} \n{schoolStatus}" +
-                        $"\nUnfortunately, he is an orphan";
-            }
+            // Родителей нет
             else
             {
-                return $"{GetInfo()}\n" +
-                    $"{fatherStatus},\n" +
-                    $"{motherStatus},\n" +
-                    $"{schoolStatus}";
+                return $"{GetInfo()}, {instituteStatus}, " +
+                    $"воспитывается без родителей";
+
             }
+
+            return $"{GetInfo()}, {instituteStatus}, {description}";
         }
 
         /// <summary>
-        /// Child's constructor.
+        /// Конструктор для ребёнка.
         /// </summary>
-        /// <param name="name">Name.</param>
-        /// <param name="surname">Surname.</param>
-        /// <param name="age">Age.</param>
-        /// <param name="gender">Gender.</param>
-        /// <param name="mother">Mother.</param>
-        /// <param name="father">Father.</param>
-        /// <param name="school">School.</param>
+        /// <param name="name">Имя ребёнка.</param>
+        /// <param name="surname">Фамилия ребёнка.</param>
+        /// <param name="age">Возраст ребёнка.</param>
+        /// <param name="gender">Пол ребёнка.</param>
+        /// <param name="mother">Мать ребёнка.</param>
+        /// <param name="father">Отец ребёнка.</param>
+        /// <param name="institute">Образовательное учреждение.</param>
         public Child(string name, string surname, int age, Gender gender,
-            Adult mother, Adult father, string school)
+            Adult mother, Adult father, string institute)
             : base(name, surname, age, gender)
         {
             Mother = mother;
             Father = father;
-            School = school;
+            Institute = institute;
         }
 
         /// <summary>
-        /// Entering a random child.
+        /// Метод генерирования детей.
         /// </summary>
-        /// <returns>Random person.</returns>
+        /// <returns>Ребенок.</returns>
         public static Child GetRandomPerson()
         {
             string[] maleNames =
@@ -217,13 +239,12 @@ namespace Model
                 "Смешарики","Волшебный лес","Колобок","Спутничок"
             };
 
-            // string[] schools = new string[]
-            // {
-            //     "Школа №1","Школа №2","Школа №3","Школа 4",
-            //     "Школа №5","Школа №6","Школа №7","Школа 8",
-            //     "Школа №9","Школа №10","Школа №11","Школа 12",
-            //     "Школа №13","Школа №14","Школа №15","Школа 16"
-            // };
+            string[] schools = new string[10];
+
+            for (int i = 1; i <= schools.Length; i++)
+            {
+                schools[i - 1] = $"Школа №{i}";
+            }
 
             var random = new Random();
             string name = string.Empty;
@@ -245,21 +266,28 @@ namespace Model
             string surname = surnames[random.Next(surnames.Length)];
             int age = random.Next(_minAge, _maxAge);
 
-            string school = kindergartens[random.Next(kindergartens.Length)];
+            // Случайным образом выбирается школа
+            string institute = schools[random.Next(schools.Length)];
+
+            // Условимся, что дети идут в школу с 7 лет
+            if (age < 7)
+            {
+                institute = kindergartens[random.Next(kindergartens.Length)];
+            }
 
             Adult mother = GetRandomParent(1);
             Adult father = GetRandomParent(0);
 
             return new Child(name, surname, age, gender,
-                            mother, father, school);
+                            mother, father, institute);
         }
 
         /// <summary>
-        /// Create random parent for random child.
+        /// Метод создания родителей для ребёнка.
         /// </summary>
-        /// <param name="numberParent"> 0 is Male, 1 is Female.</param>
-        /// <returns>Random Parent.</returns>
-        /// <exception cref="ArgumentException">Incorrect input.</exception>
+        /// <param name="numberParent"> 0 - мальчик, 1 - девочка.</param>
+        /// <returns>Случайный родитель.</returns>
+        /// <exception cref="ArgumentException">Некорректный ввод.</exception>
         private static Adult GetRandomParent(int numberParent)
         {
             var random = new Random();

@@ -28,13 +28,10 @@ namespace ConsoleApp1
                 personList.Add(randomPerson);
             }
 
-            Console.WriteLine("Был сформирован список из 7 человек." +
-                "\nДля его вывода нажмите любую клавишу.\n");
+            Console.WriteLine("Был сформирован список из 7 человек:\n");
 
-            _ = Console.ReadKey();
-
-            Console.WriteLine($"Список, включающий {n} человек:");
             PrintConsole(personList);
+
             Console.WriteLine();
             _ = Console.ReadKey();
 
@@ -43,8 +40,7 @@ namespace ConsoleApp1
             switch (person)
             {
                 case Adult adult:
-                    Console.WriteLine($"\n{adult.Surname} {adult.Name}" +
-                        $"({adult.Age} age) prefers {adult.GetSalary()}");
+                    Console.WriteLine($"\n{adult.GetInfo()}");
                     break;
                 case Child child:
                     Console.WriteLine($"\n{child.GetShipCollection()}" +
@@ -73,7 +69,7 @@ namespace ConsoleApp1
                 for (int i = 0; i < personList.Count(); i++)
                 {
                     var tmpPerson = personList.Search(i);
-                    Console.WriteLine(tmpPerson.GetInfo());
+                    Console.WriteLine(tmpPerson.GetInfoBase());
                 }
             }
         }
