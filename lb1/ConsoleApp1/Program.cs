@@ -1,7 +1,8 @@
 using Model;
 
-// TODO: Включить линтеры
-// TODO: gitignore
+/// <summary>
+/// Пространство имён.
+/// </summary>
 namespace ConsoleApp1
 {
     /// <summary>
@@ -14,43 +15,59 @@ namespace ConsoleApp1
         /// </summary>
         public static void Main()
         {
-            var personList = new PersonList();
-            var random = new Random();
+            PersonList personList;
 
-            var n = 7;
+            // Сколько персон случайным образом сгенерировать?
+            int numPerson = 7;
 
-            // Генератор взрослых и детей
-            for (var i = 0; i < n; i++)
-            {
-                PersonBase randomPerson = random.Next(1, 3) == 1
-                    ? Adult.GetRandomPerson()
-                    : Child.GetRandomPerson();
-                personList.Add(randomPerson);
-            }
+            // Генерируем случайные персоны
+            GetPerson(out personList, numPerson);
 
-            Console.WriteLine("Был сформирован список из 7 человек:\n");
+            // Уведомляем пользователя, что персоны готовы :D
+            Console.WriteLine("\n    Был сформирован список " +
+                $"из {numPerson} человек.\n");
 
+            // Выводим наш список персон
             PrintConsole(personList);
 
-            Console.WriteLine();
             _ = Console.ReadKey();
 
             var person = personList.Search(3);
-            Console.WriteLine("Выберите, кого Вы ..........");
+            Console.WriteLine("    Вы можете посмотреть " +
+                "дополнительную информацию о человеке " +
+                "в зависимости от его возраста: о взрослом " +
+                "человеке вы можете узнать его зарплату, " +
+                "а о ребёнке - его средний балл по программированию.\n" +
+                "Введите номер человека в списке.");
             switch (person)
             {
                 case Adult adult:
                     Console.WriteLine($"\n{adult.GetInfo()}");
                     break;
                 case Child child:
-                    Console.WriteLine($"\n{child.GetShipCollection()}" +
-                        $"({child.Age} age) has a model of {child.GetShipCollection()}");
+                    Console.WriteLine($"\n{child.GetInfo()}" +
+                        $"({child.GetShipCollection()}");
                     break;
                 default:
                     break;
             }
 
             _ = Console.ReadKey();
+        }
+
+        private static void GetPerson(out PersonList personList, int numPerson)
+        {
+            personList = new PersonList();
+            var random = new Random();
+
+            // Генератор взрослых и детей
+            for (var i = 0; i < numPerson; i++)
+            {
+                PersonBase randomPerson = random.Next(1, 3) == 1
+                    ? Adult.GetRandomPerson()
+                    : Child.GetRandomPerson();
+                personList.Add(randomPerson);
+            }
         }
 
         /// <summary>
@@ -69,43 +86,8 @@ namespace ConsoleApp1
                 for (int i = 0; i < personList.Count(); i++)
                 {
                     var tmpPerson = personList.Search(i);
-                    Console.WriteLine(tmpPerson.GetInfoBase());
-                }
-            }
-        }
-
-        /// <summary>
-        /// Метод для вывода исключений в консоль.
-        /// </summary>
-        /// <param name="action">Дейсвтие.</param>
-        /// <param name="characteristic">Одна из характеристик
-        /// пользователя.</param>
-        private static void ShowException(Action<string> action,
-            string characteristic)
-        {
-            while (true)
-            {
-                try
-                {
-                    action.Invoke(characteristic);
-                    break;
-                }
-                catch (Exception exception)
-                {
-                    if (exception.GetType()
-                        == typeof(IndexOutOfRangeException)
-                        || exception.GetType() == typeof(FormatException)
-                        || exception.GetType() == typeof(ArgumentException)
-                        || exception.GetType() == typeof(ArgumentNullException))
-                    {
-                        Console.WriteLine($"К сожалению, характеристика " +
-                            $"*{characteristic}* введена не верно." +
-                        $"\nОшибка: {exception.Message}");
-                    }
-                    else
-                    {
-                        throw exception;
-                    }
+                    Console.WriteLine();
+                    Console.WriteLine($"    {i}. " + tmpPerson.GetInfoBase());
                 }
             }
         }

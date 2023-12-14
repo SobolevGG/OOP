@@ -57,11 +57,16 @@ namespace Model
         /// <returns>Информация о пользователе.</returns>
         public virtual string GetInfo()
         {
-            return $"Информация о пользователе:\n" +
-                $"Имя: {_name}, " +
-                $"Фамилия: {_surname}, " +
-                $"\nВозраст: {_age}, " +
-                $"Пол: {Gender}";
+            var tmpGender = "мужской";
+
+            if (Gender is Gender.Female)
+            {
+                tmpGender = "женский";
+            }
+            return $"Имя: {Name}, " +
+                   $"Фамилия: {Surname}, " +
+                   $"\nВозраст: {Age}, " +
+                   $"Пол: {tmpGender}\n";
         }
 
         /// <summary>

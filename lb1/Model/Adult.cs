@@ -131,19 +131,17 @@ namespace Model
             if (Partner != null)
             {
                 marriegeStatus = $"Состоит в браке " +
-                    $"с замечательным человеком по имени " +
-                    $"{Partner.Surname} {Partner.Name}";
+                    $"с {Partner.Surname} {Partner.Name}";
             }
 
-            string job = "Фрилансер (по факту безработный)";
+            string job = "безработный";
 
             if (!string.IsNullOrEmpty(PlaceOfWork))
             {
                 job = $"Место работы: {PlaceOfWork}";
             }
 
-            return $"{GetInfo()}" +
-                    $"\n{marriegeStatus},\n{job}.";
+            return $"{GetInfo()}, {marriegeStatus},\n{job}.\n";
         }
 
         /// <summary>
@@ -155,7 +153,7 @@ namespace Model
         /// <param name="gender">Пол.</param>
         /// <param name="pasSeriesAndNumber">Серия и номер паспорта.</param>
         /// <param name="placeOfWork">Место работы.</param>
-        /// <param name="partner">Паптнёр.</param>
+        /// <param name="partner">Партнёр.</param>
         public Adult(string name, string surname, int age, Gender gender,
             long pasSeriesAndNumber, string placeOfWork, Adult partner)
             : base(name, surname, age, gender)
