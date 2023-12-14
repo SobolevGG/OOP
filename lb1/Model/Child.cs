@@ -130,7 +130,7 @@ namespace Model
             {
                 if (Age >= 7)
                 {
-                    instituteStatus = $"учебное заведение: {Institute}";
+                    instituteStatus = $"    Учебное заведение: {Institute}";
                 }
                 else if (Age < 7)
                 {
@@ -153,36 +153,44 @@ namespace Model
                             break;
                     }
 
-                    instituteStatus = $"учреждение дошкольного " +
-                        $"образования \"{Institute}\", {group}";
+                    instituteStatus = $"    Учреждение дошкольного " +
+                        $"образования \"{Institute}\" ({group})";
                 }
             }
 
-            string description = "воспитывается без родителей";
-
+            // Информация о родителях
+            string parents = "информация отсутствует";
+            // Оба родителя имеются
+            if (Mother != null && Father != null)
+            {
+                parents = $"мать: {Mother.Surname} {Mother.Name}, " +
+                $"отец: {Father.Surname} {Father.Name}";
+            }
             // Имеется хотя бы 1 родитель
-            if (Mother != null || Father != null)
+            else if (Mother != null || Father != null)
             {
                 // Имеется мать
                 if (Mother != null && Father == null)
                 {
-                    description = $"мать: {Mother.Surname} {Mother.Name}, воспитывающийся без отца";
+                    parents = $"мать: {Mother.Surname} {Mother.Name}, " +
+                        $"воспитывающийся без отца";
                 }
                 // Имеется отец
                 else if (Mother == null && Father != null)
                 {
-                    description = $"отец {Father.Surname} {Father.Name}, воспитывающийся без матери";
+                    parents = $"отец: {Father.Surname} {Father.Name}, " +
+                        $"воспитывающийся без матери";
                 }
             }
             // Родителей нет
-            else
+            else if (Mother == null || Father == null)
             {
-                return $"{GetInfo()}, {instituteStatus}, " +
-                    $"воспитывается без родителей";
-
+                parents = "воспитывается без родителей";
             }
 
-            return $"{GetInfo()}, {instituteStatus}, {description}";
+            return $"{GetInfo()}" +
+                $"{instituteStatus}, " +
+                $"\n    Информация о родителях: {parents}\n";
         }
 
         /// <summary>
@@ -338,7 +346,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Child without parameters.
+        /// Ребёнок.
         /// </summary>
         public Child()
         {

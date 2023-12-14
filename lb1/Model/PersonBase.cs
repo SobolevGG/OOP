@@ -63,23 +63,16 @@ namespace Model
             {
                 tmpGender = "женский";
             }
-            return $"Имя: {Name}, " +
-                   $"Фамилия: {Surname}, " +
-                   $"\nВозраст: {Age}, " +
-                   $"Пол: {tmpGender}\n";
+            return $"Имя: {Name};\n" +
+                   $"    Фамилия: {Surname};\n" +
+                   $"    Возраст: {Age};\n" +
+                   $"    Пол: {tmpGender};\n";
         }
 
         /// <summary>
         /// Базовый метод по выводу информации о человеке.
         /// </summary>
         public abstract string GetInfoBase();
-
-        /// <summary>
-        /// Метод для корректной работы Action`ов.
-        /// </summary>
-        public PersonBase()
-        {
-        }
 
         /// <summary>
         /// Метод проверки на пустой ввод.
@@ -203,6 +196,13 @@ namespace Model
         }
 
         /// <summary>
+        /// Персона.
+        /// </summary>
+        public PersonBase()
+        {
+        }
+
+        /// <summary>
         /// Метод возвращает язык ввода данных.
         /// </summary>
         /// <param name="value">Имя или фамилия пользователя.</param>
@@ -252,15 +252,10 @@ namespace Model
         /// на пустой ввод.</exception>
         protected string CheckValue(string value)
         {
-            if (string.IsNullOrEmpty(value))
-            {
-                throw new ArgumentException
-                    ("\nВвод не должен быть пустым.");
-            }
-            else
-            {
-                return value;
-            }
+            return string.IsNullOrEmpty(value)
+                ? throw new ArgumentException
+                    ("\nВвод не должен быть пустым.")
+                : value;
         }
     }
 }

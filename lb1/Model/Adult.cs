@@ -126,22 +126,37 @@ namespace Model
         /// <returns>Information.</returns>
         public override string GetInfoBase()
         {
-            string marriegeStatus = "Свободный человек";
+            string marriegeStatus = "не установлено";
 
-            if (Partner != null)
+            if (Partner == null)
             {
-                marriegeStatus = $"Состоит в браке " +
+                if (Gender is Gender.Male)
+                {
+                    marriegeStatus = "не женат";
+                }
+                else if (Gender is Gender.Female)
+                {
+                    marriegeStatus = "не замужем";
+                }
+            }
+            else if (Partner != null)
+            {
+                marriegeStatus = $"состоит в браке " +
                     $"с {Partner.Surname} {Partner.Name}";
             }
 
+            // Статус по умолчанию
             string job = "безработный";
 
+            // Проверяем, есть ли работа у персоны
             if (!string.IsNullOrEmpty(PlaceOfWork))
             {
-                job = $"Место работы: {PlaceOfWork}";
+                job = $"{PlaceOfWork}";
             }
 
-            return $"{GetInfo()}, {marriegeStatus},\n{job}.\n";
+            return $"{GetInfo()}" +
+                $"    Семейное положение: {marriegeStatus};" +
+                $"\n    Место работы: {job}.\n";
         }
 
         /// <summary>

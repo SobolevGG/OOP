@@ -25,7 +25,7 @@ namespace ConsoleApp1
 
             // Уведомляем пользователя, что персоны готовы :D
             Console.WriteLine("\n    Был сформирован список " +
-                $"из {numPerson} человек.\n");
+                $"из {numPerson} человек:");
 
             // Выводим наш список персон
             PrintConsole(personList);
@@ -55,6 +55,11 @@ namespace ConsoleApp1
             _ = Console.ReadKey();
         }
 
+        /// <summary>
+        /// Метод для генерации персон.
+        /// </summary>
+        /// <param name="personList">Список персон.</param>
+        /// <param name="numPerson">Количество персон.</param>
         private static void GetPerson(out PersonList personList, int numPerson)
         {
             personList = new PersonList();
@@ -86,8 +91,8 @@ namespace ConsoleApp1
                 for (int i = 0; i < personList.Count(); i++)
                 {
                     var tmpPerson = personList.Search(i);
-                    Console.WriteLine();
-                    Console.WriteLine($"    {i}. " + tmpPerson.GetInfoBase());
+                    Console.WriteLine($"    {i + 1}. "
+                        + tmpPerson.GetInfoBase());
                 }
             }
         }
