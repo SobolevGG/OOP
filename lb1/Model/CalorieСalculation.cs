@@ -4,9 +4,9 @@ using System.Text.RegularExpressions;
 namespace Model
 {
     /// <summary>
-    /// Класс для пользователя.
+    /// Класс для расчёта калорий.
     /// </summary>
-    public class Person
+    public class CalorieСalculation
     {
         /// <summary>
         /// Конструктор для инициализации данных о пользователе.
@@ -15,7 +15,7 @@ namespace Model
         /// <param name="surname">Фамилия.</param>
         /// <param name="age">Возраст.</param>
         /// /// <param name="gender">Пол.</param>
-        public Person(string name,
+        public CalorieСalculation(string name,
                       string surname,
                       int age,
                       Gender gender)
@@ -66,7 +66,7 @@ namespace Model
         /// <summary>
         /// Метод для корректной работы Action`ов.
         /// </summary>
-        public Person()
+        public CalorieСalculation()
         {
         }
 
@@ -74,7 +74,7 @@ namespace Model
         /// Метод получения случайных персон.
         /// </summary>
         /// <returns>Пользователь с его параметрами.</returns>
-        public static Person GetRandomPerson()
+        public static CalorieСalculation GetRandomPerson()
         {
             string[] maleNames =
             {
@@ -108,7 +108,7 @@ namespace Model
             var tmpSurname = surnames[random.Next(surnames.Length)];
             var tmpAge = random.Next(_minAge, _maxAge);
 
-            return new Person(tmpName, tmpSurname, tmpAge, tmpGender);
+            return new CalorieСalculation(tmpName, tmpSurname, tmpAge, tmpGender);
         }
 
         /// <summary>

@@ -21,7 +21,7 @@ namespace ConsoleApp1
             _ = Console.ReadKey();
 
             Console.WriteLine("\nСлучайный пользователь: ");
-            var randomPerson = Person.GetRandomPerson();
+            var randomPerson = CalorieСalculation.GetRandomPerson();
             Console.WriteLine(randomPerson.GetInfo());
 
             // Согласно заданию создаём два логически разделённых списка
@@ -29,16 +29,16 @@ namespace ConsoleApp1
             var actresses = new PersonList();
 
             // Создаём пользователей для 1-го списка
-            var robert = new Person("Роберт", "Дауни", 57, Gender.Male);
-            var dwayne = new Person("Дуэйн", "Джонсон", 50, Gender.Male);
-            var matthew = new Person("Мэттью", "Макконахи", 53, Gender.Male);
-            var jackie = new Person("Джеки", "Чан", 68, Gender.Male);
+            var robert = new CalorieСalculation("Роберт", "Дауни", 57, Gender.Male);
+            var dwayne = new CalorieСalculation("Дуэйн", "Джонсон", 50, Gender.Male);
+            var matthew = new CalorieСalculation("Мэттью", "Макконахи", 53, Gender.Male);
+            var jackie = new CalorieСalculation("Джеки", "Чан", 68, Gender.Male);
 
             // Создаём пользователей для 2-го списка
-            var ann = new Person("Энн", "Хэтэуэй", 40, Gender.Female);
-            var emilia = new Person("Эмилия", "Кларк", 36, Gender.Female);
-            var angelina = new Person("Анджелина", "Джоли", 47, Gender.Female);
-            var emma = new Person("Эмма", "Стоун", 32, Gender.Female);
+            var ann = new CalorieСalculation("Энн", "Хэтэуэй", 40, Gender.Female);
+            var emilia = new CalorieСalculation("Эмилия", "Кларк", 36, Gender.Female);
+            var angelina = new CalorieСalculation("Анджелина", "Джоли", 47, Gender.Female);
+            var emma = new CalorieСalculation("Эмма", "Стоун", 32, Gender.Female);
 
             // Добавляем пользователей в 1-й список при помощи Add()
             actors.Add(robert);
@@ -71,7 +71,7 @@ namespace ConsoleApp1
                 "появится возможность добавления нового актёра " +
                 "в список актёров.");
             _ = Console.ReadKey();
-            var kit = new Person
+            var kit = new CalorieСalculation
                 ("Кит", "Харингтон", 36, Gender.Male);
             actors.Add(kit);
             Console.WriteLine("\nНовый актёр успешно добавлен " +
@@ -194,9 +194,9 @@ namespace ConsoleApp1
         /// <returns>Пользователь.</returns>
         /// <exception cref="IndexOutOfRangeException">Исключение
         /// на выход из диапазона.</exception>
-        public static Person ConsoleCreatePersons()
+        public static CalorieСalculation ConsoleCreatePersons()
         {
-            var person = new Person();
+            var person = new CalorieСalculation();
 
             var actionList = new List<(Action<string>, string)>
             {
