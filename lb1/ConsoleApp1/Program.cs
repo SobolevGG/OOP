@@ -18,41 +18,47 @@ namespace ConsoleApp1
             PersonList personList;
 
             // Сколько персон случайным образом сгенерировать?
-            int numPerson = 7;
+            int amountPerson = 7;
 
             // Генерируем случайные персоны
-            GetPerson(out personList, numPerson);
+            GetPerson(out personList, amountPerson);
 
             // Уведомляем пользователя, что персоны готовы :D
             Console.WriteLine("\n    Был сформирован список " +
-                $"из {numPerson} человек:");
+                $"из {amountPerson} человек:");
 
             // Выводим наш список персон
             PrintConsole(personList);
 
-            _ = Console.ReadKey();
+            Console.Write("    Вы можете посмотреть " +
+                "дополнительную информацию о человеке.\n" +
+                "    О взрослом человеке Вы можете узнать его зарплату,\n" +
+                "    О ребёнке - его средний балл по программированию.\n" +
+                $"    Введите номер человека в списке: ");
 
-            var person = personList.Search(3);
-            Console.WriteLine("    Вы можете посмотреть " +
-                "дополнительную информацию о человеке " +
-                "в зависимости от его возраста: о взрослом " +
-                "человеке вы можете узнать его зарплату, " +
-                "а о ребёнке - его средний балл по программированию.\n" +
-                "Введите номер человека в списке.");
+            var personNum = Console.ReadLine();
+
+            // Минимальный обработчик ввода
+            if (!int.TryParse(personNum, out int tmpNum))
+            {
+                throw new ArgumentException("Введите целочисленное " +
+                    "положительное значение");
+            }
+
+            var person = personList.Search(tmpNum - 1);
+
             switch (person)
             {
                 case Adult adult:
-                    Console.WriteLine($"\n{adult.GetInfo()}");
+                    Console.WriteLine($"\n    {adult.GetSalary()}");
                     break;
                 case Child child:
-                    Console.WriteLine($"\n{child.GetInfo()}" +
+                    Console.WriteLine($"\n    {child.GetInfo()}" +
                         $"({child.GetShipCollection()}");
                     break;
                 default:
                     break;
             }
-
-            _ = Console.ReadKey();
         }
 
         /// <summary>

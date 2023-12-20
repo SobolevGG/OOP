@@ -106,7 +106,6 @@ namespace Model
             Array.Resize(ref _personsArray, 0);
         }
 
-        // TODO(+): rename
         /// <summary>
         /// Метод по подсчёту количества пользователей.
         /// </summary>

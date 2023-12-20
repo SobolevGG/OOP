@@ -154,9 +154,14 @@ namespace Model
                 job = $"{PlaceOfWork}";
             }
 
+            string seriesAndNumber = PasSeriesAndNumber.ToString();
+            string series = seriesAndNumber.Substring(0, 4);
+            string number = seriesAndNumber.Substring(4);
+
             return $"{GetInfo()}" +
                 $"    Семейное положение: {marriegeStatus};" +
-                $"\n    Место работы: {job}.\n";
+                $"\n    Место работы: {job};" +
+                $"\n    Паспортные данные: серия - {series}, номер - {number}.\n";
         }
 
         /// <summary>

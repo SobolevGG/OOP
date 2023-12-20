@@ -163,8 +163,8 @@ namespace Model
             // Оба родителя имеются
             if (Mother != null && Father != null)
             {
-                parents = $"мать: {Mother.Surname} {Mother.Name}, " +
-                $"отец: {Father.Surname} {Father.Name}";
+                parents = $"мать - {Mother.Surname} {Mother.Name}, " +
+                $"отец - {Father.Surname} {Father.Name}";
             }
             // Имеется хотя бы 1 родитель
             else if (Mother != null || Father != null)
@@ -172,13 +172,13 @@ namespace Model
                 // Имеется мать
                 if (Mother != null && Father == null)
                 {
-                    parents = $"мать: {Mother.Surname} {Mother.Name}, " +
+                    parents = $"мать - {Mother.Surname} {Mother.Name}, " +
                         $"воспитывающийся без отца";
                 }
                 // Имеется отец
                 else if (Mother == null && Father != null)
                 {
-                    parents = $"отец: {Father.Surname} {Father.Name}, " +
+                    parents = $"отец - {Father.Surname} {Father.Name}, " +
                         $"воспитывающийся без матери";
                 }
             }
