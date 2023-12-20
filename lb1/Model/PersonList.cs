@@ -67,7 +67,6 @@ namespace Model
             Delete(index);
         }
 
-        // TODO(+): rename
         /// <summary>
         /// Метод поиска пользователей.
         /// </summary>

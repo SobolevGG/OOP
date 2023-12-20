@@ -1,7 +1,7 @@
 namespace Model
 {
     /// <summary>
-    /// Class Child.
+    /// Класс Child.
     /// </summary>
     public class Child : PersonBase
     {
