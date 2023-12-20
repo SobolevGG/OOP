@@ -3,7 +3,7 @@ namespace Model
     /// <summary>
     /// Class Child.
     /// </summary>
-    public class Child : PersonBase
+    public class SwimСalculation : CalculationBase
     {
         /// <summary>
         /// Минимальный возраст.
@@ -28,12 +28,12 @@ namespace Model
         /// <summary>
         /// Мать ребенка.
         /// </summary>
-        private Adult _mother;
+        private RunСalculation _mother;
 
         /// <summary>
         /// Отец ребенка.
         /// </summary>
-        private Adult _father;
+        private RunСalculation _father;
 
         /// <summary>
         /// Учреждение, которое посещает ребенок.
@@ -43,7 +43,7 @@ namespace Model
         /// <summary>
         /// Метод для обращения к полям матери.
         /// </summary>
-        public Adult Mother
+        public RunСalculation Mother
         {
             get => _mother;
 
@@ -59,7 +59,7 @@ namespace Model
         /// <summary>
         /// Метод для обращения к полям отца.
         /// </summary>
-        public Adult Father
+        public RunСalculation Father
         {
             get => _father;
 
@@ -89,7 +89,7 @@ namespace Model
         /// <param name="parent">Партнёр.</param>
         /// <param name="gender">Пол.</param>
         /// <exception cref="ArgumentException">Некорректный ввод.</exception>
-        private void CheckParentGender(Adult parent, Gender gender)
+        private void CheckParentGender(RunСalculation parent, Gender gender)
         {
             if (parent != null && parent.Gender != gender)
             {
@@ -203,8 +203,8 @@ namespace Model
         /// <param name="mother">Мать ребёнка.</param>
         /// <param name="father">Отец ребёнка.</param>
         /// <param name="institute">Образовательное учреждение.</param>
-        public Child(string name, string surname, int age, Gender gender,
-            Adult mother, Adult father, string institute)
+        public SwimСalculation(string name, string surname, int age, Gender gender,
+            RunСalculation mother, RunСalculation father, string institute)
             : base(name, surname, age, gender)
         {
             Mother = mother;
@@ -216,7 +216,7 @@ namespace Model
         /// Метод генерирования детей.
         /// </summary>
         /// <returns>Ребенок.</returns>
-        public static Child GetRandomPerson()
+        public static SwimСalculation GetRandomPerson()
         {
             string[] maleNames =
             {
@@ -283,10 +283,10 @@ namespace Model
                 institute = kindergartens[random.Next(kindergartens.Length)];
             }
 
-            Adult mother = GetRandomParent(1);
-            Adult father = GetRandomParent(0);
+            RunСalculation mother = GetRandomParent(1);
+            RunСalculation father = GetRandomParent(0);
 
-            return new Child(name, surname, age, gender,
+            return new SwimСalculation(name, surname, age, gender,
                             mother, father, institute);
         }
 
@@ -296,7 +296,7 @@ namespace Model
         /// <param name="numberParent"> 0 - мальчик, 1 - девочка.</param>
         /// <returns>Случайный родитель.</returns>
         /// <exception cref="ArgumentException">Некорректный ввод.</exception>
-        private static Adult GetRandomParent(int numberParent)
+        private static RunСalculation GetRandomParent(int numberParent)
         {
             var random = new Random();
             var parentStatus = random.Next(1, 3);
@@ -314,11 +314,11 @@ namespace Model
                 {
                     // Если был передан 0, то партнёр - мужчина
                     case 0:
-                        return (Adult)Adult.GetRandomPerson(Gender.Male);
+                        return (RunСalculation)RunСalculation.GetRandomPerson(Gender.Male);
 
                     // Если была передана 1, то партнёр - женщина
                     case 1:
-                        return (Adult)Adult.GetRandomPerson(Gender.Female);
+                        return (RunСalculation)RunСalculation.GetRandomPerson(Gender.Female);
 
                     // Если передали неожидаемое значение
                     default:
@@ -373,7 +373,7 @@ namespace Model
         /// <summary>
         /// Ребёнок.
         /// </summary>
-        public Child()
+        public SwimСalculation()
         {
         }
     }

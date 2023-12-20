@@ -8,13 +8,13 @@ namespace Model
         /// <summary>
         /// Массив пользователей.
         /// </summary>
-        private PersonBase[] _personsArray = new PersonBase[0];
+        private CalculationBase[] _personsArray = new CalculationBase[0];
 
         /// <summary>
         /// Метод добавления пользователей.
         /// </summary>
         /// <param name="person">Пользователь.</param>
-        public void Add(PersonBase person)
+        public void Add(CalculationBase person)
         {
             var newPersonsIndex = _personsArray.Length;
             Array.Resize(ref _personsArray, newPersonsIndex + 1);
@@ -55,7 +55,7 @@ namespace Model
         /// Метод удаления пользователя по переданной персоне.
         /// </summary>
         /// <param name="person">Пользователь.</param>
-        public void DeletePerson(PersonBase person)
+        public void DeletePerson(CalculationBase person)
         {
             // Определяем индекс первого вхождения пользователя в массиве
             int index = Array.IndexOf(_personsArray, person);
@@ -73,7 +73,7 @@ namespace Model
         /// </summary>
         /// <param name="index">Индекс пользователя.</param>
         /// <returns>Пользователь по индексу.</returns>
-        public PersonBase Search(int index)
+        public CalculationBase Search(int index)
         {
             CheckIndex(index);
             return _personsArray[index];
@@ -84,7 +84,7 @@ namespace Model
         /// </summary>
         /// <param name="person">Пользователь.</param>
         /// <returns>Индекс пользователя.</returns>
-        public int SearchIndex(PersonBase person)
+        public int SearchIndex(CalculationBase person)
         {
             var index = -1;
             for (var i = 0; i < _personsArray.Length; i++)

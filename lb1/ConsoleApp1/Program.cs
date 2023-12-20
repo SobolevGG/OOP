@@ -49,12 +49,12 @@ namespace ConsoleApp1
 
             switch (person)
             {
-                case Adult adult:
+                case RunСalculation adult:
                     Console.WriteLine($"\n    Заработная плата " +
                         $"{person.Surname} {person.Name}: " +
                         $"{adult.GetSalary()}");
                     break;
-                case Child child:
+                case SwimСalculation child:
                     var tmpProgress = child.GetSchoolProgress();
                     Console.WriteLine($"\n    {person.Surname} " +
                         $"{person.Name} имеет успеваемость " +
@@ -82,9 +82,9 @@ namespace ConsoleApp1
             // Генератор взрослых и детей
             for (var i = 0; i < numPerson; i++)
             {
-                PersonBase randomPerson = random.Next(1, 3) == 1
-                    ? Adult.GetRandomPerson()
-                    : Child.GetRandomPerson();
+                CalculationBase randomPerson = random.Next(1, 3) == 1
+                    ? RunСalculation.GetRandomPerson()
+                    : SwimСalculation.GetRandomPerson();
                 personList.Add(randomPerson);
             }
         }

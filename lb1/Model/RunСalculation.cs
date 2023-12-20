@@ -3,7 +3,7 @@ namespace Model
     /// <summary>
     /// Класс для взрослого пользователя.
     /// </summary>
-    public class Adult : PersonBase
+    public class RunСalculation : CalculationBase
     {
         /// <summary>
         /// Серия и номер паспорта.
@@ -18,7 +18,7 @@ namespace Model
         /// <summary>
         /// Партнёр (муж/жена).
         /// </summary>
-        private Adult _partner;
+        private RunСalculation _partner;
 
         /// <summary>
         /// Минимальный возраст взрослого.
@@ -94,7 +94,7 @@ namespace Model
         /// <summary>
         /// Партнёр.
         /// </summary>
-        public Adult Partner
+        public RunСalculation Partner
         {
             get => _partner;
 
@@ -111,7 +111,7 @@ namespace Model
         /// </summary>
         /// <param name="partner">Партнёр.</param>
         /// <exception cref="ArgumentException">Некорректный ввод.</exception>
-        private void CheckPartnerGender(Adult partner)
+        private void CheckPartnerGender(RunСalculation partner)
         {
             if (partner != null && partner.Gender == Gender)
             {
@@ -174,8 +174,8 @@ namespace Model
         /// <param name="pasSeriesAndNumber">Серия и номер паспорта.</param>
         /// <param name="placeOfWork">Место работы.</param>
         /// <param name="partner">Партнёр.</param>
-        public Adult(string name, string surname, int age, Gender gender,
-            long pasSeriesAndNumber, string placeOfWork, Adult partner)
+        public RunСalculation(string name, string surname, int age, Gender gender,
+            long pasSeriesAndNumber, string placeOfWork, RunСalculation partner)
             : base(name, surname, age, gender)
         {
             PasSeriesAndNumber = pasSeriesAndNumber;
@@ -187,7 +187,7 @@ namespace Model
         /// Метод получения случайных персон.
         /// </summary>
         /// <returns>Взрослый человек.</returns>
-        public static PersonBase GetRandomPerson(Gender gender = Gender.Default)
+        public static CalculationBase GetRandomPerson(Gender gender = Gender.Default)
         {
             string[] maleNames =
             {
@@ -258,7 +258,7 @@ namespace Model
             string job = placeOfWork[random.Next(placeOfWork.Length)];
 
             // Определяем переменную для партнёра
-            Adult partner = null;
+            RunСalculation partner = null;
 
             // Случайным образом выбираем его статус
             int marriegeStatus = random.Next(1, 3);
@@ -267,7 +267,7 @@ namespace Model
             if (marriegeStatus == 1)
             {
                 // Определяем переменную для партнёра
-                partner = new Adult();
+                partner = new RunСalculation();
 
                 // Если сам человек мужчина
                 if (gender == Gender.Male)
@@ -297,7 +297,7 @@ namespace Model
                     [random.Next(surnames.Length)];
             }
 
-            return new Adult(name, surname, age, gender,
+            return new RunСalculation(name, surname, age, gender,
                 pasSeriesAndNumber, job, partner);
         }
 
@@ -344,7 +344,7 @@ namespace Model
         /// <summary>
         /// Взрослый человек.
         /// </summary>
-        public Adult()
+        public RunСalculation()
         {
         }
     }
