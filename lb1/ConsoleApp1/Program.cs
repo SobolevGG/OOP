@@ -17,11 +17,15 @@ namespace ConsoleApp1
         /// </summary>
         public static void Main()
         {
+
+            Console.WriteLine($"\n    Добрый день! Прежде, чем приступить к тренировке давайте рассчитаем сжигаемые калории.\n" +
+                $"Ведите свой вес, выберите желаемую тренировку (бег, плавание, жим штанги).");
+
             var runningCalculator = new RunCalc(65, 1000, 5, 19);
             double runningCalories = runningCalculator.CalculateCalories();
             Console.WriteLine($"\n    Калории при беге: {runningCalories}");
 
-            var swimmingCalculator = new SwimCalc(65, 1000, 500, "Кроль");
+            var swimmingCalculator = new SwimCalc(65, 1000, 500, 500, Intensity.MaxLoad);
             double swimmingCalories = swimmingCalculator.CalculateCalories();
             Console.WriteLine($"    Калории при плавании: {swimmingCalories}");
 
@@ -42,13 +46,13 @@ namespace ConsoleApp1
             /// <param name="characteristic">Одна из характеристик
             /// пользователя.</param>
             private static void ShowException(Action<string> action,
-                string characteristic)
+                string property)
             {
                 while (true)
                 {
                     try
                     {
-                        action.Invoke(characteristic);
+                        action.Invoke(property);
                         break;
                     }
                     catch (Exception exception)
@@ -60,7 +64,7 @@ namespace ConsoleApp1
                             || exception.GetType() == typeof(ArgumentNullException))
                         {
                             Console.WriteLine($"К сожалению, характеристика " +
-                                $"*{characteristic}* введена не верно." +
+                                $"*{property}* введена не верно." +
                             $"\nОшибка: {exception.Message}");
                         }
                         else
@@ -77,9 +81,9 @@ namespace ConsoleApp1
             /// <returns>Тренировка.</returns>
             /// <exception cref="IndexOutOfRangeException">Исключение
             /// на выход из диапазона.</exception>
-            public static Person ConsoleCreateTraining()
+            public static TrainingCalc ConsoleCreateTraining()
             {
-                var person = new Person();
+                var trainingCalc = new TrainingCalc();
 
                 var actionList = new List<(Action<string>, string)>
                 {
@@ -87,20 +91,20 @@ namespace ConsoleApp1
                     new Action<string>((string property) =>
                     {
                         Console.Write($"\nПользовательское {property}: ");
-                        person.Name = Console.ReadLine();
+                        trainingCalc.Name = Console.ReadLine();
                     }), "имя"),
 
                     (new Action<string>((string property) =>
                     {
                         Console.Write($"Пользовательская {property}: ");
-                        person.Surname = Console.ReadLine();
+                        trainingCalc.Surname = Console.ReadLine();
                     }), "фамилия"),
 
                     (new Action<string>((string property) =>
                     {
                         Console.Write($"Пользовательский {property}: ");
                         _ = int.TryParse(Console.ReadLine(), out int tmpAge);
-                        person.Age = tmpAge;
+                        trainingCalc.Age = tmpAge;
                     }), "возраст"),
 
                     (new Action<string>((string property) =>
@@ -116,11 +120,8 @@ namespace ConsoleApp1
                                 "*2* - женщина.");
                         }
 
-                        var realGender = tmpGender == 1
-                        ? Gender.Male
-                            : Gender.Female;
-                        person.Gender = realGender;
-                    }), "пол")
+                        var realGender = tmpGender == 1;
+                    }),
                 };
 
                 Console.WriteLine();
@@ -130,7 +131,7 @@ namespace ConsoleApp1
                     ShowException(action.Item1, action.Item2);
                 }
 
-                return person;
+                return trainingCalc;
             }
 
 

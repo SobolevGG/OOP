@@ -40,7 +40,7 @@ namespace Model
         /// <returns>Количество затраченных калорий при беге.</returns>
         public override double CalculateCalories()
         {
-            double metCoef = GetMetCoef(_intensity);
+            double metCoef = CalcMetCoef(_intensity);
             return Weight * metCoef * _distance;
         }
 
@@ -50,7 +50,7 @@ namespace Model
         /// </summary>
         /// <param name="intensity"></param>
         /// <returns>Коэффициент метаболизма.</returns>
-        public override double GetMetCoef(int intensity)
+        public override double CalcMetCoef(int intensity)
         {
 
             if (Intensity is Intensity.MaxLoad)

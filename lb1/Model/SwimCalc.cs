@@ -11,6 +11,38 @@ namespace Model
         private double _distance;
 
         /// <summary>
+        /// Проверка проплываемого расстояния.
+        /// </summary>
+        public double Distance
+        {
+            get => _distance;
+
+            set
+            {
+                CheckDistance(value);
+                _distance = value;
+            }
+        }
+
+        /// <summary>
+        /// Метод проверки расстояния для плавания.
+        /// </summary>
+        /// <param name="value">Расстояние в километрах.</param>
+        /// <exception cref="ArgumentException">Исключение
+        /// по некорректному значению расстояния.</exception>
+        public void CheckDistance(double value)
+        {
+            CheckNullEmpty(value.ToString());
+
+            if (value < 1 || value > 300)
+            {
+                throw new ArgumentException(value.ToString(),
+                    "Расстояние должно соответствовать диапазону " +
+                    "от 1 до 300 км!");
+            }
+        }
+
+        /// <summary>
         /// Стиль плавания.
         /// </summary>
         private string _style;
@@ -48,7 +80,7 @@ namespace Model
         /// <returns>Количество затраченных калорий при плавании.</returns>
         public override double CalculateCalories()
         {
-            double metCoef = GetMetCoef(_style);
+            double metCoef = CalcMetCoef(_style);
             return _weight * metCoef * _duration * _distance;
         }
 
@@ -58,7 +90,7 @@ namespace Model
         /// </summary>
         /// <param name="style"></param>
         /// <returns>Коэффициента метаболизма.</returns>
-        private double GetMetCoef(string style)
+        public override double CalcMetCoef(string style)
         {
             if (style == "Кроль")
             {
