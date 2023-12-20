@@ -3,9 +3,9 @@ namespace Model
     /// <summary>
     /// Класс для расчёта калорий.
     /// </summary>
-    public abstract class CalculationBase
+    public abstract class Training
     {
-        public CalculationBase()
+        public Training()
         {
         }
 
@@ -15,19 +15,19 @@ namespace Model
         protected double _weight;
 
         /// <summary>
-        /// Время тренировки в часах.
+        /// Коэффициента метаболизма.
         /// </summary>
-        protected double _duration;
+        protected double _metCoef;
 
         /// <summary>
         /// Конструктор базового класса.
         /// </summary>
         /// <param name="weight">Вес человека в килограммах.</param>
-        /// <param name="duration">Время тренировки в часах.</param>
-        public CalculationBase(double weight, double duration)
+        /// <param name="metCoef">Коэффициент метаболизма.</param>
+        public Training(double weight, double metCoef)
         {
             _weight = weight;
-            _duration = duration;
+            _metCoef = metCoef;
         }
 
         /// <summary>

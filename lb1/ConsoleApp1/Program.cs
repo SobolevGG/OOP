@@ -1,4 +1,6 @@
 using Model;
+using System.Reflection;
+using System;
 
 /// <summary>
 /// Пространство имён.
@@ -22,6 +24,128 @@ namespace ConsoleApp1
             var swimmingCalculator = new SwimCalculation(65, 1000, 500, "Кроль");
             double swimmingCalories = swimmingCalculator.CalculateCalories();
             Console.WriteLine($"    Калории при плавании: {swimmingCalories}");
+
+
+
+
+
+
+
+
+
+
+
+            /// <summary>
+            /// Метод для вывода исключений в консоль.
+            /// </summary>
+            /// <param name="action">Дейсвтие.</param>
+            /// <param name="characteristic">Одна из характеристик
+            /// пользователя.</param>
+            private static void ShowException(Action<string> action,
+                string characteristic)
+            {
+                while (true)
+                {
+                    try
+                    {
+                        action.Invoke(characteristic);
+                        break;
+                    }
+                    catch (Exception exception)
+                    {
+                        if (exception.GetType()
+                            == typeof(IndexOutOfRangeException)
+                            || exception.GetType() == typeof(FormatException)
+                            || exception.GetType() == typeof(ArgumentException)
+                            || exception.GetType() == typeof(ArgumentNullException))
+                        {
+                            Console.WriteLine($"К сожалению, характеристика " +
+                                $"*{characteristic}* введена не верно." +
+                            $"\nОшибка: {exception.Message}");
+                        }
+                        else
+                        {
+                            throw exception;
+                        }
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Метод создания тренировок из консоли.
+            /// </summary>
+            /// <returns>Тренировка.</returns>
+            /// <exception cref="IndexOutOfRangeException">Исключение
+            /// на выход из диапазона.</exception>
+            public static Person ConsoleCreateTraining()
+            {
+                var person = new Person();
+
+                var actionList = new List<(Action<string>, string)>
+                {
+                    (
+                    new Action<string>((string property) =>
+                    {
+                        Console.Write($"\nПользовательское {property}: ");
+                        person.Name = Console.ReadLine();
+                    }), "имя"),
+
+                    (new Action<string>((string property) =>
+                    {
+                        Console.Write($"Пользовательская {property}: ");
+                        person.Surname = Console.ReadLine();
+                    }), "фамилия"),
+
+                    (new Action<string>((string property) =>
+                    {
+                        Console.Write($"Пользовательский {property}: ");
+                        _ = int.TryParse(Console.ReadLine(), out int tmpAge);
+                        person.Age = tmpAge;
+                    }), "возраст"),
+
+                    (new Action<string>((string property) =>
+                    {
+                        Console.Write
+                            ($"Пользовательский {property} (1 - Мужчина, 2 - Женщина): ");
+                        _ = int.TryParse(Console.ReadLine(), out int tmpGender);
+
+                        if (tmpGender != 1 && tmpGender != 2)
+                        {
+                            throw new IndexOutOfRangeException
+                                ("Пол вводится цифрами: *1* - мужчина, " +
+                                "*2* - женщина.");
+                        }
+
+                        var realGender = tmpGender == 1
+                        ? Gender.Male
+                            : Gender.Female;
+                        person.Gender = realGender;
+                    }), "пол")
+                };
+
+                Console.WriteLine();
+
+                foreach (var action in actionList)
+                {
+                    ShowException(action.Item1, action.Item2);
+                }
+
+                return person;
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             // PersonList personList;
             // 

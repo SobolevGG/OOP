@@ -3,7 +3,7 @@ namespace Model
     /// <summary>
     /// Класс для плавания.
     /// </summary>
-    public class SwimCalculation : CalculationBase
+    public class SwimCalculation : Training
     {
         /// <summary>
         /// Расстояние в метрах.
@@ -16,18 +16,26 @@ namespace Model
         private string _style;
 
         /// <summary>
+        /// Время плавания в часах.
+        /// </summary>
+        private double _duration;
+
+
+        /// <summary>
         /// Конструктор класса-наследника (плавание).
         /// </summary>
         /// <param name="weight">Вес человека в килограммах.</param>
+        /// <param name="metCoef">Коэффициент метаболизма.</param>
         /// <param name="duration">Продолжительность.</param>
         /// <param name="distance">Расстояние в метрах.</param>
         /// <param name="style">Стиль.</param>
-        public SwimCalculation(double weight, double duration,
+        public SwimCalculation(double weight, double metCoef, double duration,
             double distance, string style)
-            : base(weight, duration)
+            : base(weight, metCoef)
         {
             _distance = distance;
             _style = style;
+            _duration = duration;
         }
 
         /// <summary>
@@ -36,10 +44,6 @@ namespace Model
         /// <returns>Количество затраченных калорий при плавании.</returns>
         public override double CalculateCalories()
         {
-            // Здесь реализуем конкретный расчет калорий
-            // для плавания с учетом стиля и дистанции
-            // Используйте формулу из предыдущего ответа
-            // Пример упрощенной формулы (просто для иллюстрации):
             double metCoef = GetMetCoef(_style);
             return _weight * metCoef * _duration * _distance;
         }
@@ -49,7 +53,7 @@ namespace Model
         /// в зависимости от стиля плавания.
         /// </summary>
         /// <param name="style"></param>
-        /// <returns></returns>
+        /// <returns>Коэффициента метаболизма.</returns>
         private double GetMetCoef(string style)
         {
             if (style == "Кроль")

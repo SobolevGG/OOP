@@ -3,7 +3,7 @@ namespace Model
     /// <summary>
     /// Класс для бега.
     /// </summary>
-    public class RunCalculation : CalculationBase
+    public class RunCalculation : Training
     {
         /// <summary>
         /// Расстояние в километрах.
@@ -14,6 +14,8 @@ namespace Model
         /// Интенсивность бега.
         /// </summary>
         private int _intensity;
+
+        Intensity
 
         /// <summary>
         /// Конструктор класса-наследника (бег).
@@ -47,23 +49,14 @@ namespace Model
         /// <returns>Коэффициент метаболизма.</returns>
         private double GetMetCoef(int intensity)
         {
+
             if (Intensity is Intensity.MaxLoad)
             {
             }
             else if (Intensity is Intensity.ModerateLoad)
             {
             }
-
-            switch (intensity)
-            {
-                case 20:
-                    return 20;
-                case 19:
-                    return 19;
-                // Другие случаи
-                default:
-                    return 0; // Значение по умолчанию
-            }
+            return (y1 + (y2 - y1) * (x - x1) / (x2 - x1));
         }
 
 
