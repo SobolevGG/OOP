@@ -3,7 +3,7 @@ namespace Model
     /// <summary>
     /// Класс для плавания.
     /// </summary>
-    public class SwimCalculation : Training
+    public class SwimCalc : TrainingCalc
     {
         /// <summary>
         /// Расстояние в метрах.
@@ -20,6 +20,10 @@ namespace Model
         /// </summary>
         private double _duration;
 
+        /// <summary>
+        /// Получение параметра стиля.
+        /// </summary>
+        public Style Style { get; set; }
 
         /// <summary>
         /// Конструктор класса-наследника (плавание).
@@ -29,7 +33,7 @@ namespace Model
         /// <param name="duration">Продолжительность.</param>
         /// <param name="distance">Расстояние в метрах.</param>
         /// <param name="style">Стиль.</param>
-        public SwimCalculation(double weight, double metCoef, double duration,
+        public SwimCalc(double weight, double metCoef, double duration,
             double distance, string style)
             : base(weight, metCoef)
         {
@@ -74,7 +78,7 @@ namespace Model
         /// <summary>
         /// Расчёт калорий для плавания.
         /// </summary>
-        public SwimCalculation()
+        public SwimCalc()
         {
         }
 

@@ -3,7 +3,7 @@ namespace Model
     /// <summary>
     /// Класс для бега.
     /// </summary>
-    public class RunCalculation : Training
+    public class RunCalc : TrainingCalc
     {
         /// <summary>
         /// Расстояние в километрах.
@@ -15,17 +15,20 @@ namespace Model
         /// </summary>
         private int _intensity;
 
-        Intensity
+        /// <summary>
+        /// Получение параметра интенсивности.
+        /// </summary>
+        public Intensity Intensity { get; set; }
 
         /// <summary>
         /// Конструктор класса-наследника (бег).
         /// </summary>
         /// <param name="weight">Вес человека в килограммах.</param>
-        /// <param name="duration">Продолжительность.</param>
+        /// <param name="metCoef">Коэффициент метаболизма.</param>
         /// <param name="distance">Расстояние.</param>
         /// <param name="intensity">Интенсивность.</param>
-        public RunCalculation(double weight, double duration, double distance, int intensity)
-            : base(weight, duration)
+        public RunCalc(double weight, double metCoef, double distance, int intensity)
+            : base(weight, metCoef)
         {
             _distance = distance;
             _intensity = intensity;
@@ -38,7 +41,7 @@ namespace Model
         public override double CalculateCalories()
         {
             double metCoef = GetMetCoef(_intensity);
-            return _weight * metCoef * _duration * _distance;
+            return Weight * metCoef * _distance;
         }
 
         /// <summary>
@@ -47,7 +50,7 @@ namespace Model
         /// </summary>
         /// <param name="intensity"></param>
         /// <returns>Коэффициент метаболизма.</returns>
-        private double GetMetCoef(int intensity)
+        public override double GetMetCoef(int intensity)
         {
 
             if (Intensity is Intensity.MaxLoad)
