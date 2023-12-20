@@ -330,12 +330,15 @@ namespace Model
         {
             string[] salary = new string[]
             {
-                "100.000 долларов", "20.000 рублей",
-                "Работает за спасибо :D"
+                "100.000 долларов",
+                "20.000 рублей",
+                "2.000 евро",
+                "6.000 датских крон",
+                "90.000 сербских динар",
+                "работает за спасибо :D"
             };
             var random = new Random();
-            string tempSalary = salary[random.Next(salary.Length)];
-            return tempSalary;
+            return salary[random.Next(salary.Length)];
         }
 
         /// <summary>

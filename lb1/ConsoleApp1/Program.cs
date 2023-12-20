@@ -50,11 +50,19 @@ namespace ConsoleApp1
             switch (person)
             {
                 case Adult adult:
-                    Console.WriteLine($"\n    {adult.GetSalary()}");
+                    Console.WriteLine($"\n    Заработная плата " +
+                        $"{person.Surname} {person.Name}: " +
+                        $"{adult.GetSalary()}");
                     break;
                 case Child child:
-                    Console.WriteLine($"\n    {child.GetInfo()}" +
-                        $"({child.GetShipCollection()}");
+                    var tmpProgress = child.GetSchoolProgress();
+                    Console.WriteLine($"\n    {person.Surname} " +
+                        $"{person.Name} имеет успеваемость " +
+                        $"в школе (учреждении дошкольного " +
+                        $"образования) \"{tmpProgress}\";\n" +
+                        $"    Следовательно, карманные расходы " +
+                        $"составили: " +
+                        $"{child.GetPocketExpenses(tmpProgress)}.");
                     break;
                 default:
                     break;

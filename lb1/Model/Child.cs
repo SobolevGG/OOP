@@ -329,20 +329,45 @@ namespace Model
         }
 
         /// <summary>
-        /// Special method for class child.
+        /// Метод генерации успеваемости в школе.
         /// </summary>
-        /// <returns>Name of ship model.</returns>
-        public string GetShipCollection()
+        /// <returns>Успеваемость в школе.</returns>
+        public string GetSchoolProgress()
         {
-            string[] shipModels = new string[]
+            string[] schoolProgress = { "\"даже лучше, чем у сына " +
+                    "маминой подруги\"", "отлично", "хорошо", "удовлетворительно" };
+            Random random = new Random();
+            return schoolProgress[random.Next(schoolProgress.Length)];
+        }
+
+        /// <summary>
+        /// Метод генерации карманных расходов
+        /// исходя из успеваемости.
+        /// </summary>
+        /// <returns>Карманные расходы.</returns>
+        public string GetPocketExpenses(string schoolProgress)
+        {
+            int pocketExpenses = 0;
+            Random random = new Random();
+            switch (schoolProgress)
             {
-                "Black Pearl", "Flying Dutchman", "Queen Anne's Revenge",
-                "HMS Interceptor", "Empress", "Hai Peng", "Jolly Mon",
-                "Dying Gull", "Wicked Wench", "Misty Lady"
-            };
-            var random = new Random();
-            string model = shipModels[random.Next(shipModels.Length)];
-            return model;
+                case "\"даже лучше, чем у сына " +
+                    "маминой подруги\"":
+                    pocketExpenses = random.Next(10, 21) * 100;
+                    break;
+                case "отлично":
+                    pocketExpenses = random.Next(10, 16) * 100;
+                    break;
+                case "хорошо":
+                    pocketExpenses = random.Next(5, 11) * 100;
+                    break;
+                case "удовлетворительно":
+                    pocketExpenses = random.Next(1, 5) * 100;
+                    break;
+                default:
+                    break;
+            }
+            return $"{pocketExpenses} рублей";
         }
 
         /// <summary>
