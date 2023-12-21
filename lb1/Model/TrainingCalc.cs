@@ -117,7 +117,7 @@ namespace Model
         /// <summary>
         /// Абстрактный метод расчета коэффициента метаболизма.
         /// </summary>
-        public abstract double CalcMetCoef();
+        public abstract double CalcMetCoef(Style style);
 
         
 
@@ -183,7 +183,7 @@ namespace Model
         // {
         //     var tmpGender = "мужской";
         // 
-        //     if (Gender is Intensity.ModerateLoad)
+        //     if (Gender is Intensity.ModerateRunning)
         //     {
         //         tmpGender = "женский";
         //     }

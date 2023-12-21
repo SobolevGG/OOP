@@ -11,9 +11,41 @@ namespace Model
         private double _distance;
 
         /// <summary>
+        /// Проверка пробегаемого расстояния.
+        /// </summary>
+        public double Distance
+        {
+            get => _distance;
+
+            set
+            {
+                CheckDistance(value);
+                _distance = value;
+            }
+        }
+
+        /// <summary>
+        /// Метод проверки расстояния для плавания.
+        /// </summary>
+        /// <param name="value">Расстояние в километрах.</param>
+        /// <exception cref="ArgumentException">Исключение
+        /// по некорректному значению расстояния.</exception>
+        public void CheckDistance(double value)
+        {
+            CheckNullEmpty(value.ToString());
+
+            if (value < 1 || value > 300)
+            {
+                throw new ArgumentException(value.ToString(),
+                    "Расстояние должно соответствовать диапазону " +
+                    "от 1 до 600 км!");
+            }
+        }
+
+        /// <summary>
         /// Интенсивность бега.
         /// </summary>
-        private int _intensity;
+        private Intensity _intensity;
 
         /// <summary>
         /// Получение параметра интенсивности.
@@ -27,7 +59,7 @@ namespace Model
         /// <param name="metCoef">Коэффициент метаболизма.</param>
         /// <param name="distance">Расстояние.</param>
         /// <param name="intensity">Интенсивность.</param>
-        public RunCalc(double weight, double metCoef, double distance, int intensity)
+        public RunCalc(double weight, double metCoef, double distance, Intensity intensity)
             : base(weight, metCoef)
         {
             _distance = distance;
@@ -50,16 +82,9 @@ namespace Model
         /// </summary>
         /// <param name="intensity"></param>
         /// <returns>Коэффициент метаболизма.</returns>
-        public override double CalcMetCoef(int intensity)
+        public override double CalcMetCoef(Intensity intensity, double distance)
         {
-
-            if (Intensity is Intensity.MaxLoad)
-            {
-            }
-            else if (Intensity is Intensity.ModerateLoad)
-            {
-            }
-            return (y1 + (y2 - y1) * (x - x1) / (x2 - x1));
+            return (0.025 + ((0.035 - 0.025) * (distance - 4) / (8 - 4)));
         }
 
 
@@ -192,11 +217,11 @@ namespace Model
         // 
         //     if (Partner == null)
         //     {
-        //         if (Gender is Intensity.MaxLoad)
+        //         if (Gender is Intensity.Sprinting)
         //         {
         //             marriegeStatus = "не женат";
         //         }
-        //         else if (Gender is Intensity.ModerateLoad)
+        //         else if (Gender is Intensity.ModerateRunning)
         //         {
         //             marriegeStatus = "не замужем";
         //         }
@@ -249,7 +274,7 @@ namespace Model
         // /// Метод получения случайных персон.
         // /// </summary>
         // /// <returns>Взрослый человек.</returns>
-        // public static CalculationBase GetRandomPerson(Intensity gender = Intensity.NoLoad)
+        // public static CalculationBase GetRandomPerson(Intensity gender = Intensity.LightJogging)
         // {
         //     string[] maleNames =
         //     {
@@ -283,23 +308,23 @@ namespace Model
         //     var random = new Random();
         //     string name = string.Empty;
         // 
-        //     if (gender == Intensity.NoLoad)
+        //     if (gender == Intensity.LightJogging)
         //     {
         //         var tmpNumber = random.Next(1, 3);
         //         gender = tmpNumber == 1
-        //             ? Intensity.MaxLoad
-        //             : Intensity.ModerateLoad;
+        //             ? Intensity.Sprinting
+        //             : Intensity.ModerateRunning;
         //     }
         // 
         //     switch (gender)
         //     {
-        //         case Intensity.MaxLoad:
+        //         case Intensity.Sprinting:
         //             name = maleNames[random.Next(maleNames.Length)];
         //             break;
-        //         case Intensity.ModerateLoad:
+        //         case Intensity.ModerateRunning:
         //             name = femaleNames[random.Next(femaleNames.Length)];
         //             break;
-        //         case Intensity.NoLoad:
+        //         case Intensity.LightJogging:
         //             break;
         //         default:
         //             break;
@@ -332,10 +357,10 @@ namespace Model
         //         partner = new RunСalculation();
         // 
         //         // Если сам человек мужчина
-        //         if (gender == Intensity.MaxLoad)
+        //         if (gender == Intensity.Sprinting)
         //         {
         //             // Гендер его партнёра - женский
-        //             partner.Gender = Intensity.ModerateLoad;
+        //             partner.Gender = Intensity.ModerateRunning;
         // 
         //             // И имя тоже подберём из спика женских имён
         //             partner.Name = femaleNames
@@ -347,7 +372,7 @@ namespace Model
         //         else
         //         {
         //             // Гендер его партнёра - мужской
-        //             partner.Gender = Intensity.MaxLoad;
+        //             partner.Gender = Intensity.Sprinting;
         // 
         //             // И имя тоже подберём из спика мужских имён
         //             partner.Name = maleNames

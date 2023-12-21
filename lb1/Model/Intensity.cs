@@ -6,18 +6,23 @@ namespace Model
     public enum Intensity
     {
         /// <summary>
-        /// Максимальная нагрузка.
+        /// Спринт - свыше 15 км/ч.
         /// </summary>
-        MaxLoad,
+        Sprinting,
 
         /// <summary>
-        /// Умеренная нагрузка.
+        /// Быстрый бег - 12-13 км/ч.
         /// </summary>
-        ModerateLoad,
+        FastRunning,
 
         /// <summary>
-        /// Отсутствие нагрузки.
+        /// Умеренный бег - 10-11 км/ч.
         /// </summary>
-        NoLoad
+        ModerateRunning,
+
+        /// <summary>
+        /// Лёгкий бег - 8-9 км/ч.
+        /// </summary>
+        LightJogging
     }
 }
