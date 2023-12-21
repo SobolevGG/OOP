@@ -42,6 +42,9 @@ namespace Model
             }
         }
 
+
+
+
         /// <summary>
         /// Интенсивность бега.
         /// </summary>
@@ -62,8 +65,8 @@ namespace Model
         public RunCalc(double weight, double metCoef, double distance, Intensity intensity)
             : base(weight, metCoef)
         {
-            _distance = distance;
-            _intensity = intensity;
+            Distance = distance;
+            Intensity = intensity;
         }
 
         /// <summary>
@@ -72,25 +75,51 @@ namespace Model
         /// <returns>Количество затраченных калорий при беге.</returns>
         public override double CalculateCalories()
         {
-            double metCoef = CalcMetCoef(intensity);
-            return Weight * metCoef * _distance;
+            double metCoef = CalcMetCoef();
+            return Weight * metCoef * Distance;
+        }
+
+        /// <summary>
+        /// Проверка коэффициента метаболизма.
+        /// </summary>
+        public override double MetCoef
+        {
+            get => _metCoef;
+
+            set
+            {
+                value = CalcMetCoef();
+            }
         }
 
         /// <summary>
         /// Метод получения коэффициента метаболизма
-        /// в зависимости от стиля плавания.
+        /// в зависимости от интенсивности бега.
         /// </summary>
-        /// <param name="intensity"></param>
-        /// <returns>Коэффициент метаболизма.</returns>
-        public override double CalcMetCoef(Intensity intensity, double distance)
+        /// <param name="style"></param>
+        /// <returns>Коэффициента метаболизма.</returns>
+        private double CalcMetCoef()
         {
-            return (0.025 + ((0.035 - 0.025) * (distance - 4) / (8 - 4)));
+            double speed = 0;
+            if (Intensity is Intensity.Sprinting)
+            {
+                speed = 15;
+            }
+            else if (Intensity is Intensity.FastRunning)
+            {
+                speed = 12;
+            }
+            else if (Intensity is Intensity.ModerateRunning)
+            {
+                speed = 10;
+            }
+            else if (Intensity is Intensity.LightJogging)
+            {
+                speed = 8;
+            }
+
+            return (0.025 + ((0.035 - 0.025) * (speed - 4) / (8 - 4)));
         }
-
-
-
-
-
 
         // /// <summary>
         // /// Серия и номер паспорта.

@@ -43,9 +43,60 @@ namespace Model
         }
 
         /// <summary>
+        /// Проверка коэффициента метаболизма.
+        /// </summary>
+        public override double MetCoef
+        {
+            get => _metCoef;
+
+            set
+            {
+                value = CalcMetCoef();
+            }
+        }
+
+        /// <summary>
+        /// Метод получения коэффициента метаболизма
+        /// в зависимости от стиля плавания.
+        /// </summary>
+        /// <param name="style"></param>
+        /// <returns>Коэффициента метаболизма.</returns>
+        private double CalcMetCoef()
+        {
+            double value;
+            if (Style is Style.Freestyle)
+            {
+                value = 0.02;
+            }
+            else if (Style is Style.Backstroke)
+            {
+                value = 0.025;
+            }
+            else if (Style is Style.Breaststroke)
+            {
+                value = 0.03;
+            }
+            else if (Style is Style.Butterfly)
+            {
+                value = 0.04;
+            }
+            else
+            {
+                value = 0;
+            }
+
+            return value;
+        }
+
+        /// <summary>
         /// Стиль плавания.
         /// </summary>
         private Style _style;
+
+        /// <summary>
+        /// Получение параметра стиля.
+        /// </summary>
+        public Style Style { get; set; }
 
         /// <summary>
         /// Время плавания в часах.
@@ -53,9 +104,36 @@ namespace Model
         private double _duration;
 
         /// <summary>
-        /// Получение параметра стиля.
+        /// Проверка продолжительности.
         /// </summary>
-        public Style Style { get; set; }
+        public double Duration
+        {
+            get => _duration;
+
+            set
+            {
+                CheckDuration(value);
+                _duration = value;
+            }
+        }
+
+        /// <summary>
+        /// Метод проверки продолжительности для плавания.
+        /// </summary>
+        /// <param name="value">Расстояние в километрах.</param>
+        /// <exception cref="ArgumentException">Исключение
+        /// по некорректному значению расстояния.</exception>
+        public void CheckDuration(double value)
+        {
+            CheckNullEmpty(value.ToString());
+
+            if (value < 1 || value > 60)
+            {
+                throw new ArgumentException(value.ToString(),
+                    "Продолжительность должна соответствовать " +
+                    "диапазону от 1 до 60 часов!");
+            }
+        }
 
         /// <summary>
         /// Конструктор класса-наследника (плавание).
@@ -66,12 +144,12 @@ namespace Model
         /// <param name="distance">Расстояние в метрах.</param>
         /// <param name="style">Стиль.</param>
         public SwimCalc(double weight, double metCoef, double duration,
-            double distance, string style)
+            double distance, Style style)
             : base(weight, metCoef)
         {
-            _distance = distance;
-            _style = style;
-            _duration = duration;
+            Distance = distance;
+            Style = style;
+            Duration = duration;
         }
 
         /// <summary>
@@ -80,31 +158,8 @@ namespace Model
         /// <returns>Количество затраченных калорий при плавании.</returns>
         public override double CalculateCalories()
         {
-            double metCoef = CalcMetCoef(_style);
-            return _weight * metCoef * _duration * _distance;
-        }
-
-        /// <summary>
-        /// Метод получения коэффициента метаболизма
-        /// в зависимости от стиля плавания.
-        /// </summary>
-        /// <param name="style"></param>
-        /// <returns>Коэффициента метаболизма.</returns>
-        public override double CalcMetCoef(string style)
-        {
-            if (style == "Кроль")
-            {
-                return 15;
-            }
-            else if (style == "Брасс")
-            {
-                return 12;
-            }
-            // Другие случаи
-            else
-            {
-                return 0; // Значение по умолчанию
-            }
+            double metCoef = CalcMetCoef();
+            return Weight * metCoef * Duration * Distance;
         }
 
         /// <summary>

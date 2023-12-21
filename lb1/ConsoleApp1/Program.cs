@@ -1,6 +1,4 @@
 using Model;
-using System.Reflection;
-using System;
 
 /// <summary>
 /// Пространство имён.
@@ -17,63 +15,54 @@ namespace ConsoleApp1
         /// </summary>
         public static void Main()
         {
+            Console.WriteLine($"\n    Добрый день! Прежде, " +
+                $"чем приступить к тренировке давайте " +
+                $"рассчитаем сжигаемые калории.\n" +
+                $"Ведите свой вес, выберите желаемую " +
+                $"тренировку (бег, плавание, жим штанги).");
 
-            Console.WriteLine($"\n    Добрый день! Прежде, чем приступить к тренировке давайте рассчитаем сжигаемые калории.\n" +
-                $"Ведите свой вес, выберите желаемую тренировку (бег, плавание, жим штанги).");
-
-            var runningCalculator = new RunCalc(65, 1000, 5, 19);
+            var runningCalculator = new RunCalc(65, RunCalc.MetCoef, 5, Intensity.Sprinting);
             double runningCalories = runningCalculator.CalculateCalories();
-            Console.WriteLine($"\n    Калории при беге: {runningCalories}");
+            Console.WriteLine($"\n    Затрачиваемые калории при беге: {runningCalories}");
 
-            var swimmingCalculator = new SwimCalc(65, 1000, 500, 500, Intensity.Sprinting);
+            var swimmingCalculator = new SwimCalc(65, 1000, 2, 2, Style.Freestyle);
             double swimmingCalories = swimmingCalculator.CalculateCalories();
-            Console.WriteLine($"    Калории при плавании: {swimmingCalories}");
-
-
-
-
-
-
-
-
-
-
+            Console.WriteLine($"    Затрачиваемые калории при плавании: {swimmingCalories}");
 
             /// <summary>
             /// Метод для вывода исключений в консоль.
             /// </summary>
             /// <param name="action">Дейсвтие.</param>
-            /// <param name="characteristic">Одна из характеристик
-            /// пользователя.</param>
-            private static void ShowException(Action<string> action,
-                string property)
-            {
-                while (true)
-                {
-                    try
-                    {
-                        action.Invoke(property);
-                        break;
-                    }
-                    catch (Exception exception)
-                    {
-                        if (exception.GetType()
-                            == typeof(IndexOutOfRangeException)
-                            || exception.GetType() == typeof(FormatException)
-                            || exception.GetType() == typeof(ArgumentException)
-                            || exception.GetType() == typeof(ArgumentNullException))
-                        {
-                            Console.WriteLine($"К сожалению, характеристика " +
-                                $"*{property}* введена не верно." +
-                            $"\nОшибка: {exception.Message}");
-                        }
-                        else
-                        {
-                            throw exception;
-                        }
-                    }
-                }
-            }
+            /// <param name="property">Свойство..</param>
+            // private static void ShowException(Action<string> action,
+            //     string property)
+            // {
+            //     while (true)
+            //     {
+            //         try
+            //         {
+            //             action.Invoke(property);
+            //             break;
+            //         }
+            //         catch (Exception exception)
+            //         {
+            //             if (exception.GetType()
+            //                 == typeof(IndexOutOfRangeException)
+            //                 || exception.GetType() == typeof(FormatException)
+            //                 || exception.GetType() == typeof(ArgumentException)
+            //                 || exception.GetType() == typeof(ArgumentNullException))
+            //             {
+            //                 Console.WriteLine($"К сожалению, характеристика " +
+            //                     $"*{property}* введена не верно." +
+            //                 $"\nОшибка: {exception.Message}");
+            //             }
+            //             else
+            //             {
+            //                 throw exception;
+            //             }
+            //         }
+            //     }
+            // }
 
             /// <summary>
             /// Метод создания тренировок из консоли.

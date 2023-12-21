@@ -68,7 +68,7 @@ namespace Model
         /// <summary>
         /// Проверка коэффициента метаболизма.
         /// </summary>
-        public double MetCoef
+        public virtual double MetCoef
         {
             get => _metCoef;
 
@@ -113,11 +113,6 @@ namespace Model
         /// Абстрактный метод расчета калорий.
         /// </summary>
         public abstract double CalculateCalories();
-
-        /// <summary>
-        /// Абстрактный метод расчета коэффициента метаболизма.
-        /// </summary>
-        public abstract double CalcMetCoef(Style style);
 
         
 

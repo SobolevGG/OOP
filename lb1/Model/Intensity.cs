@@ -11,17 +11,17 @@ namespace Model
         Sprinting,
 
         /// <summary>
-        /// Быстрый бег - 12-13 км/ч.
+        /// Быстрый бег - 12 км/ч.
         /// </summary>
         FastRunning,
 
         /// <summary>
-        /// Умеренный бег - 10-11 км/ч.
+        /// Умеренный бег - 10 км/ч.
         /// </summary>
         ModerateRunning,
 
         /// <summary>
-        /// Лёгкий бег - 8-9 км/ч.
+        /// Лёгкий бег - 8 км/ч.
         /// </summary>
         LightJogging
     }
