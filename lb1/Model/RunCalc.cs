@@ -72,7 +72,7 @@ namespace Model
         /// <returns>Количество затраченных калорий при беге.</returns>
         public override double CalculateCalories()
         {
-            double metCoef = CalcMetCoef(_intensity);
+            double metCoef = CalcMetCoef(intensity);
             return Weight * metCoef * _distance;
         }
 

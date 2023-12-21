@@ -45,7 +45,7 @@ namespace Model
         /// <summary>
         /// Стиль плавания.
         /// </summary>
-        private string _style;
+        private Style _style;
 
         /// <summary>
         /// Время плавания в часах.
