@@ -70,9 +70,9 @@ namespace Model
         /// Метод расчёта затраченных калорий при беге.
         /// </summary>
         /// <returns>Количество затраченных калорий при беге.</returns>
-        public override double CalculateCalories(Intensity intensity)
+        public override double CalculateCalories()
         {
-            double metCoef = CalcMetCoef(intensity);
+            double metCoef = CalcMetCoef(_intensity);
             return Weight * metCoef * _distance;
         }
 
@@ -82,9 +82,8 @@ namespace Model
         /// </summary>
         /// <param name="intensity"></param>
         /// <returns>Коэффициент метаболизма.</returns>
-        public override double CalcMetCoef(Intensity intensity)
+        public override double CalcMetCoef(Intensity intensity, double distance)
         {
-
             return (0.025 + ((0.035 - 0.025) * (distance - 4) / (8 - 4)));
         }
 
