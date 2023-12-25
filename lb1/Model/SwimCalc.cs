@@ -43,47 +43,23 @@ namespace Model
         }
 
         /// <summary>
-        /// Проверка коэффициента метаболизма.
-        /// </summary>
-        public override double MetCoef
-        {
-            get => _metCoef;
-
-            set
-            {
-                value = CalcMetCoef();
-            }
-        }
-
-        /// <summary>
         /// Метод получения коэффициента метаболизма
         /// в зависимости от стиля плавания.
         /// </summary>
-        /// <param name="style"></param>
+        /// <param name="Style">Стиль плавания.</param>
         /// <returns>Коэффициента метаболизма.</returns>
-        private double CalcMetCoef()
+        public override double CalcMetCoef()
         {
-            double value;
-            if (Style is Style.Freestyle)
-            {
-                value = 0.02;
-            }
-            else if (Style is Style.Backstroke)
-            {
-                value = 0.025;
-            }
-            else if (Style is Style.Breaststroke)
-            {
-                value = 0.03;
-            }
-            else if (Style is Style.Butterfly)
-            {
-                value = 0.04;
-            }
-            else
-            {
-                value = 0;
-            }
+            var value =
+                Style is Style.Freestyle
+                ? 0.02
+                : Style is Style.Backstroke
+                ? 0.025
+                : Style is Style.Breaststroke
+                ? 0.03
+                : Style is Style.Butterfly
+                ? 0.04
+                : 0;
 
             return value;
         }
@@ -96,7 +72,14 @@ namespace Model
         /// <summary>
         /// Получение параметра стиля.
         /// </summary>
-        public Style Style { get; set; }
+        public Style Style
+        {
+            get => _style;
+            set
+            {
+                _style = value;
+            }
+        }
 
         /// <summary>
         /// Время плавания в часах.

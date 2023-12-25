@@ -68,7 +68,7 @@ namespace Model
         /// <summary>
         /// Проверка коэффициента метаболизма.
         /// </summary>
-        public virtual double MetCoef
+        public double MetCoef
         {
             get => _metCoef;
 
