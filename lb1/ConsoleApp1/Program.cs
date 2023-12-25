@@ -15,11 +15,11 @@ namespace ConsoleApp1
         /// </summary>
         public static void Main()
         {
-            var runningCalculator = new RunCalc(65, 1000, 5, Intensity.Sprinting);
+            var runningCalculator = new RunCalc(65, 0.1, 5, Intensity.Sprinting);
             double runningCalories = runningCalculator.CalculateCalories();
             Console.WriteLine($"\n    Затрачиваемые калории при беге: {runningCalories}");
 
-            var swimmingCalculator = new SwimCalc(65, 1000, 500, 4, Style.Butterfly);
+            var swimmingCalculator = new SwimCalc(65, 0.1, 5, 4, Style.Butterfly);
             double swimmingCalories = swimmingCalculator.CalculateCalories();
             Console.WriteLine($"    Калории при плавании: {swimmingCalories}");
         }
