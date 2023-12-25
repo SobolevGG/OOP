@@ -99,5 +99,66 @@ namespace ConsoleApp1
                 }
             }
         }
+
+        /// <summary>
+        /// Ввод данных для расчёта размера заработной платы
+        /// по тарифной ставке.
+        /// </summary>
+        /// <returns>данные о заработной плате.</returns>
+        public static RunCalc RunTraining()
+        {
+            var runCalc = new RunCalc();
+            var actions = new List<Action>()
+            {
+                new Action(() =>
+                {
+                    Console.Write("Ваш вес, кг: ");
+                    runCalc.Weight = double.Parse(Console.ReadLine());
+                }),
+                new Action(() =>
+                {
+                    Console.Write("Тарифная ставка (рублей в день): ");
+                    runCalc.Distance = double.Parse(Console.ReadLine());
+                })
+            };
+            actions.ForEach(ShowException);
+            return runCalc;
+        }
+
+        /// <summary>
+        /// Метод для вывода исключений в консоль.
+        /// </summary>
+        /// <param name="action">Дейсвтие.</param>
+        /// <param name="characteristic">Одна из характеристик
+        /// пользователя.</param>
+        private static void ShowException(Action<string> action,
+            string characteristic)
+        {
+            while (true)
+            {
+                try
+                {
+                    action.Invoke(characteristic);
+                    break;
+                }
+                catch (Exception exception)
+                {
+                    if (exception.GetType()
+                        == typeof(IndexOutOfRangeException)
+                        || exception.GetType() == typeof(FormatException)
+                        || exception.GetType() == typeof(ArgumentException)
+                        || exception.GetType() == typeof(ArgumentNullException))
+                    {
+                        Console.WriteLine($"К сожалению, характеристика " +
+                            $"*{characteristic}* введена не верно." +
+                        $"\nОшибка: {exception.Message}");
+                    }
+                    else
+                    {
+                        throw exception;
+                    }
+                }
+            }
+        }
     }
 }

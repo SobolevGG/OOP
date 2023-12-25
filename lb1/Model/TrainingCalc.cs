@@ -37,7 +37,7 @@ namespace Model
         public void CheckWeight(double value)
         {
             CheckNullEmpty(value.ToString());
-
+            value = PeriodComma(value.ToString());
             if (value < 3 || value > 500)
             {
                 throw new ArgumentException(value.ToString(), "Масса " +
@@ -58,6 +58,20 @@ namespace Model
                 throw new ArgumentNullException(value, "Ввод не может " +
                     "быть пустым!");
             }
+        }
+
+        /// <summary>
+        /// Метод проверки замены точки на запятую.
+        /// </summary>
+        /// <returns>Проверенное значение.</returns>
+        public double PeriodComma(string value)
+        {
+            if (value.Contains('.'))
+            {
+                // Заменяем точку на запятую
+                value = value.Replace(".", ",");
+            }
+            return double.Parse(value);
         }
 
         /// <summary>
