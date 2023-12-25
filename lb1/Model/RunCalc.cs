@@ -70,8 +70,10 @@ namespace Model
         /// <param name="distance">Расстояние.</param>
         /// <param name="intensity">Интенсивность.</param>
         public RunCalc(double weight, double metCoef, double distance, Intensity intensity)
-            : base(weight, metCoef)
+            : base()
         {
+            Weight = weight;
+            MetCoef = metCoef;
             Distance = distance;
             Intensity = intensity;
         }

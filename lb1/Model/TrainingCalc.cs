@@ -5,6 +5,9 @@ namespace Model
     /// </summary>
     public abstract class TrainingCalc
     {
+        /// <summary>
+        /// Конструктор базового класса.
+        /// </summary>
         public TrainingCalc()
         {
         }
@@ -110,17 +113,6 @@ namespace Model
                     "Коэффициент метаболизма должен быть " +
                     "в диапазоне от 0 до 1 о.е.!");
             }
-        }
-
-        /// <summary>
-        /// Конструктор базового класса.
-        /// </summary>
-        /// <param name="weight">Вес человека в килограммах.</param>
-        /// <param name="metCoef">Коэффициент метаболизма.</param>
-        public TrainingCalc(double weight, double metCoef)
-        {
-            Weight = weight;
-            MetCoef = metCoef;
         }
 
         /// <summary>

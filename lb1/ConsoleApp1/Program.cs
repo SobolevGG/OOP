@@ -117,9 +117,19 @@ namespace ConsoleApp1
                 }),
                 new Action(() =>
                 {
+                    Console.Write("Ваш вес, кг: ");
+                    runCalc.MetCoef = double.Parse(Console.ReadLine());
+                }),
+                new Action(() =>
+                {
                     Console.Write("Расстояние, км: ");
                     runCalc.Distance = double.Parse(Console.ReadLine());
-                })
+                }),
+                new Action(() =>
+                {
+                    Console.Write("Ваш вес, кг: ");
+                    runCalc.Intensity = Intensity.FastRunning;
+                }),
             };
             actions.ForEach(ShowException);
             return runCalc;
