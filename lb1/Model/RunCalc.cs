@@ -42,9 +42,6 @@ namespace Model
             }
         }
 
-
-
-
         /// <summary>
         /// Интенсивность бега.
         /// </summary>
