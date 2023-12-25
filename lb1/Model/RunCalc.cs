@@ -56,6 +56,11 @@ namespace Model
         public Intensity Intensity { get; set; }
 
         /// <summary>
+        /// Получение параметра дистанции.
+        /// </summary>
+        public double Distance { get; set; }
+
+        /// <summary>
         /// Конструктор класса-наследника (бег).
         /// </summary>
         /// <param name="weight">Вес человека в килограммах.</param>
@@ -80,43 +85,31 @@ namespace Model
         }
 
         /// <summary>
-        /// Проверка коэффициента метаболизма.
-        /// </summary>
-        public override double MetCoef
-        {
-            get => _metCoef;
-
-            set
-            {
-                value = CalcMetCoef();
-            }
-        }
-
-        /// <summary>
         /// Метод получения коэффициента метаболизма
         /// в зависимости от интенсивности бега.
         /// </summary>
-        /// <param name="style"></param>
-        /// <returns>Коэффициента метаболизма.</returns>
-        private double CalcMetCoef()
+        /// <param name="intensity"></param>
+        /// <returns>Коэффициент метаболизма.</returns>
+        public override double CalcMetCoef()
         {
-            double speed = 0;
-            if (Intensity is Intensity.Sprinting)
+            double metCoef = 0;
+
+            switch (Intensity)
             {
-                speed = 15;
+                case Intensity.MaxLoad:
+                    metCoef = 0.04;
+                    break;
+                case Intensity.ModerateLoad:
+                    metCoef = 0.035;
+                    break;
+                case Intensity.NoLoad:
+                    metCoef = 0.02;
+                    break;
+                default:
+                    break;
             }
-            else if (Intensity is Intensity.FastRunning)
-            {
-                speed = 12;
-            }
-            else if (Intensity is Intensity.ModerateRunning)
-            {
-                speed = 10;
-            }
-            else if (Intensity is Intensity.LightJogging)
-            {
-                speed = 8;
-            }
+            return (double)metCoef;
+        }
 
             return (0.025 + ((0.035 - 0.025) * (speed - 4) / (8 - 4)));
         }
