@@ -117,7 +117,7 @@ namespace ConsoleApp1
                 }),
                 new Action(() =>
                 {
-                    Console.Write("Тарифная ставка (рублей в день): ");
+                    Console.Write("Расстояние, км: ");
                     runCalc.Distance = double.Parse(Console.ReadLine());
                 })
             };
@@ -129,16 +129,14 @@ namespace ConsoleApp1
         /// Метод для вывода исключений в консоль.
         /// </summary>
         /// <param name="action">Дейсвтие.</param>
-        /// <param name="characteristic">Одна из характеристик
         /// пользователя.</param>
-        private static void ShowException(Action<string> action,
-            string characteristic)
+        private static void ShowException(Action action)
         {
             while (true)
             {
                 try
                 {
-                    action.Invoke(characteristic);
+                    action.Invoke();
                     break;
                 }
                 catch (Exception exception)
@@ -149,9 +147,8 @@ namespace ConsoleApp1
                         || exception.GetType() == typeof(ArgumentException)
                         || exception.GetType() == typeof(ArgumentNullException))
                     {
-                        Console.WriteLine($"К сожалению, характеристика " +
-                            $"*{characteristic}* введена не верно." +
-                        $"\nОшибка: {exception.Message}");
+                        Console.WriteLine($"Обнаружена ошибка: " +
+                            $"{exception.Message}");
                     }
                     else
                     {
