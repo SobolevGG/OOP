@@ -119,25 +119,6 @@ namespace Model
         }
 
         /// <summary>
-        /// Конструктор класса-наследника (плавание).
-        /// </summary>
-        /// <param name="weight">Вес человека в килограммах.</param>
-        /// <param name="metCoef">Коэффициент метаболизма.</param>
-        /// <param name="duration">Продолжительность.</param>
-        /// <param name="distance">Расстояние в метрах.</param>
-        /// <param name="style">Стиль.</param>
-        public SwimCalc(double weight, double metCoef, double duration,
-            double distance, Style style)
-            : base()
-        {
-            Weight = weight;
-            MetCoef = metCoef;
-            Distance = distance;
-            Style = style;
-            Duration = duration;
-        }
-
-        /// <summary>
         /// Метод расчёта затраченных калорий при плавании.
         /// </summary>
         /// <returns>Количество затраченных калорий при плавании.</returns>

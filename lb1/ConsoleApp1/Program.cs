@@ -22,65 +22,44 @@ namespace ConsoleApp1
             var egIntensity = Intensity.Sprinting;
             var egStyle = Style.Butterfly;
 
-            Console.WriteLine($"    Пример расчёта калорий " +
-                $"для человека:\n      " +
-                $"с массой {egWeight} кг;\n      " +
-                $"с интенсивностью тренировки: {egIntensity}");
-
-            var runningCalculator = new RunCalc(egWeight,
-                                                egMetCoef,
-                                                egDistance,
-                                                egIntensity);
-            double runningCalories = runningCalculator.CalculateCalories();
-
-            Console.WriteLine($"\n    Затрачиваемые калории при беге: {runningCalories}");
-
-            var swimmingCalculator = new SwimCalc(egWeight,
-                                                  egMetCoef,
-                                                  egDuration,
-                                                  egDistance,
-                                                  egStyle);
-
-            double swimmingCalories = swimmingCalculator.CalculateCalories();
-            Console.WriteLine($"    Затрачиваемые калории при плавании: {swimmingCalories}");
+            Console.WriteLine($"\n    Пример расчёта калорий " +
+                $"для человека:\n    " +
+                $"- с массой {egWeight} кг;\n    " +
+                $"- с интенсивностью тренировки: {egIntensity}");
 
             Console.WriteLine("\n    Для начала расчёта" +
                 " сжигаемых калорий выберите тренировку:" +
-                "\n      1 - Плавание;" +
-                "\n      2 - Бег;" +
-                "\n      3 - Жим штанги;" +
-                "\n      4 - Отмена.");
+                "\n    1 - Плавание;" +
+                "\n    2 - Бег;" +
+                "\n    3 - Жим штанги;" +
+                "\n    4 - Отмена.");
 
-            while (true)
+            for (; ; )
             {
-                Console.Write("\nВведите цифру из представленного " +
-                    "списка: ");
-                var consoleKey = Console.ReadLine();
-                switch (consoleKey)
+                Console.Write("\n    Выберите вариант тренировки: ");
+                var choice = Console.ReadLine();
+                switch (choice)
                 {
                     case "1":
                         {
-                            Console.WriteLine("\tОплата по окладу");
+                            Console.WriteLine("    Плавание;");
 
-                            // PrintWages(WagesBySalary());
+                            // PrintConsole(RunTraining());
                             break;
                         }
 
                     case "2":
                         {
-                            Console.WriteLine("\tОплата по часовой " +
-                                "тарифной ставке");
-
-                            // PrintWages(WagesAtTheHourlyTariffRate());
+                            Console.WriteLine("    Бег");
+                            PrintConsole(RunTraining());
                             break;
                         }
 
                     case "3":
                         {
-                            Console.WriteLine("\tОплата по тарифной " +
-                                "ставке");
+                            Console.WriteLine("    Жим штанги");
 
-                            // PrintWages(WagesAtTheTariffRate());
+                            // PrintConsole(WagesAtTheTariffRate());
                             break;
                         }
 
@@ -92,7 +71,8 @@ namespace ConsoleApp1
 
                     default:
                         {
-                            Console.WriteLine("Попробуйте еще раз");
+                            Console.WriteLine("\n    Некорректный " +
+                                "ввод! Попробуйте еще раз.");
                         }
 
                         break;
@@ -101,7 +81,7 @@ namespace ConsoleApp1
         }
 
         /// <summary>
-        /// Ввод данных для расчёта размера заработной платы
+        /// Расчёт затрачиваемых калорий для бега.
         /// по тарифной ставке.
         /// </summary>
         /// <returns>данные о заработной плате.</returns>
@@ -117,17 +97,12 @@ namespace ConsoleApp1
                 }),
                 new Action(() =>
                 {
-                    Console.Write("Ваш вес, кг: ");
-                    runCalc.MetCoef = double.Parse(Console.ReadLine());
-                }),
-                new Action(() =>
-                {
                     Console.Write("Расстояние, км: ");
                     runCalc.Distance = double.Parse(Console.ReadLine());
                 }),
                 new Action(() =>
                 {
-                    Console.Write("Ваш вес, кг: ");
+                    Console.Write("Интенсивность бега: ");
                     runCalc.Intensity = Intensity.FastRunning;
                 }),
             };
@@ -136,7 +111,7 @@ namespace ConsoleApp1
         }
 
         /// <summary>
-        /// Метод для вывода исключений в консоль.
+        /// Метод для обработки исключений.
         /// </summary>
         /// <param name="action">Дейсвтие.</param>
         /// пользователя.</param>
@@ -166,6 +141,17 @@ namespace ConsoleApp1
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Вывод полученной информации на консоль.
+        /// </summary>
+        /// <param name="value">заработная плата.</param>
+        public static void PrintConsole(TrainingCalc value)
+        {
+            Console.WriteLine($"Предположительное количество " +
+                $"сжигаемых калорий: " +
+                $" {value.CalculateCalories()}.");
         }
     }
 }

@@ -60,22 +60,6 @@ namespace Model
         }
 
         /// <summary>
-        /// Конструктор класса-наследника (бег).
-        /// </summary>
-        /// <param name="weight">Вес человека в килограммах.</param>
-        /// <param name="metCoef">Коэффициент метаболизма.</param>
-        /// <param name="distance">Расстояние.</param>
-        /// <param name="intensity">Интенсивность.</param>
-        public RunCalc(double weight, double metCoef, double distance, Intensity intensity)
-            : base()
-        {
-            Weight = weight;
-            MetCoef = metCoef;
-            Distance = distance;
-            Intensity = intensity;
-        }
-
-        /// <summary>
         /// Метод расчёта затраченных калорий при беге.
         /// </summary>
         /// <returns>Количество затраченных калорий при беге.</returns>

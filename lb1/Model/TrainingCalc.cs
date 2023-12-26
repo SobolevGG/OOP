@@ -6,11 +6,14 @@ namespace Model
     public abstract class TrainingCalc
     {
         /// <summary>
-        /// Конструктор базового класса.
+        /// Абстрактный метод расчета калорий.
         /// </summary>
-        public TrainingCalc()
-        {
-        }
+        public abstract double CalculateCalories();
+
+        /// <summary>
+        /// Абстрактный метод расчета коэффициента метаболизма.
+        /// </summary>
+        public abstract double CalcMetCoef();
 
         /// <summary>
         /// Вес человека в килограммах.
@@ -18,7 +21,7 @@ namespace Model
         protected double _weight;
 
         /// <summary>
-        /// Проверка веса человека.
+        /// Публичный метод для доступа к весу человека.
         /// </summary>
         public double Weight
         {
@@ -83,7 +86,7 @@ namespace Model
         protected double _metCoef;
 
         /// <summary>
-        /// Проверка коэффициента метаболизма.
+        /// Публичный метод для доступа к коэффициенту метаболизма.
         /// </summary>
         public double MetCoef
         {
@@ -114,15 +117,5 @@ namespace Model
                     "в диапазоне от 0 до 1 о.е.!");
             }
         }
-
-        /// <summary>
-        /// Абстрактный метод расчета калорий.
-        /// </summary>
-        public abstract double CalculateCalories();
-
-        /// <summary>
-        /// Абстрактный метод расчета коэффициента метаболизма.
-        /// </summary>
-        public abstract double CalcMetCoef();
     }
 }
