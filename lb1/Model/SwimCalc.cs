@@ -66,7 +66,7 @@ namespace Model
         public override double CalculateCalories()
         {
             double metCoef = CalcMetCoef();
-            return Weight * metCoef * Distance;
+            return (double)(Weight * 3.5 * metCoef * Distance / 200);
         }
 
         /// <summary>
@@ -76,18 +76,25 @@ namespace Model
         /// <returns>Коэффициента метаболизма.</returns>
         public override double CalcMetCoef()
         {
-            var value =
-                Style is Style.Freestyle
-                ? 0.02
-                : Style is Style.Backstroke
-                ? 0.025
-                : Style is Style.Breaststroke
-                ? 0.03
-                : Style is Style.Butterfly
-                ? 0.04
-                : 0;
-
-            return value;
+            double metCoef = 10;
+            switch (Style)
+            {
+                case Style.Butterfly:
+                    metCoef = (11 * 60 / 15);
+                    break;
+                case Style.Freestyle:
+                    metCoef = 10.5 * 60 / 12;
+                    break;
+                case Style.Breaststroke:
+                    metCoef = 9 * 60 / 10;
+                    break;
+                case Style.Backstroke:
+                    metCoef = 8 * 60 / 8;
+                    break;
+                default:
+                    break;
+            }
+            return metCoef;
         }
 
         /// <summary>

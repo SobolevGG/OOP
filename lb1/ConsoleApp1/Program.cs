@@ -224,7 +224,7 @@ namespace ConsoleApp1
         public static void PrintConsole(TrainingCalc value)
         {
             Console.WriteLine($"    Предположительное количество " +
-                $"сжигаемых калорий, ккал/мин: " +
+                $"сжигаемых калорий, ккал: " +
                 $"{Math.Round(value.CalculateCalories(), 3)}.");
         }
     }

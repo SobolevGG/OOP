@@ -77,7 +77,6 @@ namespace Model
         public override double CalcMetCoef()
         {
             double metCoef = 10;
-
             switch (Intensity)
             {
                 case Intensity.Sprinting:
