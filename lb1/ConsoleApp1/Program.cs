@@ -15,18 +15,6 @@ namespace ConsoleApp1
         /// </summary>
         public static void Main()
         {
-            var egWeight = 65;
-            var egMetCoef = 0.1;
-            var egDuration = 10;
-            var egDistance = 10;
-            var egIntensity = Intensity.Sprinting;
-            var egStyle = Style.Butterfly;
-
-            Console.WriteLine($"\n    Пример расчёта калорий " +
-                $"для человека:\n    " +
-                $"- с массой {egWeight} кг;\n    " +
-                $"- с интенсивностью тренировки: {egIntensity}");
-
             Console.WriteLine("\n    Для начала расчёта" +
                 " сжигаемых калорий выберите тренировку:" +
                 "\n    1 - Плавание;" +
@@ -50,7 +38,6 @@ namespace ConsoleApp1
 
                     case "2":
                         {
-                            Console.WriteLine("    Бег");
                             PrintConsole(RunTraining());
                             break;
                         }
@@ -87,23 +74,47 @@ namespace ConsoleApp1
         /// <returns>данные о заработной плате.</returns>
         public static RunCalc RunTraining()
         {
+            Console.WriteLine("\n    Вы выбрали бег, перейдём к вводу данных!");
             var runCalc = new RunCalc();
             var actions = new List<Action>()
             {
                 new Action(() =>
                 {
-                    Console.Write("Ваш вес, кг: ");
+                    Console.Write("    Ваш вес, кг: ");
                     runCalc.Weight = double.Parse(Console.ReadLine());
                 }),
                 new Action(() =>
                 {
-                    Console.Write("Расстояние, км: ");
+                    Console.Write("    Расстояние, км: ");
                     runCalc.Distance = double.Parse(Console.ReadLine());
                 }),
                 new Action(() =>
                 {
-                    Console.Write("Интенсивность бега: ");
-                    runCalc.Intensity = Intensity.FastRunning;
+                    Console.Write("    Интенсивность бега (1 - спринт, " +
+                        "2 - быстрый бег, 3 - умеренный бег, " +
+                        "4 - лёгкий бег): ");
+
+                    _ = int.TryParse(Console.ReadLine(),
+                        out int tmpIntensity);
+
+                    int[] allowedValues = {1, 2, 3, 4};
+
+                    if (!allowedValues.Contains(tmpIntensity))
+                    {
+                        throw new IndexOutOfRangeException
+                            ("Ожидалась цифра от 1 до 4.");
+                    }
+
+                    switch (tmpIntensity)
+                    {      case 1: runCalc.Intensity
+                            = Intensity.Sprinting;
+                    break; case 2: runCalc.Intensity
+                            = Intensity.FastRunning;
+                    break; case 3: runCalc.Intensity
+                            = Intensity.ModerateRunning;
+                    break; case 4: runCalc.Intensity
+                            = Intensity.LightJogging;
+                    break; default: break; }
                 }),
             };
             actions.ForEach(ShowException);
@@ -132,7 +143,7 @@ namespace ConsoleApp1
                         || exception.GetType() == typeof(ArgumentException)
                         || exception.GetType() == typeof(ArgumentNullException))
                     {
-                        Console.WriteLine($"Обнаружена ошибка: " +
+                        Console.WriteLine($"    Обнаружена ошибка: " +
                             $"{exception.Message}");
                     }
                     else
@@ -149,9 +160,9 @@ namespace ConsoleApp1
         /// <param name="value">заработная плата.</param>
         public static void PrintConsole(TrainingCalc value)
         {
-            Console.WriteLine($"Предположительное количество " +
+            Console.WriteLine($"    Предположительное количество " +
                 $"сжигаемых калорий: " +
-                $" {value.CalculateCalories()}.");
+                $" {Math.Round(value.CalculateCalories(), 3)}.");
         }
     }
 }
