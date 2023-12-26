@@ -33,12 +33,11 @@ namespace Model
         public void CheckDistance(double value)
         {
             CheckNullEmpty(value.ToString());
-
-            if (value < 1 || value > 300)
+            if (value <= 0 || value > 500)
             {
                 throw new ArgumentException(
-                    "расстояние должно лежать в диапазоне " +
-                    "от 1 до 300 км!");
+                    "расстояние должно быть положительным " +
+                    "и не превышать 500 км!");
             }
         }
 

@@ -79,16 +79,12 @@ namespace ConsoleApp1
                 new Action(() =>
                 {
                     Console.Write("    -Ваш вес, кг: ");
-                    _ = double.TryParse(Console.ReadLine(),
-                        out double tmpWeight);
-                    runCalc.Weight = tmpWeight;
+                    runCalc.Weight = CheckInput();
                 }),
                 new Action(() =>
                 {
                     Console.Write("    -Расстояние, км: ");
-                    _ = double.TryParse(Console.ReadLine(),
-                        out double tmpDistance);
-                    runCalc.Distance = tmpDistance;
+                    runCalc.Distance = CheckInput();
                 }),
                 new Action(() =>
                 {
@@ -139,16 +135,12 @@ namespace ConsoleApp1
                 new Action(() =>
                 {
                     Console.Write("    -Ваш вес, кг: ");
-                    _ = double.TryParse(Console.ReadLine(),
-                        out double tmpWeight);
-                    swimCalc.Weight = tmpWeight;
+                    swimCalc.Weight = CheckInput();
                 }),
                 new Action(() =>
                 {
                     Console.Write("    -Расстояние, км: ");
-                    _ = double.TryParse(Console.ReadLine(),
-                        out double tmpDistance);
-                    swimCalc.Distance = tmpDistance;
+                    swimCalc.Distance = CheckInput();
                 }),
                 new Action(() =>
                 {
@@ -226,6 +218,19 @@ namespace ConsoleApp1
             Console.WriteLine($"    Предположительное количество " +
                 $"сжигаемых калорий, ккал: " +
                 $"{Math.Round(value.CalculateCalories(), 3)}.");
+        }
+
+        /// <summary>
+        /// Метод замены точки на запятую.
+        /// </summary>
+        /// <returns>Скорректированное значение.</returns>
+        public static double CheckInput()
+        {
+            string tmpValue = Console.ReadLine().Replace(".", ",");
+
+            return !double.TryParse(tmpValue, out _)
+                ? throw new Exception("введено нечисловое значение!")
+                : double.Parse(tmpValue);
         }
     }
 }

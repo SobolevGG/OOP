@@ -34,7 +34,7 @@ namespace Model
         {
             CheckNullEmpty(value.ToString());
 
-            if (value < 0 || value > 1000)
+            if (value <= 0 || value > 1000)
             {
                 throw new ArgumentException(
                     "расстояние должно быть положительным " +
