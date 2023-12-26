@@ -60,50 +60,13 @@ namespace Model
         }
 
         /// <summary>
-        /// Продолжительность плавания в минутах.
-        /// </summary>
-        private double _duration;
-
-        /// <summary>
-        /// Проверка продолжительности.
-        /// </summary>
-        public double Duration
-        {
-            get => _duration;
-
-            set
-            {
-                CheckDuration(value);
-                _duration = value;
-            }
-        }
-
-        /// <summary>
-        /// Метод проверки продолжительности для плавания.
-        /// </summary>
-        /// <param name="value">Продолжительность в минутах.</param>
-        /// <exception cref="ArgumentException">Исключение
-        /// по некорректному значению продолжительности.</exception>
-        public void CheckDuration(double value)
-        {
-            CheckNullEmpty(value.ToString());
-
-            if (value < 1 || value > 60)
-            {
-                throw new ArgumentException(value.ToString(),
-                    "продолжительность должна " +
-                    "лежать в диапазоне от 1 до 4000 минут!");
-            }
-        }
-
-        /// <summary>
         /// Метод расчёта затраченных калорий при плавании.
         /// </summary>
         /// <returns>Количество затраченных калорий при плавании.</returns>
         public override double CalculateCalories()
         {
             double metCoef = CalcMetCoef();
-            return Weight * metCoef * Duration * Distance;
+            return Weight * metCoef * Distance;
         }
 
         /// <summary>

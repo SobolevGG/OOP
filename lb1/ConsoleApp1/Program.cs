@@ -152,13 +152,6 @@ namespace ConsoleApp1
                 }),
                 new Action(() =>
                 {
-                    Console.Write("    -Продолжительность, ч: ");
-                    _ = double.TryParse(Console.ReadLine(),
-                        out double tmpDuration);
-                    swimCalc.Duration = tmpDuration;
-                }),
-                new Action(() =>
-                {
                     Console.Write("    -Стиль плавания " +
                         "(1 - баттерфляй, 2 - брасс, " +
                         "3 - на спине, " +
