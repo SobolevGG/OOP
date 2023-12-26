@@ -60,7 +60,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Время плавания в часах.
+        /// Продолжительность плавания в минутах.
         /// </summary>
         private double _duration;
 
@@ -81,9 +81,9 @@ namespace Model
         /// <summary>
         /// Метод проверки продолжительности для плавания.
         /// </summary>
-        /// <param name="value">Расстояние в километрах.</param>
+        /// <param name="value">Продолжительность в минутах.</param>
         /// <exception cref="ArgumentException">Исключение
-        /// по некорректному значению расстояния.</exception>
+        /// по некорректному значению продолжительности.</exception>
         public void CheckDuration(double value)
         {
             CheckNullEmpty(value.ToString());
@@ -92,7 +92,7 @@ namespace Model
             {
                 throw new ArgumentException(value.ToString(),
                     "продолжительность должна " +
-                    "лежать в диапазоне от 1 до 60 часов!");
+                    "лежать в диапазоне от 1 до 4000 минут!");
             }
         }
 
