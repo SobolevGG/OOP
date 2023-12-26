@@ -36,32 +36,10 @@ namespace Model
 
             if (value < 1 || value > 300)
             {
-                throw new ArgumentException(value.ToString(),
-                    "Расстояние должно соответствовать диапазону " +
+                throw new ArgumentException(
+                    "расстояние должно лежать в диапазоне " +
                     "от 1 до 300 км!");
             }
-        }
-
-        /// <summary>
-        /// Метод получения коэффициента метаболизма
-        /// в зависимости от стиля плавания.
-        /// </summary>
-        /// <param name="Style">Стиль плавания.</param>
-        /// <returns>Коэффициента метаболизма.</returns>
-        public override double CalcMetCoef()
-        {
-            var value =
-                Style is Style.Freestyle
-                ? 0.02
-                : Style is Style.Backstroke
-                ? 0.025
-                : Style is Style.Breaststroke
-                ? 0.03
-                : Style is Style.Butterfly
-                ? 0.04
-                : 0;
-
-            return value;
         }
 
         /// <summary>
@@ -113,8 +91,8 @@ namespace Model
             if (value < 1 || value > 60)
             {
                 throw new ArgumentException(value.ToString(),
-                    "Продолжительность должна соответствовать " +
-                    "диапазону от 1 до 60 часов!");
+                    "продолжительность должна " +
+                    "лежать в диапазоне от 1 до 60 часов!");
             }
         }
 
@@ -126,6 +104,28 @@ namespace Model
         {
             double metCoef = CalcMetCoef();
             return Weight * metCoef * Duration * Distance;
+        }
+
+        /// <summary>
+        /// Метод получения коэффициента метаболизма
+        /// в зависимости от стиля плавания.
+        /// </summary>
+        /// <param name="Style">Стиль плавания.</param>
+        /// <returns>Коэффициента метаболизма.</returns>
+        public override double CalcMetCoef()
+        {
+            var value =
+                Style is Style.Freestyle
+                ? 0.02
+                : Style is Style.Backstroke
+                ? 0.025
+                : Style is Style.Breaststroke
+                ? 0.03
+                : Style is Style.Butterfly
+                ? 0.04
+                : 0;
+
+            return value;
         }
 
         /// <summary>

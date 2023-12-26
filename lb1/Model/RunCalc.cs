@@ -34,10 +34,10 @@ namespace Model
         {
             CheckNullEmpty(value.ToString());
 
-            if (value < 1 || value > 300)
+            if (value < 1 || value > 600)
             {
-                throw new ArgumentException(value.ToString(),
-                    "Расстояние должно соответствовать диапазону " +
+                throw new ArgumentException(
+                    "расстояние должно лежать в диапазоне " +
                     "от 1 до 600 км!");
             }
         }

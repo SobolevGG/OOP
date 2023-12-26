@@ -6,7 +6,7 @@ namespace Model
     public enum Style
     {
         /// <summary>
-        /// Вольный стиль.
+        /// Свободный стиль.
         /// </summary>
         Freestyle,
 

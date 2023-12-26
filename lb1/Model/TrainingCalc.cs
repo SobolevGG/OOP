@@ -46,8 +46,8 @@ namespace Model
             value = PeriodComma(value.ToString());
             if (value < 3 || value > 500)
             {
-                throw new ArgumentException(value.ToString(), "Масса " +
-                    "должна быть задана в диапазоне от 3 до 500 кг!");
+                throw new ArgumentException("вес " +
+                    "должен лежать в диапазоне от 3 до 500 кг!");
             }
         }
 
