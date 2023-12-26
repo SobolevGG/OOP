@@ -34,11 +34,11 @@ namespace Model
         {
             CheckNullEmpty(value.ToString());
 
-            if (value < 1 || value > 600)
+            if (value < 0 || value > 1000)
             {
                 throw new ArgumentException(
-                    "расстояние должно лежать в диапазоне " +
-                    "от 1 до 600 км!");
+                    "расстояние должно быть положительным " +
+                    "и не превышать 1000 км!");
             }
         }
 
@@ -66,32 +66,31 @@ namespace Model
         public override double CalculateCalories()
         {
             double metCoef = CalcMetCoef();
-            return Weight * metCoef * Distance;
+            return (Weight * 3.5 * metCoef * Distance / 200);
         }
 
         /// <summary>
         /// Метод получения коэффициента метаболизма
         /// в зависимости от интенсивности бега.
         /// </summary>
-        /// <param name="intensity"></param>
         /// <returns>Коэффициент метаболизма.</returns>
         public override double CalcMetCoef()
         {
-            double metCoef = 0;
+            double metCoef = 10;
 
             switch (Intensity)
             {
                 case Intensity.Sprinting:
-                    metCoef = 0.04;
+                    metCoef = 16.38 / 15 * 60;
                     break;
                 case Intensity.FastRunning:
-                    metCoef = 0.035;
+                    metCoef = 12.59 / 12 * 60;
                     break;
                 case Intensity.ModerateRunning:
-                    metCoef = 0.03;
+                    metCoef = 10.06 / 10 * 60;
                     break;
                 case Intensity.LightJogging:
-                    metCoef = 0.015;
+                    metCoef = 7.54 / 8 * 60;
                     break;
                 default:
                     break;

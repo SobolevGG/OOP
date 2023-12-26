@@ -91,31 +91,7 @@ namespace Model
         public double MetCoef
         {
             get => _metCoef;
-
-            set
-            {
-                CheckMetCoef(value);
-                _metCoef = value;
-            }
-        }
-
-        /// <summary>
-        /// Метод проверки коэффициента метаболизма.
-        /// </summary>
-        /// <param name="value">Коэффициент метаболизма.</param>
-        /// <exception cref="ArgumentException">Исключение
-        /// на некорректное значение
-        /// коэффициента метаболизма.</exception>
-        public void CheckMetCoef(double value)
-        {
-            CheckNullEmpty(value.ToString());
-
-            if (value > 1 || value < 0)
-            {
-                throw new ArgumentException(value.ToString(),
-                    "Коэффициент метаболизма должен быть " +
-                    "в диапазоне от 0 до 1 о.е.!");
-            }
+            set => _metCoef = value;
         }
     }
 }

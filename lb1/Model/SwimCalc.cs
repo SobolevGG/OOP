@@ -73,7 +73,6 @@ namespace Model
         /// Метод получения коэффициента метаболизма
         /// в зависимости от стиля плавания.
         /// </summary>
-        /// <param name="Style">Стиль плавания.</param>
         /// <returns>Коэффициента метаболизма.</returns>
         public override double CalcMetCoef()
         {
