@@ -11,7 +11,7 @@ namespace ConsoleApp1
     public class Program
     {
         /// <summary>
-        /// Main.
+        /// Метод Main.
         /// </summary>
         public static void Main()
         {
@@ -196,7 +196,8 @@ namespace ConsoleApp1
                         == typeof(IndexOutOfRangeException)
                         || exception.GetType() == typeof(FormatException)
                         || exception.GetType() == typeof(ArgumentException)
-                        || exception.GetType() == typeof(ArgumentNullException))
+                        || exception.GetType() == typeof(ArgumentNullException)
+                        || exception.GetType() == typeof(Exception))
                     {
                         Console.WriteLine($"    Обнаружена ошибка: " +
                             $"{exception.Message}");
@@ -210,9 +211,9 @@ namespace ConsoleApp1
         }
 
         /// <summary>
-        /// Вывод полученной информации на консоль.
+        /// Метод вывода результатов расчёта в консоль.
         /// </summary>
-        /// <param name="value">заработная плата.</param>
+        /// <param name="value">Рассчитанные калории.</param>
         public static void PrintConsole(TrainingCalc value)
         {
             Console.WriteLine($"    Предположительное количество " +
