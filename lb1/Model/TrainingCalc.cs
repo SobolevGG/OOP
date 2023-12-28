@@ -64,19 +64,5 @@ namespace Model
                     "быть пустым!");
             }
         }
-
-        /// <summary>
-        /// Коэффициент метаболизма.
-        /// </summary>
-        protected double _metCoef;
-
-        /// <summary>
-        /// Публичный метод для доступа к коэффициенту метаболизма.
-        /// </summary>
-        public double MetCoef
-        {
-            get => _metCoef;
-            set => _metCoef = value;
-        }
     }
 }
