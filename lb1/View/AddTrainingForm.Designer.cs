@@ -43,7 +43,7 @@ namespace View
             buttonClose = new Button();
             buttonOk = new Button();
             runCalcUserControl = new RunCalcUserControl();
-            pressCalcWageRateUserControl = new PressCalcUserControl();
+            pressCalcUserControl = new PressCalcUserControl();
             swimCalcUserControl = new SwimCalcUserControl();
             payrollMethod.SuspendLayout();
             accrualParameters.SuspendLayout();
@@ -79,7 +79,7 @@ namespace View
             accrualParameters.Controls.Add(buttonClose);
             accrualParameters.Controls.Add(buttonOk);
             accrualParameters.Controls.Add(runCalcUserControl);
-            accrualParameters.Controls.Add(pressCalcWageRateUserControl);
+            accrualParameters.Controls.Add(pressCalcUserControl);
             accrualParameters.Location = new Point(8, 61);
             accrualParameters.Margin = new Padding(3, 2, 3, 2);
             accrualParameters.Name = "accrualParameters";
@@ -120,16 +120,16 @@ namespace View
             runCalcUserControl.Name = "runCalcUserControl";
             runCalcUserControl.Size = new Size(254, 109);
             runCalcUserControl.TabIndex = 2;
-            runCalcUserControl.Load += wageRateUserControl1_Load;
+            runCalcUserControl.Load += pressCalcUserControl1_Load;
             // 
-            // pressCalcWageRateUserControl
+            // pressCalcUserControl
             // 
-            pressCalcWageRateUserControl.BackColor = Color.Transparent;
-            pressCalcWageRateUserControl.Location = new Point(5, 20);
-            pressCalcWageRateUserControl.Margin = new Padding(3, 2, 3, 2);
-            pressCalcWageRateUserControl.Name = "pressCalcWageRateUserControl";
-            pressCalcWageRateUserControl.Size = new Size(264, 97);
-            pressCalcWageRateUserControl.TabIndex = 0;
+            pressCalcUserControl.BackColor = Color.Transparent;
+            pressCalcUserControl.Location = new Point(5, 20);
+            pressCalcUserControl.Margin = new Padding(3, 2, 3, 2);
+            pressCalcUserControl.Name = "pressCalcUserControl";
+            pressCalcUserControl.Size = new Size(264, 97);
+            pressCalcUserControl.TabIndex = 0;
             // 
             // swimCalcUserControl
             // 
@@ -172,7 +172,7 @@ namespace View
         private Button buttonOk;
         private Button buttonClose;
         private RunCalcUserControl runCalcUserControl;
-        private PressCalcUserControl pressCalcWageRateUserControl;
+        private PressCalcUserControl pressCalcUserControl;
         private SwimCalcUserControl swimCalcUserControl;
     }
 }

@@ -54,7 +54,7 @@ namespace View
             _comboBoxToUserControl = new Dictionary<string, 
                 UserControl>()
             {
-                {typeTraining[0], pressCalcWageRateUserControl },
+                {typeTraining[0], pressCalcUserControl },
                 {typeTraining[1], swimCalcUserControl },
                 {typeTraining[2], runCalcUserControl },
             };
@@ -67,11 +67,11 @@ namespace View
         /// <param name="e"></param>
         private void ComboBoxSalarySelection(object sender, EventArgs e)
         {
-            string wageType = comboTrainingSelection.SelectedItem.ToString();
-            foreach (var (wageValue, userControlTmp) in _comboBoxToUserControl)
+            string trainingType = comboTrainingSelection.SelectedItem.ToString();
+            foreach (var (trainingValue, userControlTmp) in _comboBoxToUserControl)
             {
                 userControlTmp.Visible = false;
-                if (wageType == wageValue)
+                if (trainingType == trainingValue)
                 {
                     userControlTmp.Visible = true;
                     buttonOk.Enabled = true;
@@ -89,12 +89,12 @@ namespace View
         {
             try
             {
-                var wagesControlName = 
+                var trainingsControlName = 
                     comboTrainingSelection.SelectedItem.ToString();
-                var wagesControl = _comboBoxToUserControl[wagesControlName];
-                var wageEventArgs =
-                    new TrainingEventArgs(((ITrainingCalc)wagesControl).AddingCalc());
-                AddingTrainings?.Invoke(this, wageEventArgs);
+                var trainingsControl = _comboBoxToUserControl[trainingsControlName];
+                var trainingEventArgs =
+                    new TrainingEventArgs(((ITrainingCalc)trainingsControl).AddingCalc());
+                AddingTrainings?.Invoke(this, trainingEventArgs);
                 DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
@@ -123,7 +123,7 @@ namespace View
         {
             swimCalcUserControl.Visible = false;
             runCalcUserControl.Visible = false;
-            pressCalcWageRateUserControl.Visible = false;
+            pressCalcUserControl.Visible = false;
         }
 
         private void payrollMethod_Enter(object sender, EventArgs e)
@@ -131,7 +131,7 @@ namespace View
 
         }
 
-        private void wageRateUserControl1_Load(object sender, EventArgs e)
+        private void pressCalcUserControl1_Load(object sender, EventArgs e)
         {
 
         }
