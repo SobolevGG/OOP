@@ -1,8 +1,10 @@
-
+/// <summary> 
+/// Пространство имён View.
+/// </summary>
 namespace View
 {
     /// <summary>
-    /// Класс для тестирования библиотеки классов Model
+    /// Класс для инициализации TrainingCalc.
     /// </summary>
     internal static class Program
     {
@@ -14,7 +16,7 @@ namespace View
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
+            Application.Run(new TrainingCalc());
         }
     }
 }

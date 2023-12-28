@@ -2,7 +2,7 @@
 using Model;
 namespace View
 {
-    partial class MainForm
+    partial class TrainingCalc
     {
         /// <summary>
         ///  Required designer variable.
@@ -31,7 +31,7 @@ namespace View
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrainingCalc));
             groupBoxСalculator = new GroupBox();
             dataGridViewSpace = new DataGridView();
             buttonAdd = new Button();

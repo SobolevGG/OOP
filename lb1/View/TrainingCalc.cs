@@ -9,12 +9,12 @@ namespace View
     /// <summary>
     /// Класс для создания главной формы калькулятора 
     /// </summary>
-    public partial class MainForm : Form
+    public partial class TrainingCalc : Form
     {
         /// <summary>
         /// Инициализация формы
         /// </summary>
-        public MainForm()
+        public TrainingCalc()
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
