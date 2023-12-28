@@ -61,7 +61,7 @@ namespace View
             groupBoxСalculator.Size = new Size(532, 293);
             groupBoxСalculator.TabIndex = 0;
             groupBoxСalculator.TabStop = false;
-            groupBoxСalculator.Text = "Программа тренировок и сжигаемые калории";
+            groupBoxСalculator.Text = "Программа тренировок";
             groupBoxСalculator.Enter += groupBoxСalculator_Enter;
             // 
             // dataGridViewSpace
