@@ -69,7 +69,7 @@ namespace View
             comboTrainingSelection.Location = new Point(17, 20);
             comboTrainingSelection.Margin = new Padding(3, 2, 3, 2);
             comboTrainingSelection.Name = "comboTrainingSelection";
-            comboTrainingSelection.Size = new Size(213, 23);
+            comboTrainingSelection.Size = new Size(231, 23);
             comboTrainingSelection.TabIndex = 9;
             comboTrainingSelection.SelectedIndexChanged += ComboBoxSalarySelection;
             // 
@@ -80,11 +80,11 @@ namespace View
             accrualParameters.Controls.Add(buttonOk);
             accrualParameters.Controls.Add(runCalcUserControl);
             accrualParameters.Controls.Add(pressCalcWageRateUserControl);
-            accrualParameters.Location = new Point(8, 62);
+            accrualParameters.Location = new Point(8, 61);
             accrualParameters.Margin = new Padding(3, 2, 3, 2);
             accrualParameters.Name = "accrualParameters";
             accrualParameters.Padding = new Padding(3, 2, 3, 2);
-            accrualParameters.Size = new Size(264, 159);
+            accrualParameters.Size = new Size(264, 184);
             accrualParameters.TabIndex = 10;
             accrualParameters.TabStop = false;
             accrualParameters.Text = "Параметры начисления";
@@ -92,7 +92,7 @@ namespace View
             // 
             // buttonClose
             // 
-            buttonClose.Location = new Point(123, 121);
+            buttonClose.Location = new Point(124, 145);
             buttonClose.Margin = new Padding(3, 2, 3, 2);
             buttonClose.Name = "buttonClose";
             buttonClose.Size = new Size(79, 25);
@@ -103,7 +103,7 @@ namespace View
             // 
             // buttonOk
             // 
-            buttonOk.Location = new Point(17, 121);
+            buttonOk.Location = new Point(18, 145);
             buttonOk.Margin = new Padding(3, 2, 3, 2);
             buttonOk.Name = "buttonOk";
             buttonOk.Size = new Size(79, 25);
@@ -114,10 +114,11 @@ namespace View
             // 
             // runCalcUserControl
             // 
+            runCalcUserControl.BackColor = Color.White;
             runCalcUserControl.Location = new Point(5, 20);
             runCalcUserControl.Margin = new Padding(3, 2, 3, 2);
             runCalcUserControl.Name = "runCalcUserControl";
-            runCalcUserControl.Size = new Size(253, 97);
+            runCalcUserControl.Size = new Size(264, 109);
             runCalcUserControl.TabIndex = 2;
             runCalcUserControl.Load += wageRateUserControl1_Load;
             // 
@@ -146,7 +147,7 @@ namespace View
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(284, 232);
+            ClientSize = new Size(284, 257);
             Controls.Add(swimCalcUserControl);
             Controls.Add(accrualParameters);
             Controls.Add(payrollMethod);
