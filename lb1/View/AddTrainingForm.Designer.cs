@@ -92,7 +92,7 @@ namespace View
             // 
             // buttonClose
             // 
-            buttonClose.Location = new Point(124, 145);
+            buttonClose.Location = new Point(168, 145);
             buttonClose.Margin = new Padding(3, 2, 3, 2);
             buttonClose.Name = "buttonClose";
             buttonClose.Size = new Size(79, 25);
@@ -103,7 +103,7 @@ namespace View
             // 
             // buttonOk
             // 
-            buttonOk.Location = new Point(18, 145);
+            buttonOk.Location = new Point(17, 145);
             buttonOk.Margin = new Padding(3, 2, 3, 2);
             buttonOk.Name = "buttonOk";
             buttonOk.Size = new Size(79, 25);
@@ -115,10 +115,10 @@ namespace View
             // runCalcUserControl
             // 
             runCalcUserControl.BackColor = Color.White;
-            runCalcUserControl.Location = new Point(5, 20);
+            runCalcUserControl.Location = new Point(8, 20);
             runCalcUserControl.Margin = new Padding(3, 2, 3, 2);
             runCalcUserControl.Name = "runCalcUserControl";
-            runCalcUserControl.Size = new Size(264, 109);
+            runCalcUserControl.Size = new Size(254, 109);
             runCalcUserControl.TabIndex = 2;
             runCalcUserControl.Load += wageRateUserControl1_Load;
             // 
