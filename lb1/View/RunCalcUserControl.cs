@@ -25,52 +25,114 @@ namespace View
         public RunCalcUserControl()
         {
             InitializeComponent();
-            // Инициализация ComboBox с вариантами интенсивности
-            comboBoxIntensity.Items.AddRange(Enum.GetNames(typeof(Intensity)));
-            comboBoxIntensity.SelectedIndex = 0; // Установка начального выбора
+            InitializeComboBox();
         }
 
         /// <summary>
-        /// Ручной ввод параметров.
+        /// Метод установки значения по умолчанию - плавание.
+        /// </summary>
+        private void InitializeComboBox()
+        {
+            comboBoxIntensity.DataSource 
+                = GetRussianIntensityList();
+
+            // Установка начального выбора
+            comboBoxIntensity.SelectedIndex 
+                = 0;
+            comboBoxIntensity.DisplayMember 
+                = "Name";
+            comboBoxIntensity.ValueMember 
+                = "Value";
+        }
+
+        /// <summary>
+        /// Метод получения всех значений перечисления.
+        /// </summary>
+        /// <returns>Список с интенсивностями на русском языке.</returns>
+        private BindingList<ComboBoxItem> GetRussianIntensityList()
+        {
+            var intensityValues = Enum.GetValues(typeof(Intensity));
+            var intensityList = new BindingList<ComboBoxItem>();
+
+            foreach (Intensity intensity in intensityValues)
+            {
+                intensityList.Add(new ComboBoxItem
+                {
+                    Name = GetRussianIntensityName(intensity),
+                    Value = intensity
+                });
+            }
+
+            return intensityList;
+        }
+
+        /// <summary>
+        /// Метод получения наименования 
+        /// интенсивностей по описанию.
+        /// </summary>
+        /// <param name="intensity">Интенсивность.</param>
+        /// <returns>Русское название.</returns>
+        private string GetRussianIntensityName(Intensity intensity)
+        {
+            var fieldInfo = intensity.GetType()
+                .GetField(intensity.ToString());
+            var descriptionAttribute 
+                = (DescriptionAttribute)Attribute
+                .GetCustomAttribute(fieldInfo, 
+                typeof(DescriptionAttribute));
+            return descriptionAttribute?.Description
+                   ?? intensity.ToString();
+        }
+
+        /// <summary>
+        /// Обработчик события.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void LabelWorkingHours_KeyPress(object sender, 
+        private void Label_KeyPress(object sender, 
             KeyPressEventArgs e)
         {
             Checks.CheckInput(e);
         }
 
         /// <summary>
-        /// Метод добавления тренировки.
+        /// Метод проверки данных.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Рассчитанная тренировка.</returns>
         public Model.TrainingCalc AddingCalc()
         {
             var runCalc = new RunCalc();
 
-            runCalc.Weight = Checks.CheckNumber(textBoxRate.Text);
-            runCalc.Distance = Checks.CheckNumber(textBoxWorkingHours.Text);
+            runCalc.Weight = 
+                Checks.CheckNumber(textBoxRate.Text);
+            runCalc.Distance = 
+                Checks.CheckNumber(textBoxWorkingHours.Text);
 
-            // Получение выбранной
-            // интенсивности из ComboBox
-            if (Enum.TryParse(comboBoxIntensity.SelectedItem.ToString(), 
-                out Intensity selectedIntensity))
+            // Получение выбранной интенсивности из ComboBox
+            if (comboBoxIntensity.SelectedItem is 
+                ComboBoxItem selectedIntensityItem)
             {
-                runCalc.Intensity = selectedIntensity;
+                runCalc.Intensity = 
+                    (Intensity)selectedIntensityItem.Value;
             }
             else
             {
-                // Обработка ошибки, если не удалось
-                // преобразовать выбранную интенсивность
                 MessageBox.Show("Ошибка при получении " +
-                    "выбранной интенсивности.",
-                                "Ошибка!", 
-                                MessageBoxButtons.OK, 
-                                MessageBoxIcon.Error);
+                    "выбранной интенсивности.", 
+                    "Ошибка!", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
             }
 
             return runCalc;
+        }
+
+        /// <summary>
+        /// Вложенный класс для русского языка.
+        /// </summary>
+        private class ComboBoxItem
+        {
+            public string Name { get; set; }
+            public object Value { get; set; }
         }
     }
 }

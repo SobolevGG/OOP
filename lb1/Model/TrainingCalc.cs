@@ -86,5 +86,19 @@ namespace Model
                     "быть пустым!");
             }
         }
+
+        /// <summary>
+        /// Метод замены точки на запятую.
+        /// </summary>
+        /// <returns>Скорректированное значение.</returns>
+        public static double CheckInput()
+        {
+            string tmpValue = Console.ReadLine().Replace(".", ",");
+
+            return !double.TryParse(tmpValue, out _)
+                ? throw new Exception("введено " +
+                "нечисловое значение!")
+                : double.Parse(tmpValue);
+        }
     }
 }
