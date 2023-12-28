@@ -158,7 +158,7 @@ namespace View
             Name = "AddTrainingForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Расчёт тренировки";
-            Load += SalaryLoad;
+            Load += TrainingLoad;
             payrollMethod.ResumeLayout(false);
             accrualParameters.ResumeLayout(false);
             ResumeLayout(false);

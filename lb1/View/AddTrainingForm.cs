@@ -12,17 +12,23 @@ using Model;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
+/// <summary>
+/// Пространство имён View.
+/// </summary>
 namespace View
 {
+    /// <summary>
+    /// Создание своей тренировки.
+    /// </summary>
     public partial class AddTrainingForm : Form
     {
         /// <summary>
-        /// Делегат для добавления заработной платы.
+        /// Делегат для добавления тренировки.
         /// </summary>
         public EventHandler<EventArgs> AddingTrainings;
 
         /// <summary>
-        /// Переменная для словаря UserControl
+        /// Переменная для словаря UserControl.
         /// </summary>
         private readonly Dictionary<string, UserControl>
             _comboBoxToUserControl;
@@ -105,7 +111,7 @@ namespace View
         }
 
         /// <summary>
-        /// Кнопка закрыть.
+        /// Кнопка "Отмена".
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -119,11 +125,15 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SalaryLoad(object sender, EventArgs e)
+        private void TrainingLoad(object sender, EventArgs e)
         {
             swimCalcUserControl.Visible = false;
             runCalcUserControl.Visible = false;
             pressCalcUserControl.Visible = false;
+
+            // Установка выбора по умолчанию на "Бег"
+            comboTrainingSelection.SelectedIndex = 2;
+            ComboBoxSalarySelection(this, EventArgs.Empty);
         }
 
         private void payrollMethod_Enter(object sender, EventArgs e)
