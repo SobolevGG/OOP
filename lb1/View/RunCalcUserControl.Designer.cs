@@ -41,7 +41,7 @@ namespace View
             labelSalary = new Label();
             labelDaysInMonth = new Label();
             payrollMethod = new GroupBox();
-            comboTrainingSelection = new ComboBox();
+            comboBoxIntensity = new ComboBox();
             payrollMethod.SuspendLayout();
             SuspendLayout();
             // 
@@ -82,7 +82,7 @@ namespace View
             // payrollMethod
             // 
             payrollMethod.BackColor = Color.White;
-            payrollMethod.Controls.Add(comboTrainingSelection);
+            payrollMethod.Controls.Add(comboBoxIntensity);
             payrollMethod.Location = new Point(5, 57);
             payrollMethod.Margin = new Padding(3, 2, 3, 2);
             payrollMethod.Name = "payrollMethod";
@@ -92,14 +92,14 @@ namespace View
             payrollMethod.TabStop = false;
             payrollMethod.Text = "Стиль";
             // 
-            // comboTrainingSelection
+            // comboBoxIntensity
             // 
-            comboTrainingSelection.FormattingEnabled = true;
-            comboTrainingSelection.Location = new Point(17, 20);
-            comboTrainingSelection.Margin = new Padding(3, 2, 3, 2);
-            comboTrainingSelection.Name = "comboTrainingSelection";
-            comboTrainingSelection.Size = new Size(213, 23);
-            comboTrainingSelection.TabIndex = 9;
+            comboBoxIntensity.FormattingEnabled = true;
+            comboBoxIntensity.Location = new Point(17, 20);
+            comboBoxIntensity.Margin = new Padding(3, 2, 3, 2);
+            comboBoxIntensity.Name = "comboBoxIntensity";
+            comboBoxIntensity.Size = new Size(213, 23);
+            comboBoxIntensity.TabIndex = 9;
             // 
             // RunCalcUserControl
             // 
@@ -113,7 +113,7 @@ namespace View
             Controls.Add(payrollMethod);
             Margin = new Padding(3, 2, 3, 2);
             Name = "RunCalcUserControl";
-            Size = new Size(264, 113);
+            Size = new Size(264, 153);
             payrollMethod.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -125,6 +125,6 @@ namespace View
         private Label labelSalary;
         private Label labelDaysInMonth;
         private GroupBox payrollMethod;
-        private ComboBox comboTrainingSelection;
+        private ComboBox comboBoxIntensity;
     }
 }

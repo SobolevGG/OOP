@@ -25,6 +25,9 @@ namespace View
         public RunCalcUserControl()
         {
             InitializeComponent();
+            // Инициализация ComboBox с вариантами интенсивности
+            comboBoxIntensity.Items.AddRange(Enum.GetNames(typeof(Intensity)));
+            comboBoxIntensity.SelectedIndex = 0; // Установка начального выбора
         }
 
         /// <summary>
@@ -47,10 +50,26 @@ namespace View
             var runCalc = new RunCalc();
 
             runCalc.Weight = Checks.CheckNumber(textBoxRate.Text);
-            runCalc.Distance = 
-                Checks.CheckNumber(textBoxWorkingHours.Text);
-            // runCalc.Intensity =
-                Checks.CheckNumber(textBoxWorkingHours.Text);
+            runCalc.Distance = Checks.CheckNumber(textBoxWorkingHours.Text);
+
+            // Получение выбранной
+            // интенсивности из ComboBox
+            if (Enum.TryParse(comboBoxIntensity.SelectedItem.ToString(), 
+                out Intensity selectedIntensity))
+            {
+                runCalc.Intensity = selectedIntensity;
+            }
+            else
+            {
+                // Обработка ошибки, если не удалось
+                // преобразовать выбранную интенсивность
+                MessageBox.Show("Ошибка при получении " +
+                    "выбранной интенсивности.",
+                                "Ошибка!", 
+                                MessageBoxButtons.OK, 
+                                MessageBoxIcon.Error);
+            }
+
             return runCalc;
         }
     }
