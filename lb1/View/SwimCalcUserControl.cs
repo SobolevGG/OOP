@@ -38,7 +38,7 @@ namespace View
         }
 
         /// <summary>
-        /// Метод добавления зарплаты
+        /// Метод добавления тренировки.
         /// </summary>
         /// <returns></returns>
         public Model.TrainingCalc AddingCalc()

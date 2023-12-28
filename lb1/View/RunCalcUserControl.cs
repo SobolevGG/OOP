@@ -9,15 +9,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/// <summary>
+/// Пространство имён View.
+/// </summary>
 namespace View
 {
     /// <summary>
-    /// Добавление тарифной ставки
+    /// Создание своей тренировки - бег.
     /// </summary>
     public partial class RunCalcUserControl : UserControl, ITrainingCalc
     {
         /// <summary>
-        /// Добавлвение тарифной ставки
+        /// Появление полей для плавание.
         /// </summary>
         public RunCalcUserControl()
         {
@@ -25,7 +28,7 @@ namespace View
         }
 
         /// <summary>
-        /// Ввод чисел
+        /// Ручной ввод параметров.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -36,7 +39,7 @@ namespace View
         }
 
         /// <summary>
-        /// Метод добавления зарплаты
+        /// Метод добавления тренировки.
         /// </summary>
         /// <returns></returns>
         public Model.TrainingCalc AddingCalc()
