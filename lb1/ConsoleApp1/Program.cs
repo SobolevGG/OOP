@@ -24,7 +24,8 @@ namespace ConsoleApp1
 
             for (; ; )
             {
-                Console.Write("\n    Выберите вариант тренировки: ");
+                Console.Write("\n    Выберите " +
+                    "вариант тренировки: ");
                 var choice = Console.ReadLine();
                 switch (choice)
                 {
@@ -88,7 +89,8 @@ namespace ConsoleApp1
                 }),
                 new Action(() =>
                 {
-                    Console.Write("    -Интенсивность бега (1 - спринт, " +
+                    Console.Write("    -Интенсивность бега " +
+                        "(1 - спринт, " +
                         "2 - быстрый бег, 3 - умеренный бег, " +
                         "4 - лёгкий бег): ");
 
@@ -230,7 +232,8 @@ namespace ConsoleApp1
             string tmpValue = Console.ReadLine().Replace(".", ",");
 
             return !double.TryParse(tmpValue, out _)
-                ? throw new Exception("введено нечисловое значение!")
+                ? throw new Exception("введено " +
+                "нечисловое значение!")
                 : double.Parse(tmpValue);
         }
     }
