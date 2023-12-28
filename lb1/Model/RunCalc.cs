@@ -66,11 +66,9 @@ namespace Model
         /// Метод расчёта затраченных калорий при беге.
         /// </summary>
         /// <returns>Количество затраченных калорий при беге.</returns>
-        public override double CalculateCalories()
-        {
-            double metCoef = CalcMetCoef();
-            return (Weight * 3.5 * metCoef * Distance / 200);
-        }
+        public override double CalculateCalories =>
+            (Weight * 3.5 * CalcMetCoef() * Distance / 200);
+
 
         /// <summary>
         /// Метод получения коэффициента метаболизма

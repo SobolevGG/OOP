@@ -65,11 +65,9 @@ namespace Model
         /// Метод расчёта затраченных калорий при плавании.
         /// </summary>
         /// <returns>Количество затраченных калорий при плавании.</returns>
-        public override double CalculateCalories()
-        {
-            double metCoef = CalcMetCoef();
-            return (double)(Weight * 3.5 * metCoef * Distance / 200);
-        }
+        public override double CalculateCalories =>
+            (Weight * 3.5 * CalcMetCoef() * Distance / 200);
+
 
         /// <summary>
         /// Метод получения коэффициента метаболизма

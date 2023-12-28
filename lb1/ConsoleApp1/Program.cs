@@ -26,47 +26,6 @@ namespace ConsoleApp1
                 "\n    2 - Бег;" +
                 "\n    3 - Жим штанги;" +
                 "\n    4 - Отмена.");
-
-            for (; ; )
-            {
-                Console.Write("\n    Выберите " +
-                    "вариант тренировки: ");
-                var choice = Console.ReadLine();
-                switch (choice)
-                {
-                    case "1":
-                        {
-                            PrintConsole(SwimTraining());
-                            break;
-                        }
-
-                    case "2":
-                        {
-                            PrintConsole(RunTraining());
-                            break;
-                        }
-
-                    case "3":
-                        {
-                            PrintConsole(PressTraining());
-                            break;
-                        }
-
-                    case "4":
-                        {
-                            Environment.Exit(4);
-                            break;
-                        }
-
-                    default:
-                        {
-                            Console.WriteLine("\n    Некорректный " +
-                                "ввод! Попробуйте еще раз.");
-                        }
-
-                        break;
-                }
-            }
         }
 
         /// <summary>
@@ -254,17 +213,6 @@ namespace ConsoleApp1
                     }
                 }
             }
-        }
-
-        /// <summary>
-        /// Метод вывода результатов расчёта в консоль.
-        /// </summary>
-        /// <param name="value">Рассчитанные калории.</param>
-        public static void PrintConsole(TrainingCalc value)
-        {
-            Console.WriteLine($"    Предположительное количество " +
-                $"сжигаемых калорий, ккал: " +
-                $"{Math.Round(value.CalculateCalories(), 3)}.");
         }
 
         /// <summary>

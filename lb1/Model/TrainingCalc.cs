@@ -11,7 +11,7 @@ namespace Model
         /// <summary>
         /// Абстрактный метод расчета калорий.
         /// </summary>
-        public abstract double CalculateCalories();
+        public abstract double CalculateCalories { get; }
 
         /// <summary>
         /// Вес в килограммах.

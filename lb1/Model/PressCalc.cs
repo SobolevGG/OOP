@@ -86,9 +86,7 @@ namespace Model
         /// </summary>
         /// <returns>Количество затраченных калорий
         /// при жиме штанги.</returns>
-        public override double CalculateCalories()
-        {
-            return (Weight * 5 * Repetitions / 150);
-        }
+        public override double CalculateCalories =>
+            (Weight * 5 * Repetitions / 150);
     }
 }
