@@ -37,7 +37,7 @@ namespace View
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
             MaximizeBox = false;
-            Size = new Size(300, 271);
+            Size = new Size(300, 296);
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
             buttonOk.Enabled = false;

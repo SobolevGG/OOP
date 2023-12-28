@@ -83,11 +83,11 @@ namespace View
             // 
             payrollMethod.BackColor = Color.White;
             payrollMethod.Controls.Add(comboBoxIntensity);
-            payrollMethod.Location = new Point(5, 57);
+            payrollMethod.Location = new Point(5, 62);
             payrollMethod.Margin = new Padding(3, 2, 3, 2);
             payrollMethod.Name = "payrollMethod";
             payrollMethod.Padding = new Padding(3, 2, 3, 2);
-            payrollMethod.Size = new Size(254, 55);
+            payrollMethod.Size = new Size(246, 55);
             payrollMethod.TabIndex = 8;
             payrollMethod.TabStop = false;
             payrollMethod.Text = "Стиль";
@@ -95,10 +95,10 @@ namespace View
             // comboBoxIntensity
             // 
             comboBoxIntensity.FormattingEnabled = true;
-            comboBoxIntensity.Location = new Point(17, 20);
+            comboBoxIntensity.Location = new Point(21, 20);
             comboBoxIntensity.Margin = new Padding(3, 2, 3, 2);
             comboBoxIntensity.Name = "comboBoxIntensity";
-            comboBoxIntensity.Size = new Size(213, 23);
+            comboBoxIntensity.Size = new Size(205, 23);
             comboBoxIntensity.TabIndex = 9;
             // 
             // RunCalcUserControl
@@ -113,7 +113,7 @@ namespace View
             Controls.Add(payrollMethod);
             Margin = new Padding(3, 2, 3, 2);
             Name = "RunCalcUserControl";
-            Size = new Size(264, 153);
+            Size = new Size(256, 153);
             payrollMethod.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
