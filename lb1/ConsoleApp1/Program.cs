@@ -236,10 +236,14 @@ namespace ConsoleApp1
                 {
                     if (exception.GetType()
                         == typeof(IndexOutOfRangeException)
-                        || exception.GetType() == typeof(FormatException)
-                        || exception.GetType() == typeof(ArgumentException)
-                        || exception.GetType() == typeof(ArgumentNullException)
-                        || exception.GetType() == typeof(Exception))
+                        || exception.GetType()
+                        == typeof(FormatException)
+                        || exception.GetType()
+                        == typeof(ArgumentException)
+                        || exception.GetType()
+                        == typeof(ArgumentNullException)
+                        || exception.GetType()
+                        == typeof(Exception))
                     {
                         Console.WriteLine($"    Обнаружена ошибка: " +
                             $"{exception.Message}");

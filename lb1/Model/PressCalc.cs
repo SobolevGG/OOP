@@ -84,7 +84,8 @@ namespace Model
         /// <summary>
         /// Метод расчёта затраченных калорий при жиме штанги.
         /// </summary>
-        /// <returns>Количество затраченных калорий при жиме штанги.</returns>
+        /// <returns>Количество затраченных калорий
+        /// при жиме штанги.</returns>
         public override double CalculateCalories()
         {
             return (Weight * 5 * Repetitions / 150);

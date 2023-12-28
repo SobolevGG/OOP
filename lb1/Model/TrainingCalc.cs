@@ -1,3 +1,6 @@
+/// <summary>
+/// Пространство имён Model.
+/// </summary>
 namespace Model
 {
     /// <summary>
