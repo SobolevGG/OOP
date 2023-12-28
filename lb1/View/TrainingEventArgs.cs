@@ -24,6 +24,6 @@ namespace View
         /// Конструктор для передачи значения.
         /// </summary>
         /// <param name="sendingValue">Передача.</param>
-        public TrainingEventArgs(Model.TrainingCalc Value) => Value = Value;
+        public TrainingEventArgs(Model.TrainingCalc value) => Value = value;
     }
 }
