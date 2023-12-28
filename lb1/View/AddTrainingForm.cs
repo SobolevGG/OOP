@@ -37,7 +37,7 @@ namespace View
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
             MaximizeBox = false;
-            Size = new Size(400, 400);
+            Size = new Size(300, 271);
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
             buttonOk.Enabled = false;
@@ -97,16 +97,10 @@ namespace View
                 AddingTrainings?.Invoke(this, wageEventArgs);
                 DialogResult = DialogResult.OK;
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);             
-            }
-            catch
-            {
-                MessageBox.Show("Введено некорректное значение!\n" +
-                   "Введите одно положительное целое или десятичное число" +
-                   " в каждое текстовое поле.",
-                   "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Обратите внимание: {ex.Message}",
+                   "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

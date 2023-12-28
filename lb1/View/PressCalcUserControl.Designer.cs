@@ -1,4 +1,7 @@
-﻿namespace View
+﻿/// <summary> 
+/// Пространство имён View.
+/// </summary>
+namespace View
 {
     partial class PressCalcUserControl
     {
@@ -10,7 +13,9 @@
         /// <summary> 
         /// Освободить все используемые ресурсы.
         /// </summary>
-        /// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
+        /// <param name="disposing">true - если управляемые 
+        /// ресурсы должны быть освобождены; 
+        /// иначе - false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -38,7 +43,7 @@
             // labelHourlyWageRate
             // 
             labelHourlyWageRate.AutoSize = true;
-            labelHourlyWageRate.Location = new Point(17, 14);
+            labelHourlyWageRate.Location = new Point(11, 9);
             labelHourlyWageRate.Name = "labelHourlyWageRate";
             labelHourlyWageRate.Size = new Size(51, 15);
             labelHourlyWageRate.TabIndex = 0;
@@ -49,7 +54,7 @@
             // labelTimeHourlyRate
             // 
             labelTimeHourlyRate.AutoSize = true;
-            labelTimeHourlyRate.Location = new Point(16, 40);
+            labelTimeHourlyRate.Location = new Point(11, 36);
             labelTimeHourlyRate.Name = "labelTimeHourlyRate";
             labelTimeHourlyRate.Size = new Size(60, 15);
             labelTimeHourlyRate.TabIndex = 1;
@@ -58,7 +63,7 @@
             // 
             // textBoxWeight
             // 
-            textBoxWeight.Location = new Point(88, 10);
+            textBoxWeight.Location = new Point(88, 5);
             textBoxWeight.Margin = new Padding(3, 2, 3, 2);
             textBoxWeight.Name = "textBoxWeight";
             textBoxWeight.Size = new Size(53, 23);
@@ -66,7 +71,7 @@
             // 
             // textBoxRepetitions
             // 
-            textBoxRepetitions.Location = new Point(88, 37);
+            textBoxRepetitions.Location = new Point(88, 32);
             textBoxRepetitions.Margin = new Padding(3, 2, 3, 2);
             textBoxRepetitions.Name = "textBoxRepetitions";
             textBoxRepetitions.Size = new Size(53, 23);
@@ -75,7 +80,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(17, 62);
+            label1.Location = new Point(11, 63);
             label1.Name = "label1";
             label1.Size = new Size(112, 15);
             label1.TabIndex = 4;
@@ -92,7 +97,7 @@
             Controls.Add(labelHourlyWageRate);
             Margin = new Padding(3, 2, 3, 2);
             Name = "PressCalcUserControl";
-            Size = new Size(167, 103);
+            Size = new Size(264, 95);
             ResumeLayout(false);
             PerformLayout();
         }

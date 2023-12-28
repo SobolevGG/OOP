@@ -40,7 +40,7 @@ namespace View
             // 
             // textBoxSalary
             // 
-            textBoxSalary.Location = new Point(120, 13);
+            textBoxSalary.Location = new Point(120, 5);
             textBoxSalary.Margin = new Padding(3, 2, 3, 2);
             textBoxSalary.Name = "textBoxSalary";
             textBoxSalary.Size = new Size(60, 23);
@@ -49,7 +49,7 @@ namespace View
             // labelSalary
             // 
             labelSalary.AutoSize = true;
-            labelSalary.Location = new Point(11, 16);
+            labelSalary.Location = new Point(11, 9);
             labelSalary.Name = "labelSalary";
             labelSalary.Size = new Size(72, 15);
             labelSalary.TabIndex = 1;
@@ -59,7 +59,7 @@ namespace View
             // labelDaysInMonth
             // 
             labelDaysInMonth.AutoSize = true;
-            labelDaysInMonth.Location = new Point(11, 43);
+            labelDaysInMonth.Location = new Point(11, 36);
             labelDaysInMonth.Name = "labelDaysInMonth";
             labelDaysInMonth.Size = new Size(94, 15);
             labelDaysInMonth.TabIndex = 2;
@@ -69,7 +69,7 @@ namespace View
             // labelWorkingDays
             // 
             labelWorkingDays.AutoSize = true;
-            labelWorkingDays.Location = new Point(11, 70);
+            labelWorkingDays.Location = new Point(11, 63);
             labelWorkingDays.Name = "labelWorkingDays";
             labelWorkingDays.Size = new Size(94, 15);
             labelWorkingDays.TabIndex = 3;
@@ -78,7 +78,7 @@ namespace View
             // 
             // textBoxDaysInMonth
             // 
-            textBoxDaysInMonth.Location = new Point(120, 40);
+            textBoxDaysInMonth.Location = new Point(120, 32);
             textBoxDaysInMonth.Margin = new Padding(3, 2, 3, 2);
             textBoxDaysInMonth.Name = "textBoxDaysInMonth";
             textBoxDaysInMonth.Size = new Size(60, 23);
@@ -86,7 +86,7 @@ namespace View
             // 
             // textBoxWorkingDays
             // 
-            textBoxWorkingDays.Location = new Point(120, 67);
+            textBoxWorkingDays.Location = new Point(120, 59);
             textBoxWorkingDays.Margin = new Padding(3, 2, 3, 2);
             textBoxWorkingDays.Name = "textBoxWorkingDays";
             textBoxWorkingDays.Size = new Size(60, 23);

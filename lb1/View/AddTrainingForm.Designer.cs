@@ -1,16 +1,21 @@
-﻿namespace View
+﻿/// <summary> 
+/// Пространство имён View.
+/// </summary>
+namespace View
 {
     partial class AddTrainingForm
     {
         /// <summary>
-        /// Required designer variable.
+        /// Обязательная переменная конструктора.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// Освободить все используемые ресурсы.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">true - если управляемые 
+        /// ресурсы должны быть освобождены;
+        /// иначе - false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -34,9 +39,9 @@
             accrualParameters = new GroupBox();
             buttonClose = new Button();
             buttonOk = new Button();
-            swimCalcUserControl = new SwimCalcUserControl();
             runCalcUserControl = new RunCalcUserControl();
             pressCalcWageRateUserControl = new PressCalcUserControl();
+            swimCalcUserControl = new SwimCalcUserControl();
             payrollMethod.SuspendLayout();
             accrualParameters.SuspendLayout();
             SuspendLayout();
@@ -49,7 +54,7 @@
             payrollMethod.Margin = new Padding(3, 2, 3, 2);
             payrollMethod.Name = "payrollMethod";
             payrollMethod.Padding = new Padding(3, 2, 3, 2);
-            payrollMethod.Size = new Size(269, 55);
+            payrollMethod.Size = new Size(264, 55);
             payrollMethod.TabIndex = 7;
             payrollMethod.TabStop = false;
             payrollMethod.Text = "Тип тренировки";
@@ -61,7 +66,7 @@
             comboTrainingSelection.Location = new Point(17, 20);
             comboTrainingSelection.Margin = new Padding(3, 2, 3, 2);
             comboTrainingSelection.Name = "comboTrainingSelection";
-            comboTrainingSelection.Size = new Size(236, 23);
+            comboTrainingSelection.Size = new Size(213, 23);
             comboTrainingSelection.TabIndex = 9;
             comboTrainingSelection.SelectedIndexChanged += ComboBoxSalarySelection;
             // 
@@ -70,14 +75,13 @@
             accrualParameters.BackColor = Color.White;
             accrualParameters.Controls.Add(buttonClose);
             accrualParameters.Controls.Add(buttonOk);
-            accrualParameters.Controls.Add(swimCalcUserControl);
             accrualParameters.Controls.Add(runCalcUserControl);
             accrualParameters.Controls.Add(pressCalcWageRateUserControl);
             accrualParameters.Location = new Point(8, 62);
             accrualParameters.Margin = new Padding(3, 2, 3, 2);
             accrualParameters.Name = "accrualParameters";
             accrualParameters.Padding = new Padding(3, 2, 3, 2);
-            accrualParameters.Size = new Size(269, 150);
+            accrualParameters.Size = new Size(264, 159);
             accrualParameters.TabIndex = 10;
             accrualParameters.TabStop = false;
             accrualParameters.Text = "Параметры начисления";
@@ -85,7 +89,7 @@
             // 
             // buttonClose
             // 
-            buttonClose.Location = new Point(137, 121);
+            buttonClose.Location = new Point(123, 121);
             buttonClose.Margin = new Padding(3, 2, 3, 2);
             buttonClose.Name = "buttonClose";
             buttonClose.Size = new Size(79, 25);
@@ -105,22 +109,12 @@
             buttonOk.UseVisualStyleBackColor = true;
             buttonOk.Click += ButtonOk;
             // 
-            // swimCalcUserControl
-            // 
-            swimCalcUserControl.BackColor = Color.White;
-            swimCalcUserControl.ForeColor = SystemColors.ControlText;
-            swimCalcUserControl.Location = new Point(5, 20);
-            swimCalcUserControl.Margin = new Padding(3, 2, 3, 2);
-            swimCalcUserControl.Name = "swimCalcUserControl";
-            swimCalcUserControl.Size = new Size(259, 97);
-            swimCalcUserControl.TabIndex = 1;
-            // 
             // runCalcUserControl
             // 
-            runCalcUserControl.Location = new Point(5, 30);
+            runCalcUserControl.Location = new Point(5, 20);
             runCalcUserControl.Margin = new Padding(3, 2, 3, 2);
             runCalcUserControl.Name = "runCalcUserControl";
-            runCalcUserControl.Size = new Size(259, 87);
+            runCalcUserControl.Size = new Size(253, 97);
             runCalcUserControl.TabIndex = 2;
             runCalcUserControl.Load += wageRateUserControl1_Load;
             // 
@@ -130,8 +124,18 @@
             pressCalcWageRateUserControl.Location = new Point(5, 20);
             pressCalcWageRateUserControl.Margin = new Padding(3, 2, 3, 2);
             pressCalcWageRateUserControl.Name = "pressCalcWageRateUserControl";
-            pressCalcWageRateUserControl.Size = new Size(264, 68);
+            pressCalcWageRateUserControl.Size = new Size(264, 97);
             pressCalcWageRateUserControl.TabIndex = 0;
+            // 
+            // swimCalcUserControl
+            // 
+            swimCalcUserControl.BackColor = Color.White;
+            swimCalcUserControl.ForeColor = SystemColors.ControlText;
+            swimCalcUserControl.Location = new Point(13, 82);
+            swimCalcUserControl.Margin = new Padding(3, 2, 3, 2);
+            swimCalcUserControl.Name = "swimCalcUserControl";
+            swimCalcUserControl.Size = new Size(208, 97);
+            swimCalcUserControl.TabIndex = 11;
             // 
             // AddTrainingForm
             // 
@@ -140,6 +144,7 @@
             BackColor = Color.White;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(284, 232);
+            Controls.Add(swimCalcUserControl);
             Controls.Add(accrualParameters);
             Controls.Add(payrollMethod);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -162,8 +167,8 @@
         private ComboBox comboTrainingSelection;
         private Button buttonOk;
         private Button buttonClose;
-        private SwimCalcUserControl swimCalcUserControl;
         private RunCalcUserControl runCalcUserControl;
         private PressCalcUserControl pressCalcWageRateUserControl;
+        private SwimCalcUserControl swimCalcUserControl;
     }
 }
