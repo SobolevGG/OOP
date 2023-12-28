@@ -38,6 +38,9 @@ namespace View
         /// </summary>
         private UserControl _userControl;
 
+        /// <summary>
+        /// Метод создания тренировки.
+        /// </summary>
         public AddTrainingForm()
         {
             InitializeComponent();

@@ -91,6 +91,7 @@ namespace View
                 DataGridViewTriState.True;
             dataGridView.SelectionMode =
                 DataGridViewSelectionMode.FullRowSelect;
+
         }
 
         /// <summary>
