@@ -58,7 +58,7 @@ namespace View
             groupBoxСalculator.Margin = new Padding(3, 2, 3, 2);
             groupBoxСalculator.Name = "groupBoxСalculator";
             groupBoxСalculator.Padding = new Padding(3, 2, 3, 2);
-            groupBoxСalculator.Size = new Size(825, 293);
+            groupBoxСalculator.Size = new Size(532, 293);
             groupBoxСalculator.TabIndex = 0;
             groupBoxСalculator.TabStop = false;
             groupBoxСalculator.Text = "Программа тренировок и сжигаемые калории";
@@ -70,17 +70,17 @@ namespace View
             dataGridViewSpace.AllowUserToResizeColumns = false;
             dataGridViewSpace.AllowUserToResizeRows = false;
             dataGridViewSpace.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewSpace.Location = new Point(5, 20);
+            dataGridViewSpace.Location = new Point(7, 20);
             dataGridViewSpace.Margin = new Padding(3, 2, 3, 2);
             dataGridViewSpace.Name = "dataGridViewSpace";
             dataGridViewSpace.RowHeadersWidth = 51;
             dataGridViewSpace.RowTemplate.Height = 25;
-            dataGridViewSpace.Size = new Size(815, 269);
+            dataGridViewSpace.Size = new Size(517, 269);
             dataGridViewSpace.TabIndex = 1;
             // 
             // buttonAdd
             // 
-            buttonAdd.Location = new Point(692, 336);
+            buttonAdd.Location = new Point(361, 380);
             buttonAdd.Margin = new Padding(3, 2, 3, 2);
             buttonAdd.Name = "buttonAdd";
             buttonAdd.Size = new Size(116, 38);
@@ -91,7 +91,7 @@ namespace View
             // 
             // buttonDelete
             // 
-            buttonDelete.Location = new Point(204, 337);
+            buttonDelete.Location = new Point(239, 337);
             buttonDelete.Margin = new Padding(3, 2, 3, 2);
             buttonDelete.Name = "buttonDelete";
             buttonDelete.Size = new Size(116, 38);
@@ -102,17 +102,17 @@ namespace View
             // 
             // buttonSearch
             // 
-            buttonSearch.Location = new Point(448, 337);
+            buttonSearch.Location = new Point(117, 381);
             buttonSearch.Name = "buttonSearch";
             buttonSearch.Size = new Size(116, 38);
             buttonSearch.TabIndex = 4;
-            buttonSearch.Text = "Фильтр";
+            buttonSearch.Text = "Фильтр тренировок";
             buttonSearch.UseVisualStyleBackColor = true;
             buttonSearch.Click += ButtonSearch_Click;
             // 
             // buttonReset
             // 
-            buttonReset.Location = new Point(326, 337);
+            buttonReset.Location = new Point(361, 337);
             buttonReset.Margin = new Padding(3, 2, 3, 2);
             buttonReset.Name = "buttonReset";
             buttonReset.Size = new Size(116, 38);
@@ -123,17 +123,17 @@ namespace View
             // 
             // buttonRandom
             // 
-            buttonRandom.Location = new Point(82, 337);
+            buttonRandom.Location = new Point(117, 337);
             buttonRandom.Name = "buttonRandom";
             buttonRandom.Size = new Size(116, 38);
             buttonRandom.TabIndex = 6;
-            buttonRandom.Text = "Проверка";
+            buttonRandom.Text = "Проверка тренировок";
             buttonRandom.UseVisualStyleBackColor = true;
             buttonRandom.Click += ButtonRandom_Click;
             // 
             // buttonCleanFilter
             // 
-            buttonCleanFilter.Location = new Point(570, 336);
+            buttonCleanFilter.Location = new Point(239, 380);
             buttonCleanFilter.Margin = new Padding(3, 2, 3, 2);
             buttonCleanFilter.Name = "buttonCleanFilter";
             buttonCleanFilter.Size = new Size(116, 38);
@@ -172,18 +172,18 @@ namespace View
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(890, 25);
+            toolStrip1.Size = new Size(599, 25);
             toolStrip1.TabIndex = 8;
             toolStrip1.Text = "toolStrip1";
             // 
-            // MainForm
+            // TrainingCalc
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(890, 474);
+            ClientSize = new Size(599, 438);
             Controls.Add(toolStrip1);
             Controls.Add(buttonCleanFilter);
             Controls.Add(buttonRandom);
@@ -195,7 +195,7 @@ namespace View
             ForeColor = SystemColors.ControlText;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
-            Name = "MainForm";
+            Name = "TrainingCalc";
             Text = "Калькулятор калорий";
             Load += MainForm_Load;
             groupBoxСalculator.ResumeLayout(false);
