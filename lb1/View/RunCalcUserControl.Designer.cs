@@ -1,5 +1,11 @@
-﻿namespace View
+﻿/// <summary> 
+/// Пространство имён View.
+/// </summary>
+namespace View
 {
+    /// <summary>
+    /// Класс для пользовательского ввода.
+    /// </summary>
     partial class RunCalcUserControl
     {
         /// <summary> 
@@ -10,7 +16,9 @@
         /// <summary> 
         /// Освободить все используемые ресурсы.
         /// </summary>
-        /// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
+        /// <param name="disposing">true - если управляемые 
+        /// ресурсы должны быть освобождены; 
+        /// иначе - false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))

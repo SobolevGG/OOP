@@ -3,6 +3,9 @@
 /// </summary>
 namespace View
 {
+    /// <summary>
+    /// Класс для пользовательского ввода.
+    /// </summary>
     partial class PressCalcUserControl
     {
         /// <summary> 
