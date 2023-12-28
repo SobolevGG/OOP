@@ -91,7 +91,8 @@ namespace View
                 DataGridViewTriState.True;
             dataGridView.SelectionMode =
                 DataGridViewSelectionMode.FullRowSelect;
-
+            dataGridView.Columns.Remove("CalculateCalories");
+            dataGridView.Columns.Remove("Weight");
         }
 
         /// <summary>
