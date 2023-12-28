@@ -1,3 +1,8 @@
+// Формулы расчёта и MET:
+// https://en.wikipedia.org/wiki/Metabolic_equivalent_of_task
+// https://calculator.academy/mets-metabolic-equivalent-calculator/
+// https://calculator.academy/bench-press-calories-calculator/
+
 using Model;
 
 /// <summary>
@@ -43,7 +48,7 @@ namespace ConsoleApp1
 
                     case "3":
                         {
-                            // PrintConsole(WagesAtTheTariffRate());
+                            PrintConsole(PressTraining());
                             break;
                         }
 
@@ -176,6 +181,41 @@ namespace ConsoleApp1
             };
             actions.ForEach(ShowException);
             return swimCalc;
+        }
+
+        /// <summary>
+        /// Метод расчёта затрачиваемых калорий для жима штанги.
+        /// </summary>
+        /// <returns>Количество сжигаемых калорий.</returns>
+        /// <exception cref="IndexOutOfRangeException">Исключение
+        /// на недопустимый ввод.</exception>
+        public static PressCalc PressTraining()
+        {
+            Console.WriteLine("\n    Вы выбрали жим штанги, " +
+                "перейдём к вводу данных:");
+            var pressCalc = new PressCalc();
+            var actions = new List<Action>()
+            {
+                new Action(() =>
+                {
+                    Console.Write("    -Поднимаемый вес, кг: ");
+                    pressCalc.Weight = CheckInput();
+                }),
+                new Action(() =>
+                {
+                    Console.Write("    -Количество повторений: ");
+                    if (!int.TryParse(Console.ReadLine(),
+                        out int tmpRepetitions))
+                    {
+                        throw new Exception("количество повторений " +
+                            "должно быть задано целым числом!");
+                    }
+
+                    pressCalc.Repetitions = tmpRepetitions;
+                }),
+            };
+            actions.ForEach(ShowException);
+            return pressCalc;
         }
 
         /// <summary>

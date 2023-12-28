@@ -11,7 +11,7 @@ namespace Model
         private double _distance;
 
         /// <summary>
-        /// Проверка пробегаемого расстояния.
+        /// Публичный метод доступа к пробегаемому расстоянию.
         /// </summary>
         public double Distance
         {
@@ -74,7 +74,7 @@ namespace Model
         /// в зависимости от интенсивности бега.
         /// </summary>
         /// <returns>Коэффициент метаболизма.</returns>
-        public override double CalcMetCoef()
+        public double CalcMetCoef()
         {
             double metCoef = 10;
             switch (Intensity)

@@ -11,19 +11,14 @@ namespace Model
         public abstract double CalculateCalories();
 
         /// <summary>
-        /// Абстрактный метод расчета коэффициента метаболизма.
-        /// </summary>
-        public abstract double CalcMetCoef();
-
-        /// <summary>
-        /// Вес человека в килограммах.
+        /// Вес в килограммах.
         /// </summary>
         protected double _weight;
 
         /// <summary>
         /// Публичный метод для доступа к весу человека.
         /// </summary>
-        public double Weight
+        public virtual double Weight
         {
             get => _weight;
 
@@ -40,7 +35,7 @@ namespace Model
         /// <param name="value">Вес человека.</param>
         /// <exception cref="ArgumentException">Исключение
         /// по некорректному значению веса.</exception>
-        public void CheckWeight(double value)
+        public virtual void CheckWeight(double value)
         {
             CheckNullEmpty(value.ToString());
             if (value < 3 || value > 500)

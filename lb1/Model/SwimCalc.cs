@@ -73,7 +73,7 @@ namespace Model
         /// в зависимости от стиля плавания.
         /// </summary>
         /// <returns>Коэффициента метаболизма.</returns>
-        public override double CalcMetCoef()
+        public double CalcMetCoef()
         {
             double metCoef = 10;
             switch (Style)
