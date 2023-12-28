@@ -32,7 +32,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void LabelHourlyWageRate_KeyPress(object sender, 
+        private void LabelHourlyWageRate_KeyPress(object sender,
             KeyPressEventArgs e)
         {
             Checks.CheckInput(e);
@@ -45,7 +45,7 @@ namespace View
         public Model.TrainingCalc AddingCalc()
         {
             var pressCalc = new PressCalc();
-            pressCalc.Weight = 
+            pressCalc.Weight =
                 Checks.CheckNumber(textBoxWeight.Text);
             pressCalc.Repetitions =
                 Checks.CheckNumber(textBoxRepetitions.Text);

@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 /// <summary>
 /// Пространство имён Model.
 /// </summary>
@@ -8,6 +10,24 @@ namespace Model
     /// </summary>
     public class PressCalc : TrainingCalc
     {
+        /// <summary>
+        /// Тип тренировки - жим штанги.
+        /// </summary>
+        public override string TrainingType => "Жим штанги";
+
+        /// <summary>
+        /// Программа тренировки для расчёта калорий.
+        /// </summary>
+        [DisplayName("Программа тренировки")]
+        public override string Params
+        {
+            get
+            {
+                return $"Вес с учётом грифа, кг: {Weight};\n " +
+                    $"Количество повторений: {Repetitions}";
+            }
+        }
+
         /// <summary>
         /// Публичный метод для доступа к поднимаемому весу.
         /// </summary>
@@ -26,19 +46,19 @@ namespace Model
         /// Метод проверки поднимаемого веса.
         /// </summary>
         /// <param name="value">Поднимаемый вес.</param>
-        /// <exception cref="ArgumentException">Исключение
+        /// <exception cref="Exception">Исключение
         /// по некорректному значению веса.</exception>
         public override void CheckWeight(double value)
         {
             CheckNullEmpty(value.ToString());
             if (value <= 0)
             {
-                throw new ArgumentException("величина веса " +
+                throw new Exception("величина веса " +
                     "должна быть положительной!");
             }
             if (value > 1000)
             {
-                throw new ArgumentException("величина веса " +
+                throw new Exception("величина веса " +
                     " не должна превышать 1000 кг!");
             }
         }
@@ -66,7 +86,7 @@ namespace Model
         /// Метод проверки количества повторений.
         /// </summary>
         /// <param name="value">Количество повторений.</param>
-        /// <exception cref="ArgumentException">Исключение
+        /// <exception cref="Exception">Исключение
         /// по некорректному значению
         /// количества повторений.</exception>
         public void CheckRepetitions(int value)
@@ -75,7 +95,7 @@ namespace Model
 
             if (value < 0)
             {
-                throw new ArgumentException(
+                throw new Exception(
                     "количество повторений должно быть " +
                     "задано неотрицательной величиной!");
             }

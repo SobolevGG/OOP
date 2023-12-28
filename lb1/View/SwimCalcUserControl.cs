@@ -9,15 +9,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/// <summary>
+/// Пространство имён View.
+/// </summary>
 namespace View
 {
     /// <summary>
-    /// Добавление оклада
+    /// Создание своей тренировки - плавание.
     /// </summary>
     public partial class SwimCalcUserControl : UserControl, ITrainingCalc
     {
         /// <summary>
-        /// Добавление оклада
+        /// Появление полей для плавание.
         /// </summary>
         public SwimCalcUserControl()
         {
@@ -25,7 +28,7 @@ namespace View
         }
 
         /// <summary>
-        /// Ввод чисел
+        /// Ручной ввод параметров.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

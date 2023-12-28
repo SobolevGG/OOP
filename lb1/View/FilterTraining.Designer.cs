@@ -1,0 +1,164 @@
+﻿namespace View
+{
+    partial class FilterTraining
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilterTraining));
+            groupBox1 = new GroupBox();
+            label1 = new Label();
+            textBoxWage = new TextBox();
+            checkBoxInput = new CheckBox();
+            checkBoxSwimCalc = new CheckBox();
+            checkBoxRunCalc = new CheckBox();
+            checkBoxPressCalc = new CheckBox();
+            buttonSearch = new Button();
+            groupBox1.SuspendLayout();
+            SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(textBoxWage);
+            groupBox1.Controls.Add(checkBoxInput);
+            groupBox1.Controls.Add(checkBoxSwimCalc);
+            groupBox1.Controls.Add(checkBoxRunCalc);
+            groupBox1.Controls.Add(checkBoxPressCalc);
+            groupBox1.Location = new Point(10, 9);
+            groupBox1.Margin = new Padding(3, 2, 3, 2);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new Padding(3, 2, 3, 2);
+            groupBox1.Size = new Size(394, 175);
+            groupBox1.TabIndex = 0;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Параметры фильтрации";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(339, 146);
+            label1.Name = "label1";
+            label1.Size = new Size(47, 15);
+            label1.TabIndex = 5;
+            label1.Text = "рублей";
+            // 
+            // textBoxWage
+            // 
+            textBoxWage.Location = new Point(211, 140);
+            textBoxWage.Margin = new Padding(3, 2, 3, 2);
+            textBoxWage.Name = "textBoxWage";
+            textBoxWage.Size = new Size(110, 23);
+            textBoxWage.TabIndex = 4;
+            textBoxWage.TextChanged += TextBoxWage_TextChanged;
+            textBoxWage.KeyPress += TextBoxWage_KeyPress;
+            // 
+            // checkBoxInput
+            // 
+            checkBoxInput.AutoSize = true;
+            checkBoxInput.Location = new Point(12, 140);
+            checkBoxInput.Margin = new Padding(3, 2, 3, 2);
+            checkBoxInput.Name = "checkBoxInput";
+            checkBoxInput.Size = new Size(176, 19);
+            checkBoxInput.TabIndex = 3;
+            checkBoxInput.Text = "Ввод необходимой суммы ";
+            checkBoxInput.UseVisualStyleBackColor = true;
+            checkBoxInput.CheckedChanged += CheckBoxInput_CheckedChanged;
+            // 
+            // checkBoxSwimCalc
+            // 
+            checkBoxSwimCalc.AutoSize = true;
+            checkBoxSwimCalc.Location = new Point(12, 101);
+            checkBoxSwimCalc.Margin = new Padding(3, 2, 3, 2);
+            checkBoxSwimCalc.Name = "checkBoxSwimCalc";
+            checkBoxSwimCalc.Size = new Size(60, 19);
+            checkBoxSwimCalc.TabIndex = 2;
+            checkBoxSwimCalc.Text = "Оклад";
+            checkBoxSwimCalc.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRunCalc
+            // 
+            checkBoxRunCalc.AutoSize = true;
+            checkBoxRunCalc.Location = new Point(12, 63);
+            checkBoxRunCalc.Margin = new Padding(3, 2, 3, 2);
+            checkBoxRunCalc.Name = "checkBoxRunCalc";
+            checkBoxRunCalc.Size = new Size(118, 19);
+            checkBoxRunCalc.TabIndex = 1;
+            checkBoxRunCalc.Text = "Тарифная ставка";
+            checkBoxRunCalc.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxPressCalc
+            // 
+            checkBoxPressCalc.AutoSize = true;
+            checkBoxPressCalc.Location = new Point(12, 29);
+            checkBoxPressCalc.Margin = new Padding(3, 2, 3, 2);
+            checkBoxPressCalc.Name = "checkBoxPressCalc";
+            checkBoxPressCalc.Size = new Size(165, 19);
+            checkBoxPressCalc.TabIndex = 0;
+            checkBoxPressCalc.Text = "Часовая тарифная ставка";
+            checkBoxPressCalc.UseVisualStyleBackColor = true;
+            // 
+            // buttonSearch
+            // 
+            buttonSearch.Location = new Point(311, 196);
+            buttonSearch.Margin = new Padding(3, 2, 3, 2);
+            buttonSearch.Name = "buttonSearch";
+            buttonSearch.Size = new Size(93, 22);
+            buttonSearch.TabIndex = 1;
+            buttonSearch.Text = "Найти";
+            buttonSearch.UseVisualStyleBackColor = true;
+            buttonSearch.Click += ButtonSearch_Click;
+            // 
+            // FilterTraining
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.Выбор_трени;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(414, 226);
+            Controls.Add(buttonSearch);
+            Controls.Add(groupBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 2, 3, 2);
+            Name = "FilterTraining";
+            Text = "Фильтр";
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ResumeLayout(false);
+        }
+
+        #endregion
+
+        private GroupBox groupBox1;
+        private Label label1;
+        private TextBox textBoxWage;
+        private CheckBox checkBoxInput;
+        private CheckBox checkBoxSwimCalc;
+        private CheckBox checkBoxRunCalc;
+        private CheckBox checkBoxPressCalc;
+        private Button buttonSearch;
+    }
+}

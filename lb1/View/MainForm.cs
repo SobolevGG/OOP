@@ -17,23 +17,21 @@ namespace View
         public MainForm()
         {
             InitializeComponent();
-            BackColor = Color.SeaGreen;
             StartPosition = FormStartPosition.CenterScreen;
             MaximizeBox = false;
-            Size = new Size(830, 410);
+            Size = new Size(906, 513);
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
 
         /// <summary>
         /// Список зарплат
         /// </summary>
-        private BindingList<Model.TrainingCalc> _wageList = new();
+        private BindingList<Model.TrainingCalc> _trainingList = new();
 
         /// <summary>
         /// Лист отфильтрованных фигур
         /// </summary>
-        private BindingList<Model.TrainingCalc> _listWagesFilter = new();
-
+        private BindingList<Model.TrainingCalc> _listTrainingsFilter = new();
 
         /// <summary>
         /// Для файлов 
@@ -48,8 +46,8 @@ namespace View
         /// <param name="e"></param>
         private void MainForm_Load(object sender, EventArgs e)
         {
-            _wageList = new BindingList<Model.TrainingCalc>();
-            CreateTable(_wageList, dataGridViewSpace);
+            _trainingList = new BindingList<Model.TrainingCalc>();
+            CreateTable(_trainingList, dataGridViewSpace);
         }
 
         /// <summary>
@@ -59,26 +57,25 @@ namespace View
         /// <param name="e"></param>
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            var addWageForm = new AddWageForm();
+            var addTrainingForm = new AddTrainingForm();
 
-            addWageForm.AddingWages += (sender, wageEventArgs) =>
+            addTrainingForm.AddingTrainings += (sender, trainingEventArgs) =>
             {
-                _wageList.Add(((WageEventArgs)wageEventArgs).WageValue);
+                _trainingList.Add(((TrainingEventArgs)trainingEventArgs).Value);
             };
-            addWageForm.ShowDialog();
+            addTrainingForm.ShowDialog();
         }
-
 
         /// <summary>
         /// Создание таблицы DataGrid.
         /// </summary>
-        /// <param name="wages"></param>
+        /// <param name="trainings"></param>
         /// <param name="dataGridView"></param>
-        public static void CreateTable(BindingList<Model.TrainingCalc> wages,
+        public static void CreateTable(BindingList<Model.TrainingCalc> trainings,
               DataGridView dataGridView)
         {
             dataGridView.RowHeadersVisible = false;
-            var source = new BindingSource(wages, null);
+            var source = new BindingSource(trainings, null);
             dataGridView.DataSource = source;
 
             dataGridView.DefaultCellStyle.Alignment =
@@ -86,9 +83,9 @@ namespace View
             dataGridView.AllowUserToResizeColumns = false;
             dataGridView.ColumnHeadersDefaultCellStyle.Alignment =
                 DataGridViewContentAlignment.MiddleCenter;
-            dataGridView.AutoSizeRowsMode = 
+            dataGridView.AutoSizeRowsMode =
                 DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridView.AutoSizeColumnsMode = 
+            dataGridView.AutoSizeColumnsMode =
                 DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.DefaultCellStyle.WrapMode =
                 DataGridViewTriState.True;
@@ -102,17 +99,17 @@ namespace View
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonDelete_Click(object sender, EventArgs e)
-        {          
+        {
             if (dataGridViewSpace.SelectedCells.Count != 0)
             {
                 foreach (DataGridViewRow row in dataGridViewSpace.SelectedRows)
                 {
-                    _wageList.Remove(row.DataBoundItem as Model.TrainingCalc);
+                    _trainingList.Remove(row.DataBoundItem as Model.TrainingCalc);
 
-                    _listWagesFilter.Remove(row.DataBoundItem as Model.TrainingCalc);
+                    _listTrainingsFilter.Remove(row.DataBoundItem as Model.TrainingCalc);
                 }
-            }           
-        }       
+            }
+        }
 
         /// <summary>
         /// Очистка списка
@@ -121,8 +118,8 @@ namespace View
         /// <param name="e"></param>
         private void ButtonReset_Click(object sender, EventArgs e)
         {
-            _wageList.Clear();
-            _listWagesFilter.Clear();
+            _trainingList.Clear();
+            _listTrainingsFilter.Clear();
         }
 
         /// <summary>
@@ -133,10 +130,9 @@ namespace View
         private void ButtonRandom_Click(object sender, EventArgs e)
         {
             // Генерация случайной тренировки
-            _wageList.Add(Model.RandomTrainingCalc.GetRandomTrainingCalc());
+            _trainingList.Add(Model.RandomTrainingCalc.GetRandomTrainingCalc());
         }
 
-        
         /// <summary>
         /// Кнопка для открытия фильтра
         /// </summary>
@@ -144,36 +140,35 @@ namespace View
         /// <param name="e"></param>
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
-            var newFilterWages = new FilterWages(_wageList);
-            newFilterWages.Show();
-            newFilterWages.WagesFiltered += (sender, wageEventArgs) =>
+            var newFilterTrainings = new FilterTraining(_trainingList);
+            newFilterTrainings.Show();
+            newFilterTrainings.TrainingsFiltered += (sender, trainingEventArgs) =>
             {
                 dataGridViewSpace.DataSource =
-                ((WageListEventArgs)wageEventArgs).WageListValue;
-                _listWagesFilter = ((WageListEventArgs)wageEventArgs).WageListValue;
+                ((TrainingListEventArgs)trainingEventArgs).TrainingListValue;
+                _listTrainingsFilter = ((TrainingListEventArgs)trainingEventArgs).TrainingListValue;
 
             };
         }
 
         /// <summary>
-        /// Сброс найтроек фильтра
+        /// Сброс фильтра.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonCleanFilter_Click(object sender, EventArgs e)
         {
-            CreateTable(_wageList, dataGridViewSpace);
+            CreateTable(_trainingList, dataGridViewSpace);
         }
 
-         
         /// <summary>
-        /// Сохранение списка в файл
+        /// Сохранение тренировок в файл.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_wageList.Count == 0)
+            if (_trainingList.Count == 0)
             {
                 MessageBox.Show("Отсутствуют данные для сохранения.",
                     "Данные не сохранены",
@@ -183,7 +178,7 @@ namespace View
 
             var saveFileDialog = new SaveFileDialog
             {
-                Filter = "Файлы (*.zp)|*.zp|Все файлы (*.*)|*.*"
+                Filter = "Файлы (*.train)|*.train|Все файлы (*.*)|*.*"
             };
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -191,7 +186,7 @@ namespace View
                 var path = saveFileDialog.FileName.ToString();
                 using (FileStream file = File.Create(path))
                 {
-                    _serializer.Serialize(file, _wageList);
+                    _serializer.Serialize(file, _trainingList);
                 }
                 MessageBox.Show("Файл успешно сохранён.",
                     "Сохранение завершено",
@@ -199,9 +194,8 @@ namespace View
             }
         }
 
-
         /// <summary>
-        /// Открытие файла со списком
+        /// Открытие файла тренировок.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -209,7 +203,7 @@ namespace View
         {
             var openFileDialog = new OpenFileDialog
             {
-                Filter = "Файлы (*.zp)|*.zp|Все файлы (*.*)|*.*"
+                Filter = "Файлы (*.train)|*.train|Все файлы (*.*)|*.*"
             };
 
             if (openFileDialog.ShowDialog() != DialogResult.OK) return;
@@ -219,14 +213,14 @@ namespace View
             {
                 using (var file = new StreamReader(path))
                 {
-                    _wageList = (BindingList<Model.TrainingCalc>)
+                    _trainingList = (BindingList<Model.TrainingCalc>)
                         _serializer.Deserialize(file);
                 }
 
-                dataGridViewSpace.DataSource = _wageList;
+                dataGridViewSpace.DataSource = _trainingList;
                 dataGridViewSpace.CurrentCell = null;
-                MessageBox.Show("Файл успешно загружен.",
-                    "Загрузка завершена",
+                MessageBox.Show("Файл c тренировками успешно загружен.",
+                    "Загрузка завершена!",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
@@ -238,6 +232,9 @@ namespace View
             }
         }
 
-        
-    }   
+        private void groupBoxСalculator_Enter(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

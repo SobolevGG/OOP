@@ -32,168 +32,178 @@ namespace View
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.groupBoxСalculator = new System.Windows.Forms.GroupBox();
-            this.dataGridViewSpace = new System.Windows.Forms.DataGridView();
-            this.buttonAdd = new System.Windows.Forms.Button();
-            this.buttonDelete = new System.Windows.Forms.Button();
-            this.buttonSearch = new System.Windows.Forms.Button();
-            this.buttonReset = new System.Windows.Forms.Button();
-            this.buttonRandom = new System.Windows.Forms.Button();
-            this.buttonCleanFilter = new System.Windows.Forms.Button();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.SaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.groupBoxСalculator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSpace)).BeginInit();
-            this.toolStrip1.SuspendLayout();
-            this.SuspendLayout();
+            groupBoxСalculator = new GroupBox();
+            dataGridViewSpace = new DataGridView();
+            buttonAdd = new Button();
+            buttonDelete = new Button();
+            buttonSearch = new Button();
+            buttonReset = new Button();
+            buttonRandom = new Button();
+            buttonCleanFilter = new Button();
+            toolStripDropDownButton1 = new ToolStripDropDownButton();
+            SaveToolStripMenuItem = new ToolStripMenuItem();
+            OpenToolStripMenuItem = new ToolStripMenuItem();
+            toolStrip1 = new ToolStrip();
+            groupBoxСalculator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewSpace).BeginInit();
+            toolStrip1.SuspendLayout();
+            SuspendLayout();
             // 
             // groupBoxСalculator
             // 
-            this.groupBoxСalculator.Controls.Add(this.dataGridViewSpace);
-            this.groupBoxСalculator.Location = new System.Drawing.Point(37, 52);
-            this.groupBoxСalculator.Name = "groupBoxСalculator";
-            this.groupBoxСalculator.Size = new System.Drawing.Size(739, 219);
-            this.groupBoxСalculator.TabIndex = 0;
-            this.groupBoxСalculator.TabStop = false;
-            this.groupBoxСalculator.Text = "Калькулятор заработных плат";
+            groupBoxСalculator.BackColor = Color.Transparent;
+            groupBoxСalculator.Controls.Add(dataGridViewSpace);
+            groupBoxСalculator.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxСalculator.Location = new Point(32, 39);
+            groupBoxСalculator.Margin = new Padding(3, 2, 3, 2);
+            groupBoxСalculator.Name = "groupBoxСalculator";
+            groupBoxСalculator.Padding = new Padding(3, 2, 3, 2);
+            groupBoxСalculator.Size = new Size(825, 293);
+            groupBoxСalculator.TabIndex = 0;
+            groupBoxСalculator.TabStop = false;
+            groupBoxСalculator.Text = "Программа тренировок и сжигаемые калории";
+            groupBoxСalculator.Enter += groupBoxСalculator_Enter;
             // 
             // dataGridViewSpace
             // 
-            this.dataGridViewSpace.AllowUserToOrderColumns = true;
-            this.dataGridViewSpace.AllowUserToResizeColumns = false;
-            this.dataGridViewSpace.AllowUserToResizeRows = false;
-            this.dataGridViewSpace.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewSpace.Location = new System.Drawing.Point(6, 26);
-            this.dataGridViewSpace.Name = "dataGridViewSpace";
-            this.dataGridViewSpace.RowHeadersWidth = 51;
-            this.dataGridViewSpace.RowTemplate.Height = 25;
-            this.dataGridViewSpace.Size = new System.Drawing.Size(725, 184);
-            this.dataGridViewSpace.TabIndex = 1;
+            dataGridViewSpace.AllowUserToOrderColumns = true;
+            dataGridViewSpace.AllowUserToResizeColumns = false;
+            dataGridViewSpace.AllowUserToResizeRows = false;
+            dataGridViewSpace.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewSpace.Location = new Point(5, 20);
+            dataGridViewSpace.Margin = new Padding(3, 2, 3, 2);
+            dataGridViewSpace.Name = "dataGridViewSpace";
+            dataGridViewSpace.RowHeadersWidth = 51;
+            dataGridViewSpace.RowTemplate.Height = 25;
+            dataGridViewSpace.Size = new Size(815, 269);
+            dataGridViewSpace.TabIndex = 1;
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(43, 277);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(222, 31);
-            this.buttonAdd.TabIndex = 2;
-            this.buttonAdd.Text = "Добавить";
-            this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
+            buttonAdd.Location = new Point(692, 336);
+            buttonAdd.Margin = new Padding(3, 2, 3, 2);
+            buttonAdd.Name = "buttonAdd";
+            buttonAdd.Size = new Size(116, 38);
+            buttonAdd.TabIndex = 2;
+            buttonAdd.Text = "Рассчитать свою тренировку";
+            buttonAdd.UseVisualStyleBackColor = true;
+            buttonAdd.Click += ButtonAdd_Click;
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(294, 275);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(222, 31);
-            this.buttonDelete.TabIndex = 3;
-            this.buttonDelete.Text = "Удалить";
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
+            buttonDelete.Location = new Point(204, 337);
+            buttonDelete.Margin = new Padding(3, 2, 3, 2);
+            buttonDelete.Name = "buttonDelete";
+            buttonDelete.Size = new Size(116, 38);
+            buttonDelete.TabIndex = 3;
+            buttonDelete.Text = "Удалить тренировку";
+            buttonDelete.UseVisualStyleBackColor = true;
+            buttonDelete.Click += ButtonDelete_Click;
             // 
             // buttonSearch
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(43, 315);
-            this.buttonSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(222, 31);
-            this.buttonSearch.TabIndex = 4;
-            this.buttonSearch.Text = "Фильтр";
-            this.buttonSearch.UseVisualStyleBackColor = true;
-            this.buttonSearch.Click += new System.EventHandler(this.ButtonSearch_Click);
+            buttonSearch.Location = new Point(448, 337);
+            buttonSearch.Name = "buttonSearch";
+            buttonSearch.Size = new Size(116, 38);
+            buttonSearch.TabIndex = 4;
+            buttonSearch.Text = "Фильтр";
+            buttonSearch.UseVisualStyleBackColor = true;
+            buttonSearch.Click += ButtonSearch_Click;
             // 
             // buttonReset
             // 
-            this.buttonReset.Location = new System.Drawing.Point(546, 275);
-            this.buttonReset.Name = "buttonReset";
-            this.buttonReset.Size = new System.Drawing.Size(222, 31);
-            this.buttonReset.TabIndex = 5;
-            this.buttonReset.Text = "Очистить";
-            this.buttonReset.UseVisualStyleBackColor = true;
-            this.buttonReset.Click += new System.EventHandler(this.ButtonReset_Click);
+            buttonReset.Location = new Point(326, 337);
+            buttonReset.Margin = new Padding(3, 2, 3, 2);
+            buttonReset.Name = "buttonReset";
+            buttonReset.Size = new Size(116, 38);
+            buttonReset.TabIndex = 5;
+            buttonReset.Text = "Удалить все тренировки";
+            buttonReset.UseVisualStyleBackColor = true;
+            buttonReset.Click += ButtonReset_Click;
             // 
             // buttonRandom
             // 
-            this.buttonRandom.Location = new System.Drawing.Point(546, 315);
-            this.buttonRandom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.buttonRandom.Name = "buttonRandom";
-            this.buttonRandom.Size = new System.Drawing.Size(222, 33);
-            this.buttonRandom.TabIndex = 6;
-            this.buttonRandom.Text = "Случайная зарплата";
-            this.buttonRandom.UseVisualStyleBackColor = true;
-            this.buttonRandom.Click += new System.EventHandler(this.ButtonRandom_Click);
+            buttonRandom.Location = new Point(82, 337);
+            buttonRandom.Name = "buttonRandom";
+            buttonRandom.Size = new Size(116, 38);
+            buttonRandom.TabIndex = 6;
+            buttonRandom.Text = "Проверка";
+            buttonRandom.UseVisualStyleBackColor = true;
+            buttonRandom.Click += ButtonRandom_Click;
             // 
             // buttonCleanFilter
             // 
-            this.buttonCleanFilter.Location = new System.Drawing.Point(294, 315);
-            this.buttonCleanFilter.Name = "buttonCleanFilter";
-            this.buttonCleanFilter.Size = new System.Drawing.Size(222, 33);
-            this.buttonCleanFilter.TabIndex = 7;
-            this.buttonCleanFilter.Text = "Сбросить фильтр";
-            this.buttonCleanFilter.UseVisualStyleBackColor = true;
-            this.buttonCleanFilter.Click += new System.EventHandler(this.ButtonCleanFilter_Click);
+            buttonCleanFilter.Location = new Point(570, 336);
+            buttonCleanFilter.Margin = new Padding(3, 2, 3, 2);
+            buttonCleanFilter.Name = "buttonCleanFilter";
+            buttonCleanFilter.Size = new Size(116, 38);
+            buttonCleanFilter.TabIndex = 7;
+            buttonCleanFilter.Text = "Сброс фильтра";
+            buttonCleanFilter.UseVisualStyleBackColor = true;
+            buttonCleanFilter.Click += ButtonCleanFilter_Click;
             // 
             // toolStripDropDownButton1
             // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SaveToolStripMenuItem,
-            this.OpenToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(59, 24);
-            this.toolStripDropDownButton1.Text = "Файл";
+            toolStripDropDownButton1.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripDropDownButton1.DropDownItems.AddRange(new ToolStripItem[] { SaveToolStripMenuItem, OpenToolStripMenuItem });
+            toolStripDropDownButton1.Image = (Image)resources.GetObject("toolStripDropDownButton1.Image");
+            toolStripDropDownButton1.ImageTransparentColor = Color.Magenta;
+            toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            toolStripDropDownButton1.Size = new Size(49, 22);
+            toolStripDropDownButton1.Text = "Файл";
             // 
             // SaveToolStripMenuItem
             // 
-            this.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem";
-            this.SaveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.SaveToolStripMenuItem.Text = "Сохранить";
-            this.SaveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
+            SaveToolStripMenuItem.Name = "SaveToolStripMenuItem";
+            SaveToolStripMenuItem.Size = new Size(133, 22);
+            SaveToolStripMenuItem.Text = "Сохранить";
+            SaveToolStripMenuItem.Click += SaveToolStripMenuItem_Click;
             // 
             // OpenToolStripMenuItem
             // 
-            this.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem";
-            this.OpenToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.OpenToolStripMenuItem.Text = "Загрузить";
-            this.OpenToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
+            OpenToolStripMenuItem.Name = "OpenToolStripMenuItem";
+            OpenToolStripMenuItem.Size = new Size(133, 22);
+            OpenToolStripMenuItem.Text = "Загрузить";
+            OpenToolStripMenuItem.Click += OpenToolStripMenuItem_Click;
             // 
             // toolStrip1
             // 
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDropDownButton1});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(801, 27);
-            this.toolStrip1.TabIndex = 8;
-            this.toolStrip1.Text = "toolStrip1";
+            toolStrip1.ImageScalingSize = new Size(20, 20);
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1 });
+            toolStrip1.Location = new Point(0, 0);
+            toolStrip1.Name = "toolStrip1";
+            toolStrip1.Size = new Size(890, 25);
+            toolStrip1.TabIndex = 8;
+            toolStrip1.Text = "toolStrip1";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 451);
-            this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.buttonCleanFilter);
-            this.Controls.Add(this.buttonRandom);
-            this.Controls.Add(this.buttonReset);
-            this.Controls.Add(this.buttonSearch);
-            this.Controls.Add(this.buttonDelete);
-            this.Controls.Add(this.buttonAdd);
-            this.Controls.Add(this.groupBoxСalculator);
-            this.Name = "MainForm";
-            this.Text = "Калькулятор";
-            this.Load += new System.EventHandler(this.MainForm_Load);
-            this.groupBoxСalculator.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSpace)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Control;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(890, 474);
+            Controls.Add(toolStrip1);
+            Controls.Add(buttonCleanFilter);
+            Controls.Add(buttonRandom);
+            Controls.Add(buttonReset);
+            Controls.Add(buttonSearch);
+            Controls.Add(buttonDelete);
+            Controls.Add(buttonAdd);
+            Controls.Add(groupBoxСalculator);
+            ForeColor = SystemColors.ControlText;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 2, 3, 2);
+            Name = "MainForm";
+            Text = "Калькулятор калорий";
+            Load += MainForm_Load;
+            groupBoxСalculator.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewSpace).EndInit();
+            toolStrip1.ResumeLayout(false);
+            toolStrip1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

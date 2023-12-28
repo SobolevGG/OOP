@@ -14,12 +14,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 namespace View
 {
-    public partial class AddWageForm : Form
+    public partial class AddTrainingForm : Form
     {
         /// <summary>
         /// Делегат для добавления заработной платы.
         /// </summary>
-        public EventHandler<EventArgs> AddingWages;
+        public EventHandler<EventArgs> AddingTrainings;
 
         /// <summary>
         /// Переменная для словаря UserControl
@@ -28,46 +28,46 @@ namespace View
             _comboBoxToUserControl;
 
         /// <summary>
-        /// Метка UserControl
+        /// Метка UserControl.
         /// </summary>
         private UserControl _userControl;
 
-        public AddWageForm()
+        public AddTrainingForm()
         {
             InitializeComponent();
-            BackColor = Color.SeaGreen;
             StartPosition = FormStartPosition.CenterScreen;
             MaximizeBox = false;
             Size = new Size(400, 400);
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
             buttonOk.Enabled = false;
-            comboSalarySelection.DropDownStyle =
+            comboTrainingSelection.DropDownStyle =
                 System.Windows.Forms.ComboBoxStyle.DropDownList;
 
-            string[] typeWages = { "Почасовая оплата", "Оплата по окладу", 
-                "Оплата по ставке" };
+            string[] typeTraining = { "Жим штанги",
+                                      "Плавание", 
+                                      "Бег" };
             
-            comboSalarySelection.Items.AddRange(new string[] {
-            typeWages[0], typeWages[1], typeWages[2]});
+            comboTrainingSelection.Items.AddRange(new string[] {
+            typeTraining[0], typeTraining[1], typeTraining[2]});
 
-            _comboBoxToUserControl = new Dictionary<string, UserControl>()
+            _comboBoxToUserControl = new Dictionary<string, 
+                UserControl>()
             {
-                {typeWages[0], hourlyWageRateUserControl1 },
-                {typeWages[1], salaryUserControl1 },
-                {typeWages[2], wageRateUserControl1 },
+                {typeTraining[0], pressCalcWageRateUserControl },
+                {typeTraining[1], swimCalcUserControl },
+                {typeTraining[2], runCalcUserControl },
             };
         }
 
         /// <summary>
-        /// Действие при выборе слова из выпадающего списка
-        /// Задает выбранный элемент в поле со списко ComboBox
+        /// Выбор тренировки в комбобоксе.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ComboBoxSalarySelection(object sender, EventArgs e)
         {
-            string wageType = comboSalarySelection.SelectedItem.ToString();
+            string wageType = comboTrainingSelection.SelectedItem.ToString();
             foreach (var (wageValue, userControlTmp) in _comboBoxToUserControl)
             {
                 userControlTmp.Visible = false;
@@ -81,7 +81,7 @@ namespace View
         }
         
         /// <summary>
-        /// Кнопка ОК
+        /// Кнопка ОК.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -90,11 +90,11 @@ namespace View
             try
             {
                 var wagesControlName = 
-                    comboSalarySelection.SelectedItem.ToString();
+                    comboTrainingSelection.SelectedItem.ToString();
                 var wagesControl = _comboBoxToUserControl[wagesControlName];
                 var wageEventArgs =
-                    new WageEventArgs(((ITrainingCalc)wagesControl).AddingCalc());
-                AddingWages?.Invoke(this, wageEventArgs);
+                    new TrainingEventArgs(((ITrainingCalc)wagesControl).AddingCalc());
+                AddingTrainings?.Invoke(this, wageEventArgs);
                 DialogResult = DialogResult.OK;
             }
             catch (ArgumentException ex)
@@ -121,15 +121,15 @@ namespace View
         }
 
         /// <summary>
-        /// Загрузка формы
+        /// Загрузка формы.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SalaryLoad(object sender, EventArgs e)
         {
-            salaryUserControl1.Visible = false;
-            wageRateUserControl1.Visible = false;
-            hourlyWageRateUserControl1.Visible = false;
+            swimCalcUserControl.Visible = false;
+            runCalcUserControl.Visible = false;
+            pressCalcWageRateUserControl.Visible = false;
         }
 
         private void payrollMethod_Enter(object sender, EventArgs e)

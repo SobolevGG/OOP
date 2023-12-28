@@ -30,80 +30,83 @@ namespace View
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBoxSalary = new System.Windows.Forms.TextBox();
-            this.labelSalary = new System.Windows.Forms.Label();
-            this.labelDaysInMonth = new System.Windows.Forms.Label();
-            this.labelWorkingDays = new System.Windows.Forms.Label();
-            this.textBoxDaysInMonth = new System.Windows.Forms.TextBox();
-            this.textBoxWorkingDays = new System.Windows.Forms.TextBox();
-            this.SuspendLayout();
+            textBoxSalary = new TextBox();
+            labelSalary = new Label();
+            labelDaysInMonth = new Label();
+            labelWorkingDays = new Label();
+            textBoxDaysInMonth = new TextBox();
+            textBoxWorkingDays = new TextBox();
+            SuspendLayout();
             // 
             // textBoxSalary
             // 
-            this.textBoxSalary.Location = new System.Drawing.Point(70, 14);
-            this.textBoxSalary.Name = "textBoxSalary";
-            this.textBoxSalary.Size = new System.Drawing.Size(213, 27);
-            this.textBoxSalary.TabIndex = 0;
+            textBoxSalary.Location = new Point(120, 13);
+            textBoxSalary.Margin = new Padding(3, 2, 3, 2);
+            textBoxSalary.Name = "textBoxSalary";
+            textBoxSalary.Size = new Size(60, 23);
+            textBoxSalary.TabIndex = 0;
             // 
             // labelSalary
             // 
-            this.labelSalary.AutoSize = true;
-            this.labelSalary.Location = new System.Drawing.Point(13, 21);
-            this.labelSalary.Name = "labelSalary";
-            this.labelSalary.Size = new System.Drawing.Size(51, 20);
-            this.labelSalary.TabIndex = 1;
-            this.labelSalary.Text = "Оклад";
-            this.labelSalary.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LabelSalary_KeyPress);
+            labelSalary.AutoSize = true;
+            labelSalary.Location = new Point(11, 16);
+            labelSalary.Name = "labelSalary";
+            labelSalary.Size = new Size(72, 15);
+            labelSalary.TabIndex = 1;
+            labelSalary.Text = "Ваш вес, кг:";
+            labelSalary.KeyPress += LabelSalary_KeyPress;
             // 
             // labelDaysInMonth
             // 
-            this.labelDaysInMonth.AutoSize = true;
-            this.labelDaysInMonth.Location = new System.Drawing.Point(13, 53);
-            this.labelDaysInMonth.Name = "labelDaysInMonth";
-            this.labelDaysInMonth.Size = new System.Drawing.Size(226, 20);
-            this.labelDaysInMonth.TabIndex = 2;
-            this.labelDaysInMonth.Text = "Кол-во рабочих дней в месяце";
-            this.labelDaysInMonth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LabelSalary_KeyPress);
+            labelDaysInMonth.AutoSize = true;
+            labelDaysInMonth.Location = new Point(11, 43);
+            labelDaysInMonth.Name = "labelDaysInMonth";
+            labelDaysInMonth.Size = new Size(94, 15);
+            labelDaysInMonth.TabIndex = 2;
+            labelDaysInMonth.Text = "Расстояние, км:";
+            labelDaysInMonth.KeyPress += LabelSalary_KeyPress;
             // 
             // labelWorkingDays
             // 
-            this.labelWorkingDays.AutoSize = true;
-            this.labelWorkingDays.Location = new System.Drawing.Point(13, 87);
-            this.labelWorkingDays.Name = "labelWorkingDays";
-            this.labelWorkingDays.Size = new System.Drawing.Size(200, 20);
-            this.labelWorkingDays.TabIndex = 3;
-            this.labelWorkingDays.Text = "Кол-во отработанных дней";
-            this.labelWorkingDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LabelSalary_KeyPress);
+            labelWorkingDays.AutoSize = true;
+            labelWorkingDays.Location = new Point(11, 70);
+            labelWorkingDays.Name = "labelWorkingDays";
+            labelWorkingDays.Size = new Size(94, 15);
+            labelWorkingDays.TabIndex = 3;
+            labelWorkingDays.Text = "Интенсивность:";
+            labelWorkingDays.KeyPress += LabelSalary_KeyPress;
             // 
             // textBoxDaysInMonth
             // 
-            this.textBoxDaysInMonth.Location = new System.Drawing.Point(245, 53);
-            this.textBoxDaysInMonth.Name = "textBoxDaysInMonth";
-            this.textBoxDaysInMonth.Size = new System.Drawing.Size(38, 27);
-            this.textBoxDaysInMonth.TabIndex = 4;
+            textBoxDaysInMonth.Location = new Point(120, 40);
+            textBoxDaysInMonth.Margin = new Padding(3, 2, 3, 2);
+            textBoxDaysInMonth.Name = "textBoxDaysInMonth";
+            textBoxDaysInMonth.Size = new Size(60, 23);
+            textBoxDaysInMonth.TabIndex = 4;
             // 
             // textBoxWorkingDays
             // 
-            this.textBoxWorkingDays.Location = new System.Drawing.Point(245, 87);
-            this.textBoxWorkingDays.Name = "textBoxWorkingDays";
-            this.textBoxWorkingDays.Size = new System.Drawing.Size(38, 27);
-            this.textBoxWorkingDays.TabIndex = 5;
+            textBoxWorkingDays.Location = new Point(120, 67);
+            textBoxWorkingDays.Margin = new Padding(3, 2, 3, 2);
+            textBoxWorkingDays.Name = "textBoxWorkingDays";
+            textBoxWorkingDays.Size = new Size(60, 23);
+            textBoxWorkingDays.TabIndex = 5;
             // 
             // SwimCalcUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.textBoxWorkingDays);
-            this.Controls.Add(this.textBoxDaysInMonth);
-            this.Controls.Add(this.labelWorkingDays);
-            this.Controls.Add(this.labelDaysInMonth);
-            this.Controls.Add(this.labelSalary);
-            this.Controls.Add(this.textBoxSalary);
-            this.Name = "SwimCalcUserControl";
-            this.Size = new System.Drawing.Size(302, 127);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(textBoxWorkingDays);
+            Controls.Add(textBoxDaysInMonth);
+            Controls.Add(labelWorkingDays);
+            Controls.Add(labelDaysInMonth);
+            Controls.Add(labelSalary);
+            Controls.Add(textBoxSalary);
+            Margin = new Padding(3, 2, 3, 2);
+            Name = "SwimCalcUserControl";
+            Size = new Size(264, 95);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

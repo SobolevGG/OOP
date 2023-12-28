@@ -14,7 +14,7 @@ namespace View
     /// <summary>
     /// Класс, описывающий форму для фильтрации
     /// </summary>
-    public partial class FilterWages : Form
+    public partial class FilterTraining : Form
     {
         /// <summary>
         /// Лист зарплат
@@ -29,7 +29,7 @@ namespace View
         /// <summary>
         /// Обработчик события
         /// </summary>
-        public EventHandler<EventArgs> WagesFiltered;
+        public EventHandler<EventArgs> TrainingsFiltered;
 
         /// <summary>
         /// Зарплата
@@ -40,10 +40,9 @@ namespace View
         /// Форма для фильтрации
         /// </summary>
         /// <param name="wages">заработная плата</param>
-        public FilterWages(BindingList<Model.TrainingCalc> wages)
+        public FilterTraining(BindingList<Model.TrainingCalc> wages)
         {
             InitializeComponent();
-            BackColor = Color.SeaGreen;
             StartPosition = FormStartPosition.CenterScreen;
             MaximizeBox = false;
             _listWages = wages;
@@ -106,9 +105,9 @@ namespace View
             _listTrainingFilter = new BindingList<Model.TrainingCalc>();
 
             int count = 0;
-            if (!checkBoxHourlyWageRate.Checked
-                && !checkBoxWageRate.Checked
-                && !checkBoxSalary.Checked
+            if (!checkBoxPressCalc.Checked
+                && !checkBoxRunCalc.Checked
+                && !checkBoxSwimCalc.Checked
                 && !checkBoxInput.Checked)
             {
                 MessageBox.Show("Критерии для поиска не введены!",
@@ -117,21 +116,21 @@ namespace View
                 return;
             }
 
-            foreach (Model.TrainingCalc figure in _listWages)
+            foreach (Model.TrainingCalc training in _listWages)
             {
 
-                switch (figure)
+                switch (training)
                 {
-                    case PressCalc when checkBoxHourlyWageRate.Checked:
-                    case RunCalc when checkBoxWageRate.Checked:
-                    case SwimCalc when checkBoxSalary.Checked:
+                    case PressCalc when checkBoxPressCalc.Checked:
+                    case RunCalc when checkBoxRunCalc.Checked:
+                    case SwimCalc when checkBoxSwimCalc.Checked:
                         {
                             if (checkBoxInput.Checked)
                             {
-                                if (figure.CalculateCalories == _training)
+                                if (training.CalculateCalories == _training)
                                 {
                                     count++;
-                                    _listTrainingFilter.Add(figure);
+                                    _listTrainingFilter.Add(training);
                                     break;
                                 }
                                 break;
@@ -139,40 +138,40 @@ namespace View
                             else
                             {
                                 count++;
-                                _listTrainingFilter.Add(figure);
+                                _listTrainingFilter.Add(training);
                                 break;
                             }
                         }
                 }
 
-                if (!checkBoxHourlyWageRate.Checked
-                    && !checkBoxWageRate.Checked
-                    && !checkBoxSalary.Checked)
+                if (!checkBoxPressCalc.Checked
+                    && !checkBoxRunCalc.Checked
+                    && !checkBoxSwimCalc.Checked)
                 {
-                    if (checkBoxInput.Checked && figure.CalculateCalories == _training)
+                    if (checkBoxInput.Checked && training.CalculateCalories == _training)
                     {
                         count++;
-                        _listTrainingFilter.Add(figure);
+                        _listTrainingFilter.Add(training);
                     }
                 }
             }
 
-            WageListEventArgs eventArgs;
+            TrainingListEventArgs eventArgs;
 
             if (count > 0)
             {
-                eventArgs = new WageListEventArgs(_listTrainingFilter);
+                eventArgs = new TrainingListEventArgs(_listTrainingFilter);
             }
             else
             {
                 MessageBox.Show("Зарплат с такими параметрами не " +
                     "существует", "Введите другие параметры", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                eventArgs = new WageListEventArgs(_listTrainingFilter);
+                eventArgs = new TrainingListEventArgs(_listTrainingFilter);
                 return;
             }
 
-            WagesFiltered?.Invoke(this, eventArgs);
+            TrainingsFiltered?.Invoke(this, eventArgs);
             Close();
         }
     }

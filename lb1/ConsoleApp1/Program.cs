@@ -34,56 +34,56 @@ namespace ConsoleApp1
         /// <returns>Количество сжигаемых калорий.</returns>
         /// <exception cref="IndexOutOfRangeException">Исключение
         /// на недопустимый ввод.</exception>
-        public static RunCalc RunTraining()
-        {
-            Console.WriteLine("\n    Вы выбрали бег, " +
-                "перейдём к вводу данных:");
-            var runCalc = new RunCalc();
-            var actions = new List<Action>()
-            {
-                new Action(() =>
-                {
-                    Console.Write("    -Ваш вес, кг: ");
-                    runCalc.Weight = CheckInput();
-                }),
-                new Action(() =>
-                {
-                    Console.Write("    -Расстояние, км: ");
-                    runCalc.Distance = CheckInput();
-                }),
-                new Action(() =>
-                {
-                    Console.Write("    -Интенсивность бега " +
-                        "(1 - спринт, " +
-                        "2 - быстрый бег, 3 - умеренный бег, " +
-                        "4 - лёгкий бег): ");
-
-                    _ = int.TryParse(Console.ReadLine(),
-                        out int tmpIntensity);
-
-                    int[] allowedValues = {1, 2, 3, 4};
-
-                    if (!allowedValues.Contains(tmpIntensity))
-                    {
-                        throw new IndexOutOfRangeException
-                            ("Ожидалась цифра от 1 до 4.");
-                    }
-
-                    switch (tmpIntensity)
-                    {      case 1: runCalc.Intensity
-                            = Intensity.Sprinting;
-                    break; case 2: runCalc.Intensity
-                            = Intensity.FastRunning;
-                    break; case 3: runCalc.Intensity
-                            = Intensity.ModerateRunning;
-                    break; case 4: runCalc.Intensity
-                            = Intensity.LightJogging;
-                    break; default: break; }
-                }),
-            };
-            actions.ForEach(ShowException);
-            return runCalc;
-        }
+        // public static RunCalc RunTraining()
+        // {
+        //     Console.WriteLine("\n    Вы выбрали бег, " +
+        //         "перейдём к вводу данных:");
+        //     var runCalc = new RunCalc();
+        //     var actions = new List<Action>()
+        //     {
+        //         new Action(() =>
+        //         {
+        //             Console.Write("    -Ваш вес, кг: ");
+        //             runCalc.Weight = CheckInput();
+        //         }),
+        //         new Action(() =>
+        //         {
+        //             Console.Write("    -Расстояние, км: ");
+        //             runCalc.Distance = CheckInput();
+        //         }),
+        //         new Action(() =>
+        //         {
+        //             Console.Write("    -Интенсивность бега " +
+        //                 "(1 - спринт, " +
+        //                 "2 - быстрый бег, 3 - умеренный бег, " +
+        //                 "4 - лёгкий бег): ");
+        // 
+        //             _ = int.TryParse(Console.ReadLine(),
+        //                 out int tmpIntensity);
+        // 
+        //             int[] allowedValues = {1, 2, 3, 4};
+        // 
+        //             if (!allowedValues.Contains(tmpIntensity))
+        //             {
+        //                 throw new IndexOutOfRangeException
+        //                     ("Ожидалась цифра от 1 до 4.");
+        //             }
+        // 
+        //             switch (tmpIntensity)
+        //             {      case 1: runCalc.Intensity
+        //                     = Intensity.Sprinting;
+        //             break; case 2: runCalc.Intensity
+        //                     = Intensity.FastRunning;
+        //             break; case 3: runCalc.Intensity
+        //                     = Intensity.ModerateRunning;
+        //             break; case 4: runCalc.Intensity
+        //                     = Intensity.LightJogging;
+        //             break; default: break; }
+        //         }),
+        //     };
+        //     actions.ForEach(ShowException);
+        //     return runCalc;
+        // }
 
         /// <summary>
         /// Метод расчёта затрачиваемых калорий для плавания.
@@ -91,56 +91,56 @@ namespace ConsoleApp1
         /// <returns>Количество сжигаемых калорий.</returns>
         /// <exception cref="IndexOutOfRangeException">Исключение
         /// на недопустимый ввод.</exception>
-        public static SwimCalc SwimTraining()
-        {
-            Console.WriteLine("\n    Вы выбрали плавание, " +
-                "перейдём к вводу данных:");
-            var swimCalc = new SwimCalc();
-            var actions = new List<Action>()
-            {
-                new Action(() =>
-                {
-                    Console.Write("    -Ваш вес, кг: ");
-                    swimCalc.Weight = CheckInput();
-                }),
-                new Action(() =>
-                {
-                    Console.Write("    -Расстояние, км: ");
-                    swimCalc.Distance = CheckInput();
-                }),
-                new Action(() =>
-                {
-                    Console.Write("    -Стиль плавания " +
-                        "(1 - баттерфляй, 2 - брасс, " +
-                        "3 - на спине, " +
-                        "4 - свободный стиль): ");
-
-                    _ = int.TryParse(Console.ReadLine(),
-                        out int tmpIntensity);
-
-                    int[] allowedValues = {1, 2, 3, 4};
-
-                    if (!allowedValues.Contains(tmpIntensity))
-                    {
-                        throw new IndexOutOfRangeException
-                            ("Ожидалась цифра от 1 до 4.");
-                    }
-
-                    switch (tmpIntensity)
-                    {      case 1: swimCalc.Style
-                            = Style.Butterfly;
-                    break; case 2: swimCalc.Style
-                            = Style.Breaststroke;
-                    break; case 3: swimCalc.Style
-                            = Style.Backstroke;
-                    break; case 4: swimCalc.Style
-                            = Style.Freestyle;
-                    break; default: break; }
-                }),
-            };
-            actions.ForEach(ShowException);
-            return swimCalc;
-        }
+        // public static SwimCalc SwimTraining()
+        // {
+        //     Console.WriteLine("\n    Вы выбрали плавание, " +
+        //         "перейдём к вводу данных:");
+        //     var swimCalc = new SwimCalc();
+        //     var actions = new List<Action>()
+        //     {
+        //         new Action(() =>
+        //         {
+        //             Console.Write("    -Ваш вес, кг: ");
+        //             swimCalc.Weight = CheckInput();
+        //         }),
+        //         new Action(() =>
+        //         {
+        //             Console.Write("    -Расстояние, км: ");
+        //             swimCalc.Distance = CheckInput();
+        //         }),
+        //         new Action(() =>
+        //         {
+        //             Console.Write("    -Стиль плавания " +
+        //                 "(1 - баттерфляй, 2 - брасс, " +
+        //                 "3 - на спине, " +
+        //                 "4 - свободный стиль): ");
+        // 
+        //             _ = int.TryParse(Console.ReadLine(),
+        //                 out int tmpIntensity);
+        // 
+        //             int[] allowedValues = {1, 2, 3, 4};
+        // 
+        //             if (!allowedValues.Contains(tmpIntensity))
+        //             {
+        //                 throw new IndexOutOfRangeException
+        //                     ("Ожидалась цифра от 1 до 4.");
+        //             }
+        // 
+        //             switch (tmpIntensity)
+        //             {      case 1: swimCalc.Style
+        //                     = Style.Butterfly;
+        //             break; case 2: swimCalc.Style
+        //                     = Style.Breaststroke;
+        //             break; case 3: swimCalc.Style
+        //                     = Style.Backstroke;
+        //             break; case 4: swimCalc.Style
+        //                     = Style.Freestyle;
+        //             break; default: break; }
+        //         }),
+        //     };
+        //     actions.ForEach(ShowException);
+        //     return swimCalc;
+        // }
 
         /// <summary>
         /// Метод расчёта затрачиваемых калорий для жима штанги.
@@ -148,72 +148,72 @@ namespace ConsoleApp1
         /// <returns>Количество сжигаемых калорий.</returns>
         /// <exception cref="IndexOutOfRangeException">Исключение
         /// на недопустимый ввод.</exception>
-        public static PressCalc PressTraining()
-        {
-            Console.WriteLine("\n    Вы выбрали жим штанги, " +
-                "перейдём к вводу данных:");
-            var pressCalc = new PressCalc();
-            var actions = new List<Action>()
-            {
-                new Action(() =>
-                {
-                    Console.Write("    -Поднимаемый вес, кг: ");
-                    pressCalc.Weight = CheckInput();
-                }),
-                new Action(() =>
-                {
-                    Console.Write("    -Количество повторений: ");
-                    if (!int.TryParse(Console.ReadLine(),
-                        out int tmpRepetitions))
-                    {
-                        throw new Exception("количество повторений " +
-                            "должно быть задано целым числом!");
-                    }
-
-                    pressCalc.Repetitions = tmpRepetitions;
-                }),
-            };
-            actions.ForEach(ShowException);
-            return pressCalc;
-        }
+        // public static PressCalc PressTraining()
+        // {
+        //     Console.WriteLine("\n    Вы выбрали жим штанги, " +
+        //         "перейдём к вводу данных:");
+        //     var pressCalc = new PressCalc();
+        //     var actions = new List<Action>()
+        //     {
+        //         new Action(() =>
+        //         {
+        //             Console.Write("    -Поднимаемый вес, кг: ");
+        //             pressCalc.Weight = CheckInput();
+        //         }),
+        //         new Action(() =>
+        //         {
+        //             Console.Write("    -Количество повторений: ");
+        //             if (!int.TryParse(Console.ReadLine(),
+        //                 out int tmpRepetitions))
+        //             {
+        //                 throw new Exception("количество повторений " +
+        //                     "должно быть задано целым числом!");
+        //             }
+        // 
+        //             pressCalc.Repetitions = tmpRepetitions;
+        //         }),
+        //     };
+        //     actions.ForEach(ShowException);
+        //     return pressCalc;
+        // }
 
         /// <summary>
         /// Метод для обработки исключений.
         /// </summary>
         /// <param name="action">Дейсвтие.</param>
         /// пользователя.</param>
-        private static void ShowException(Action action)
-        {
-            while (true)
-            {
-                try
-                {
-                    action.Invoke();
-                    break;
-                }
-                catch (Exception exception)
-                {
-                    if (exception.GetType()
-                        == typeof(IndexOutOfRangeException)
-                        || exception.GetType()
-                        == typeof(FormatException)
-                        || exception.GetType()
-                        == typeof(ArgumentException)
-                        || exception.GetType()
-                        == typeof(ArgumentNullException)
-                        || exception.GetType()
-                        == typeof(Exception))
-                    {
-                        Console.WriteLine($"    Обнаружена ошибка: " +
-                            $"{exception.Message}");
-                    }
-                    else
-                    {
-                        throw exception;
-                    }
-                }
-            }
-        }
+        // private static void ShowException(Action action)
+        // {
+        //     while (true)
+        //     {
+        //         try
+        //         {
+        //             action.Invoke();
+        //             break;
+        //         }
+        //         catch (Exception exception)
+        //         {
+        //             if (exception.GetType()
+        //                 == typeof(IndexOutOfRangeException)
+        //                 || exception.GetType()
+        //                 == typeof(FormatException)
+        //                 || exception.GetType()
+        //                 == typeof(ArgumentException)
+        //                 || exception.GetType()
+        //                 == typeof(ArgumentNullException)
+        //                 || exception.GetType()
+        //                 == typeof(Exception))
+        //             {
+        //                 Console.WriteLine($"    Обнаружена ошибка: " +
+        //                     $"{exception.Message}");
+        //             }
+        //             else
+        //             {
+        //                 throw exception;
+        //             }
+        //         }
+        //     }
+        // }
 
         /// <summary>
         /// Метод замены точки на запятую.

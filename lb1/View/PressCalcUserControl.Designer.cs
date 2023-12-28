@@ -28,59 +28,73 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelHourlyWageRate = new System.Windows.Forms.Label();
-            this.labelTimeHourlyRate = new System.Windows.Forms.Label();
-            this.textBoxWeight = new System.Windows.Forms.TextBox();
-            this.textBoxRepetitions = new System.Windows.Forms.TextBox();
-            this.SuspendLayout();
+            labelHourlyWageRate = new Label();
+            labelTimeHourlyRate = new Label();
+            textBoxWeight = new TextBox();
+            textBoxRepetitions = new TextBox();
+            label1 = new Label();
+            SuspendLayout();
             // 
             // labelHourlyWageRate
             // 
-            this.labelHourlyWageRate.AutoSize = true;
-            this.labelHourlyWageRate.Location = new System.Drawing.Point(18, 20);
-            this.labelHourlyWageRate.Name = "labelHourlyWageRate";
-            this.labelHourlyWageRate.Size = new System.Drawing.Size(115, 20);
-            this.labelHourlyWageRate.TabIndex = 0;
-            this.labelHourlyWageRate.Text = "Часовая ставка";
-            this.labelHourlyWageRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LabelHourlyWageRate_KeyPress);
+            labelHourlyWageRate.AutoSize = true;
+            labelHourlyWageRate.Location = new Point(17, 14);
+            labelHourlyWageRate.Name = "labelHourlyWageRate";
+            labelHourlyWageRate.Size = new Size(51, 15);
+            labelHourlyWageRate.TabIndex = 0;
+            labelHourlyWageRate.Text = "Вес*, кг:";
+            labelHourlyWageRate.TextAlign = ContentAlignment.MiddleLeft;
+            labelHourlyWageRate.KeyPress += LabelHourlyWageRate_KeyPress;
             // 
             // labelTimeHourlyRate
             // 
-            this.labelTimeHourlyRate.AutoSize = true;
-            this.labelTimeHourlyRate.Location = new System.Drawing.Point(18, 62);
-            this.labelTimeHourlyRate.Name = "labelTimeHourlyRate";
-            this.labelTimeHourlyRate.Size = new System.Drawing.Size(206, 20);
-            this.labelTimeHourlyRate.TabIndex = 1;
-            this.labelTimeHourlyRate.Text = "Кол-во отработанных часов";
-            this.labelTimeHourlyRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LabelHourlyWageRate_KeyPress);
+            labelTimeHourlyRate.AutoSize = true;
+            labelTimeHourlyRate.Location = new Point(16, 40);
+            labelTimeHourlyRate.Name = "labelTimeHourlyRate";
+            labelTimeHourlyRate.Size = new Size(60, 15);
+            labelTimeHourlyRate.TabIndex = 1;
+            labelTimeHourlyRate.Text = "Повторы:";
+            labelTimeHourlyRate.KeyPress += LabelHourlyWageRate_KeyPress;
             // 
             // textBoxWeight
             // 
-            this.textBoxWeight.Location = new System.Drawing.Point(139, 20);
-            this.textBoxWeight.Name = "textBoxWeight";
-            this.textBoxWeight.Size = new System.Drawing.Size(134, 27);
-            this.textBoxWeight.TabIndex = 2;
+            textBoxWeight.Location = new Point(88, 10);
+            textBoxWeight.Margin = new Padding(3, 2, 3, 2);
+            textBoxWeight.Name = "textBoxWeight";
+            textBoxWeight.Size = new Size(53, 23);
+            textBoxWeight.TabIndex = 2;
             // 
             // textBoxRepetitions
             // 
-            this.textBoxRepetitions.Location = new System.Drawing.Point(230, 62);
-            this.textBoxRepetitions.Name = "textBoxRepetitions";
-            this.textBoxRepetitions.Size = new System.Drawing.Size(43, 27);
-            this.textBoxRepetitions.TabIndex = 3;
+            textBoxRepetitions.Location = new Point(88, 37);
+            textBoxRepetitions.Margin = new Padding(3, 2, 3, 2);
+            textBoxRepetitions.Name = "textBoxRepetitions";
+            textBoxRepetitions.Size = new Size(53, 23);
+            textBoxRepetitions.TabIndex = 3;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(17, 62);
+            label1.Name = "label1";
+            label1.Size = new Size(112, 15);
+            label1.TabIndex = 4;
+            label1.Text = "* - с учётом грифа ";
             // 
             // PressCalcUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.textBoxRepetitions);
-            this.Controls.Add(this.textBoxWeight);
-            this.Controls.Add(this.labelTimeHourlyRate);
-            this.Controls.Add(this.labelHourlyWageRate);
-            this.Name = "PressCalcUserControl";
-            this.Size = new System.Drawing.Size(292, 121);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(label1);
+            Controls.Add(textBoxRepetitions);
+            Controls.Add(textBoxWeight);
+            Controls.Add(labelTimeHourlyRate);
+            Controls.Add(labelHourlyWageRate);
+            Margin = new Padding(3, 2, 3, 2);
+            Name = "PressCalcUserControl";
+            Size = new Size(167, 103);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -89,5 +103,6 @@
         private Label labelTimeHourlyRate;
         private TextBox textBoxWeight;
         private TextBox textBoxRepetitions;
+        private Label label1;
     }
 }
