@@ -108,7 +108,7 @@ namespace View
             buttonOk.Name = "buttonOk";
             buttonOk.Size = new Size(79, 25);
             buttonOk.TabIndex = 13;
-            buttonOk.Text = "ОК";
+            buttonOk.Text = "Расчёт";
             buttonOk.UseVisualStyleBackColor = true;
             buttonOk.Click += ButtonOk;
             // 

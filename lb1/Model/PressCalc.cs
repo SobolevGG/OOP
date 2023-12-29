@@ -24,7 +24,7 @@ namespace Model
             get
             {
                 return $"Вес с учётом грифа, кг: {Weight};\n " +
-                    $"Количество повторений: {Repetitions}";
+                    $"Количество повторов: {Repetitions}";
             }
         }
 
@@ -93,11 +93,16 @@ namespace Model
         {
             CheckNullEmpty(value.ToString());
 
-            if (value < 0)
+            if (value <= 0)
             {
                 throw new Exception(
-                    "количество повторений должно быть " +
-                    "задано неотрицательной величиной!");
+                    "количество повторов должно быть " +
+                    "задано положительной величиной!");
+            }
+            if (value > 300)
+            {
+                throw new Exception("количество повторов " +
+                    "не должно превышать 300!");
             }
         }
 
