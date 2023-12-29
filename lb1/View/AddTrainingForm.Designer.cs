@@ -147,7 +147,7 @@ namespace View
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(284, 257);
+            ClientSize = new Size(280, 253);
             Controls.Add(swimCalcUserControl);
             Controls.Add(accrualParameters);
             Controls.Add(payrollMethod);
