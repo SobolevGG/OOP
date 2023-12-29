@@ -25,8 +25,38 @@ namespace Model
             {
                 return $"Вес человека, кг: {Weight};\n " +
                     $"Расстояние, км: {Distance};\n " +
-                    $"Интенсивность: {Intensity}";
+                    $"Интенсивность: {IntensityStr}";
             }
+        }
+
+        /// <summary>
+        /// Получение параметра интенсивности на русском языке.
+        /// </summary>
+        public string IntensityStr
+        {
+            get
+            {
+                string tmpIntensity = "";
+                switch (Intensity)
+                {
+                    case Intensity.Sprinting:
+                        tmpIntensity = "спринт";
+                        break;
+                    case Intensity.FastRunning:
+                        tmpIntensity = "быстрый бег";
+                        break;
+                    case Intensity.ModerateRunning:
+                        tmpIntensity = "умеренный бег";
+                        break;
+                    case Intensity.LightJogging:
+                        tmpIntensity = "лёгкий бег";
+                        break;
+                    default:
+                        break;
+                }
+                return tmpIntensity;
+            }
+            set { }
         }
 
         /// <summary>

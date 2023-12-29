@@ -25,8 +25,38 @@ namespace Model
             {
                 return $"Вес человека, кг: {Weight};\n " +
                     $"Расстояние, км: {Distance};\n " +
-                    $"Стиль: {Style}";
+                    $"Стиль: {StyleStr}";
             }
+        }
+
+        /// <summary>
+        /// Получение параметра стиля на русском языке.
+        /// </summary>
+        public string StyleStr
+        {
+            get
+            {
+                string tmpStyle = "";
+                switch (Style)
+                {
+                    case Style.Butterfly:
+                        tmpStyle = "баттерфляй";
+                        break;
+                    case Style.Breaststroke:
+                        tmpStyle = "брасс";
+                        break;
+                    case Style.Backstroke:
+                        tmpStyle = "на спине";
+                        break;
+                    case Style.Freestyle:
+                        tmpStyle = "свободный стиль";
+                        break;
+                    default:
+                        break;
+                }
+                return tmpStyle;
+            }
+            set { }
         }
 
         /// <summary>
