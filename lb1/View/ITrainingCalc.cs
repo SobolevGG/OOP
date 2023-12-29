@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 
+/// <summary> 
+/// Пространство имён View.
+/// </summary>
 namespace View
 {
     /// <summary>
@@ -13,7 +16,7 @@ namespace View
     internal interface ITrainingCalc
     {
         /// <summary>
-        /// Метод для добавления заработной платы.
+        /// Метод для добавления тренировки.
         /// </summary>
         /// <returns></returns>
         public abstract Model.TrainingCalc AddingCalc();
