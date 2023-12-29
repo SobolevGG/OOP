@@ -61,7 +61,7 @@ namespace View
             payrollMethod.TabIndex = 7;
             payrollMethod.TabStop = false;
             payrollMethod.Text = "Тип тренировки";
-            payrollMethod.Enter += payrollMethod_Enter;
+            payrollMethod.Enter += Method_Enter;
             // 
             // comboTrainingSelection
             // 
@@ -88,7 +88,7 @@ namespace View
             accrualParameters.TabIndex = 10;
             accrualParameters.TabStop = false;
             accrualParameters.Text = "Параметры начисления";
-            accrualParameters.Enter += accrualParameters_Enter;
+            accrualParameters.Enter += Parameters_Enter;
             // 
             // buttonClose
             // 

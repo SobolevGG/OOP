@@ -139,7 +139,7 @@ namespace View
             ComboBoxTrainingSelection(this, EventArgs.Empty);
         }
 
-        private void payrollMethod_Enter(object sender, EventArgs e)
+        private void Method_Enter(object sender, EventArgs e)
         {
 
         }
@@ -149,7 +149,7 @@ namespace View
 
         }
 
-        private void accrualParameters_Enter(object sender, EventArgs e)
+        private void Parameters_Enter(object sender, EventArgs e)
         {
 
         }
