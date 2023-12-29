@@ -127,7 +127,7 @@ namespace View
             buttonRandom.Name = "buttonRandom";
             buttonRandom.Size = new Size(116, 38);
             buttonRandom.TabIndex = 6;
-            buttonRandom.Text = "Проверка тренировок";
+            buttonRandom.Text = "Случайная тренировка";
             buttonRandom.UseVisualStyleBackColor = true;
             buttonRandom.Click += ButtonRandom_Click;
             // 
