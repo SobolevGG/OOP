@@ -22,7 +22,7 @@ namespace View
         /// <summary>
         /// Лист тренировок.
         /// </summary>
-        private readonly BindingList<Model.TrainingCalc> _listWages;
+        private readonly BindingList<Model.TrainingCalc> _listTrainings;
 
         /// <summary>
         /// Лист отфильтрованных тренировок.
@@ -35,21 +35,21 @@ namespace View
         public EventHandler<EventArgs> TrainingsFiltered;
 
         /// <summary>
-        /// Зарплата
+        /// Тренировка.
         /// </summary>
         private double _training;
 
         /// <summary>
         /// Форма для фильтрации.
         /// </summary>
-        /// <param name="wages">заработная плата</param>
-        public FilterTraining(BindingList<Model.TrainingCalc> wages)
+        /// <param name="trainings">Тренировки.</param>
+        public FilterTraining(BindingList<Model.TrainingCalc> trainings)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
             MaximizeBox = false;
-            _listWages = wages;
-            textBoxWage.Enabled = false;
+            _listTrainings = trainings;
+            textBoxTraining.Enabled = false;
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
 
@@ -62,14 +62,14 @@ namespace View
         {
             try
             {
-                if(textBoxWage.Text != "")
+                if(textBoxTraining.Text != "")
                 {
-                    _training = Checks.CheckNumber(textBoxWage.Text);
+                    _training = Checks.CheckNumber(textBoxTraining.Text);
                 }
             }
             catch
             {
-                MessageBox.Show("Введено некорректное число", "Ошибка",
+                MessageBox.Show("Введено некорректное число!", "Ошибка!",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -79,7 +79,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-       private void TextBoxWage_KeyPress(object sender, KeyPressEventArgs e)
+       private void TextBoxTraining_KeyPress(object sender, KeyPressEventArgs e)
         {
             Checks.CheckInput(e);
         }
@@ -94,7 +94,7 @@ namespace View
             
             if(checkBoxInput.Checked)
             {
-                textBoxWage.Enabled = true;
+                textBoxTraining.Enabled = true;
             }
         }
 
@@ -119,7 +119,7 @@ namespace View
                 return;
             }
 
-            foreach (Model.TrainingCalc training in _listWages)
+            foreach (Model.TrainingCalc training in _listTrainings)
             {
 
                 switch (training)
@@ -169,8 +169,9 @@ namespace View
             }
             else
             {
-                MessageBox.Show("Зарплат с такими параметрами не " +
-                    "существует", "Введите другие параметры", 
+                MessageBox.Show("Тренировки с указанными " +
+                    "параметрами фильтрации отсутствуют!",
+                    "Тренировки не найдены!", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 eventArgs = 
                     new TrainingListEventArgs(_listTrainingFilter);

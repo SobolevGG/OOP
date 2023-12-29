@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilterTraining));
             groupBox1 = new GroupBox();
             label1 = new Label();
-            textBoxWage = new TextBox();
+            textBoxTraining = new TextBox();
             checkBoxInput = new CheckBox();
             checkBoxSwimCalc = new CheckBox();
             checkBoxRunCalc = new CheckBox();
@@ -43,7 +43,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(textBoxWage);
+            groupBox1.Controls.Add(textBoxTraining);
             groupBox1.Controls.Add(checkBoxInput);
             groupBox1.Controls.Add(checkBoxSwimCalc);
             groupBox1.Controls.Add(checkBoxRunCalc);
@@ -66,15 +66,15 @@
             label1.TabIndex = 5;
             label1.Text = "рублей";
             // 
-            // textBoxWage
+            // textBoxTraining
             // 
-            textBoxWage.Location = new Point(151, 94);
-            textBoxWage.Margin = new Padding(3, 2, 3, 2);
-            textBoxWage.Name = "textBoxWage";
-            textBoxWage.Size = new Size(79, 23);
-            textBoxWage.TabIndex = 4;
-            textBoxWage.TextChanged += TextBoxWage_TextChanged;
-            textBoxWage.KeyPress += TextBoxWage_KeyPress;
+            textBoxTraining.Location = new Point(151, 94);
+            textBoxTraining.Margin = new Padding(3, 2, 3, 2);
+            textBoxTraining.Name = "textBoxTraining";
+            textBoxTraining.Size = new Size(79, 23);
+            textBoxTraining.TabIndex = 4;
+            textBoxTraining.TextChanged += TextBoxWage_TextChanged;
+            textBoxTraining.KeyPress += TextBoxTraining_KeyPress;
             // 
             // checkBoxInput
             // 
@@ -154,7 +154,7 @@
 
         private GroupBox groupBox1;
         private Label label1;
-        private TextBox textBoxWage;
+        private TextBox textBoxTraining;
         private CheckBox checkBoxInput;
         private CheckBox checkBoxSwimCalc;
         private CheckBox checkBoxRunCalc;
