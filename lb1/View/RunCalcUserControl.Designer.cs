@@ -87,7 +87,7 @@ namespace View
             payrollMethod.Margin = new Padding(3, 2, 3, 2);
             payrollMethod.Name = "payrollMethod";
             payrollMethod.Padding = new Padding(3, 2, 3, 2);
-            payrollMethod.Size = new Size(238, 55);
+            payrollMethod.Size = new Size(244, 55);
             payrollMethod.TabIndex = 8;
             payrollMethod.TabStop = false;
             payrollMethod.Text = "Интенсивность";
@@ -95,10 +95,10 @@ namespace View
             // comboBoxIntensity
             // 
             comboBoxIntensity.FormattingEnabled = true;
-            comboBoxIntensity.Location = new Point(21, 20);
+            comboBoxIntensity.Location = new Point(17, 20);
             comboBoxIntensity.Margin = new Padding(3, 2, 3, 2);
             comboBoxIntensity.Name = "comboBoxIntensity";
-            comboBoxIntensity.Size = new Size(205, 23);
+            comboBoxIntensity.Size = new Size(212, 23);
             comboBoxIntensity.TabIndex = 9;
             // 
             // RunCalcUserControl
