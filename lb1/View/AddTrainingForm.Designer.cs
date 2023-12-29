@@ -71,7 +71,7 @@ namespace View
             comboTrainingSelection.Name = "comboTrainingSelection";
             comboTrainingSelection.Size = new Size(231, 23);
             comboTrainingSelection.TabIndex = 9;
-            comboTrainingSelection.SelectedIndexChanged += ComboBoxSalarySelection;
+            comboTrainingSelection.SelectedIndexChanged += ComboBoxTrainingSelection;
             // 
             // accrualParameters
             // 

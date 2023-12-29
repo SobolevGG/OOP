@@ -74,7 +74,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ComboBoxSalarySelection(object sender, EventArgs e)
+        private void ComboBoxTrainingSelection(object sender, EventArgs e)
         {
             string trainingType = comboTrainingSelection.SelectedItem.ToString();
             foreach (var (trainingValue, userControlTmp) in _comboBoxToUserControl)
@@ -136,7 +136,7 @@ namespace View
 
             // Установка выбора по умолчанию на "Бег"
             comboTrainingSelection.SelectedIndex = 2;
-            ComboBoxSalarySelection(this, EventArgs.Empty);
+            ComboBoxTrainingSelection(this, EventArgs.Empty);
         }
 
         private void payrollMethod_Enter(object sender, EventArgs e)
