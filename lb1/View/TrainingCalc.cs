@@ -149,7 +149,8 @@ namespace View
                 dataGridViewSpace.DataSource =
                 ((TrainingListEventArgs)trainingEventArgs).TrainingListValue;
                 _listTrainingsFilter = ((TrainingListEventArgs)trainingEventArgs).TrainingListValue;
-
+                dataGridViewSpace.Columns.Remove("CalculateCalories");
+                dataGridViewSpace.Columns.Remove("Weight");
             };
         }
 
