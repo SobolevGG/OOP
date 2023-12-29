@@ -58,7 +58,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TextBoxWage_TextChanged(object sender, EventArgs e)
+        private void TextBoxTraining_TextChanged(object sender, EventArgs e)
         {
             try
             {

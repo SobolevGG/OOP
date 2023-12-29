@@ -12,7 +12,7 @@ namespace View
     public static class Checks
     {
         /// <summary>
-        /// Проверки на числа, точки и запятые
+        /// Проверки на числа, точки и запятые.
         /// </summary>
         /// <param name="e"></param>
         public static void CheckInput(KeyPressEventArgs e)
@@ -30,7 +30,7 @@ namespace View
         }
 
         /// <summary>
-        /// Преобразование числа в double
+        /// Метод замены точки на запятую.
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
