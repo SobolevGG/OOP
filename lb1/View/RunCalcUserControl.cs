@@ -20,7 +20,7 @@ namespace View
     public partial class RunCalcUserControl : UserControl, ITrainingCalc
     {
         /// <summary>
-        /// Появление полей для плавание.
+        /// Появление полей для бега.
         /// </summary>
         public RunCalcUserControl()
         {
@@ -29,7 +29,7 @@ namespace View
         }
 
         /// <summary>
-        /// Метод установки значения по умолчанию - плавание.
+        /// Метод установки значения по умолчанию - бег.
         /// </summary>
         private void InitializeComboBox()
         {

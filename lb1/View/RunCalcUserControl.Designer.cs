@@ -90,7 +90,7 @@ namespace View
             payrollMethod.Size = new Size(238, 55);
             payrollMethod.TabIndex = 8;
             payrollMethod.TabStop = false;
-            payrollMethod.Text = "Стиль";
+            payrollMethod.Text = "Интенсивность";
             // 
             // comboBoxIntensity
             // 

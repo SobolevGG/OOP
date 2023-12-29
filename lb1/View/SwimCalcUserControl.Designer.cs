@@ -39,9 +39,10 @@ namespace View
             textBoxSalary = new TextBox();
             labelSalary = new Label();
             labelDaysInMonth = new Label();
-            labelWorkingDays = new Label();
             textBoxDaysInMonth = new TextBox();
-            textBoxWorkingDays = new TextBox();
+            payrollMethod = new GroupBox();
+            comboBoxStyle = new ComboBox();
+            payrollMethod.SuspendLayout();
             SuspendLayout();
             // 
             // textBoxSalary
@@ -72,16 +73,6 @@ namespace View
             labelDaysInMonth.Text = "Расстояние, км:";
             labelDaysInMonth.KeyPress += LabelSalary_KeyPress;
             // 
-            // labelWorkingDays
-            // 
-            labelWorkingDays.AutoSize = true;
-            labelWorkingDays.Location = new Point(11, 63);
-            labelWorkingDays.Name = "labelWorkingDays";
-            labelWorkingDays.Size = new Size(94, 15);
-            labelWorkingDays.TabIndex = 3;
-            labelWorkingDays.Text = "Интенсивность:";
-            labelWorkingDays.KeyPress += LabelSalary_KeyPress;
-            // 
             // textBoxDaysInMonth
             // 
             textBoxDaysInMonth.Location = new Point(120, 32);
@@ -90,27 +81,41 @@ namespace View
             textBoxDaysInMonth.Size = new Size(60, 23);
             textBoxDaysInMonth.TabIndex = 4;
             // 
-            // textBoxWorkingDays
+            // payrollMethod
             // 
-            textBoxWorkingDays.Location = new Point(120, 59);
-            textBoxWorkingDays.Margin = new Padding(3, 2, 3, 2);
-            textBoxWorkingDays.Name = "textBoxWorkingDays";
-            textBoxWorkingDays.Size = new Size(60, 23);
-            textBoxWorkingDays.TabIndex = 5;
+            payrollMethod.BackColor = Color.White;
+            payrollMethod.Controls.Add(comboBoxStyle);
+            payrollMethod.Location = new Point(5, 62);
+            payrollMethod.Margin = new Padding(3, 2, 3, 2);
+            payrollMethod.Name = "payrollMethod";
+            payrollMethod.Padding = new Padding(3, 2, 3, 2);
+            payrollMethod.Size = new Size(238, 55);
+            payrollMethod.TabIndex = 9;
+            payrollMethod.TabStop = false;
+            payrollMethod.Text = "Стиль";
+            // 
+            // comboBoxStyle
+            // 
+            comboBoxStyle.FormattingEnabled = true;
+            comboBoxStyle.Location = new Point(21, 20);
+            comboBoxStyle.Margin = new Padding(3, 2, 3, 2);
+            comboBoxStyle.Name = "comboBoxStyle";
+            comboBoxStyle.Size = new Size(205, 23);
+            comboBoxStyle.TabIndex = 9;
             // 
             // SwimCalcUserControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(textBoxWorkingDays);
+            Controls.Add(payrollMethod);
             Controls.Add(textBoxDaysInMonth);
-            Controls.Add(labelWorkingDays);
             Controls.Add(labelDaysInMonth);
             Controls.Add(labelSalary);
             Controls.Add(textBoxSalary);
             Margin = new Padding(3, 2, 3, 2);
             Name = "SwimCalcUserControl";
-            Size = new Size(264, 95);
+            Size = new Size(256, 153);
+            payrollMethod.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -120,8 +125,8 @@ namespace View
         private TextBox textBoxSalary;
         private Label labelSalary;
         private Label labelDaysInMonth;
-        private Label labelWorkingDays;
         private TextBox textBoxDaysInMonth;
-        private TextBox textBoxWorkingDays;
+        private GroupBox payrollMethod;
+        private ComboBox comboBoxStyle;
     }
 }
