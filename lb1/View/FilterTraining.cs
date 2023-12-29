@@ -9,25 +9,28 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
 
+/// <summary>
+/// Пространство имён View.
+/// </summary>
 namespace View
 {
     /// <summary>
-    /// Класс, описывающий форму для фильтрации
+    /// Класс, описывающий форму для фильтрации.
     /// </summary>
     public partial class FilterTraining : Form
     {
         /// <summary>
-        /// Лист зарплат
+        /// Лист тренировок.
         /// </summary>
         private readonly BindingList<Model.TrainingCalc> _listWages;
 
         /// <summary>
-        /// Лист отфильтрованных зарплат
+        /// Лист отфильтрованных тренировок.
         /// </summary>
         private BindingList<Model.TrainingCalc> _listTrainingFilter;
 
         /// <summary>
-        /// Обработчик события
+        /// Обработчик события.
         /// </summary>
         public EventHandler<EventArgs> TrainingsFiltered;
 
@@ -37,7 +40,7 @@ namespace View
         private double _training;
 
         /// <summary>
-        /// Форма для фильтрации
+        /// Форма для фильтрации.
         /// </summary>
         /// <param name="wages">заработная плата</param>
         public FilterTraining(BindingList<Model.TrainingCalc> wages)
@@ -51,7 +54,7 @@ namespace View
         }
 
         /// <summary>
-        /// Ввод необходимой суммы зарплаты
+        /// Ручной ввод.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -72,7 +75,7 @@ namespace View
         }
 
         /// <summary>
-        /// Контроль ввода значений
+        /// Контроль ввода значений.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -82,7 +85,7 @@ namespace View
         }
 
         /// <summary>
-        /// Активация поля ввода зарплаты для поиска
+        /// Активация поля ввода калорий.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -96,7 +99,7 @@ namespace View
         }
 
         /// <summary>
-        /// Кнопка поиска по созданному фильтру
+        /// Кнопка поиска по фильтру.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -110,8 +113,8 @@ namespace View
                 && !checkBoxSwimCalc.Checked
                 && !checkBoxInput.Checked)
             {
-                MessageBox.Show("Критерии для поиска не введены!",
-                    "Внимание", MessageBoxButtons.OK, 
+                MessageBox.Show("Параметры фильтрации не указаны!",
+                    "Внимание!", MessageBoxButtons.OK, 
                     MessageBoxIcon.Warning);
                 return;
             }
@@ -148,7 +151,8 @@ namespace View
                     && !checkBoxRunCalc.Checked
                     && !checkBoxSwimCalc.Checked)
                 {
-                    if (checkBoxInput.Checked && training.CalculateCalories == _training)
+                    if (checkBoxInput.Checked 
+                        && training.CalculateCalories == _training)
                     {
                         count++;
                         _listTrainingFilter.Add(training);
@@ -160,14 +164,16 @@ namespace View
 
             if (count > 0)
             {
-                eventArgs = new TrainingListEventArgs(_listTrainingFilter);
+                eventArgs = 
+                    new TrainingListEventArgs(_listTrainingFilter);
             }
             else
             {
                 MessageBox.Show("Зарплат с такими параметрами не " +
                     "существует", "Введите другие параметры", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                eventArgs = new TrainingListEventArgs(_listTrainingFilter);
+                eventArgs = 
+                    new TrainingListEventArgs(_listTrainingFilter);
                 return;
             }
 

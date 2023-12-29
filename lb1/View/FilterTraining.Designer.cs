@@ -48,11 +48,11 @@
             groupBox1.Controls.Add(checkBoxSwimCalc);
             groupBox1.Controls.Add(checkBoxRunCalc);
             groupBox1.Controls.Add(checkBoxPressCalc);
-            groupBox1.Location = new Point(10, 9);
+            groupBox1.Location = new Point(8, 2);
             groupBox1.Margin = new Padding(3, 2, 3, 2);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(3, 2, 3, 2);
-            groupBox1.Size = new Size(394, 175);
+            groupBox1.Size = new Size(240, 126);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Параметры фильтрации";
@@ -68,10 +68,10 @@
             // 
             // textBoxWage
             // 
-            textBoxWage.Location = new Point(211, 140);
+            textBoxWage.Location = new Point(151, 94);
             textBoxWage.Margin = new Padding(3, 2, 3, 2);
             textBoxWage.Name = "textBoxWage";
-            textBoxWage.Size = new Size(110, 23);
+            textBoxWage.Size = new Size(79, 23);
             textBoxWage.TabIndex = 4;
             textBoxWage.TextChanged += TextBoxWage_TextChanged;
             textBoxWage.KeyPress += TextBoxWage_KeyPress;
@@ -79,56 +79,56 @@
             // checkBoxInput
             // 
             checkBoxInput.AutoSize = true;
-            checkBoxInput.Location = new Point(12, 140);
+            checkBoxInput.Location = new Point(12, 96);
             checkBoxInput.Margin = new Padding(3, 2, 3, 2);
             checkBoxInput.Name = "checkBoxInput";
-            checkBoxInput.Size = new Size(176, 19);
+            checkBoxInput.Size = new Size(136, 19);
             checkBoxInput.TabIndex = 3;
-            checkBoxInput.Text = "Ввод необходимой суммы ";
+            checkBoxInput.Text = "Поиск по калориям";
             checkBoxInput.UseVisualStyleBackColor = true;
             checkBoxInput.CheckedChanged += CheckBoxInput_CheckedChanged;
             // 
             // checkBoxSwimCalc
             // 
             checkBoxSwimCalc.AutoSize = true;
-            checkBoxSwimCalc.Location = new Point(12, 101);
+            checkBoxSwimCalc.Location = new Point(12, 48);
             checkBoxSwimCalc.Margin = new Padding(3, 2, 3, 2);
             checkBoxSwimCalc.Name = "checkBoxSwimCalc";
-            checkBoxSwimCalc.Size = new Size(60, 19);
+            checkBoxSwimCalc.Size = new Size(80, 19);
             checkBoxSwimCalc.TabIndex = 2;
-            checkBoxSwimCalc.Text = "Оклад";
+            checkBoxSwimCalc.Text = "Плавание";
             checkBoxSwimCalc.UseVisualStyleBackColor = true;
             // 
             // checkBoxRunCalc
             // 
             checkBoxRunCalc.AutoSize = true;
-            checkBoxRunCalc.Location = new Point(12, 63);
+            checkBoxRunCalc.Location = new Point(12, 24);
             checkBoxRunCalc.Margin = new Padding(3, 2, 3, 2);
             checkBoxRunCalc.Name = "checkBoxRunCalc";
-            checkBoxRunCalc.Size = new Size(118, 19);
+            checkBoxRunCalc.Size = new Size(44, 19);
             checkBoxRunCalc.TabIndex = 1;
-            checkBoxRunCalc.Text = "Тарифная ставка";
+            checkBoxRunCalc.Text = "Бег";
             checkBoxRunCalc.UseVisualStyleBackColor = true;
             // 
             // checkBoxPressCalc
             // 
             checkBoxPressCalc.AutoSize = true;
-            checkBoxPressCalc.Location = new Point(12, 29);
+            checkBoxPressCalc.Location = new Point(12, 72);
             checkBoxPressCalc.Margin = new Padding(3, 2, 3, 2);
             checkBoxPressCalc.Name = "checkBoxPressCalc";
-            checkBoxPressCalc.Size = new Size(165, 19);
+            checkBoxPressCalc.Size = new Size(97, 19);
             checkBoxPressCalc.TabIndex = 0;
-            checkBoxPressCalc.Text = "Часовая тарифная ставка";
+            checkBoxPressCalc.Text = "Жим штанги";
             checkBoxPressCalc.UseVisualStyleBackColor = true;
             // 
             // buttonSearch
             // 
-            buttonSearch.Location = new Point(311, 196);
+            buttonSearch.Location = new Point(156, 134);
             buttonSearch.Margin = new Padding(3, 2, 3, 2);
             buttonSearch.Name = "buttonSearch";
             buttonSearch.Size = new Size(93, 22);
             buttonSearch.TabIndex = 1;
-            buttonSearch.Text = "Найти";
+            buttonSearch.Text = "Поиск";
             buttonSearch.UseVisualStyleBackColor = true;
             buttonSearch.Click += ButtonSearch_Click;
             // 
@@ -136,9 +136,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.Выбор_трени;
+            BackColor = Color.White;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(414, 226);
+            ClientSize = new Size(256, 162);
             Controls.Add(buttonSearch);
             Controls.Add(groupBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
