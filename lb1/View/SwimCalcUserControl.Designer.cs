@@ -89,7 +89,7 @@ namespace View
             payrollMethod.Margin = new Padding(3, 2, 3, 2);
             payrollMethod.Name = "payrollMethod";
             payrollMethod.Padding = new Padding(3, 2, 3, 2);
-            payrollMethod.Size = new Size(238, 55);
+            payrollMethod.Size = new Size(244, 55);
             payrollMethod.TabIndex = 9;
             payrollMethod.TabStop = false;
             payrollMethod.Text = "Стиль";
@@ -97,10 +97,10 @@ namespace View
             // comboBoxStyle
             // 
             comboBoxStyle.FormattingEnabled = true;
-            comboBoxStyle.Location = new Point(21, 20);
+            comboBoxStyle.Location = new Point(17, 20);
             comboBoxStyle.Margin = new Padding(3, 2, 3, 2);
             comboBoxStyle.Name = "comboBoxStyle";
-            comboBoxStyle.Size = new Size(205, 23);
+            comboBoxStyle.Size = new Size(212, 23);
             comboBoxStyle.TabIndex = 9;
             // 
             // SwimCalcUserControl
