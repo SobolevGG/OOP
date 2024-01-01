@@ -37,7 +37,7 @@ namespace View
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddTrainingForm));
-            payrollMethod = new GroupBox();
+            trainingMethod = new GroupBox();
             comboTrainingSelection = new ComboBox();
             accrualParameters = new GroupBox();
             buttonClose = new Button();
@@ -45,23 +45,23 @@ namespace View
             runCalcUserControl = new RunCalcUserControl();
             pressCalcUserControl = new PressCalcUserControl();
             swimCalcUserControl = new SwimCalcUserControl();
-            payrollMethod.SuspendLayout();
+            trainingMethod.SuspendLayout();
             accrualParameters.SuspendLayout();
             SuspendLayout();
             // 
-            // payrollMethod
+            // trainingMethod
             // 
-            payrollMethod.BackColor = Color.White;
-            payrollMethod.Controls.Add(comboTrainingSelection);
-            payrollMethod.Location = new Point(8, 2);
-            payrollMethod.Margin = new Padding(3, 2, 3, 2);
-            payrollMethod.Name = "payrollMethod";
-            payrollMethod.Padding = new Padding(3, 2, 3, 2);
-            payrollMethod.Size = new Size(264, 55);
-            payrollMethod.TabIndex = 7;
-            payrollMethod.TabStop = false;
-            payrollMethod.Text = "Тип тренировки";
-            payrollMethod.Enter += Method_Enter;
+            trainingMethod.BackColor = Color.White;
+            trainingMethod.Controls.Add(comboTrainingSelection);
+            trainingMethod.Location = new Point(8, 2);
+            trainingMethod.Margin = new Padding(3, 2, 3, 2);
+            trainingMethod.Name = "trainingMethod";
+            trainingMethod.Padding = new Padding(3, 2, 3, 2);
+            trainingMethod.Size = new Size(264, 55);
+            trainingMethod.TabIndex = 7;
+            trainingMethod.TabStop = false;
+            trainingMethod.Text = "Тип тренировки";
+            trainingMethod.Enter += Method_Enter;
             // 
             // comboTrainingSelection
             // 
@@ -87,7 +87,7 @@ namespace View
             accrualParameters.Size = new Size(264, 184);
             accrualParameters.TabIndex = 10;
             accrualParameters.TabStop = false;
-            accrualParameters.Text = "Параметры начисления";
+            accrualParameters.Text = "Параметры расчёта";
             accrualParameters.Enter += Parameters_Enter;
             // 
             // buttonClose
@@ -150,7 +150,7 @@ namespace View
             ClientSize = new Size(280, 253);
             Controls.Add(swimCalcUserControl);
             Controls.Add(accrualParameters);
-            Controls.Add(payrollMethod);
+            Controls.Add(trainingMethod);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
@@ -159,14 +159,14 @@ namespace View
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Расчёт тренировки";
             Load += TrainingLoad;
-            payrollMethod.ResumeLayout(false);
+            trainingMethod.ResumeLayout(false);
             accrualParameters.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private GroupBox payrollMethod;
+        private GroupBox trainingMethod;
         private GroupBox accrualParameters;
         private ComboBox comboTrainingSelection;
         private Button buttonOk;

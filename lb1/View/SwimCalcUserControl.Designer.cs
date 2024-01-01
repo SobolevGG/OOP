@@ -81,13 +81,13 @@ namespace View
             textBoxDaysInMonth.Size = new Size(60, 23);
             textBoxDaysInMonth.TabIndex = 4;
             // 
-            // payrollMethod
+            // trainingMethod
             // 
             payrollMethod.BackColor = Color.White;
             payrollMethod.Controls.Add(comboBoxStyle);
             payrollMethod.Location = new Point(5, 62);
             payrollMethod.Margin = new Padding(3, 2, 3, 2);
-            payrollMethod.Name = "payrollMethod";
+            payrollMethod.Name = "trainingMethod";
             payrollMethod.Padding = new Padding(3, 2, 3, 2);
             payrollMethod.Size = new Size(244, 55);
             payrollMethod.TabIndex = 9;
