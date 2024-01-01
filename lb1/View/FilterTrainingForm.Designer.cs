@@ -1,6 +1,6 @@
 ﻿namespace View
 {
-    partial class FilterTraining
+    partial class FilterTrainingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilterTraining));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilterTrainingForm));
             groupBox1 = new GroupBox();
             label1 = new Label();
             textBoxTraining = new TextBox();
@@ -73,7 +73,7 @@
             textBoxTraining.Name = "textBoxTraining";
             textBoxTraining.Size = new Size(79, 23);
             textBoxTraining.TabIndex = 4;
-            textBoxTraining.TextChanged += TextBoxWage_TextChanged;
+            textBoxTraining.TextChanged += TextBoxTraining_TextChanged;
             textBoxTraining.KeyPress += TextBoxTraining_KeyPress;
             // 
             // checkBoxInput

@@ -17,7 +17,7 @@ namespace View
     /// <summary>
     /// Класс, описывающий форму для фильтрации.
     /// </summary>
-    public partial class FilterTraining : Form
+    public partial class FilterTrainingForm : Form
     {
         /// <summary>
         /// Лист тренировок.
@@ -43,7 +43,7 @@ namespace View
         /// Форма для фильтрации.
         /// </summary>
         /// <param name="trainings">Тренировки.</param>
-        public FilterTraining(BindingList<Model.TrainingCalc> trainings)
+        public FilterTrainingForm(BindingList<Model.TrainingCalc> trainings)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;

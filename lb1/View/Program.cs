@@ -16,7 +16,7 @@ namespace View
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new TrainingCalc());
+            Application.Run(new TrainingCalcForm());
         }
     }
 }

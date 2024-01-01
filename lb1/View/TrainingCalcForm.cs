@@ -9,12 +9,12 @@ namespace View
     /// <summary>
     /// Класс для создания главной формы калькулятора 
     /// </summary>
-    public partial class TrainingCalc : Form
+    public partial class TrainingCalcForm : Form
     {
         /// <summary>
         /// Инициализация формы
         /// </summary>
-        public TrainingCalc()
+        public TrainingCalcForm()
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
@@ -142,7 +142,7 @@ namespace View
         /// <param name="e"></param>
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
-            var newFilterTrainings = new FilterTraining(_trainingList);
+            var newFilterTrainings = new FilterTrainingForm(_trainingList);
             newFilterTrainings.Show();
             newFilterTrainings.TrainingsFiltered += (sender, trainingEventArgs) =>
             {
