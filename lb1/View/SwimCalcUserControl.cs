@@ -27,61 +27,12 @@ namespace View
             InitializeComponent();
 
             // Инициализация бокса с вариантами стилей плавания
-            comboBoxStyle.DataSource = GetRuEnumList<Model.Style>();
+            comboBoxStyle.DataSource = TrainingCalcForm.GetRuEnumList<Model.Style>();
 
             // Установка начального выбора
             comboBoxStyle.SelectedIndex = 0;
             comboBoxStyle.DisplayMember = "Name";
             comboBoxStyle.ValueMember = "Value";
-        }
-
-        /// <summary>
-        /// Метод получения значений перечисления стилей 
-        /// плавания на русском языке.
-        /// </summary>
-        /// <returns>Список с русскими названиями 
-        /// стилей плавания.</returns>
-        public static BindingList<ComboBoxItem> GetRuEnumList<Enum>() 
-            where Enum : System.Enum
-        {
-            var enumValues = System.Enum.GetValues(typeof(Enum));
-            var enumList = new BindingList<ComboBoxItem>();
-
-            foreach (Enum value in enumValues)
-            {
-                enumList.Add(new ComboBoxItem
-                {
-                    Name = GetRuEnumDescrip(value),
-                    Value = value
-                });
-            }
-
-            return enumList;
-        }
-
-        /// <summary>
-        /// Метод получения русского наименования 
-        /// перечисления по описанию.
-        /// </summary>
-        /// <param name="enumValue">Значение перечисления.</param>
-        /// <returns>Русское название перечисления.</returns>
-        public static string GetRuEnumDescrip(Enum enumValue)
-        {
-            var fieldInfo = enumValue.GetType()
-                .GetField(enumValue.ToString());
-            var description = (DescriptionAttribute)Attribute
-                .GetCustomAttribute(fieldInfo, 
-                typeof(DescriptionAttribute));
-
-            if (description != null 
-                && !string.IsNullOrEmpty(description.Description))
-            {
-                return description.Description;
-            }
-            else
-            {
-                return enumValue.ToString();
-            }
         }
 
         /// <summary>

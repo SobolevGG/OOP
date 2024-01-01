@@ -4,6 +4,8 @@ using System.Data;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using Model;
+using static View.SwimCalcUserControl;
+
 namespace View
 {
     /// <summary>
@@ -21,6 +23,55 @@ namespace View
             MaximizeBox = false;
             Size = new Size(615, 477);
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+        }
+
+        /// <summary>
+        /// ћетод получени€ значений перечислени€ стилей 
+        /// плавани€ на русском €зыке.
+        /// </summary>
+        /// <returns>—писок с русскими названи€ми 
+        /// стилей плавани€.</returns>
+        public static BindingList<ComboBoxItem> GetRuEnumList<Enum>()
+            where Enum : System.Enum
+        {
+            var enumValues = System.Enum.GetValues(typeof(Enum));
+            var enumList = new BindingList<ComboBoxItem>();
+
+            foreach (Enum value in enumValues)
+            {
+                enumList.Add(new ComboBoxItem
+                {
+                    Name = GetRuEnumDescrip(value),
+                    Value = value
+                });
+            }
+
+            return enumList;
+        }
+
+        /// <summary>
+        /// ћетод получени€ русского наименовани€ 
+        /// перечислени€ по описанию.
+        /// </summary>
+        /// <param name="enumValue">«начение перечислени€.</param>
+        /// <returns>–усское название перечислени€.</returns>
+        public static string GetRuEnumDescrip(Enum enumValue)
+        {
+            var fieldInfo = enumValue.GetType()
+                .GetField(enumValue.ToString());
+            var description = (DescriptionAttribute)Attribute
+                .GetCustomAttribute(fieldInfo,
+                typeof(DescriptionAttribute));
+
+            if (description != null
+                && !string.IsNullOrEmpty(description.Description))
+            {
+                return description.Description;
+            }
+            else
+            {
+                return enumValue.ToString();
+            }
         }
 
         /// <summary>

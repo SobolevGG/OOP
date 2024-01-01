@@ -35,7 +35,7 @@ namespace View
         private void InitializeComboBox()
         {
             comboBoxIntensity.DataSource
-                = SwimCalcUserControl.GetRuEnumList<Model.Intensity>();
+                = TrainingCalcForm.GetRuEnumList<Model.Intensity>();
 
             // Установка выбора по умолчанию
             comboBoxIntensity.SelectedIndex = 0;
