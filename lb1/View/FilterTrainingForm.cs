@@ -35,7 +35,7 @@ namespace View
         public EventHandler<EventArgs> TrainingsFiltered;
 
         /// <summary>
-        /// Тренировка.
+        /// Поле для ввода величины калорий для поиска.
         /// </summary>
         private double _training;
 
@@ -130,7 +130,7 @@ namespace View
                         {
                             if (checkBoxInput.Checked)
                             {
-                                if (training.CalculateCalories == _training)
+                                if (training.RoundCalories == _training)
                                 {
                                     count++;
                                     _listTrainingFilter.Add(training);
@@ -152,7 +152,7 @@ namespace View
                     && !checkBoxSwimCalc.Checked)
                 {
                     if (checkBoxInput.Checked 
-                        && training.CalculateCalories == _training)
+                        && training.RoundCalories == _training)
                     {
                         count++;
                         _listTrainingFilter.Add(training);
