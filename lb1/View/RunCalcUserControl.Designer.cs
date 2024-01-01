@@ -61,20 +61,20 @@ namespace View
             textBoxWorkingHours.Size = new Size(60, 23);
             textBoxWorkingHours.TabIndex = 3;
             // 
-            // labelSalary
+            // labelWeight
             // 
             labelSalary.AutoSize = true;
             labelSalary.Location = new Point(11, 9);
-            labelSalary.Name = "labelSalary";
+            labelSalary.Name = "labelWeight";
             labelSalary.Size = new Size(72, 15);
             labelSalary.TabIndex = 4;
             labelSalary.Text = "Ваш вес, кг:";
             // 
-            // labelDaysInMonth
+            // labelDistance
             // 
             labelDaysInMonth.AutoSize = true;
             labelDaysInMonth.Location = new Point(11, 36);
-            labelDaysInMonth.Name = "labelDaysInMonth";
+            labelDaysInMonth.Name = "labelDistance";
             labelDaysInMonth.Size = new Size(94, 15);
             labelDaysInMonth.TabIndex = 5;
             labelDaysInMonth.Text = "Расстояние, км:";
