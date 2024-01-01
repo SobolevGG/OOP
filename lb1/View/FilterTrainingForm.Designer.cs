@@ -64,7 +64,6 @@
             label1.Name = "label1";
             label1.Size = new Size(47, 15);
             label1.TabIndex = 5;
-            label1.Text = "рублей";
             // 
             // textBoxTraining
             // 
