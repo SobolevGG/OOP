@@ -35,12 +35,33 @@ namespace View
         private void InitializeComboBox()
         {
             comboBoxIntensity.DataSource
-                = TrainingCalcForm.GetRuEnumList<Model.Intensity>();
+                = GetRuIntensityList();
 
             // Установка выбора по умолчанию
             comboBoxIntensity.SelectedIndex = 0;
             comboBoxIntensity.DisplayMember = "Name";
             comboBoxIntensity.ValueMember = "Value";
+        }
+
+        /// <summary>
+        /// Метод получения всех значений перечисления.
+        /// </summary>
+        /// <returns>Список с интенсивностями на русском языке.</returns>
+        private BindingList<ComboBoxItem> GetRuIntensityList()
+        {
+            var intensityValues = Enum.GetValues(typeof(Intensity));
+            var intensityList = new BindingList<ComboBoxItem>();
+
+            foreach (Intensity intensity in intensityValues)
+            {
+                intensityList.Add(new ComboBoxItem
+                {
+                    Name = SwimCalcUserControl.GetRuEnumDescrip(intensity),
+                    Value = intensity
+                });
+            }
+
+            return intensityList;
         }
 
         /// <summary>

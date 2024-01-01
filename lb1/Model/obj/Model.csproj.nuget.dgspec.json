@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sobol\\Source\\Repos\\SobolevGG\\OOP\\lb1\\Model\\Model.csproj": {}
+    "C:\\Users\\Sobol\\source\\repos\\SobolevGG\\OOP\\lb1\\Model\\Model.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sobol\\Source\\Repos\\SobolevGG\\OOP\\lb1\\Model\\Model.csproj": {
+    "C:\\Users\\Sobol\\source\\repos\\SobolevGG\\OOP\\lb1\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sobol\\Source\\Repos\\SobolevGG\\OOP\\lb1\\Model\\Model.csproj",
+        "projectUniqueName": "C:\\Users\\Sobol\\source\\repos\\SobolevGG\\OOP\\lb1\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "C:\\Users\\Sobol\\Source\\Repos\\SobolevGG\\OOP\\lb1\\Model\\Model.csproj",
+        "projectPath": "C:\\Users\\Sobol\\source\\repos\\SobolevGG\\OOP\\lb1\\Model\\Model.csproj",
         "packagesPath": "C:\\Users\\Sobol\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sobol\\Source\\Repos\\SobolevGG\\OOP\\lb1\\Model\\obj\\",
+        "outputPath": "C:\\Users\\Sobol\\source\\repos\\SobolevGG\\OOP\\lb1\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Sobol\\AppData\\Roaming\\NuGet\\NuGet.Config",

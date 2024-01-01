@@ -27,7 +27,7 @@ namespace View
             InitializeComponent();
 
             // Инициализация бокса с вариантами стилей плавания
-            comboBoxStyle.DataSource = TrainingCalcForm.GetRuEnumList<Model.Style>();
+            comboBoxStyle.DataSource = GetRuStyleList();
 
             // Установка начального выбора
             comboBoxStyle.SelectedIndex = 0;
@@ -36,11 +36,59 @@ namespace View
         }
 
         /// <summary>
+        /// Метод получения значений перечисления стилей 
+        /// плавания на русском языке.
+        /// </summary>
+        /// <returns>Список с русскими названиями 
+        /// стилей плавания.</returns>
+        private BindingList<ComboBoxItem> GetRuStyleList()
+        {
+            var styleValues = Enum.GetValues(typeof(Style));
+            var styleList = new BindingList<ComboBoxItem>();
+
+            foreach (Style style in styleValues)
+            {
+                styleList.Add(new ComboBoxItem
+                {
+                    Name = GetRuEnumDescrip(style),
+                    Value = style
+                });
+            }
+
+            return styleList;
+        }
+
+        /// <summary>
+        /// Метод получения русского наименования 
+        /// перечисления по описанию.
+        /// </summary>
+        /// <param name="enumValue">Значение перечисления.</param>
+        /// <returns>Русское название перечисления.</returns>
+        public static string GetRuEnumDescrip(Enum enumValue)
+        {
+            var fieldInfo = enumValue.GetType()
+                .GetField(enumValue.ToString());
+            var description = (DescriptionAttribute)Attribute
+                .GetCustomAttribute(fieldInfo,
+                typeof(DescriptionAttribute));
+
+            if (description != null
+                && !string.IsNullOrEmpty(description.Description))
+            {
+                return description.Description;
+            }
+            else
+            {
+                return enumValue.ToString();
+            }
+        }
+
+        /// <summary>
         /// Ручной ввод параметров.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void LabelSwim_KeyPress(object sender, 
+        private void LabelSwim_KeyPress(object sender,
             KeyPressEventArgs e)
         {
             Checks.CheckInput(e);
@@ -54,13 +102,13 @@ namespace View
         {
             var swimCalc = new SwimCalc();
 
-            swimCalc.Weight = 
+            swimCalc.Weight =
                 Checks.CheckDouble(textBoxWeight.Text);
-            swimCalc.Distance = 
+            swimCalc.Distance =
                 Checks.CheckDouble(textBoxDistance.Text);
 
             // Получение выбранного стиля из ComboBox
-            if (comboBoxStyle.SelectedItem 
+            if (comboBoxStyle.SelectedItem
                 is ComboBoxItem selectedStyleItem)
             {
                 swimCalc.Style = (Style)selectedStyleItem.Value;
@@ -81,7 +129,7 @@ namespace View
         /// <summary>
         /// Вложенный класс для русского языка.
         /// </summary>
-        public class ComboBoxItem
+        private class ComboBoxItem
         {
             public string Name { get; set; }
             public object Value { get; set; }
