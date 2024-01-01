@@ -64,7 +64,7 @@ namespace View
             groupBoxСalculator.Margin = new Padding(3, 2, 3, 2);
             groupBoxСalculator.Name = "groupBoxСalculator";
             groupBoxСalculator.Padding = new Padding(3, 2, 3, 2);
-            groupBoxСalculator.Size = new Size(532, 293);
+            groupBoxСalculator.Size = new Size(732, 293);
             groupBoxСalculator.TabIndex = 0;
             groupBoxСalculator.TabStop = false;
             groupBoxСalculator.Text = "Программа тренировок";
@@ -81,12 +81,12 @@ namespace View
             dataGridViewSpace.Name = "dataGridViewSpace";
             dataGridViewSpace.RowHeadersWidth = 51;
             dataGridViewSpace.RowTemplate.Height = 25;
-            dataGridViewSpace.Size = new Size(517, 269);
+            dataGridViewSpace.Size = new Size(717, 269);
             dataGridViewSpace.TabIndex = 1;
             // 
             // buttonAdd
             // 
-            buttonAdd.Location = new Point(361, 380);
+            buttonAdd.Location = new Point(645, 336);
             buttonAdd.Margin = new Padding(3, 2, 3, 2);
             buttonAdd.Name = "buttonAdd";
             buttonAdd.Size = new Size(116, 38);
@@ -97,7 +97,7 @@ namespace View
             // 
             // buttonDelete
             // 
-            buttonDelete.Location = new Point(239, 337);
+            buttonDelete.Location = new Point(157, 337);
             buttonDelete.Margin = new Padding(3, 2, 3, 2);
             buttonDelete.Name = "buttonDelete";
             buttonDelete.Size = new Size(116, 38);
@@ -108,7 +108,7 @@ namespace View
             // 
             // buttonSearch
             // 
-            buttonSearch.Location = new Point(117, 381);
+            buttonSearch.Location = new Point(401, 337);
             buttonSearch.Name = "buttonSearch";
             buttonSearch.Size = new Size(116, 38);
             buttonSearch.TabIndex = 4;
@@ -118,7 +118,7 @@ namespace View
             // 
             // buttonReset
             // 
-            buttonReset.Location = new Point(361, 337);
+            buttonReset.Location = new Point(279, 337);
             buttonReset.Margin = new Padding(3, 2, 3, 2);
             buttonReset.Name = "buttonReset";
             buttonReset.Size = new Size(116, 38);
@@ -129,7 +129,7 @@ namespace View
             // 
             // buttonRandom
             // 
-            buttonRandom.Location = new Point(117, 337);
+            buttonRandom.Location = new Point(35, 337);
             buttonRandom.Name = "buttonRandom";
             buttonRandom.Size = new Size(116, 38);
             buttonRandom.TabIndex = 6;
@@ -139,7 +139,7 @@ namespace View
             // 
             // buttonCleanFilter
             // 
-            buttonCleanFilter.Location = new Point(239, 380);
+            buttonCleanFilter.Location = new Point(523, 336);
             buttonCleanFilter.Margin = new Padding(3, 2, 3, 2);
             buttonCleanFilter.Name = "buttonCleanFilter";
             buttonCleanFilter.Size = new Size(116, 38);
@@ -178,18 +178,18 @@ namespace View
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(599, 25);
+            toolStrip1.Size = new Size(799, 25);
             toolStrip1.TabIndex = 8;
             toolStrip1.Text = "toolStrip1";
             // 
-            // TrainingCalc
+            // TrainingCalcForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(599, 438);
+            ClientSize = new Size(799, 438);
             Controls.Add(toolStrip1);
             Controls.Add(buttonCleanFilter);
             Controls.Add(buttonRandom);
@@ -201,7 +201,7 @@ namespace View
             ForeColor = SystemColors.ControlText;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
-            Name = "TrainingCalc";
+            Name = "TrainingCalcForm";
             Text = "Калькулятор калорий";
             Load += MainForm_Load;
             groupBoxСalculator.ResumeLayout(false);

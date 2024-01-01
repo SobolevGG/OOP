@@ -6,43 +6,46 @@ using System.Xml.Serialization;
 using Model;
 using static View.SwimCalcUserControl;
 
+/// <summary>
+/// Пространство имён View.
+/// </summary>
 namespace View
 {
     /// <summary>
-    /// Класс для создания главной формы калькулятора 
+    /// Класс для создания главной формы. 
     /// </summary>
     public partial class TrainingCalcForm : Form
     {
         /// <summary>
-        /// Инициализация формы
+        /// Инициализация формы.
         /// </summary>
         public TrainingCalcForm()
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
             MaximizeBox = false;
-            Size = new Size(615, 477);
+            Size = new Size(815, 477);
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
 
         /// <summary>
-        /// Список зарплат
+        /// Список тренировок.
         /// </summary>
         private BindingList<Model.TrainingCalc> _trainingList = new();
 
         /// <summary>
-        /// Лист отфильтрованных фигур
+        /// Лист отфильтрованных тренировок.
         /// </summary>
         private BindingList<Model.TrainingCalc> _listTrainingsFilter = new();
 
         /// <summary>
-        /// Для файлов 
+        /// Поле для сохранения файла.
         /// </summary>
         private readonly XmlSerializer _serializer =
             new XmlSerializer(typeof(BindingList<Model.TrainingCalc>));
 
         /// <summary>
-        /// Загрузка формы 
+        /// Загрузка формы.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -53,7 +56,7 @@ namespace View
         }
 
         /// <summary>
-        /// Добавление новой фигуры.
+        /// Добавление новой тренировки.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -71,8 +74,8 @@ namespace View
         /// <summary>
         /// Создание таблицы DataGrid.
         /// </summary>
-        /// <param name="trainings"></param>
-        /// <param name="dataGridView"></param>
+        /// <param name="trainings">Тренировки.</param>
+        /// <param name="dataGridView">Таблица.</param>
         public static void CreateTable(BindingList<Model.TrainingCalc> trainings,
               DataGridView dataGridView)
         {
@@ -98,7 +101,7 @@ namespace View
         }
 
         /// <summary>
-        /// Удаление позиций
+        /// Удаление тренировки.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -116,7 +119,7 @@ namespace View
         }
 
         /// <summary>
-        /// Очистка списка
+        /// Очистка списка тренировок.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -138,7 +141,7 @@ namespace View
         }
 
         /// <summary>
-        /// Кнопка для открытия фильтра
+        /// Кнопка для открытия фильтра с тренировками.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -157,7 +160,7 @@ namespace View
         }
 
         /// <summary>
-        /// Сброс фильтра.
+        /// Сброс фильтра тренировок.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -234,7 +237,7 @@ namespace View
             {
                 MessageBox.Show("Не удалось загрузить файл.\n" +
                     "Файл повреждён или не соответствует формату.",
-                    "Ошибка",
+                    "Ошибка!",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

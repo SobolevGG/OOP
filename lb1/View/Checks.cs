@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Пространство имён View.
+/// </summary>
 namespace View
 {
     /// <summary>
-    /// Класс для выполнения проверок
+    /// Класс для выполнения проверок.
     /// </summary>
     public static class Checks
     {
