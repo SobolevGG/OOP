@@ -1,18 +1,24 @@
 ﻿using System;
 using Model;
+
+/// <summary> 
+/// Пространство имён View.
+/// </summary>
 namespace View
 {
     partial class TrainingCalcForm
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Обязательная переменная конструктора.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Освободить все используемые ресурсы.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">true - если управляемые 
+        /// ресурсы должны быть освобождены;
+        /// иначе - false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
