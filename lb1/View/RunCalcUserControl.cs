@@ -29,27 +29,25 @@ namespace View
         }
 
         /// <summary>
-        /// Метод установки значения по умолчанию - бег.
+        /// Метод инициализации и установки значения 
+        /// по умолчанию - бег.
         /// </summary>
         private void InitializeComboBox()
         {
             comboBoxIntensity.DataSource
-                = GetRussianIntensityList();
+                = GetRuIntensityList();
 
-            // Установка начального выбора
-            comboBoxIntensity.SelectedIndex
-                = 0;
-            comboBoxIntensity.DisplayMember
-                = "Name";
-            comboBoxIntensity.ValueMember
-                = "Value";
+            // Установка выбора по умолчанию
+            comboBoxIntensity.SelectedIndex = 0;
+            comboBoxIntensity.DisplayMember = "Name";
+            comboBoxIntensity.ValueMember = "Value";
         }
 
         /// <summary>
         /// Метод получения всех значений перечисления.
         /// </summary>
         /// <returns>Список с интенсивностями на русском языке.</returns>
-        private BindingList<ComboBoxItem> GetRussianIntensityList()
+        private BindingList<ComboBoxItem> GetRuIntensityList()
         {
             var intensityValues = Enum.GetValues(typeof(Intensity));
             var intensityList = new BindingList<ComboBoxItem>();
@@ -58,30 +56,12 @@ namespace View
             {
                 intensityList.Add(new ComboBoxItem
                 {
-                    Name = GetRussianIntensityName(intensity),
+                    Name = SwimCalcUserControl.GetRuEnumDescrip(intensity),
                     Value = intensity
                 });
             }
 
             return intensityList;
-        }
-
-        /// <summary>
-        /// Метод получения наименования 
-        /// интенсивностей по описанию.
-        /// </summary>
-        /// <param name="intensity">Интенсивность.</param>
-        /// <returns>Русское название.</returns>
-        private string GetRussianIntensityName(Intensity intensity)
-        {
-            var fieldInfo = intensity.GetType()
-                .GetField(intensity.ToString());
-            var descriptionAttribute
-                = (DescriptionAttribute)Attribute
-                .GetCustomAttribute(fieldInfo,
-                typeof(DescriptionAttribute));
-            return descriptionAttribute?.Description
-                   ?? intensity.ToString();
         }
 
         /// <summary>
