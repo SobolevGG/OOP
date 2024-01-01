@@ -32,8 +32,10 @@ namespace ConsoleApp1
 
             Console.Write("    Вы можете посмотреть " +
                 "дополнительную информацию о человеке.\n" +
-                "    О взрослом человеке Вы можете узнать его зарплату,\n" +
-                "    О ребёнке - его средний балл по программированию.\n" +
+                "    О взрослом человеке " +
+                "Вы можете узнать его зарплату,\n" +
+                "    О ребёнке - его средний балл " +
+                "по программированию.\n" +
                 $"    Введите номер человека в списке: ");
 
             var personNum = Console.ReadLine();
@@ -74,7 +76,8 @@ namespace ConsoleApp1
         /// </summary>
         /// <param name="personList">Список персон.</param>
         /// <param name="numPerson">Количество персон.</param>
-        private static void GetPerson(out PersonList personList, int numPerson)
+        private static void GetPerson(out PersonList personList,
+            int numPerson)
         {
             personList = new PersonList();
             var random = new Random();

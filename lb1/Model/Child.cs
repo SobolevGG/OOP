@@ -88,7 +88,8 @@ namespace Model
         /// </summary>
         /// <param name="parent">Партнёр.</param>
         /// <param name="gender">Пол.</param>
-        /// <exception cref="ArgumentException">Некорректный ввод.</exception>
+        /// <exception cref="ArgumentException">Некорректный
+        /// ввод.</exception>
         private void CheckParentGender(Adult parent, Gender gender)
         {
             if (parent != null && parent.Gender != gender)
@@ -130,7 +131,8 @@ namespace Model
             {
                 if (Age >= 7)
                 {
-                    instituteStatus = $"    Учебное заведение: {Institute}";
+                    instituteStatus = $"    Учебное заведение:" +
+                        $" {Institute}";
                 }
                 else if (Age < 7)
                 {
@@ -172,13 +174,15 @@ namespace Model
                 // Имеется мать
                 if (Mother != null && Father == null)
                 {
-                    parents = $"мать - {Mother.Surname} {Mother.Name}, " +
+                    parents = $"мать - {Mother.Surname} " +
+                        $"{Mother.Name}, " +
                         $"воспитывающийся без отца";
                 }
                 // Имеется отец
                 else if (Mother == null && Father != null)
                 {
-                    parents = $"отец - {Father.Surname} {Father.Name}, " +
+                    parents = $"отец - {Father.Surname} " +
+                        $"{Father.Name}, " +
                         $"воспитывающийся без матери";
                 }
             }
@@ -203,8 +207,13 @@ namespace Model
         /// <param name="mother">Мать ребёнка.</param>
         /// <param name="father">Отец ребёнка.</param>
         /// <param name="institute">Образовательное учреждение.</param>
-        public Child(string name, string surname, int age, Gender gender,
-            Adult mother, Adult father, string institute)
+        public Child(string name,
+                     string surname,
+                     int age,
+                     Gender gender,
+                     Adult mother,
+                     Adult father,
+                     string institute)
             : base(name, surname, age, gender)
         {
             Mother = mother;
@@ -260,10 +269,12 @@ namespace Model
             switch (gender)
             {
                 case Gender.Male:
-                    name = maleNames[random.Next(maleNames.Length)];
+                    name =
+                        maleNames[random.Next(maleNames.Length)];
                     break;
                 case Gender.Female:
-                    name = femaleNames[random.Next(femaleNames.Length)];
+                    name =
+                        femaleNames[random.Next(femaleNames.Length)];
                     break;
                 case Gender.Default:
                     break;
@@ -280,7 +291,8 @@ namespace Model
             // Условимся, что дети идут в школу с 7 лет
             if (age < 7)
             {
-                institute = kindergartens[random.Next(kindergartens.Length)];
+                institute =
+                    kindergartens[random.Next(kindergartens.Length)];
             }
 
             Adult mother = GetRandomParent(1);
@@ -293,9 +305,11 @@ namespace Model
         /// <summary>
         /// Метод создания родителей для ребёнка.
         /// </summary>
-        /// <param name="numberParent"> 0 - мальчик, 1 - девочка.</param>
+        /// <param name="numberParent"> 0 - мальчик,
+        /// 1 - девочка.</param>
         /// <returns>Случайный родитель.</returns>
-        /// <exception cref="ArgumentException">Некорректный ввод.</exception>
+        /// <exception cref="ArgumentException">Некорректный
+        /// ввод.</exception>
         private static Adult GetRandomParent(int numberParent)
         {
             var random = new Random();
@@ -314,11 +328,13 @@ namespace Model
                 {
                     // Если был передан 0, то партнёр - мужчина
                     case 0:
-                        return (Adult)Adult.GetRandomPerson(Gender.Male);
+                        return (Adult)Adult
+                            .GetRandomPerson(Gender.Male);
 
                     // Если была передана 1, то партнёр - женщина
                     case 1:
-                        return (Adult)Adult.GetRandomPerson(Gender.Female);
+                        return (Adult)Adult
+                            .GetRandomPerson(Gender.Female);
 
                     // Если передали неожидаемое значение
                     default:
@@ -335,7 +351,8 @@ namespace Model
         public string GetSchoolProgress()
         {
             string[] schoolProgress = { "\"даже лучше, чем у сына " +
-                    "маминой подруги\"", "отлично", "хорошо", "удовлетворительно" };
+                    "маминой подруги\"", "отлично", "хорошо",
+                "удовлетворительно" };
             Random random = new Random();
             return schoolProgress[random.Next(schoolProgress.Length)];
         }

@@ -69,12 +69,14 @@ namespace Model
         /// ввод паспортных данных.</exception>
         private long CheckPassport(long pasSeriesAndNumber)
         {
-            return pasSeriesAndNumber < _fromSeriesAndNumber || pasSeriesAndNumber > _toSeriesAndNumber
+            return pasSeriesAndNumber < _fromSeriesAndNumber
+                || pasSeriesAndNumber > _toSeriesAndNumber
 
                 // Вызов исключения при удовлетворении условия выше
                 ? throw new IndexOutOfRangeException
                     ($"\nВ паспортных данных " +
-                    $"должно быть {_toSeriesAndNumber.ToString().Length}" +
+                    $"должно быть " +
+                    $"{_toSeriesAndNumber.ToString().Length}" +
                     $"символов")
                 // Сохранить паспортные данные
                 : pasSeriesAndNumber;
@@ -110,7 +112,8 @@ namespace Model
         /// Проверка пола партнёра.
         /// </summary>
         /// <param name="partner">Партнёр.</param>
-        /// <exception cref="ArgumentException">Некорректный ввод.</exception>
+        /// <exception cref="ArgumentException">Некорректный
+        /// ввод.</exception>
         private void CheckPartnerGender(Adult partner)
         {
             if (partner != null && partner.Gender == Gender)
@@ -161,20 +164,24 @@ namespace Model
             return $"{GetInfo()}" +
                 $"    Семейное положение: {marriegeStatus};" +
                 $"\n    Место работы: {job};" +
-                $"\n    Паспортные данные: серия - {series}, номер - {number}.\n";
+                $"\n    Паспортные данные: серия - {series}, " +
+                $"номер - {number}.\n";
         }
 
         /// <summary>
-        /// Вызов конструктора для наследующего Adult от класса PersonBase. 
+        /// Вызов конструктора для наследующего Adult
+        /// от класса PersonBase.
         /// </summary>
         /// <param name="name">Имя.</param>
         /// <param name="surname">Фамилия.</param>
         /// <param name="age">Возраст.</param>
         /// <param name="gender">Пол.</param>
-        /// <param name="pasSeriesAndNumber">Серия и номер паспорта.</param>
+        /// <param name="pasSeriesAndNumber">Серия и
+        /// номер паспорта.</param>
         /// <param name="placeOfWork">Место работы.</param>
         /// <param name="partner">Партнёр.</param>
-        public Adult(string name, string surname, int age, Gender gender,
+        public Adult(string name, string surname, int age,
+            Gender gender,
             long pasSeriesAndNumber, string placeOfWork, Adult partner)
             : base(name, surname, age, gender)
         {
@@ -187,7 +194,8 @@ namespace Model
         /// Метод получения случайных персон.
         /// </summary>
         /// <returns>Взрослый человек.</returns>
-        public static PersonBase GetRandomPerson(Gender gender = Gender.Default)
+        public static PersonBase GetRandomPerson(Gender gender
+            = Gender.Default)
         {
             string[] maleNames =
             {
@@ -235,7 +243,8 @@ namespace Model
                     name = maleNames[random.Next(maleNames.Length)];
                     break;
                 case Gender.Female:
-                    name = femaleNames[random.Next(femaleNames.Length)];
+                    name =
+                        femaleNames[random.Next(femaleNames.Length)];
                     break;
                 case Gender.Default:
                     break;
@@ -251,7 +260,9 @@ namespace Model
             var age = random.Next(_minAge, _maxAge);
 
             // Генерируем число, соответвтующее паспортным данным
-            long pasSeriesAndNumber = random.NextInt64(_fromSeriesAndNumber, _toSeriesAndNumber);
+            long pasSeriesAndNumber
+                = random.NextInt64(_fromSeriesAndNumber,
+                _toSeriesAndNumber);
 
             // Генерируем случайное число, но не более длины списка
             // Обращаемся в массиве к элементу по индексу 
