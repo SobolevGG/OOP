@@ -36,33 +36,33 @@ namespace View
         /// </summary>
         private void InitializeComponent()
         {
-            labelHourlyWageRate = new Label();
-            labelTimeHourlyRate = new Label();
+            labelWeight = new Label();
+            labelRepetitions = new Label();
             textBoxWeight = new TextBox();
             textBoxRepetitions = new TextBox();
             label1 = new Label();
             SuspendLayout();
             // 
-            // labelHourlyWageRate
+            // labelWeight
             // 
-            labelHourlyWageRate.AutoSize = true;
-            labelHourlyWageRate.Location = new Point(11, 9);
-            labelHourlyWageRate.Name = "labelHourlyWageRate";
-            labelHourlyWageRate.Size = new Size(51, 15);
-            labelHourlyWageRate.TabIndex = 0;
-            labelHourlyWageRate.Text = "Вес*, кг:";
-            labelHourlyWageRate.TextAlign = ContentAlignment.MiddleLeft;
-            labelHourlyWageRate.KeyPress += LabelHourlyWageRate_KeyPress;
+            labelWeight.AutoSize = true;
+            labelWeight.Location = new Point(11, 9);
+            labelWeight.Name = "labelWeight";
+            labelWeight.Size = new Size(51, 15);
+            labelWeight.TabIndex = 0;
+            labelWeight.Text = "Вес*, кг:";
+            labelWeight.TextAlign = ContentAlignment.MiddleLeft;
+            labelWeight.KeyPress += LabelHourlyWageRate_KeyPress;
             // 
-            // labelTimeHourlyRate
+            // labelRepetitions
             // 
-            labelTimeHourlyRate.AutoSize = true;
-            labelTimeHourlyRate.Location = new Point(11, 36);
-            labelTimeHourlyRate.Name = "labelTimeHourlyRate";
-            labelTimeHourlyRate.Size = new Size(60, 15);
-            labelTimeHourlyRate.TabIndex = 1;
-            labelTimeHourlyRate.Text = "Повторы:";
-            labelTimeHourlyRate.KeyPress += LabelHourlyWageRate_KeyPress;
+            labelRepetitions.AutoSize = true;
+            labelRepetitions.Location = new Point(11, 36);
+            labelRepetitions.Name = "labelRepetitions";
+            labelRepetitions.Size = new Size(60, 15);
+            labelRepetitions.TabIndex = 1;
+            labelRepetitions.Text = "Повторы:";
+            labelRepetitions.KeyPress += LabelHourlyWageRate_KeyPress;
             // 
             // textBoxWeight
             // 
@@ -96,8 +96,8 @@ namespace View
             Controls.Add(label1);
             Controls.Add(textBoxRepetitions);
             Controls.Add(textBoxWeight);
-            Controls.Add(labelTimeHourlyRate);
-            Controls.Add(labelHourlyWageRate);
+            Controls.Add(labelRepetitions);
+            Controls.Add(labelWeight);
             Margin = new Padding(3, 2, 3, 2);
             Name = "PressCalcUserControl";
             Size = new Size(264, 95);
@@ -107,8 +107,8 @@ namespace View
 
         #endregion
 
-        private Label labelHourlyWageRate;
-        private Label labelTimeHourlyRate;
+        private Label labelWeight;
+        private Label labelRepetitions;
         private TextBox textBoxWeight;
         private TextBox textBoxRepetitions;
         private Label label1;
