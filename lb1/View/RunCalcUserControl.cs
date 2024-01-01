@@ -33,15 +33,15 @@ namespace View
         /// </summary>
         private void InitializeComboBox()
         {
-            comboBoxIntensity.DataSource 
+            comboBoxIntensity.DataSource
                 = GetRussianIntensityList();
 
             // Установка начального выбора
-            comboBoxIntensity.SelectedIndex 
+            comboBoxIntensity.SelectedIndex
                 = 0;
-            comboBoxIntensity.DisplayMember 
+            comboBoxIntensity.DisplayMember
                 = "Name";
-            comboBoxIntensity.ValueMember 
+            comboBoxIntensity.ValueMember
                 = "Value";
         }
 
@@ -76,9 +76,9 @@ namespace View
         {
             var fieldInfo = intensity.GetType()
                 .GetField(intensity.ToString());
-            var descriptionAttribute 
+            var descriptionAttribute
                 = (DescriptionAttribute)Attribute
-                .GetCustomAttribute(fieldInfo, 
+                .GetCustomAttribute(fieldInfo,
                 typeof(DescriptionAttribute));
             return descriptionAttribute?.Description
                    ?? intensity.ToString();
@@ -89,7 +89,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Label_KeyPress(object sender, 
+        private void Label_KeyPress(object sender,
             KeyPressEventArgs e)
         {
             Checks.CheckInput(e);
@@ -103,23 +103,23 @@ namespace View
         {
             var runCalc = new RunCalc();
 
-            runCalc.Weight = 
-                Checks.CheckNumber(textBoxRate.Text);
-            runCalc.Distance = 
-                Checks.CheckNumber(textBoxWorkingHours.Text);
+            runCalc.Weight =
+                Checks.CheckNumber(textBoxWeight.Text);
+            runCalc.Distance =
+                Checks.CheckNumber(textBoxDistance.Text);
 
             // Получение выбранной интенсивности из ComboBox
-            if (comboBoxIntensity.SelectedItem is 
+            if (comboBoxIntensity.SelectedItem is
                 ComboBoxItem selectedIntensityItem)
             {
-                runCalc.Intensity = 
+                runCalc.Intensity =
                     (Intensity)selectedIntensityItem.Value;
             }
             else
             {
                 MessageBox.Show("Ошибка при получении " +
-                    "выбранной интенсивности.", 
-                    "Ошибка!", MessageBoxButtons.OK, 
+                    "выбранной интенсивности.",
+                    "Ошибка!", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
 

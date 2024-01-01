@@ -36,61 +36,61 @@ namespace View
         /// </summary>
         private void InitializeComponent()
         {
-            textBoxRate = new TextBox();
-            textBoxWorkingHours = new TextBox();
-            labelSalary = new Label();
-            labelDaysInMonth = new Label();
-            payrollMethod = new GroupBox();
+            textBoxWeight = new TextBox();
+            textBoxDistance = new TextBox();
+            labelWeight = new Label();
+            labelDistance = new Label();
+            intensity = new GroupBox();
             comboBoxIntensity = new ComboBox();
-            payrollMethod.SuspendLayout();
+            intensity.SuspendLayout();
             SuspendLayout();
             // 
-            // textBoxRate
+            // textBoxWeight
             // 
-            textBoxRate.Location = new Point(120, 5);
-            textBoxRate.Margin = new Padding(3, 2, 3, 2);
-            textBoxRate.Name = "textBoxRate";
-            textBoxRate.Size = new Size(60, 23);
-            textBoxRate.TabIndex = 2;
+            textBoxWeight.Location = new Point(120, 5);
+            textBoxWeight.Margin = new Padding(3, 2, 3, 2);
+            textBoxWeight.Name = "textBoxWeight";
+            textBoxWeight.Size = new Size(60, 23);
+            textBoxWeight.TabIndex = 2;
             // 
-            // textBoxWorkingHours
+            // textBoxDistance
             // 
-            textBoxWorkingHours.Location = new Point(120, 32);
-            textBoxWorkingHours.Margin = new Padding(3, 2, 3, 2);
-            textBoxWorkingHours.Name = "textBoxWorkingHours";
-            textBoxWorkingHours.Size = new Size(60, 23);
-            textBoxWorkingHours.TabIndex = 3;
+            textBoxDistance.Location = new Point(120, 32);
+            textBoxDistance.Margin = new Padding(3, 2, 3, 2);
+            textBoxDistance.Name = "textBoxDistance";
+            textBoxDistance.Size = new Size(60, 23);
+            textBoxDistance.TabIndex = 3;
             // 
             // labelWeight
             // 
-            labelSalary.AutoSize = true;
-            labelSalary.Location = new Point(11, 9);
-            labelSalary.Name = "labelWeight";
-            labelSalary.Size = new Size(72, 15);
-            labelSalary.TabIndex = 4;
-            labelSalary.Text = "Ваш вес, кг:";
+            labelWeight.AutoSize = true;
+            labelWeight.Location = new Point(11, 9);
+            labelWeight.Name = "labelWeight";
+            labelWeight.Size = new Size(72, 15);
+            labelWeight.TabIndex = 4;
+            labelWeight.Text = "Ваш вес, кг:";
             // 
             // labelDistance
             // 
-            labelDaysInMonth.AutoSize = true;
-            labelDaysInMonth.Location = new Point(11, 36);
-            labelDaysInMonth.Name = "labelDistance";
-            labelDaysInMonth.Size = new Size(94, 15);
-            labelDaysInMonth.TabIndex = 5;
-            labelDaysInMonth.Text = "Расстояние, км:";
+            labelDistance.AutoSize = true;
+            labelDistance.Location = new Point(11, 36);
+            labelDistance.Name = "labelDistance";
+            labelDistance.Size = new Size(94, 15);
+            labelDistance.TabIndex = 5;
+            labelDistance.Text = "Расстояние, км:";
             // 
-            // trainingMethod
+            // intensity
             // 
-            payrollMethod.BackColor = Color.White;
-            payrollMethod.Controls.Add(comboBoxIntensity);
-            payrollMethod.Location = new Point(5, 62);
-            payrollMethod.Margin = new Padding(3, 2, 3, 2);
-            payrollMethod.Name = "trainingMethod";
-            payrollMethod.Padding = new Padding(3, 2, 3, 2);
-            payrollMethod.Size = new Size(244, 55);
-            payrollMethod.TabIndex = 8;
-            payrollMethod.TabStop = false;
-            payrollMethod.Text = "Интенсивность";
+            intensity.BackColor = Color.White;
+            intensity.Controls.Add(comboBoxIntensity);
+            intensity.Location = new Point(5, 62);
+            intensity.Margin = new Padding(3, 2, 3, 2);
+            intensity.Name = "intensity";
+            intensity.Padding = new Padding(3, 2, 3, 2);
+            intensity.Size = new Size(244, 55);
+            intensity.TabIndex = 8;
+            intensity.TabStop = false;
+            intensity.Text = "Интенсивность";
             // 
             // comboBoxIntensity
             // 
@@ -106,25 +106,25 @@ namespace View
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(labelDaysInMonth);
-            Controls.Add(labelSalary);
-            Controls.Add(textBoxWorkingHours);
-            Controls.Add(textBoxRate);
-            Controls.Add(payrollMethod);
+            Controls.Add(labelDistance);
+            Controls.Add(labelWeight);
+            Controls.Add(textBoxDistance);
+            Controls.Add(textBoxWeight);
+            Controls.Add(intensity);
             Margin = new Padding(3, 2, 3, 2);
             Name = "RunCalcUserControl";
             Size = new Size(256, 153);
-            payrollMethod.ResumeLayout(false);
+            intensity.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private TextBox textBoxRate;
-        private TextBox textBoxWorkingHours;
-        private Label labelSalary;
-        private Label labelDaysInMonth;
-        private GroupBox payrollMethod;
+        private TextBox textBoxWeight;
+        private TextBox textBoxDistance;
+        private Label labelWeight;
+        private Label labelDistance;
+        private GroupBox intensity;
         private ComboBox comboBoxIntensity;
     }
 }
