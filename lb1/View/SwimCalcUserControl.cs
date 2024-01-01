@@ -55,9 +55,9 @@ namespace View
             var swimCalc = new SwimCalc();
 
             swimCalc.Weight = 
-                Checks.CheckNumber(textBoxWeight.Text);
+                Checks.CheckDouble(textBoxWeight.Text);
             swimCalc.Distance = 
-                Checks.CheckNumber(textBoxDistance.Text);
+                Checks.CheckDouble(textBoxDistance.Text);
 
             // Получение выбранного стиля из ComboBox
             if (comboBoxStyle.SelectedItem 

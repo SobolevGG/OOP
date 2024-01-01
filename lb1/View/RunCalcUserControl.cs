@@ -63,9 +63,9 @@ namespace View
             var runCalc = new RunCalc();
 
             runCalc.Weight =
-                Checks.CheckNumber(textBoxWeight.Text);
+                Checks.CheckDouble(textBoxWeight.Text);
             runCalc.Distance =
-                Checks.CheckNumber(textBoxDistance.Text);
+                Checks.CheckDouble(textBoxDistance.Text);
 
             // Получение выбранной интенсивности из ComboBox
             if (comboBoxIntensity.SelectedItem is

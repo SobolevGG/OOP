@@ -64,7 +64,7 @@ namespace View
             {
                 if(textBoxTraining.Text != "")
                 {
-                    _training = Checks.CheckNumber(textBoxTraining.Text);
+                    _training = Checks.CheckDouble(textBoxTraining.Text);
                 }
             }
             catch

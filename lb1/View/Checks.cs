@@ -30,14 +30,26 @@ namespace View
         }
 
         /// <summary>
-        /// Метод замены точки на запятую.
+        /// Метод замены точки на запятую и проверки:
+        /// является ли значение числовым?
         /// </summary>
         /// <param name="number"></param>
-        /// <returns></returns>
-        public static int CheckNumber(string number)
+        /// <returns>Проверенное значение.</returns>
+        /// <exception cref="Exception">Исключение 
+        /// на нечисловой ввод.</exception>
+        public static double CheckDouble(string number)
         {
+            // Заменяем точку на запятую
             number = number.Replace('.', ',');
-            return int.Parse(number);
+
+            // Пытаемся преобразовать строку в число типа double
+            if (!double.TryParse(number, out double checkedNum))
+            {
+                // Если преобразование не удалось, вызываем исключение
+                throw new Exception("введено нечисловое значение!");
+            }
+
+            return checkedNum;
         }
     }
 }

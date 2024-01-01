@@ -41,14 +41,25 @@ namespace View
         /// <summary>
         /// Метод добавления тренировки - жим штанги.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Тренировка - жим штанги.</returns>
+        /// <exception cref="Exception">Исключение
+        /// на нецелочисленный ввод.</exception>
         public Model.TrainingCalc AddingCalc()
         {
             var pressCalc = new PressCalc();
             pressCalc.Weight =
-                Checks.CheckNumber(textBoxWeight.Text);
-            pressCalc.Repetitions =
-                Checks.CheckNumber(textBoxRepetitions.Text);
+                Checks.CheckDouble(textBoxWeight.Text);
+
+            // Пытаемся преобразовать строку в int
+            if (!int.TryParse(textBoxRepetitions.Text, 
+                out int checkedInt))
+            {
+                // Если преобразование не удалось, вызываем исключение
+                throw new Exception("значение должно быть " +
+                    "целочисленным и положительным!");
+            };
+
+            pressCalc.Repetitions = checkedInt;
             return pressCalc;
         }
     }
