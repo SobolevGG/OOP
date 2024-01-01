@@ -94,6 +94,7 @@ namespace View
             // 
             // comboBoxIntensity
             // 
+            comboBoxIntensity.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxIntensity.FormattingEnabled = true;
             comboBoxIntensity.Location = new Point(17, 20);
             comboBoxIntensity.Margin = new Padding(3, 2, 3, 2);

@@ -96,6 +96,7 @@ namespace View
             // 
             // comboBoxStyle
             // 
+            comboBoxStyle.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxStyle.FormattingEnabled = true;
             comboBoxStyle.Location = new Point(17, 20);
             comboBoxStyle.Margin = new Padding(3, 2, 3, 2);

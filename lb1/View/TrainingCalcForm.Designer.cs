@@ -40,6 +40,7 @@ namespace View
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrainingCalcForm));
             groupBoxСalculator = new GroupBox();
             dataGridViewSpace = new DataGridView();
+            dataGridViewSpace.ReadOnly = true;
             buttonAdd = new Button();
             buttonDelete = new Button();
             buttonSearch = new Button();
@@ -74,6 +75,7 @@ namespace View
             // 
             dataGridViewSpace.AllowUserToOrderColumns = true;
             dataGridViewSpace.AllowUserToResizeColumns = false;
+            dataGridViewSpace.ReadOnly = true;
             dataGridViewSpace.AllowUserToResizeRows = false;
             dataGridViewSpace.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewSpace.Location = new Point(7, 20);
