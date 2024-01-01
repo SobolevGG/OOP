@@ -69,7 +69,7 @@ namespace View
             textBoxWeight.Location = new Point(88, 5);
             textBoxWeight.Margin = new Padding(3, 2, 3, 2);
             textBoxWeight.Name = "textBoxWeight";
-            textBoxWeight.Size = new Size(53, 23);
+            textBoxWeight.Size = new Size(60, 23);
             textBoxWeight.TabIndex = 2;
             // 
             // textBoxRepetitions
@@ -77,7 +77,7 @@ namespace View
             textBoxRepetitions.Location = new Point(88, 32);
             textBoxRepetitions.Margin = new Padding(3, 2, 3, 2);
             textBoxRepetitions.Name = "textBoxRepetitions";
-            textBoxRepetitions.Size = new Size(53, 23);
+            textBoxRepetitions.Size = new Size(60, 23);
             textBoxRepetitions.TabIndex = 3;
             // 
             // label1

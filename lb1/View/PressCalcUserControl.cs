@@ -51,7 +51,7 @@ namespace View
                 Checks.CheckDouble(textBoxWeight.Text);
 
             // Пытаемся преобразовать строку в int
-            if (!int.TryParse(textBoxRepetitions.Text, 
+            if (!int.TryParse(textBoxRepetitions.Text,
                 out int checkedInt))
             {
                 // Если преобразование не удалось, вызываем исключение

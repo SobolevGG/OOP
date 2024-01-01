@@ -223,6 +223,8 @@ namespace View
                 }
 
                 dataGridViewSpace.DataSource = _trainingList;
+                dataGridViewSpace.Columns.Remove("CalculateCalories");
+                dataGridViewSpace.Columns.Remove("Weight");
                 dataGridViewSpace.CurrentCell = null;
                 MessageBox.Show("Файл c тренировками успешно загружен.",
                     "Загрузка завершена!",
