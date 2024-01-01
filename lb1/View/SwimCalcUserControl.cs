@@ -27,7 +27,7 @@ namespace View
             InitializeComponent();
 
             // Инициализация бокса с вариантами стилей плавания
-            comboBoxStyle.DataSource = GetRuStyleList();
+            comboBoxStyle.DataSource = GetRuEnumList<Model.Style>();
 
             // Установка начального выбора
             comboBoxStyle.SelectedIndex = 0;
@@ -41,21 +41,22 @@ namespace View
         /// </summary>
         /// <returns>Список с русскими названиями 
         /// стилей плавания.</returns>
-        private BindingList<ComboBoxItem> GetRuStyleList()
+        public static BindingList<ComboBoxItem> GetRuEnumList<Enum>() 
+            where Enum : System.Enum
         {
-            var styleValues = Enum.GetValues(typeof(Style));
-            var styleList = new BindingList<ComboBoxItem>();
+            var enumValues = System.Enum.GetValues(typeof(Enum));
+            var enumList = new BindingList<ComboBoxItem>();
 
-            foreach (Style style in styleValues)
+            foreach (Enum value in enumValues)
             {
-                styleList.Add(new ComboBoxItem
+                enumList.Add(new ComboBoxItem
                 {
-                    Name = GetRuEnumDescrip(style),
-                    Value = style
+                    Name = GetRuEnumDescrip(value),
+                    Value = value
                 });
             }
 
-            return styleList;
+            return enumList;
         }
 
         /// <summary>
@@ -129,7 +130,7 @@ namespace View
         /// <summary>
         /// Вложенный класс для русского языка.
         /// </summary>
-        private class ComboBoxItem
+        public class ComboBoxItem
         {
             public string Name { get; set; }
             public object Value { get; set; }
