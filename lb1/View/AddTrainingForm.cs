@@ -144,7 +144,7 @@ namespace View
 
         }
 
-        private void pressCalcUserControl1_Load(object sender, EventArgs e)
+        private void pressCalcUserControl_Load(object sender, EventArgs e)
         {
 
         }

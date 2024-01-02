@@ -29,41 +29,41 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilterTrainingForm));
-            groupBox1 = new GroupBox();
-            label1 = new Label();
+            groupBox = new GroupBox();
+            labelTraining = new Label();
             textBoxTraining = new TextBox();
             checkBoxInput = new CheckBox();
             checkBoxSwimCalc = new CheckBox();
             checkBoxRunCalc = new CheckBox();
             checkBoxPressCalc = new CheckBox();
             buttonSearch = new Button();
-            groupBox1.SuspendLayout();
+            groupBox.SuspendLayout();
             SuspendLayout();
             // 
-            // groupBox1
+            // groupBox
             // 
-            groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(textBoxTraining);
-            groupBox1.Controls.Add(checkBoxInput);
-            groupBox1.Controls.Add(checkBoxSwimCalc);
-            groupBox1.Controls.Add(checkBoxRunCalc);
-            groupBox1.Controls.Add(checkBoxPressCalc);
-            groupBox1.Location = new Point(8, 2);
-            groupBox1.Margin = new Padding(3, 2, 3, 2);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(3, 2, 3, 2);
-            groupBox1.Size = new Size(240, 126);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Параметры фильтрации";
+            groupBox.Controls.Add(labelTraining);
+            groupBox.Controls.Add(textBoxTraining);
+            groupBox.Controls.Add(checkBoxInput);
+            groupBox.Controls.Add(checkBoxSwimCalc);
+            groupBox.Controls.Add(checkBoxRunCalc);
+            groupBox.Controls.Add(checkBoxPressCalc);
+            groupBox.Location = new Point(8, 2);
+            groupBox.Margin = new Padding(3, 2, 3, 2);
+            groupBox.Name = "groupBox";
+            groupBox.Padding = new Padding(3, 2, 3, 2);
+            groupBox.Size = new Size(240, 126);
+            groupBox.TabIndex = 0;
+            groupBox.TabStop = false;
+            groupBox.Text = "Параметры фильтрации";
             // 
-            // label1
+            // labelTraining
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(339, 146);
-            label1.Name = "label1";
-            label1.Size = new Size(47, 15);
-            label1.TabIndex = 5;
+            labelTraining.AutoSize = true;
+            labelTraining.Location = new Point(339, 146);
+            labelTraining.Name = "labelTraining";
+            labelTraining.Size = new Size(10, 15);
+            labelTraining.TabIndex = 5;
             // 
             // textBoxTraining
             // 
@@ -131,7 +131,7 @@
             buttonSearch.UseVisualStyleBackColor = true;
             buttonSearch.Click += ButtonSearch_Click;
             // 
-            // FilterTraining
+            // FilterTrainingForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -139,20 +139,20 @@
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(256, 162);
             Controls.Add(buttonSearch);
-            Controls.Add(groupBox1);
+            Controls.Add(groupBox);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
-            Name = "FilterTraining";
+            Name = "FilterTrainingForm";
             Text = "Фильтр";
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            groupBox.ResumeLayout(false);
+            groupBox.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private GroupBox groupBox1;
-        private Label label1;
+        private GroupBox groupBox;
+        private Label labelTraining;
         private TextBox textBoxTraining;
         private CheckBox checkBoxInput;
         private CheckBox checkBoxSwimCalc;

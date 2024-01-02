@@ -58,7 +58,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="toolStripDropDownButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="toolStripDropDownButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEKSURBVEhL3ZG9DsFQHMXvczDZvIOtXsHObuhqkViI3Quw
@@ -69,13 +69,13 @@
         qgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAB4AAAAQ4CAIAAABnsVYUAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAA/7JJREFUeF7s/fd3G/eh/3/mT9k9e87ud7+fc5PYkog66INBYVEv7ASJTpCUZMdO
+        wAAADsABataJCQAA/7JJREFUeF7s/fd3G/eh/3/mT9k9e87ud7+fc5PYkog66INBYVEv7ASJTpCUZMdO
         c3q5qU51mtOb4zhxbKuxobOjTUcjqWI7yb338/l+v3t2f973YEgIAkVHtqVrkXid8zjQEBxSxGBmwHly
         8J4PVcrLZXlJlrKSmFGRaQAAAAAAAAAAAACA9wkBGgAAAAAAAAAAAAAeCQRoAAAAAAAAAAAAAHgkEKAB
         AAAAAAAAAAAA4JFAgAYAAAAAAAAAAACARwIBGgAAAAAAAAAAAAAeCQRoAAAAAAAAAAAAAHgkEKABAAAA

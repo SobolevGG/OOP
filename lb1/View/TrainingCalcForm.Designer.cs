@@ -40,20 +40,19 @@ namespace View
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrainingCalcForm));
             groupBoxСalculator = new GroupBox();
             dataGridViewSpace = new DataGridView();
-            dataGridViewSpace.ReadOnly = true;
             buttonAdd = new Button();
             buttonDelete = new Button();
             buttonSearch = new Button();
             buttonReset = new Button();
             buttonRandom = new Button();
             buttonCleanFilter = new Button();
-            toolStripDropDownButton1 = new ToolStripDropDownButton();
+            toolStripDropDownButton = new ToolStripDropDownButton();
             SaveToolStripMenuItem = new ToolStripMenuItem();
             OpenToolStripMenuItem = new ToolStripMenuItem();
-            toolStrip1 = new ToolStrip();
+            toolStrip = new ToolStrip();
             groupBoxСalculator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewSpace).BeginInit();
-            toolStrip1.SuspendLayout();
+            toolStrip.SuspendLayout();
             SuspendLayout();
             // 
             // groupBoxСalculator
@@ -75,12 +74,12 @@ namespace View
             // 
             dataGridViewSpace.AllowUserToOrderColumns = true;
             dataGridViewSpace.AllowUserToResizeColumns = false;
-            dataGridViewSpace.ReadOnly = true;
             dataGridViewSpace.AllowUserToResizeRows = false;
             dataGridViewSpace.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewSpace.Location = new Point(7, 20);
             dataGridViewSpace.Margin = new Padding(3, 2, 3, 2);
             dataGridViewSpace.Name = "dataGridViewSpace";
+            dataGridViewSpace.ReadOnly = true;
             dataGridViewSpace.RowHeadersWidth = 51;
             dataGridViewSpace.RowTemplate.Height = 25;
             dataGridViewSpace.Size = new Size(717, 269);
@@ -150,39 +149,39 @@ namespace View
             buttonCleanFilter.UseVisualStyleBackColor = true;
             buttonCleanFilter.Click += ButtonCleanFilter_Click;
             // 
-            // toolStripDropDownButton1
+            // toolStripDropDownButton
             // 
-            toolStripDropDownButton1.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripDropDownButton1.DropDownItems.AddRange(new ToolStripItem[] { SaveToolStripMenuItem, OpenToolStripMenuItem });
-            toolStripDropDownButton1.Image = (Image)resources.GetObject("toolStripDropDownButton1.Image");
-            toolStripDropDownButton1.ImageTransparentColor = Color.Magenta;
-            toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            toolStripDropDownButton1.Size = new Size(49, 22);
-            toolStripDropDownButton1.Text = "Файл";
+            toolStripDropDownButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripDropDownButton.DropDownItems.AddRange(new ToolStripItem[] { SaveToolStripMenuItem, OpenToolStripMenuItem });
+            toolStripDropDownButton.Image = (Image)resources.GetObject("toolStripDropDownButton.Image");
+            toolStripDropDownButton.ImageTransparentColor = Color.Magenta;
+            toolStripDropDownButton.Name = "toolStripDropDownButton";
+            toolStripDropDownButton.Size = new Size(49, 22);
+            toolStripDropDownButton.Text = "Файл";
             // 
             // SaveToolStripMenuItem
             // 
             SaveToolStripMenuItem.Name = "SaveToolStripMenuItem";
-            SaveToolStripMenuItem.Size = new Size(133, 22);
+            SaveToolStripMenuItem.Size = new Size(180, 22);
             SaveToolStripMenuItem.Text = "Сохранить";
             SaveToolStripMenuItem.Click += SaveToolStripMenuItem_Click;
             // 
             // OpenToolStripMenuItem
             // 
             OpenToolStripMenuItem.Name = "OpenToolStripMenuItem";
-            OpenToolStripMenuItem.Size = new Size(133, 22);
+            OpenToolStripMenuItem.Size = new Size(180, 22);
             OpenToolStripMenuItem.Text = "Загрузить";
             OpenToolStripMenuItem.Click += OpenToolStripMenuItem_Click;
             // 
-            // toolStrip1
+            // toolStrip
             // 
-            toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1 });
-            toolStrip1.Location = new Point(0, 0);
-            toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(799, 25);
-            toolStrip1.TabIndex = 8;
-            toolStrip1.Text = "toolStrip1";
+            toolStrip.ImageScalingSize = new Size(20, 20);
+            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton });
+            toolStrip.Location = new Point(0, 0);
+            toolStrip.Name = "toolStrip";
+            toolStrip.Size = new Size(799, 25);
+            toolStrip.TabIndex = 8;
+            toolStrip.Text = "toolStrip1";
             // 
             // TrainingCalcForm
             // 
@@ -192,7 +191,7 @@ namespace View
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(799, 438);
-            Controls.Add(toolStrip1);
+            Controls.Add(toolStrip);
             Controls.Add(buttonCleanFilter);
             Controls.Add(buttonRandom);
             Controls.Add(buttonReset);
@@ -208,8 +207,8 @@ namespace View
             Load += MainForm_Load;
             groupBoxСalculator.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewSpace).EndInit();
-            toolStrip1.ResumeLayout(false);
-            toolStrip1.PerformLayout();
+            toolStrip.ResumeLayout(false);
+            toolStrip.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -224,8 +223,8 @@ namespace View
         private Button buttonReset;
         private Button buttonRandom;
         private Button buttonCleanFilter;
-        private ToolStripDropDownButton toolStripDropDownButton1;
-        private ToolStrip toolStrip1;
+        private ToolStripDropDownButton toolStripDropDownButton;
+        private ToolStrip toolStrip;
         private ToolStripMenuItem SaveToolStripMenuItem;
         private ToolStripMenuItem OpenToolStripMenuItem;
     }

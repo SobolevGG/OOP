@@ -40,7 +40,7 @@ namespace View
             labelRepetitions = new Label();
             textBoxWeight = new TextBox();
             textBoxRepetitions = new TextBox();
-            label1 = new Label();
+            labelDescription = new Label();
             SuspendLayout();
             // 
             // labelWeight
@@ -80,20 +80,20 @@ namespace View
             textBoxRepetitions.Size = new Size(60, 23);
             textBoxRepetitions.TabIndex = 3;
             // 
-            // label1
+            // labelDescription
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(11, 63);
-            label1.Name = "label1";
-            label1.Size = new Size(112, 15);
-            label1.TabIndex = 4;
-            label1.Text = "* - с учётом грифа ";
+            labelDescription.AutoSize = true;
+            labelDescription.Location = new Point(11, 63);
+            labelDescription.Name = "labelDescription";
+            labelDescription.Size = new Size(112, 15);
+            labelDescription.TabIndex = 4;
+            labelDescription.Text = "* - с учётом грифа ";
             // 
             // PressCalcUserControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(label1);
+            Controls.Add(labelDescription);
             Controls.Add(textBoxRepetitions);
             Controls.Add(textBoxWeight);
             Controls.Add(labelRepetitions);
@@ -111,6 +111,6 @@ namespace View
         private Label labelRepetitions;
         private TextBox textBoxWeight;
         private TextBox textBoxRepetitions;
-        private Label label1;
+        private Label labelDescription;
     }
 }

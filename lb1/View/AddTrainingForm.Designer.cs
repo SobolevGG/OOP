@@ -120,7 +120,7 @@ namespace View
             runCalcUserControl.Name = "runCalcUserControl";
             runCalcUserControl.Size = new Size(254, 109);
             runCalcUserControl.TabIndex = 2;
-            runCalcUserControl.Load += pressCalcUserControl1_Load;
+            runCalcUserControl.Load += pressCalcUserControl_Load;
             // 
             // pressCalcUserControl
             // 

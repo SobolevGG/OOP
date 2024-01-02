@@ -62,7 +62,7 @@ namespace View
         {
             try
             {
-                if(textBoxTraining.Text != "")
+                if (textBoxTraining.Text != "")
                 {
                     _training = Checks.CheckDouble(textBoxTraining.Text);
                 }
@@ -79,7 +79,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-       private void TextBoxTraining_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBoxTraining_KeyPress(object sender, KeyPressEventArgs e)
         {
             Checks.CheckInput(e);
         }
@@ -91,8 +91,8 @@ namespace View
         /// <param name="e"></param>
         private void CheckBoxInput_CheckedChanged(object sender, EventArgs e)
         {
-            
-            if(checkBoxInput.Checked)
+
+            if (checkBoxInput.Checked)
             {
                 textBoxTraining.Enabled = true;
             }
@@ -114,7 +114,7 @@ namespace View
                 && !checkBoxInput.Checked)
             {
                 MessageBox.Show("Параметры фильтрации не указаны!",
-                    "Внимание!", MessageBoxButtons.OK, 
+                    "Внимание!", MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 return;
             }
@@ -151,7 +151,7 @@ namespace View
                     && !checkBoxRunCalc.Checked
                     && !checkBoxSwimCalc.Checked)
                 {
-                    if (checkBoxInput.Checked 
+                    if (checkBoxInput.Checked
                         && training.RoundCalories == _training)
                     {
                         count++;
@@ -164,16 +164,16 @@ namespace View
 
             if (count > 0)
             {
-                eventArgs = 
+                eventArgs =
                     new TrainingListEventArgs(_listTrainingFilter);
             }
             else
             {
                 MessageBox.Show("Тренировки с указанными " +
                     "параметрами фильтрации отсутствуют!",
-                    "Тренировки не найдены!", 
+                    "Тренировки не найдены!",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                eventArgs = 
+                eventArgs =
                     new TrainingListEventArgs(_listTrainingFilter);
                 return;
             }
