@@ -68,7 +68,6 @@ namespace View
             groupBoxСalculator.TabIndex = 0;
             groupBoxСalculator.TabStop = false;
             groupBoxСalculator.Text = "Программа тренировок";
-            groupBoxСalculator.Enter += groupBoxСalculator_Enter;
             // 
             // dataGridViewSpace
             // 
@@ -105,7 +104,7 @@ namespace View
             buttonDelete.TabIndex = 3;
             buttonDelete.Text = "Удалить тренировку";
             buttonDelete.UseVisualStyleBackColor = true;
-            buttonDelete.Click += ButtonDelete_Click;
+            buttonDelete.Click += ButtonDeleteClick;
             // 
             // buttonSearch
             // 
@@ -115,7 +114,7 @@ namespace View
             buttonSearch.TabIndex = 4;
             buttonSearch.Text = "Фильтр тренировок";
             buttonSearch.UseVisualStyleBackColor = true;
-            buttonSearch.Click += ButtonSearch_Click;
+            buttonSearch.Click += ButtonSearchClick;
             // 
             // buttonReset
             // 
@@ -126,7 +125,7 @@ namespace View
             buttonReset.TabIndex = 5;
             buttonReset.Text = "Удалить все тренировки";
             buttonReset.UseVisualStyleBackColor = true;
-            buttonReset.Click += ButtonReset_Click;
+            buttonReset.Click += ButtonResetClick;
             // 
             // buttonRandom
             // 
@@ -136,7 +135,7 @@ namespace View
             buttonRandom.TabIndex = 6;
             buttonRandom.Text = "Случайная тренировка";
             buttonRandom.UseVisualStyleBackColor = true;
-            buttonRandom.Click += ButtonRandom_Click;
+            buttonRandom.Click += ButtonRandomClick;
             // 
             // buttonCleanFilter
             // 
@@ -147,7 +146,7 @@ namespace View
             buttonCleanFilter.TabIndex = 7;
             buttonCleanFilter.Text = "Сброс фильтра";
             buttonCleanFilter.UseVisualStyleBackColor = true;
-            buttonCleanFilter.Click += ButtonCleanFilter_Click;
+            buttonCleanFilter.Click += ButtonCleanFilterClick;
             // 
             // toolStripDropDownButton
             // 
@@ -164,14 +163,14 @@ namespace View
             SaveToolStripMenuItem.Name = "SaveToolStripMenuItem";
             SaveToolStripMenuItem.Size = new Size(180, 22);
             SaveToolStripMenuItem.Text = "Сохранить";
-            SaveToolStripMenuItem.Click += SaveToolStripMenuItem_Click;
+            SaveToolStripMenuItem.Click += SaveToolStripMenuItemClick;
             // 
             // OpenToolStripMenuItem
             // 
             OpenToolStripMenuItem.Name = "OpenToolStripMenuItem";
             OpenToolStripMenuItem.Size = new Size(180, 22);
             OpenToolStripMenuItem.Text = "Загрузить";
-            OpenToolStripMenuItem.Click += OpenToolStripMenuItem_Click;
+            OpenToolStripMenuItem.Click += OpenToolStripMenuItemClick;
             // 
             // toolStrip
             // 

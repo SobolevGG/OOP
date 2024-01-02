@@ -88,7 +88,7 @@ namespace View
             accrualParameters.TabIndex = 10;
             accrualParameters.TabStop = false;
             accrualParameters.Text = "Параметры расчёта";
-            accrualParameters.Enter += Parameters_Enter;
+            accrualParameters.Enter += ParametersEnter;
             // 
             // buttonClose
             // 
@@ -120,7 +120,7 @@ namespace View
             runCalcUserControl.Name = "runCalcUserControl";
             runCalcUserControl.Size = new Size(254, 109);
             runCalcUserControl.TabIndex = 2;
-            runCalcUserControl.Load += pressCalcUserControl_Load;
+            runCalcUserControl.Load += pressCalcUserControlLoad;
             // 
             // pressCalcUserControl
             // 

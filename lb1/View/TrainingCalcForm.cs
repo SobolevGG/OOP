@@ -105,7 +105,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonDelete_Click(object sender, EventArgs e)
+        private void ButtonDeleteClick(object sender, EventArgs e)
         {
             if (dataGridViewSpace.SelectedCells.Count != 0)
             {
@@ -123,7 +123,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonReset_Click(object sender, EventArgs e)
+        private void ButtonResetClick(object sender, EventArgs e)
         {
             _trainingList.Clear();
             _listTrainingsFilter.Clear();
@@ -134,7 +134,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonRandom_Click(object sender, EventArgs e)
+        private void ButtonRandomClick(object sender, EventArgs e)
         {
             // Генерация случайной тренировки
             _trainingList.Add(Model.RandomTrainingCalc.GetRandomTrainingCalc());
@@ -145,7 +145,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonSearch_Click(object sender, EventArgs e)
+        private void ButtonSearchClick(object sender, EventArgs e)
         {
             var newFilterTrainings = new FilterTrainingForm(_trainingList);
             newFilterTrainings.Show();
@@ -164,7 +164,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonCleanFilter_Click(object sender, EventArgs e)
+        private void ButtonCleanFilterClick(object sender, EventArgs e)
         {
             CreateTable(_trainingList, dataGridViewSpace);
         }
@@ -174,7 +174,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaveToolStripMenuItemClick(object sender, EventArgs e)
         {
             if (_trainingList.Count == 0)
             {
@@ -207,7 +207,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenToolStripMenuItemClick(object sender, EventArgs e)
         {
             var openFileDialog = new OpenFileDialog
             {
@@ -240,11 +240,6 @@ namespace View
                     "Ошибка!",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void groupBoxСalculator_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }

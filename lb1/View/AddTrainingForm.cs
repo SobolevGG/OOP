@@ -144,12 +144,12 @@ namespace View
 
         }
 
-        private void pressCalcUserControl_Load(object sender, EventArgs e)
+        private void pressCalcUserControlLoad(object sender, EventArgs e)
         {
 
         }
 
-        private void Parameters_Enter(object sender, EventArgs e)
+        private void ParametersEnter(object sender, EventArgs e)
         {
 
         }
