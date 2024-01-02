@@ -61,7 +61,6 @@ namespace View
             trainingMethod.TabIndex = 7;
             trainingMethod.TabStop = false;
             trainingMethod.Text = "Тип тренировки";
-            trainingMethod.Enter += Method_Enter;
             // 
             // comboTrainingSelection
             // 
@@ -88,7 +87,6 @@ namespace View
             accrualParameters.TabIndex = 10;
             accrualParameters.TabStop = false;
             accrualParameters.Text = "Параметры расчёта";
-            accrualParameters.Enter += ParametersEnter;
             // 
             // buttonClose
             // 
@@ -120,7 +118,6 @@ namespace View
             runCalcUserControl.Name = "runCalcUserControl";
             runCalcUserControl.Size = new Size(254, 109);
             runCalcUserControl.TabIndex = 2;
-            runCalcUserControl.Load += pressCalcUserControlLoad;
             // 
             // pressCalcUserControl
             // 

@@ -61,7 +61,7 @@ namespace View
             labelWeight.Size = new Size(72, 15);
             labelWeight.TabIndex = 1;
             labelWeight.Text = "Ваш вес, кг:";
-            labelWeight.KeyPress += LabelSwim_KeyPress;
+            labelWeight.KeyPress += LabelSwimKeyPress;
             // 
             // labelDistance
             // 
@@ -71,7 +71,7 @@ namespace View
             labelDistance.Size = new Size(94, 15);
             labelDistance.TabIndex = 2;
             labelDistance.Text = "Расстояние, км:";
-            labelDistance.KeyPress += LabelSwim_KeyPress;
+            labelDistance.KeyPress += LabelSwimKeyPress;
             // 
             // textBoxDistance
             // 

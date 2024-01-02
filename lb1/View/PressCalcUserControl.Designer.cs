@@ -52,7 +52,7 @@ namespace View
             labelWeight.TabIndex = 0;
             labelWeight.Text = "Вес*, кг:";
             labelWeight.TextAlign = ContentAlignment.MiddleLeft;
-            labelWeight.KeyPress += LabelHourlyWageRate_KeyPress;
+            labelWeight.KeyPress += LabelHourlyWageRateKeyPress;
             // 
             // labelRepetitions
             // 
@@ -62,7 +62,7 @@ namespace View
             labelRepetitions.Size = new Size(60, 15);
             labelRepetitions.TabIndex = 1;
             labelRepetitions.Text = "Повторы:";
-            labelRepetitions.KeyPress += LabelHourlyWageRate_KeyPress;
+            labelRepetitions.KeyPress += LabelHourlyWageRateKeyPress;
             // 
             // textBoxWeight
             // 

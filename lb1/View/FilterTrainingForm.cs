@@ -58,7 +58,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TextBoxTraining_TextChanged(object sender, EventArgs e)
+        private void TextBoxTrainingTextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TextBoxTraining_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBoxTrainingKeyPress(object sender, KeyPressEventArgs e)
         {
             Checks.CheckInput(e);
         }
@@ -89,7 +89,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CheckBoxInput_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxInputCheckedChanged(object sender, EventArgs e)
         {
 
             if (checkBoxInput.Checked)
@@ -103,7 +103,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonSearch_Click(object sender, EventArgs e)
+        private void ButtonSearchClick(object sender, EventArgs e)
         {
             _listTrainingFilter = new BindingList<Model.TrainingCalc>();
 

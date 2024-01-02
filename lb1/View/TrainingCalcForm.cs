@@ -49,7 +49,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MainForm_Load(object sender, EventArgs e)
+        private void MainFormLoad(object sender, EventArgs e)
         {
             _trainingList = new BindingList<Model.TrainingCalc>();
             CreateTable(_trainingList, dataGridViewSpace);
@@ -60,7 +60,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonAdd_Click(object sender, EventArgs e)
+        private void ButtonAddClick(object sender, EventArgs e)
         {
             var addTrainingForm = new AddTrainingForm();
 

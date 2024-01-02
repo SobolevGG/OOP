@@ -93,7 +93,7 @@ namespace View
             buttonAdd.TabIndex = 2;
             buttonAdd.Text = "Рассчитать свою тренировку";
             buttonAdd.UseVisualStyleBackColor = true;
-            buttonAdd.Click += ButtonAdd_Click;
+            buttonAdd.Click += ButtonAddClick;
             // 
             // buttonDelete
             // 
@@ -203,7 +203,7 @@ namespace View
             Margin = new Padding(3, 2, 3, 2);
             Name = "TrainingCalcForm";
             Text = "Калькулятор калорий";
-            Load += MainForm_Load;
+            Load += MainFormLoad;
             groupBoxСalculator.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewSpace).EndInit();
             toolStrip.ResumeLayout(false);

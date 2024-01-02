@@ -138,20 +138,5 @@ namespace View
             comboTrainingSelection.SelectedIndex = 2;
             ComboBoxTrainingSelection(this, EventArgs.Empty);
         }
-
-        private void Method_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pressCalcUserControlLoad(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ParametersEnter(object sender, EventArgs e)
-        {
-
-        }
     }
 }

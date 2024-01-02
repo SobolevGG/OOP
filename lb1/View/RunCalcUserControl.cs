@@ -69,7 +69,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Label_KeyPress(object sender,
+        private void LabelKeyPress(object sender,
             KeyPressEventArgs e)
         {
             Checks.CheckInput(e);

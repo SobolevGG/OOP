@@ -72,8 +72,8 @@
             textBoxTraining.Name = "textBoxTraining";
             textBoxTraining.Size = new Size(79, 23);
             textBoxTraining.TabIndex = 4;
-            textBoxTraining.TextChanged += TextBoxTraining_TextChanged;
-            textBoxTraining.KeyPress += TextBoxTraining_KeyPress;
+            textBoxTraining.TextChanged += TextBoxTrainingTextChanged;
+            textBoxTraining.KeyPress += TextBoxTrainingKeyPress;
             // 
             // checkBoxInput
             // 
@@ -85,7 +85,7 @@
             checkBoxInput.TabIndex = 3;
             checkBoxInput.Text = "Поиск по калориям";
             checkBoxInput.UseVisualStyleBackColor = true;
-            checkBoxInput.CheckedChanged += CheckBoxInput_CheckedChanged;
+            checkBoxInput.CheckedChanged += CheckBoxInputCheckedChanged;
             // 
             // checkBoxSwimCalc
             // 
@@ -129,7 +129,7 @@
             buttonSearch.TabIndex = 1;
             buttonSearch.Text = "Поиск";
             buttonSearch.UseVisualStyleBackColor = true;
-            buttonSearch.Click += ButtonSearch_Click;
+            buttonSearch.Click += ButtonSearchClick;
             // 
             // FilterTrainingForm
             // 

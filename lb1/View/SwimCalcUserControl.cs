@@ -88,7 +88,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void LabelSwim_KeyPress(object sender,
+        private void LabelSwimKeyPress(object sender,
             KeyPressEventArgs e)
         {
             Checks.CheckInput(e);

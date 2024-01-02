@@ -32,7 +32,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void LabelHourlyWageRate_KeyPress(object sender,
+        private void LabelHourlyWageRateKeyPress(object sender,
             KeyPressEventArgs e)
         {
             Checks.CheckInput(e);
