@@ -147,12 +147,5 @@ namespace Model
             }
             return metCoef;
         }
-
-        /// <summary>
-        /// Расчёт калорий для плавания.
-        /// </summary>
-        public SwimCalc()
-        {
-        }
     }
 }
