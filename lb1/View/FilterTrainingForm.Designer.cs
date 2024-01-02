@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilterTrainingForm));
             groupBox = new GroupBox();
-            labelTraining = new Label();
             textBoxTraining = new TextBox();
             checkBoxInput = new CheckBox();
             checkBoxSwimCalc = new CheckBox();
@@ -42,7 +41,6 @@
             // 
             // groupBox
             // 
-            groupBox.Controls.Add(labelTraining);
             groupBox.Controls.Add(textBoxTraining);
             groupBox.Controls.Add(checkBoxInput);
             groupBox.Controls.Add(checkBoxSwimCalc);
@@ -56,14 +54,6 @@
             groupBox.TabIndex = 0;
             groupBox.TabStop = false;
             groupBox.Text = "Параметры фильтрации";
-            // 
-            // labelTraining
-            // 
-            labelTraining.AutoSize = true;
-            labelTraining.Location = new Point(339, 146);
-            labelTraining.Name = "labelTraining";
-            labelTraining.Size = new Size(10, 15);
-            labelTraining.TabIndex = 5;
             // 
             // textBoxTraining
             // 
@@ -122,7 +112,7 @@
             // 
             // buttonSearch
             // 
-            buttonSearch.Location = new Point(156, 134);
+            buttonSearch.Location = new Point(155, 134);
             buttonSearch.Margin = new Padding(3, 2, 3, 2);
             buttonSearch.Name = "buttonSearch";
             buttonSearch.Size = new Size(93, 22);
@@ -152,7 +142,6 @@
         #endregion
 
         private GroupBox groupBox;
-        private Label labelTraining;
         private TextBox textBoxTraining;
         private CheckBox checkBoxInput;
         private CheckBox checkBoxSwimCalc;
