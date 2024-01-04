@@ -6,7 +6,7 @@ namespace Model
     public static class RandomTrainingCalc
     {
         /// <summary>
-        /// Рандомайзер
+        /// Поле для рандома.
         /// </summary>
         private static Random _random = new Random();
 
