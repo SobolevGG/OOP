@@ -57,8 +57,7 @@ namespace View
                                       "Плавание",
                                       "Бег" };
 
-            comboTrainingSelection.Items.AddRange(new string[] {
-            typeTraining[0], typeTraining[1], typeTraining[2]});
+            comboTrainingSelection.Items.AddRange(typeTraining);
 
             _comboBoxToUserControl = new Dictionary<string,
                 UserControl>()

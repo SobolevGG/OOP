@@ -1,7 +1,7 @@
 namespace Model
 {
     /// <summary>
-    /// Класс для создания случайной заработной платы
+    /// Класс для создания случайной тренировки.
     /// </summary>
     public static class RandomTrainingCalc
     {
