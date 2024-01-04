@@ -76,8 +76,10 @@ namespace View
         /// <param name="e"></param>
         private void ComboBoxTrainingSelection(object sender, EventArgs e)
         {
-            string trainingType = comboTrainingSelection.SelectedItem.ToString();
-            foreach (var (trainingValue, userControlTmp) in _comboBoxToUserControl)
+            string trainingType = comboTrainingSelection
+                .SelectedItem.ToString();
+            foreach (var (trainingValue, userControlTmp) 
+                in _comboBoxToUserControl)
             {
                 userControlTmp.Visible = false;
                 if (trainingType == trainingValue)
@@ -100,16 +102,20 @@ namespace View
             {
                 var trainingsControlName =
                     comboTrainingSelection.SelectedItem.ToString();
-                var trainingsControl = _comboBoxToUserControl[trainingsControlName];
+                var trainingsControl 
+                    = _comboBoxToUserControl[trainingsControlName];
                 var trainingEventArgs =
-                    new TrainingEventArgs(((ITrainingCalc)trainingsControl).AddingCalc());
+                    new TrainingEventArgs(((ITrainingCalc)trainingsControl)
+                    .AddingCalc());
                 AddingTrainings?.Invoke(this, trainingEventArgs);
                 DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Обратите внимание: {ex.Message}",
-                   "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                   "Ошибка!", 
+                   MessageBoxButtons.OK, 
+                   MessageBoxIcon.Error);
             }
         }
 
