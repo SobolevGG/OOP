@@ -116,7 +116,7 @@ namespace View
             runCalcUserControl.Location = new Point(5, 21);
             runCalcUserControl.Margin = new Padding(3, 2, 3, 2);
             runCalcUserControl.Name = "runCalcUserControl";
-            runCalcUserControl.Size = new Size(254, 109);
+            runCalcUserControl.Size = new Size(254, 120);
             runCalcUserControl.TabIndex = 2;
             // 
             // pressCalcUserControl

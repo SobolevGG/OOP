@@ -54,13 +54,13 @@ namespace View
                 System.Windows.Forms.ComboBoxStyle.DropDownList;
 
             string[] typeTraining = { "Жим штанги",
-                                      "Плавание", 
+                                      "Плавание",
                                       "Бег" };
-            
+
             comboTrainingSelection.Items.AddRange(new string[] {
             typeTraining[0], typeTraining[1], typeTraining[2]});
 
-            _comboBoxToUserControl = new Dictionary<string, 
+            _comboBoxToUserControl = new Dictionary<string,
                 UserControl>()
             {
                 {typeTraining[0], pressCalcUserControl },
@@ -88,7 +88,7 @@ namespace View
                 }
             }
         }
-        
+
         /// <summary>
         /// Кнопка ОК.
         /// </summary>
@@ -98,7 +98,7 @@ namespace View
         {
             try
             {
-                var trainingsControlName = 
+                var trainingsControlName =
                     comboTrainingSelection.SelectedItem.ToString();
                 var trainingsControl = _comboBoxToUserControl[trainingsControlName];
                 var trainingEventArgs =
