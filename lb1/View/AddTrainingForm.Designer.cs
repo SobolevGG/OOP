@@ -135,7 +135,7 @@ namespace View
             swimCalcUserControl.Location = new Point(13, 82);
             swimCalcUserControl.Margin = new Padding(3, 2, 3, 2);
             swimCalcUserControl.Name = "swimCalcUserControl";
-            swimCalcUserControl.Size = new Size(254, 109);
+            swimCalcUserControl.Size = new Size(254, 120);
             swimCalcUserControl.TabIndex = 11;
             // 
             // AddTrainingForm
