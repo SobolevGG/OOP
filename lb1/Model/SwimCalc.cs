@@ -96,21 +96,9 @@ namespace Model
         }
 
         /// <summary>
-        /// Стиль плавания.
-        /// </summary>
-        private Style _style;
-
-        /// <summary>
         /// Получение параметра стиля.
         /// </summary>
-        public Style Style
-        {
-            get => _style;
-            set
-            {
-                _style = value;
-            }
-        }
+        public Style Style { get; set; }
 
         /// <summary>
         /// Метод расчёта затраченных калорий при плавании.

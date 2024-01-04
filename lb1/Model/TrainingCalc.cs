@@ -43,7 +43,7 @@ namespace Model
         protected double _weight;
 
         /// <summary>
-        /// Публичный метод для доступа к весу человека.
+        /// Публичный метод для доступа к весу.
         /// </summary>
         public virtual double Weight
         {
@@ -57,9 +57,9 @@ namespace Model
         }
 
         /// <summary>
-        /// Метод проверки веса человека.
+        /// Метод проверки веса.
         /// </summary>
-        /// <param name="value">Вес человека.</param>
+        /// <param name="value">Вес в кг.</param>
         /// <exception cref="Exception">Исключение
         /// по некорректному значению веса.</exception>
         public virtual void CheckWeight(double value)
@@ -95,10 +95,11 @@ namespace Model
         {
             string tmpValue = Console.ReadLine().Replace(".", ",");
 
-            return !double.TryParse(tmpValue, out _)
+            return !double.TryParse(tmpValue,
+                out double checkedValue)
                 ? throw new Exception("введено " +
                 "нечисловое значение!")
-                : double.Parse(tmpValue);
+                : checkedValue;
         }
     }
 }

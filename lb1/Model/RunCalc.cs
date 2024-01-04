@@ -97,21 +97,9 @@ namespace Model
         }
 
         /// <summary>
-        /// Интенсивность бега.
-        /// </summary>
-        private Intensity _intensity;
-
-        /// <summary>
         /// Получение параметра интенсивности.
         /// </summary>
-        public Intensity Intensity
-        {
-            get => _intensity;
-            set
-            {
-                _intensity = value;
-            }
-        }
+        public Intensity Intensity { get; set; }
 
         /// <summary>
         /// Метод расчёта затраченных калорий при беге.
