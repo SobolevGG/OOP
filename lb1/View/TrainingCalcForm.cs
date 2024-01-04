@@ -34,18 +34,18 @@ namespace View
         private BindingList<Model.TrainingCalc> _trainingList = new();
 
         /// <summary>
-        /// Лист отфильтрованных тренировок.
+        /// Список отфильтрованных тренировок.
         /// </summary>
         private BindingList<Model.TrainingCalc> _listTrainingsFilter = new();
 
         /// <summary>
-        /// Поле для сохранения файла.
+        /// Сохранение XML-файла.
         /// </summary>
         private readonly XmlSerializer _serializer =
             new XmlSerializer(typeof(BindingList<Model.TrainingCalc>));
 
         /// <summary>
-        /// Загрузка формы.
+        /// Загрузка таблицы по списку тренировок.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
