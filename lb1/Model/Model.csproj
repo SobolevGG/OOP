@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Отчёт по лабораторной работе №5\" />
+  </ItemGroup>
+
 </Project>
