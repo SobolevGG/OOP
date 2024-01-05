@@ -91,29 +91,15 @@ namespace Model
 
             set
             {
-                CheckRepetitions(value);
-                _repetitions = value;
-            }
-        }
-
-        /// <summary>
-        /// Метод проверки количества повторений.
-        /// </summary>
-        /// <param name="value">Количество повторений.</param>
-        /// <exception cref="Exception">Исключение
-        /// по некорректному значению
-        /// количества повторений.</exception>
-        public void CheckRepetitions(int value)
-        {
-            CheckNullEmpty(value.ToString());
-
-            if (value <= 0
-                || value > 300)
-            {
-                throw new Exception(
+                if (!CheckRange(value, 0, MaxRepetitions))
+                {
+                    throw new Exception(
                     "количество повторов должно быть задано " +
-                    "положительным целочисленным значением " +
+                    "неотрицательным целочисленным значением " +
                     $"и не должно превышать {MaxRepetitions}!");
+                }
+
+                _repetitions = value;
             }
         }
 
@@ -123,6 +109,6 @@ namespace Model
         /// <returns>Количество затраченных калорий
         /// при жиме штанги.</returns>
         public override double CalculateCalories =>
-            (WeightForPress * 5 * Repetitions / 150);
+            (WeightForPress * 5 * Repetitions / 150.0);
     }
 }
