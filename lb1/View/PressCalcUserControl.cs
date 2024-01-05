@@ -50,14 +50,21 @@ namespace View
             pressCalc.Weight =
                 Checks.CheckDouble(textBoxWeight.Text);
 
+            // Проверяем ввод повторений
+            string repetitionsInput = textBoxRepetitions.Text;
+            if (string.IsNullOrEmpty(repetitionsInput))
+            {
+                throw new Exception("Значение повторений " +
+                    "не может быть пустым!");
+            }
+
             // Пытаемся преобразовать строку в int
-            if (!int.TryParse(textBoxRepetitions.Text,
-                out int checkedInt))
+            if (!int.TryParse(repetitionsInput, out int checkedInt))
             {
                 // Если преобразование не удалось, вызываем исключение
-                throw new Exception("значение должно быть " +
-                    "целочисленным и положительным!");
-            };
+                throw new Exception("Значение повторений " +
+                    "должно быть целочисленным!");
+            }
 
             pressCalc.Repetitions = checkedInt;
             return pressCalc;

@@ -37,29 +37,8 @@ namespace Model
 
             set
             {
-                CheckWeight(value);
+                CheckRange(value, 1, 1000);
                 _weight = value;
-            }
-        }
-
-        /// <summary>
-        /// Метод проверки поднимаемого веса.
-        /// </summary>
-        /// <param name="value">Поднимаемый вес.</param>
-        /// <exception cref="Exception">Исключение
-        /// по некорректному значению веса.</exception>
-        public override void CheckWeight(double value)
-        {
-            CheckNullEmpty(value.ToString());
-            if (value <= 0)
-            {
-                throw new Exception("величина веса " +
-                    "должна быть положительной!");
-            }
-            if (value > 1000)
-            {
-                throw new Exception("величина веса " +
-                    " не должна превышать 1000 кг!");
             }
         }
 
@@ -93,16 +72,13 @@ namespace Model
         {
             CheckNullEmpty(value.ToString());
 
-            if (value <= 0)
+            if (value <= 0
+                || value > 300)
             {
                 throw new Exception(
-                    "количество повторов должно быть " +
-                    "задано положительной величиной!");
-            }
-            if (value > 300)
-            {
-                throw new Exception("количество повторов " +
-                    "не должно превышать 300!");
+                    "количество повторов должно быть задано " +
+                    "положительным целочисленным значением " +
+                    "и не должно превышать 300!");
             }
         }
 

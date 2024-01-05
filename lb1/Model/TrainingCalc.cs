@@ -51,24 +51,24 @@ namespace Model
 
             set
             {
-                CheckWeight(value);
+                CheckRange(value, 3, 500);
                 _weight = value;
             }
         }
 
         /// <summary>
-        /// Метод проверки веса.
+        /// Метод проверки допустимых значений.
         /// </summary>
-        /// <param name="value">Вес в кг.</param>
+        /// <param name="value">Проверяемое значение.</param>
         /// <exception cref="Exception">Исключение
-        /// по некорректному значению веса.</exception>
-        public virtual void CheckWeight(double value)
+        /// по некорректному значению.</exception>
+        public void CheckRange(double value, double min, double max)
         {
             CheckNullEmpty(value.ToString());
-            if (value < 3 || value > 500)
+            if (value < min || value > max)
             {
                 throw new Exception("вес " +
-                    "должен лежать в диапазоне от 3 до 500 кг!");
+                    $"должен лежать в диапазоне от {min} до {max} кг!");
             }
         }
 
