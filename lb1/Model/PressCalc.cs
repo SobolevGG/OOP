@@ -20,13 +20,8 @@ namespace Model
         /// </summary>
         [DisplayName("Программа тренировки")]
         public override string Params
-        {
-            get
-            {
-                return $"Вес с учётом грифа, кг: {WeightForPress};\n " +
+            => $"Вес с учётом грифа, кг: {WeightForPress};\n " +
                     $"Количество повторов: {Repetitions}";
-            }
-        }
 
         /// <summary>
         /// Вес штанги (с учётом грифа) в килограммах.
@@ -78,6 +73,16 @@ namespace Model
         private int _repetitions;
 
         /// <summary>
+        /// Максимальное количество повторений.
+        /// </summary>
+        private const int _maxRepetitions = 100;
+
+        /// <summary>
+        /// Метод для обращения к приватному полю _maxRepetitions.
+        /// </summary>
+        protected int MaxRepetitions { get; } = _maxRepetitions;
+
+        /// <summary>
         /// Публичный метод доступа к количеству повторений.
         /// </summary>
         public int Repetitions
@@ -108,7 +113,7 @@ namespace Model
                 throw new Exception(
                     "количество повторов должно быть задано " +
                     "положительным целочисленным значением " +
-                    "и не должно превышать 300!");
+                    $"и не должно превышать {MaxRepetitions}!");
             }
         }
 
