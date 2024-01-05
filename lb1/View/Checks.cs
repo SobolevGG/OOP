@@ -20,14 +20,20 @@ namespace View
         /// <param name="e"></param>
         public static void CheckInput(KeyPressEventArgs e)
         {
+            // ASCII-код для клавиши Backspace равен 8
             const int backSpace = 8;
 
+            // Получение введенного символа
+            // из аргумента KeyPressEventArgs
             char number = e.KeyChar;
+
+            // Проверка условий ввода,разрешено:
             if ((e.KeyChar < '0' || e.KeyChar > '9')
                 && number != backSpace
                 && number != ','
                 && number != '.')
             {
+                // Игнорировать способ ввода
                 e.Handled = true;
             }
         }
