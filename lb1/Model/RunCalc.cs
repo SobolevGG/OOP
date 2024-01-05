@@ -33,31 +33,7 @@ namespace Model
         /// Получение параметра интенсивности на русском языке.
         /// </summary>
         public string IntensityStr
-        {
-            get
-            {
-                string tmpIntensity = "";
-                switch (Intensity)
-                {
-                    case Intensity.Sprinting:
-                        tmpIntensity = "спринт";
-                        break;
-                    case Intensity.FastRunning:
-                        tmpIntensity = "быстрый бег";
-                        break;
-                    case Intensity.ModerateRunning:
-                        tmpIntensity = "умеренный бег";
-                        break;
-                    case Intensity.LightJogging:
-                        tmpIntensity = "лёгкий бег";
-                        break;
-                    default:
-                        break;
-                }
-                return tmpIntensity;
-            }
-            set { }
-        }
+            => GetRuEnumDescrip(Intensity).ToLower();
 
         /// <summary>
         /// Расстояние в километрах.

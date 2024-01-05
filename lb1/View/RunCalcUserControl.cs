@@ -50,18 +50,18 @@ namespace View
         private BindingList<ComboBoxItem> GetRuIntensityList()
         {
             var intensityValues = Enum.GetValues(typeof(Intensity));
-            var intensityList = new BindingList<ComboBoxItem>();
+            var intensityRuList = new BindingList<ComboBoxItem>();
 
             foreach (Intensity intensity in intensityValues)
             {
-                intensityList.Add(new ComboBoxItem
+                intensityRuList.Add(new ComboBoxItem
                 {
-                    Name = SwimCalcUserControl.GetRuEnumDescrip(intensity),
+                    Name = TrainingCalc.GetRuEnumDescrip(intensity),
                     Value = intensity
                 });
             }
 
-            return intensityList;
+            return intensityRuList;
         }
 
         /// <summary>

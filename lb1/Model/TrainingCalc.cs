@@ -111,5 +111,30 @@ namespace Model
                     "быть пустым!");
             }
         }
+
+        /// <summary>
+        /// Метод получения русского наименования 
+        /// перечисления по описанию.
+        /// </summary>
+        /// <param name="enumValue">Значение перечисления.</param>
+        /// <returns>Русское название перечисления.</returns>
+        public static string GetRuEnumDescrip(Enum enumValue)
+        {
+            var fieldInfo = enumValue.GetType()
+                .GetField(enumValue.ToString());
+            var description = (DescriptionAttribute)Attribute
+                .GetCustomAttribute(fieldInfo,
+                typeof(DescriptionAttribute));
+
+            if (description != null
+                && !string.IsNullOrEmpty(description.Description))
+            {
+                return description.Description;
+            }
+            else
+            {
+                return enumValue.ToString();
+            }
+        }
     }
 }
