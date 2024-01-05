@@ -51,7 +51,11 @@ namespace Model
 
             set
             {
-                CheckRange(value, 3, 500);
+                if (!CheckRangeNew(value, 3, 500))
+                {
+                    throw new Exception("вес " +
+                    $"должен лежать в диапазоне от кг!");
+                }
                 _weight = value;
             }
         }
@@ -70,6 +74,22 @@ namespace Model
                 throw new Exception("вес " +
                     $"должен лежать в диапазоне от {min} до {max} кг!");
             }
+        }
+
+        /// <summary>
+        /// Метод проверки допустимых значений.
+        /// </summary>
+        /// <param name="value">Проверяемое значение.</param>
+        /// <exception cref="Exception">Исключение
+        /// по некорректному значению.</exception>
+        public bool CheckRangeNew(double value, double min, double max)
+        {
+            CheckNullEmpty(value.ToString());
+            if (value < min || value > max)
+            {
+                return false;
+            }
+            return true;
         }
 
         /// <summary>
