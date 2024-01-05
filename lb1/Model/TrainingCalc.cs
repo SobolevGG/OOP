@@ -51,10 +51,10 @@ namespace Model
 
             set
             {
-                if (!CheckRangeNew(value, MinWeight, MaxWeight))
+                if (!CheckRange(value, MinWeight, MaxWeight))
                 {
-                    throw new Exception("вес " +
-                    $"должен лежать в диапазоне от " +
+                    throw new Exception("вес человека " +
+                    $"должен соответствовать диапазону от " +
                     $"{MinWeight} до {MaxWeight} кг!");
                 }
                 _weight = value;
@@ -89,7 +89,7 @@ namespace Model
         /// <param name="max">Максимальное значение.</param>
         /// <returns>Логическое значение: true - значение не нарушает
         /// допустимый диапазон, false - нарушает.</returns>
-        public bool CheckRangeNew(double value,
+        public bool CheckRange(double value,
                                   double min,
                                   double max)
         {
@@ -110,21 +110,6 @@ namespace Model
                 throw new Exception("значение не может " +
                     "быть пустым!");
             }
-        }
-
-        /// <summary>
-        /// Метод замены точки на запятую.
-        /// </summary>
-        /// <returns>Скорректированное значение.</returns>
-        public static double CheckInput()
-        {
-            string tmpValue = Console.ReadLine().Replace(".", ",");
-
-            return !double.TryParse(tmpValue,
-                out double checkedValue)
-                ? throw new Exception("введено " +
-                "нечисловое значение!")
-                : checkedValue;
         }
     }
 }

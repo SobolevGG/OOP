@@ -73,27 +73,27 @@ namespace Model
 
             set
             {
-                CheckDistance(value);
+                if (!CheckRange(value, 0, MaxSwimDistance))
+                {
+                    throw new Exception(
+                        "расстояние должно быть задано " +
+                        "неотрицательным значением " +
+                        $"и не должно превышать " +
+                        $"{MaxSwimDistance} км!");
+                }
                 _distance = value;
             }
         }
 
         /// <summary>
-        /// Метод проверки расстояния для плавания.
+        /// Максимальная дистанция плавания.
         /// </summary>
-        /// <param name="value">Расстояние в километрах.</param>
-        /// <exception cref="Exception">Исключение
-        /// по некорректному значению расстояния.</exception>
-        public void CheckDistance(double value)
-        {
-            CheckNullEmpty(value.ToString());
-            if (value <= 0 || value > 500)
-            {
-                throw new Exception(
-                    "расстояние должно быть положительным " +
-                    "и не превышать 500 км!");
-            }
-        }
+        private const int _maxSwimDistance = 300;
+
+        /// <summary>
+        /// Метод для обращения к приватному полю _maxSwimDistance.
+        /// </summary>
+        protected int MaxSwimDistance { get; } = _maxSwimDistance;
 
         /// <summary>
         /// Получение параметра стиля.

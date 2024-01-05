@@ -73,10 +73,27 @@ namespace Model
 
             set
             {
-                CheckDistance(value);
+                if (!CheckRange(value, 0, MaxRunDistance))
+                {
+                    throw new Exception(
+                        "расстояние должно быть задано " +
+                        "неотрицательным значением " +
+                        $"и не должно превышать " +
+                        $"{MaxRunDistance} км!");
+                }
                 _distance = value;
             }
         }
+
+        /// <summary>
+        /// Максимальная дистанция бега.
+        /// </summary>
+        private const int _maxRunDistance = 600;
+
+        /// <summary>
+        /// Метод для обращения к приватному полю _maxRunDistance.
+        /// </summary>
+        protected int MaxRunDistance { get; } = _maxRunDistance;
 
         /// <summary>
         /// Метод проверки расстояния для плавания.

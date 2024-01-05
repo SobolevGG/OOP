@@ -42,7 +42,7 @@ namespace Model
 
             set
             {
-                if (!CheckRangeNew(value, MinPressWeight, MaxPressWeight))
+                if (!CheckRange(value, MinPressWeight, MaxPressWeight))
                 {
                     throw new Exception("вес " +
                     $"должен лежать в диапазоне от " +
