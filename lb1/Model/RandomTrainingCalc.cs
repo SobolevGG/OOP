@@ -110,7 +110,7 @@ namespace Model
                 Weight = GetRandomNum(30, 150),
 
                 // подбираем случайную величину расстояния
-                Distance = GetRandomNum(1, 10),
+                SwimDistance = GetRandomNum(1, 10),
 
                 // случайным образом выбираем стиль
                 Style = GetRandomStyle(),
@@ -127,7 +127,7 @@ namespace Model
             var runCalc = new RunCalc
             {
                 Weight = GetRandomNum(30, 150),
-                Distance = GetRandomNum(1, 25),
+                RunDistance = GetRandomNum(1, 25),
                 Intensity = GetRandomIntensity(),
             };
             return runCalc;

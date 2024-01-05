@@ -24,52 +24,28 @@ namespace Model
             get
             {
                 return $"Вес человека, кг: {Weight};\n " +
-                    $"Расстояние, км: {Distance};\n " +
-                    $"Стиль: {StyleStr}";
+                    $"Расстояние, км: {SwimDistance};\n " +
+                    $"Стиль: {RuStyle}";
             }
         }
 
         /// <summary>
         /// Получение параметра стиля на русском языке.
         /// </summary>
-        public string StyleStr
-        {
-            get
-            {
-                string tmpStyle = "";
-                switch (Style)
-                {
-                    case Style.Butterfly:
-                        tmpStyle = "баттерфляй";
-                        break;
-                    case Style.Breaststroke:
-                        tmpStyle = "брасс";
-                        break;
-                    case Style.Backstroke:
-                        tmpStyle = "на спине";
-                        break;
-                    case Style.Freestyle:
-                        tmpStyle = "свободный стиль";
-                        break;
-                    default:
-                        break;
-                }
-                return tmpStyle;
-            }
-            set { }
-        }
+        public string RuStyle
+            => GetRuEnumDescrip(Style).ToLower();
 
         /// <summary>
         /// Расстояние в метрах.
         /// </summary>
-        private double _distance;
+        private double _swimDistance;
 
         /// <summary>
         /// Проверка проплываемого расстояния.
         /// </summary>
-        public double Distance
+        public double SwimDistance
         {
-            get => _distance;
+            get => _swimDistance;
 
             set
             {
@@ -81,7 +57,7 @@ namespace Model
                         $"и не должно превышать " +
                         $"{MaxSwimDistance} км!");
                 }
-                _distance = value;
+                _swimDistance = value;
             }
         }
 
@@ -105,7 +81,7 @@ namespace Model
         /// </summary>
         /// <returns>Количество затраченных калорий при плавании.</returns>
         public override double CalculateCalories =>
-            (Weight * 3.5 * CalcMetCoef() * Distance / 200);
+            (Weight * 3.5 * CalcMetCoef() * SwimDistance / 200);
 
 
         /// <summary>

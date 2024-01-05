@@ -24,28 +24,28 @@ namespace Model
             get
             {
                 return $"Вес человека, кг: {Weight};\n " +
-                    $"Расстояние, км: {Distance};\n " +
-                    $"Интенсивность: {IntensityStr}";
+                    $"Расстояние, км: {RunDistance};\n " +
+                    $"Интенсивность: {RuIntensity}";
             }
         }
 
         /// <summary>
         /// Получение параметра интенсивности на русском языке.
         /// </summary>
-        public string IntensityStr
+        public string RuIntensity
             => GetRuEnumDescrip(Intensity).ToLower();
 
         /// <summary>
         /// Расстояние в километрах.
         /// </summary>
-        private double _distance;
+        private double _runDistance;
 
         /// <summary>
         /// Публичный метод доступа к пробегаемому расстоянию.
         /// </summary>
-        public double Distance
+        public double RunDistance
         {
-            get => _distance;
+            get => _runDistance;
 
             set
             {
@@ -57,7 +57,7 @@ namespace Model
                         $"и не должно превышать " +
                         $"{MaxRunDistance} км!");
                 }
-                _distance = value;
+                _runDistance = value;
             }
         }
 
@@ -99,7 +99,7 @@ namespace Model
         /// </summary>
         /// <returns>Количество затраченных калорий при беге.</returns>
         public override double CalculateCalories =>
-            (Weight * 3.5 * CalcMetCoef() * Distance / 200);
+            (Weight * 3.5 * CalcMetCoef() * RunDistance / 200);
 
 
         /// <summary>

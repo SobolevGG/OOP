@@ -79,7 +79,7 @@ namespace View
 
             swimCalc.Weight =
                 Checks.CheckDouble(textBoxWeight.Text);
-            swimCalc.Distance =
+            swimCalc.SwimDistance =
                 Checks.CheckDouble(textBoxDistance.Text);
 
             // Получение выбранного стиля из ComboBox
