@@ -17,7 +17,7 @@ namespace View
         /// <summary>
         /// Проверки на числа, точки и запятые.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">Аргумент события нажатия клавиш.</param>
         public static void CheckInput(KeyPressEventArgs e)
         {
             // ASCII-код для клавиши Backspace равен 8
