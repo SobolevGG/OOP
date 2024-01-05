@@ -69,7 +69,7 @@ namespace Model
         /// <summary>
         /// Метод для обращения к приватному полю _maxRunDistance.
         /// </summary>
-        protected int MaxRunDistance { get; } = _maxRunDistance;
+        protected int MaxRunDistance => _maxRunDistance;
 
         /// <summary>
         /// Метод проверки расстояния для плавания.

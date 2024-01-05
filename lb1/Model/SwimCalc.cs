@@ -69,7 +69,7 @@ namespace Model
         /// <summary>
         /// Метод для обращения к приватному полю _maxSwimDistance.
         /// </summary>
-        protected int MaxSwimDistance { get; } = _maxSwimDistance;
+        protected int MaxSwimDistance => _maxSwimDistance;
 
         /// <summary>
         /// Получение параметра стиля.

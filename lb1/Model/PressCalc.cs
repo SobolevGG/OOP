@@ -55,7 +55,7 @@ namespace Model
         /// <summary>
         /// Метод для обращения к приватному полю _maxPressWeight.
         /// </summary>
-        protected int MaxPressWeight { get; } = _maxPressWeight;
+        protected int MaxPressWeight => _maxPressWeight;
 
         /// <summary>
         /// Минимальный вес штанги (только гриф): 20 кг.
@@ -65,7 +65,7 @@ namespace Model
         /// <summary>
         /// Метод для обращения к приватному полю _minPressWeight.
         /// </summary>
-        protected int MinPressWeight { get; } = _minPressWeight;
+        protected int MinPressWeight => _minPressWeight;
 
         /// <summary>
         /// Количество повторений.
@@ -80,7 +80,7 @@ namespace Model
         /// <summary>
         /// Метод для обращения к приватному полю _maxRepetitions.
         /// </summary>
-        protected int MaxRepetitions { get; } = _maxRepetitions;
+        protected int MaxRepetitions => _maxRepetitions;
 
         /// <summary>
         /// Публичный метод доступа к количеству повторений.
