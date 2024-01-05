@@ -23,24 +23,54 @@ namespace Model
         {
             get
             {
-                return $"Вес с учётом грифа, кг: {Weight};\n " +
+                return $"Вес с учётом грифа, кг: {WeightForPress};\n " +
                     $"Количество повторов: {Repetitions}";
             }
         }
 
         /// <summary>
+        /// Вес штанги (с учётом грифа) в килограммах.
+        /// </summary>
+        protected double _weightForPress;
+
+        /// <summary>
         /// Публичный метод для доступа к поднимаемому весу.
         /// </summary>
-        public override double Weight
+        public double WeightForPress
         {
-            get => _weight;
+            get => _weightForPress;
 
             set
             {
-                CheckRange(value, 1, 1000);
-                _weight = value;
+                if (!CheckRangeNew(value, MinPressWeight, MaxPressWeight))
+                {
+                    throw new Exception("вес " +
+                    $"должен лежать в диапазоне от " +
+                    $"{MinPressWeight} до {MaxPressWeight} кг!");
+                }
+                _weightForPress = value;
             }
         }
+
+        /// <summary>
+        /// Максимальный поднимаемый вес в 1000 кг.
+        /// </summary>
+        private const int _maxPressWeight = 1000;
+
+        /// <summary>
+        /// Метод для обращения к приватному полю _maxPressWeight.
+        /// </summary>
+        protected int MaxPressWeight { get; } = _maxPressWeight;
+
+        /// <summary>
+        /// Минимальный вес штанги (только гриф): 20 кг.
+        /// </summary>
+        private const int _minPressWeight = 20;
+
+        /// <summary>
+        /// Метод для обращения к приватному полю _minPressWeight.
+        /// </summary>
+        protected int MinPressWeight { get; } = _minPressWeight;
 
         /// <summary>
         /// Количество повторений.
@@ -88,6 +118,6 @@ namespace Model
         /// <returns>Количество затраченных калорий
         /// при жиме штанги.</returns>
         public override double CalculateCalories =>
-            (Weight * 5 * Repetitions / 150);
+            (WeightForPress * 5 * Repetitions / 150);
     }
 }

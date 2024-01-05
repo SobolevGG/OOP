@@ -8,7 +8,7 @@ namespace Model
         /// <summary>
         /// Поле для рандома.
         /// </summary>
-        private static Random _random = new Random();
+        private static readonly Random _random = new();
 
         /// <summary>
         /// Метод генерации случайного числа.
@@ -90,7 +90,7 @@ namespace Model
             var pressCalc = new PressCalc
             {
                 // подбираем случайную величину веса
-                Weight = GetRandomNum(20, 300),
+                WeightForPress = GetRandomNum(20, 300),
 
                 // подбираем случайную величину повторений
                 Repetitions = GetRandomNum(1, 20),

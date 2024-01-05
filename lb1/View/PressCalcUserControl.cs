@@ -47,7 +47,7 @@ namespace View
         public Model.TrainingCalc AddingCalc()
         {
             var pressCalc = new PressCalc();
-            pressCalc.Weight =
+            pressCalc.WeightForPress =
                 Checks.CheckDouble(textBoxWeight.Text);
 
             // Проверяем ввод повторений

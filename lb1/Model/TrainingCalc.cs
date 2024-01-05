@@ -45,64 +45,69 @@ namespace Model
         /// <summary>
         /// Публичный метод для доступа к весу.
         /// </summary>
-        public virtual double Weight
+        public double Weight
         {
             get => _weight;
 
             set
             {
-                if (!CheckRangeNew(value, 3, 500))
+                if (!CheckRangeNew(value, MinWeight, MaxWeight))
                 {
                     throw new Exception("вес " +
-                    $"должен лежать в диапазоне от кг!");
+                    $"должен лежать в диапазоне от " +
+                    $"{MinWeight} до {MaxWeight} кг!");
                 }
                 _weight = value;
             }
         }
 
         /// <summary>
-        /// Метод проверки допустимых значений.
+        /// Максимальный вес в 500 кг.
+        /// </summary>
+        private const int _maxWeight = 500;
+
+        /// <summary>
+        /// Метод для обращения к приватному полю _maxWeight.
+        /// </summary>
+        protected int MaxWeight { get; } = _maxWeight;
+
+        /// <summary>
+        /// Минимальный вес в 3 кг.
+        /// </summary>
+        private const int _minWeight = 3;
+
+        /// <summary>
+        /// Метод для обращения к приватному полю _minWeight.
+        /// </summary>
+        protected int MinWeight { get; } = _minWeight;
+
+        /// <summary>
+        /// Метод проверки числа на допустимый диапазон.
         /// </summary>
         /// <param name="value">Проверяемое значение.</param>
-        /// <exception cref="Exception">Исключение
-        /// по некорректному значению.</exception>
-        public void CheckRange(double value, double min, double max)
+        /// <param name="min">Минимальное значение.</param>
+        /// <param name="max">Максимальное значение.</param>
+        /// <returns>Логическое значение: true - значение не нарушает
+        /// допустимый диапазон, false - нарушает.</returns>
+        public bool CheckRangeNew(double value,
+                                  double min,
+                                  double max)
         {
             CheckNullEmpty(value.ToString());
-            if (value < min || value > max)
-            {
-                throw new Exception("вес " +
-                    $"должен лежать в диапазоне от {min} до {max} кг!");
-            }
+            return value >= min && value <= max;
         }
 
         /// <summary>
-        /// Метод проверки допустимых значений.
+        /// Метод проверки пустого значения.
         /// </summary>
         /// <param name="value">Проверяемое значение.</param>
         /// <exception cref="Exception">Исключение
-        /// по некорректному значению.</exception>
-        public bool CheckRangeNew(double value, double min, double max)
-        {
-            CheckNullEmpty(value.ToString());
-            if (value < min || value > max)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// Метод проверки пустого ввода.
-        /// </summary>
-        /// <param name="value">Проверяемое значение.</param>
-        /// <exception cref="Exception">Исключение
-        /// на пустой ввод.</exception>
+        /// на пустое значение.</exception>
         public void CheckNullEmpty(string value)
         {
             if (string.IsNullOrEmpty(value))
             {
-                throw new Exception("ввод не может " +
+                throw new Exception("значение не может " +
                     "быть пустым!");
             }
         }
