@@ -72,24 +72,6 @@ namespace Model
         protected int MaxRunDistance => _maxRunDistance;
 
         /// <summary>
-        /// Метод проверки расстояния для плавания.
-        /// </summary>
-        /// <param name="value">Расстояние в километрах.</param>
-        /// <exception cref="Exception">Исключение
-        /// по некорректному значению расстояния.</exception>
-        public void CheckDistance(double value)
-        {
-            CheckNullEmpty(value.ToString());
-
-            if (value <= 0 || value > 1000)
-            {
-                throw new Exception(
-                    "расстояние должно быть положительным " +
-                    "и не превышать 1000 км!");
-            }
-        }
-
-        /// <summary>
         /// Получение параметра интенсивности.
         /// </summary>
         public Intensity Intensity { get; set; }
