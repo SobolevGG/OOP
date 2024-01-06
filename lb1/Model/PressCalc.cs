@@ -48,6 +48,11 @@ namespace Model
         }
 
         /// <summary>
+        /// Публичный метод для доступа к весу.
+        /// </summary>
+        public static new double Weight => 70;
+
+        /// <summary>
         /// Максимальный поднимаемый вес в 1000 кг.
         /// </summary>
         private const int _maxPressWeight = 1000;
