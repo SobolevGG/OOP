@@ -83,7 +83,6 @@ namespace Model
         public override double CalculateCalories =>
             (Weight * 3.5 * CalcMetCoef() * RunDistance / 200);
 
-
         /// <summary>
         /// Метод получения коэффициента метаболизма
         /// в зависимости от интенсивности бега.

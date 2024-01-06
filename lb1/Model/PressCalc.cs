@@ -53,7 +53,7 @@ namespace Model
         private const int _maxPressWeight = 1000;
 
         /// <summary>
-        /// Метод для обращения к приватному полю _maxPressWeight.
+        /// Свойство для обращения к приватному полю _maxPressWeight.
         /// </summary>
         protected int MaxPressWeight => _maxPressWeight;
 
