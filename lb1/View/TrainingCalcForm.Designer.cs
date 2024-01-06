@@ -129,6 +129,9 @@ namespace View
             // 
             // buttonRandom
             // 
+#if !DEBUG
+            buttonRandom.Visible = false;
+#endif
             buttonRandom.Location = new Point(35, 337);
             buttonRandom.Name = "buttonRandom";
             buttonRandom.Size = new Size(116, 38);
