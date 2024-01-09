@@ -44,6 +44,7 @@ namespace Model
                     $"{MinPressWeight} до {MaxPressWeight} кг!");
                 }
                 _weightForPress = value;
+                Weight = WeightForPress / 1.44;
             }
         }
 

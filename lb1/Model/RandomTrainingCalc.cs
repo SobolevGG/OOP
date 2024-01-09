@@ -92,6 +92,9 @@ namespace Model
                 // подбираем случайную величину веса
                 WeightForPress = GetRandomNum(20, 300),
 
+                // подбираем случайную величину веса
+                Weight = GetRandomNum(20, 100),
+
                 // подбираем случайную величину повторений
                 Repetitions = GetRandomNum(1, 20),
             };
