@@ -18,7 +18,7 @@ using MathNet.Numerics.Optimization.TrustRegion;
 
 namespace HydroGeneratorOptimization
 {
-    public class HydroGeneratorOptimization
+    public class Formulas
     {
         [Serializable]
         public class PowerFormula
@@ -27,15 +27,68 @@ namespace HydroGeneratorOptimization
             public string Formula { get; set; }
         }
 
+        [Serializable]
+        public class GeneratorFormula
+        {
+            public int GeneratorNumber { get; set; }
+            public string FormulaName { get; set; }
+        }
+
         public const double g = 9.81;
 
-        public static double CalculatePower(double[] flowRates, double head, string formula)
+        // Метод для загрузки формул расчета мощности для каждого гидрогенератора
+        public static List<GeneratorFormula> LoadGeneratorFormulas()
+        {
+            List<GeneratorFormula> generatorFormulas;
+
+            try
+            {
+                using (var streamReader = new StreamReader("generatorFormulas.xml"))
+                {
+                    var serializer = new XmlSerializer(typeof(List<GeneratorFormula>));
+                    generatorFormulas = (List<GeneratorFormula>)serializer.Deserialize(streamReader);
+                }
+            }
+            catch
+            {
+                generatorFormulas = new List<GeneratorFormula>();
+            }
+
+            return generatorFormulas;
+        }
+
+        public static void SaveGeneratorFormulas(List<GeneratorFormula> generatorFormulas)
+        {
+            try
+            {
+                using (var streamWriter = new StreamWriter("generatorFormulas.xml"))
+                {
+                    var serializer = new XmlSerializer(typeof(List<GeneratorFormula>));
+                    serializer.Serialize(streamWriter, generatorFormulas);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving generator formulas: {ex.Message}");
+            }
+        }
+
+        // Метод для получения формулы расчета мощности для гидрогенератора по номеру
+        public static string GetGeneratorFormula(List<GeneratorFormula> generatorFormulas, int generatorNumber)
+        {
+            var formula = generatorFormulas.FirstOrDefault(gf => gf.GeneratorNumber == generatorNumber);
+            return formula != null ? formula.FormulaName : "FormulaForAll";
+        }
+
+        public static double CalculatePower(double[] flowRates, double head, List<GeneratorFormula> generatorFormulas)
         {
             const double rho = 1000.0;
             double sum = 0.0;
 
-            foreach (var Qi in flowRates)
+            for (int i = 0; i < flowRates.Length; i++)
             {
+                double Qi = flowRates[i];
+                string formula = GetGeneratorFormula(generatorFormulas, i + 1);
                 sum += EvaluateFormula(Qi, head, formula);
             }
 
@@ -53,7 +106,7 @@ namespace HydroGeneratorOptimization
                         Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)
                     ));
 
-                // Add more formulas as needed
+                // Добавьте больше формул по мере необходимости
                 // case "Formula2":
                 //    return ...;
 
@@ -62,14 +115,14 @@ namespace HydroGeneratorOptimization
             }
         }
 
-        public static OptimizationResult Optimize(double[] initialFlowRates, double initialHead, double minHead, double maxHead, string selectedFormula)
+        public static OptimizationResult Optimize(double[] initialFlowRates, double initialHead, double minHead, double maxHead, List<GeneratorFormula> generatorFormulas)
         {
             var initialGuess = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(new double[] { initialHead });
 
             Func<MathNet.Numerics.LinearAlgebra.Vector<double>, double> objectiveFunction = point =>
             {
                 double head = point[0];
-                double power = -CalculatePower(initialFlowRates, head, selectedFormula);
+                double power = -CalculatePower(initialFlowRates, head, generatorFormulas);
                 return power;
             };
 
@@ -83,9 +136,11 @@ namespace HydroGeneratorOptimization
                 double head = point[0];
                 double sum = 0.0;
 
-                foreach (var Qi in initialFlowRates)
+                for (int i = 0; i < initialFlowRates.Length; i++)
                 {
-                    sum += EvaluateFormula(Qi, head, selectedFormula);
+                    double Qi = initialFlowRates[i];
+                    string formula = GetGeneratorFormula(generatorFormulas, i + 1);
+                    sum += EvaluateFormula(Qi, head, formula);
                 }
 
                 double gradientHead = -0.01 * g * (96.7 - sum) * Math.Pow(Math.Abs(head - 93), 0.5) / Math.Pow(4, 2);

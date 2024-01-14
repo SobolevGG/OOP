@@ -2,101 +2,181 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
-using MathNet.Numerics.LinearAlgebra;
-using MathNet.Numerics.Optimization;
-using MathNet.Numerics.Optimization.ObjectiveFunctions;
-using MathNet.Numerics.Optimization.TrustRegion;
 using HydroGeneratorOptimization;
-using static HydroGeneratorOptimization.HydroGeneratorOptimization;
+using static HydroGeneratorOptimization.Formulas;
 
-
-class HydroGenerator
+class Program
 {
     static void Main()
     {
-        List<PowerFormula> formulas = LoadFormulas();
+        // Создаем экземпляры XmlFileManager для UserConstraints и GeneratorFlows
+        var userConstraintsFileManager = new XmlFileManager<UserConstraints>();
+        var generatorFlowsFileManager = new XmlFileManager<GeneratorFlows>();
 
-        if (formulas.Count == 0)
+        while (true)
         {
-            // Add default formulas if the list is empty
-            formulas.Add(new PowerFormula { Name = "FormulaForAll", Formula = "FormulaForAll" });
-            // Add more default formulas as needed
-        }
+            // Инициализация переменной userConstraints
+            UserConstraints userConstraints = new UserConstraints();
 
-        Console.WriteLine("Выберите формулу мощности:");
+            // Опции выбора загрузки
+            Console.WriteLine("Выберите действие:");
+            Console.WriteLine("1. Загрузить ограничения пользователя из файла");
+            Console.WriteLine("2. Ввести новые ограничения пользователя");
+            Console.WriteLine("3. Загрузить файл расходов для каждого гидрогенератора");
+            Console.WriteLine("4. Ввести новые расходы воды для каждого гидрогенератора и сохранить в файл");
+            Console.WriteLine("5. Загрузить расходы воды для каждого гидрогенератора из файла");
+            Console.WriteLine("6. Продолжить с текущими ограничениями и расходами (если они существуют)");
 
-        for (int i = 0; i < formulas.Count; i++)
-        {
-            Console.WriteLine($"{i + 1}. {formulas[i].Name}");
-        }
-
-        int selectedFormulaIndex;
-
-        do
-        {
-            Console.Write("Введите номер выбранной формулы: ");
-        } while (!int.TryParse(Console.ReadLine(), out selectedFormulaIndex) || selectedFormulaIndex < 1 || selectedFormulaIndex > formulas.Count);
-
-        PowerFormula selectedFormula = formulas[selectedFormulaIndex - 1];
-
-        Console.WriteLine($"Выбрана формула мощности: {selectedFormula.Name}");
-
-        Console.Write("Введите минимальное значение расхода (куб. м/с): ");
-        double minFlowRate = Convert.ToDouble(Console.ReadLine());
-
-        Console.Write("Введите максимальное значение расхода (куб. м/с): ");
-        double maxFlowRate = Convert.ToDouble(Console.ReadLine());
-
-        Console.Write("Введите минимальное значение напора (м): ");
-        double minHead = Convert.ToDouble(Console.ReadLine());
-
-        Console.Write("Введите максимальное значение напора (м): ");
-        double maxHead = Convert.ToDouble(Console.ReadLine());
-
-        double[] initialFlowRates = new double[12];
-
-        for (int i = 0; i < initialFlowRates.Length; i++)
-        {
-            Console.Write($"Введите расход для гидрогенератора {i + 1}: ");
-            initialFlowRates[i] = Convert.ToDouble(Console.ReadLine());
-        }
-
-        double initialHead = (minHead + maxHead) / 2.0;
-
-        var initialGuess = Vector<double>.Build.DenseOfArray(new double[] { initialHead });
-
-        Func<Vector<double>, double> objectiveFunction = point =>
-        {
-            double head = point[0];
-            double power = -CalculatePower(initialFlowRates, head, selectedFormula.Formula);
-            return power;
-        };
-
-        var optimizer = new BfgsBMinimizer(1e-6, 1e-6, 1e-6, 50000);
-
-        var lowerBound = Vector<double>.Build.DenseOfArray(new double[] { minHead });
-        var upperBound = Vector<double>.Build.DenseOfArray(new double[] { maxHead });
-
-        var objectiveWithGradient = ObjectiveFunction.Gradient(objectiveFunction, point =>
-        {
-            double head = point[0];
-            double sum = 0.0;
-
-            foreach (var Qi in initialFlowRates)
+            int choice;
+            do
             {
-                sum += EvaluateFormula(Qi, head, selectedFormula.Formula);
+                Console.Write("Введите номер выбранной опции: ");
+            } while (!int.TryParse(Console.ReadLine(), out choice) || choice < 1 || choice > 6);
+
+            // Загрузка ограничений пользователя
+            if (choice == 1)
+            {
+                userConstraints = userConstraintsFileManager.Load("userConstraints.xml");
+                if (userConstraints == null)
+                {
+                    Console.WriteLine("Файл ограничений пользователя не найден. Созданы новые ограничения.");
+                    userConstraints = new UserConstraints();
+                }
+            }
+            else if (choice == 2)
+            {
+                Console.Write("Введите минимальное значение расхода (куб. м/с): ");
+                userConstraints.MinFlowRate = Convert.ToDouble(Console.ReadLine());
+
+                Console.Write("Введите максимальное значение расхода (куб. м/с): ");
+                userConstraints.MaxFlowRate = Convert.ToDouble(Console.ReadLine());
+
+                Console.Write("Введите минимальное значение напора (м): ");
+                userConstraints.MinHead = Convert.ToDouble(Console.ReadLine());
+
+                Console.Write("Введите максимальное значение напора (м): ");
+                userConstraints.MaxHead = Convert.ToDouble(Console.ReadLine());
+
+                // Сохранение новых ограничений пользователя
+                userConstraintsFileManager.Save("userConstraints.xml", userConstraints);
+                Console.WriteLine("Ограничения пользователя сохранены в файле.");
             }
 
-            double gradientHead = -0.01 * g * (96.7 - sum) * Math.Pow(Math.Abs(head - 93), 0.5) / Math.Pow(4, 2);
-            return Vector<double>.Build.DenseOfArray(new double[] { gradientHead });
-        });
+            // Загрузка файла расходов для каждого гидрогенератора
+            GeneratorFlows generatorFlows;
+            if (choice == 3 || choice == 5 || choice == 6)
+            {
+                generatorFlows = generatorFlowsFileManager.Load("generatorFlows.xml");
+                if (generatorFlows == null)
+                {
+                    Console.WriteLine("Файл расходов для каждого гидрогенератора не найден. Создан новый файл.");
+                    generatorFlows = new GeneratorFlows { Flows = new List<double>() };
+                    generatorFlowsFileManager.Save("generatorFlows.xml", generatorFlows);
+                }
+            }
+            else
+            {
+                // Создание нового файла с расходами для каждого гидрогенератора
+                generatorFlows = new GeneratorFlows { Flows = new List<double>() };
+                generatorFlowsFileManager.Save("generatorFlows.xml", generatorFlows);
+                Console.WriteLine("Создан новый файл расходов для каждого гидрогенератора.");
+            }
 
-        var result = optimizer.FindMinimum(objectiveWithGradient, lowerBound, upperBound, initialGuess);
+            // Проверка наличия достаточного количества расходов для каждого гидрогенератора
+            while (generatorFlows.Flows.Count < 12)
+            {
+                generatorFlows.Flows.Add(0.0);
+            }
 
-        double optimalHead = result.MinimizingPoint[0];
-        double optimalPower = -result.FunctionInfoAtMinimum.Value;
+            // Ввод или загрузка расходов воды для каждого гидрогенератора
+            if (choice == 4)
+            {
+                for (int i = 0; i < generatorFlows.Flows.Count; i++)
+                {
+                    Console.Write($"Введите расход воды для гидрогенератора {i + 1}: ");
+                    generatorFlows.Flows[i] = Convert.ToDouble(Console.ReadLine());
+                }
 
-        Console.WriteLine($"Оптимальный напор: {optimalHead} м");
-        Console.WriteLine($"Максимальная мощность: {Math.Round(optimalPower / 1e6, 3)} МВт");
+                // Сохранение новых расходов в файл
+                generatorFlowsFileManager.Save("generatorFlows.xml", generatorFlows);
+                Console.WriteLine("Расходы воды сохранены в файле.");
+            }
+            else if (choice == 5)
+            {
+                generatorFlows = generatorFlowsFileManager.Load("generatorFlows.xml");
+                if (generatorFlows == null)
+                {
+                    Console.WriteLine("Файл расходов для каждого гидрогенератора не найден. Создан новый файл.");
+                    generatorFlows = new GeneratorFlows { Flows = new List<double>() };
+                    generatorFlowsFileManager.Save("generatorFlows.xml", generatorFlows);
+                }
+            }
+
+            // Остальной код программы
+
+            List<PowerFormula> formulas = HydroGeneratorOptimization.Formulas.LoadFormulas();
+            List<GeneratorFormula> generatorFormulas = HydroGeneratorOptimization.Formulas.LoadGeneratorFormulas();
+
+            if (formulas.Count == 0)
+            {
+                // Add default formulas if the list is empty
+                formulas.Add(new PowerFormula { Name = "FormulaForAll", Formula = "FormulaForAll" });
+                // Add more default formulas as needed
+            }
+
+            Console.WriteLine("Выберите формулу мощности:");
+
+            for (int i = 0; i < formulas.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {formulas[i].Name}");
+            }
+
+            int selectedFormulaIndex;
+
+            do
+            {
+                Console.Write("Введите номер выбранной формулы: ");
+            } while (!int.TryParse(Console.ReadLine(), out selectedFormulaIndex) || selectedFormulaIndex < 1 || selectedFormulaIndex > formulas.Count);
+
+            PowerFormula selectedFormula = formulas[selectedFormulaIndex - 1];
+
+            Console.WriteLine($"Выбрана формула мощности: {selectedFormula.Name}");
+
+            double[] initialFlowRates = new double[12];
+
+            for (int i = 0; i < initialFlowRates.Length; i++)
+            {
+                Console.Write($"Введите расход для гидрогенератора {i + 1}: ");
+                initialFlowRates[i] = Convert.ToDouble(Console.ReadLine());
+            }
+
+            double initialHead = (userConstraints.MinHead + userConstraints.MaxHead) / 2.0;
+
+            var initialGuess = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(new double[] { initialHead });
+
+            Console.WriteLine("Формулы для каждого гидрогенератора:");
+
+            for (int i = 0; i < initialFlowRates.Length; i++)
+            {
+                string formulaName = GetGeneratorFormula(generatorFormulas, i + 1);
+                Console.WriteLine($"Генератор {i + 1}: {formulaName}");
+            }
+
+            OptimizationResult result = Optimize(initialFlowRates, initialHead, userConstraints.MinHead, userConstraints.MaxHead, generatorFormulas);
+
+            double optimalHead = result.OptimalHead;
+            double optimalPower = result.MaxPower;
+
+            Console.WriteLine($"Оптимальный напор: {optimalHead} м");
+            Console.WriteLine($"Максимальная мощность: {Math.Round(optimalPower / 1e6, 3)} МВт");
+
+            // Переход на новый цикл или завершение программы
+            Console.WriteLine("Хотите выполнить еще одно действие? (да/нет): ");
+            string continueChoice = Console.ReadLine().ToLower();
+            if (continueChoice != "да")
+            {
+                break; // Завершение бесконечного цикла
+            }
+        }
     }
 }

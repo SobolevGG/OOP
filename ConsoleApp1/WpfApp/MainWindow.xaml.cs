@@ -10,7 +10,7 @@ using MathNet.Numerics.Optimization;
 using MathNet.Numerics.Optimization.ObjectiveFunctions;
 using MathNet.Numerics.Optimization.TrustRegion;
 using HydroGeneratorOptimization;
-using static HydroGeneratorOptimization.HydroGeneratorOptimization;
+using static HydroGeneratorOptimization.Formulas;
 
 namespace HydroGeneratorOptimization
 {
