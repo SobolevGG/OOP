@@ -47,7 +47,7 @@ namespace HydroGeneratorOptimization
         public static string GetGeneratorFormula(List<PowerFormula> formulas, int generatorNumber)
         {
             var formula = formulas.FirstOrDefault(f => f.Name == $"HU{generatorNumber}");
-            return formula != null ? formula.FormulaExpression : "FormulaForAll";
+            return formula != null ? formula.Name : "FormulaForAll";
         }
 
         public static double EvaluateFormula(double Qi, double head, string formula)
@@ -64,6 +64,7 @@ namespace HydroGeneratorOptimization
                     throw new ArgumentException("Invalid power formula specified.");
             }
         }
+
 
         public static OptimizationResult Optimize(double[] initialFlowRates, double initialHead, double minHead, double maxHead, List<PowerFormula> powerFormulas)
         {
@@ -89,6 +90,7 @@ namespace HydroGeneratorOptimization
                 for (int i = 0; i < initialFlowRates.Length; i++)
                 {
                     double Qi = initialFlowRates[i];
+                    // Выбирается формула согласно списку, если ее нет, то по умолчанию
                     string formula = GetGeneratorFormula(powerFormulas, i + 1);
                     sum += EvaluateFormula(Qi, head, formula);
                 }

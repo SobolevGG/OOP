@@ -115,45 +115,10 @@ class Program
             // Загрузка формул расчета мощности для каждого гидрогенератора
             List<PowerFormula> formulas = Formulas.LoadFormulas();
 
-            // Проверка наличия формулы FormulaForAll и добавление ее, если отсутствует
-            PowerFormula defaultFormula = formulas.FirstOrDefault(f => f.Name == "FormulaForAll");
-            if (defaultFormula == null)
-            {
-                formulas.Add(new PowerFormula
-                {
-                    Name = "FormulaForAll",
-                    FormulaExpression = "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))"
-                });
-
-                // Сохранение обновленного списка формул в файл
-                Formulas.SaveFormulas(formulas);
-                Console.WriteLine("Формула по умолчанию сохранена в файле formulas.xml.");
-            }
-
             // Сохранение обновленного списка формул в файл
-            Formulas.SaveFormulas(formulas);
-            Console.WriteLine("Формула по умолчанию сохранена в файле formulas.xml.");
-
-            Console.WriteLine("Выберите формулу мощности:");
-
-            for (int i = 0; i < formulas.Count; i++)
-            {
-                Console.WriteLine($"{i + 1}. {formulas[i].Name}");
-            }
-
-            int selectedFormulaIndex;
-
-            do
-            {
-                Console.Write("Введите номер выбранной формулы: ");
-            } while (!int.TryParse(Console.ReadLine(), out selectedFormulaIndex) || selectedFormulaIndex < 1 || selectedFormulaIndex > formulas.Count);
-
-            PowerFormula selectedFormula = formulas[selectedFormulaIndex - 1];
-
-            Console.WriteLine($"Выбрана формула мощности: {selectedFormula.Name}");
+            // Formulas.SaveFormulas(formulas);
 
             double[] initialFlowRates = generatorFlows.Flows.ToArray();
-
             double initialHead = (userConstraints.MinHead + userConstraints.MaxHead) / 2.0;
 
             // Загрузка формул расчета мощности для каждого гидрогенератора
@@ -176,6 +141,8 @@ class Program
 
             Console.WriteLine($"Оптимальный напор: {optimalHead} м");
             Console.WriteLine($"Максимальная мощность: {Math.Round(optimalPower / 1e6, 3)} МВт");
+
+
 
             // Переход на новый цикл или завершение программы
             Console.WriteLine("Хотите выполнить еще одно действие? (да/нет): ");
