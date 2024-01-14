@@ -157,7 +157,7 @@ class Program
             double initialHead = (userConstraints.MinHead + userConstraints.MaxHead) / 2.0;
 
             // Загрузка формул расчета мощности для каждого гидрогенератора
-            List<GeneratorFormula> generatorFormulas = Formulas.LoadGeneratorFormulas();
+            List<PowerFormula> powerFormulas = Formulas.LoadFormulas();
 
             var initialGuess = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(new double[] { initialHead });
 
@@ -165,11 +165,11 @@ class Program
 
             for (int i = 0; i < initialFlowRates.Length; i++)
             {
-                string formulaName = Formulas.GetGeneratorFormula(generatorFormulas, i + 1);
+                string formulaName = Formulas.GetGeneratorFormula(powerFormulas, i + 1);
                 Console.WriteLine($"Генератор {i + 1}: {formulaName}");
             }
 
-            OptimizationResult result = Formulas.Optimize(initialFlowRates, initialHead, userConstraints.MinHead, userConstraints.MaxHead, generatorFormulas);
+            OptimizationResult result = Formulas.Optimize(initialFlowRates, initialHead, userConstraints.MinHead, userConstraints.MaxHead, powerFormulas);
 
             double optimalHead = result.OptimalHead;
             double optimalPower = result.MaxPower;
