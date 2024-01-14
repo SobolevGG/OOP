@@ -1,38 +1,46 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.Optimization;
 using MathNet.Numerics.Optimization.ObjectiveFunctions;
 using MathNet.Numerics.Optimization.TrustRegion;
+using HydroGeneratorOptimization;
+using static HydroGeneratorOptimization.HydroGeneratorOptimization;
 
-class HydroGeneratorOptimization
+
+class HydroGenerator
 {
-    // Ускорение свободного падения, м/с^2
-    private const double g = 9.81;
-
-    // Метод для расчета мощности гидрогенератора
-    public static double CalculatePower(double[] flowRates, double head)
-    {
-        const double rho = 1000.0;  // плотность воды, кг/м^3
-        double sum = 0.0;
-
-        for (int i = 0; i < flowRates.Length; i++)
-        {
-            double Qi = flowRates[i];
-            sum += Qi * (96.7 - (
-                Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) +
-                Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)
-            ));
-        }
-
-        // Ваша формула для расчета мощности
-        double power = 0.01 * head * g * rho * sum;
-
-        return power;
-    }
-
     static void Main()
     {
-        // Ввод ограничений от пользователя
+        List<PowerFormula> formulas = LoadFormulas();
+
+        if (formulas.Count == 0)
+        {
+            // Add default formulas if the list is empty
+            formulas.Add(new PowerFormula { Name = "FormulaForAll", Formula = "FormulaForAll" });
+            // Add more default formulas as needed
+        }
+
+        Console.WriteLine("Выберите формулу мощности:");
+
+        for (int i = 0; i < formulas.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {formulas[i].Name}");
+        }
+
+        int selectedFormulaIndex;
+
+        do
+        {
+            Console.Write("Введите номер выбранной формулы: ");
+        } while (!int.TryParse(Console.ReadLine(), out selectedFormulaIndex) || selectedFormulaIndex < 1 || selectedFormulaIndex > formulas.Count);
+
+        PowerFormula selectedFormula = formulas[selectedFormulaIndex - 1];
+
+        Console.WriteLine($"Выбрана формула мощности: {selectedFormula.Name}");
+
         Console.Write("Введите минимальное значение расхода (куб. м/с): ");
         double minFlowRate = Convert.ToDouble(Console.ReadLine());
 
@@ -45,8 +53,8 @@ class HydroGeneratorOptimization
         Console.Write("Введите максимальное значение напора (м): ");
         double maxHead = Convert.ToDouble(Console.ReadLine());
 
-        // Ввод значений расхода для каждого гидрогенератора
         double[] initialFlowRates = new double[12];
+
         for (int i = 0; i < initialFlowRates.Length; i++)
         {
             Console.Write($"Введите расход для гидрогенератора {i + 1}: ");
@@ -55,51 +63,39 @@ class HydroGeneratorOptimization
 
         double initialHead = (minHead + maxHead) / 2.0;
 
-        // Задаем начальные значения параметров
         var initialGuess = Vector<double>.Build.DenseOfArray(new double[] { initialHead });
 
-        // Создаем объект-функцию для оптимизации
         Func<Vector<double>, double> objectiveFunction = point =>
         {
             double head = point[0];
-            double power = -CalculatePower(initialFlowRates, head); // Минус, так как мы максимизируем
+            double power = -CalculatePower(initialFlowRates, head, selectedFormula.Formula);
             return power;
         };
 
-        // Используем метод BfgsBMinimizer для максимизации мощности с использованием градиента
         var optimizer = new BfgsBMinimizer(1e-6, 1e-6, 1e-6, 50000);
 
-        // Запускаем оптимизацию с ограничениями
         var lowerBound = Vector<double>.Build.DenseOfArray(new double[] { minHead });
         var upperBound = Vector<double>.Build.DenseOfArray(new double[] { maxHead });
 
-        // Создаем объект-функцию с градиентом
         var objectiveWithGradient = ObjectiveFunction.Gradient(objectiveFunction, point =>
         {
             double head = point[0];
             double sum = 0.0;
 
-            for (int i = 0; i < initialFlowRates.Length; i++)
+            foreach (var Qi in initialFlowRates)
             {
-                double Qi = initialFlowRates[i];
-                sum += Qi * (96.7 - (
-                    Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) +
-                    Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)
-                ));
+                sum += EvaluateFormula(Qi, head, selectedFormula.Formula);
             }
 
             double gradientHead = -0.01 * g * (96.7 - sum) * Math.Pow(Math.Abs(head - 93), 0.5) / Math.Pow(4, 2);
             return Vector<double>.Build.DenseOfArray(new double[] { gradientHead });
         });
 
-        // Запускаем оптимизацию
         var result = optimizer.FindMinimum(objectiveWithGradient, lowerBound, upperBound, initialGuess);
 
-        // Получаем оптимальные значения
         double optimalHead = result.MinimizingPoint[0];
-        double optimalPower = -result.FunctionInfoAtMinimum.Value; // Минус, так как мы максимизируем
+        double optimalPower = -result.FunctionInfoAtMinimum.Value;
 
-        // Вывод результатов
         Console.WriteLine($"Оптимальный напор: {optimalHead} м");
         Console.WriteLine($"Максимальная мощность: {Math.Round(optimalPower / 1e6, 3)} МВт");
     }
