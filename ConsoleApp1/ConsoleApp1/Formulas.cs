@@ -14,8 +14,9 @@ namespace HydroGeneratorOptimization
         public class PowerFormula
         {
             public string Name { get; set; }
-            public string Formula { get; set; }
+            public string FormulaExpression { get; set; }
         }
+
 
         [Serializable]
         public class GeneratorFormula

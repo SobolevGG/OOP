@@ -114,11 +114,25 @@ class Program
 
             // Загрузка формул расчета мощности для каждого гидрогенератора
             List<PowerFormula> formulas = Formulas.LoadFormulas();
-            if (formulas.Count == 0)
+
+            // Проверка наличия формулы FormulaForAll и добавление ее, если отсутствует
+            PowerFormula defaultFormula = formulas.FirstOrDefault(f => f.Name == "FormulaForAll");
+            if (defaultFormula == null)
             {
-                // Добавление формулы FormulaForAll, если список пуст
-                formulas.Add(new PowerFormula { Name = "FormulaForAll", Formula = "FormulaForAll" });
+                formulas.Add(new PowerFormula
+                {
+                    Name = "FormulaForAll",
+                    FormulaExpression = "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))"
+                });
+
+                // Сохранение обновленного списка формул в файл
+                Formulas.SaveFormulas(formulas);
+                Console.WriteLine("Формула по умолчанию сохранена в файле formulas.xml.");
             }
+
+            // Сохранение обновленного списка формул в файл
+            Formulas.SaveFormulas(formulas);
+            Console.WriteLine("Формула по умолчанию сохранена в файле formulas.xml.");
 
             Console.WriteLine("Выберите формулу мощности:");
 
