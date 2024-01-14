@@ -112,16 +112,12 @@ class Program
                 }
             }
 
-            // Остальной код программы
-
-            List<PowerFormula> formulas = HydroGeneratorOptimization.Formulas.LoadFormulas();
-            List<GeneratorFormula> generatorFormulas = HydroGeneratorOptimization.Formulas.LoadGeneratorFormulas();
-
+            // Загрузка формул расчета мощности для каждого гидрогенератора
+            List<PowerFormula> formulas = Formulas.LoadFormulas();
             if (formulas.Count == 0)
             {
-                // Add default formulas if the list is empty
+                // Добавление формулы FormulaForAll, если список пуст
                 formulas.Add(new PowerFormula { Name = "FormulaForAll", Formula = "FormulaForAll" });
-                // Add more default formulas as needed
             }
 
             Console.WriteLine("Выберите формулу мощности:");
@@ -142,15 +138,12 @@ class Program
 
             Console.WriteLine($"Выбрана формула мощности: {selectedFormula.Name}");
 
-            double[] initialFlowRates = new double[12];
-
-            for (int i = 0; i < initialFlowRates.Length; i++)
-            {
-                Console.Write($"Введите расход для гидрогенератора {i + 1}: ");
-                initialFlowRates[i] = Convert.ToDouble(Console.ReadLine());
-            }
+            double[] initialFlowRates = generatorFlows.Flows.ToArray();
 
             double initialHead = (userConstraints.MinHead + userConstraints.MaxHead) / 2.0;
+
+            // Загрузка формул расчета мощности для каждого гидрогенератора
+            List<GeneratorFormula> generatorFormulas = Formulas.LoadGeneratorFormulas();
 
             var initialGuess = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(new double[] { initialHead });
 
@@ -158,11 +151,11 @@ class Program
 
             for (int i = 0; i < initialFlowRates.Length; i++)
             {
-                string formulaName = GetGeneratorFormula(generatorFormulas, i + 1);
+                string formulaName = Formulas.GetGeneratorFormula(generatorFormulas, i + 1);
                 Console.WriteLine($"Генератор {i + 1}: {formulaName}");
             }
 
-            OptimizationResult result = Optimize(initialFlowRates, initialHead, userConstraints.MinHead, userConstraints.MaxHead, generatorFormulas);
+            OptimizationResult result = Formulas.Optimize(initialFlowRates, initialHead, userConstraints.MinHead, userConstraints.MaxHead, generatorFormulas);
 
             double optimalHead = result.OptimalHead;
             double optimalPower = result.MaxPower;

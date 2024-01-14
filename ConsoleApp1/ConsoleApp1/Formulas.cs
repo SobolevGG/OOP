@@ -2,19 +2,9 @@
 using MathNet.Numerics.Optimization;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
-using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
-using MathNet.Numerics.LinearAlgebra;
-using MathNet.Numerics.Optimization;
-using MathNet.Numerics.Optimization.ObjectiveFunctions;
-using MathNet.Numerics.Optimization.TrustRegion;
 
 namespace HydroGeneratorOptimization
 {
@@ -31,7 +21,7 @@ namespace HydroGeneratorOptimization
         public class GeneratorFormula
         {
             public int GeneratorNumber { get; set; }
-            public string FormulaName { get; set; }
+            public string Formula { get; set; }
         }
 
         public const double g = 9.81;
@@ -77,7 +67,7 @@ namespace HydroGeneratorOptimization
         public static string GetGeneratorFormula(List<GeneratorFormula> generatorFormulas, int generatorNumber)
         {
             var formula = generatorFormulas.FirstOrDefault(gf => gf.GeneratorNumber == generatorNumber);
-            return formula != null ? formula.FormulaName : "FormulaForAll";
+            return formula != null ? formula.Formula : "FormulaForAll";
         }
 
         public static double CalculatePower(double[] flowRates, double head, List<GeneratorFormula> generatorFormulas)
