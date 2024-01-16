@@ -45,47 +45,39 @@ namespace HydroGeneratorOptimization
         }
 
 
-        public static OptimizationResult Optimize(double[] initialFlowRates, double initialHead, double minHead, double maxHead, List<PowerFormula> powerFormulas)
+        public static OptimizationResult Optimize(double initialHead, double minFlowRate, double maxFlowRate)
         {
-            var initialGuess = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(new double[] { initialHead });
+            var initialGuess = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(new double[] { (minFlowRate + maxFlowRate) / 2.0 });
 
             Func<MathNet.Numerics.LinearAlgebra.Vector<double>, double> objectiveFunction = point =>
             {
-                double head = point[0];
-                double power = -PowerCalculation.CalculatePower(initialFlowRates, head, powerFormulas);
-                return power;
+                double flowRate = point[0];
+                double power = flowRate * (96.7 - (Math.Pow(Math.Abs(flowRate - 494), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(initialHead - 91), 1.5) / Math.Pow(4, 2)));
+                return -power; // Минимизация мощности
             };
 
             var optimizer = new BfgsBMinimizer(1e-6, 1e-6, 1e-6, 50000);
 
-            var lowerBound = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(new double[] { minHead });
-            var upperBound = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(new double[] { maxHead });
+            var lowerBound = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(new double[] { minFlowRate });
+            var upperBound = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(new double[] { maxFlowRate });
 
             var objectiveWithGradient = ObjectiveFunction.Gradient(objectiveFunction, point =>
             {
-                double head = point[0];
-                double sum = 0.0;
-
-                for (int i = 0; i < initialFlowRates.Length; i++)
-                {
-                    double Qi = initialFlowRates[i];
-                    // Выбирается формула согласно списку, если ее нет, то по умолчанию
-                    var formula = GetGeneratorFormula(powerFormulas, i + 1);
-                    sum += EvaluateFormula(Qi, head, formula);
-                }
-
-                double gradientHead = -0.01 * g * (96.7 - sum) * Math.Pow(Math.Abs(head - 93), 0.5) / Math.Pow(4, 2);
-                return MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(new double[] { gradientHead });
+                double flowRate = point[0];
+                double gradientFlowRate = (96.7 - (Math.Pow(Math.Abs(flowRate - 494), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(initialHead - 91), 1.5) / Math.Pow(4, 2))) - flowRate *
+                    (1.78 * Math.Pow(Math.Abs(flowRate - 494), 0.78) / Math.Pow(22.5, 2) + 1.5 * Math.Pow(Math.Abs(initialHead - 91), 0.5) / Math.Pow(4, 2));
+                return MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(new double[] { gradientFlowRate });
             });
 
             var result = optimizer.FindMinimum(objectiveWithGradient, lowerBound, upperBound, initialGuess);
 
             return new OptimizationResult
             {
-                OptimalHead = result.MinimizingPoint[0],
+                OptimalFlowRate = result.MinimizingPoint[0],
                 MaxPower = -result.FunctionInfoAtMinimum.Value
             };
         }
+
 
         public static List<PowerFormula> LoadFormulas()
         {
@@ -130,7 +122,7 @@ namespace HydroGeneratorOptimization
 
         public class OptimizationResult
         {
-            public double OptimalHead { get; set; }
+            public double OptimalFlowRate { get; set; }
             public double MaxPower { get; set; }
         }
     }
