@@ -8,9 +8,20 @@ using System.Xml.Serialization;
 namespace HydroGeneratorOptimization
 {
     [Serializable]
+    [XmlRoot("GeneratorFlows")]
     public class GeneratorFlows
     {
+        [XmlElement("GeneratorFlow")]
+        public List<GeneratorFlow> Flows { get; set; }
+    }
+
+    [Serializable]
+    public class GeneratorFlow
+    {
+        [XmlElement("HU")]
         public string Name { get; set; }
-        public double Flow { get; set; }
+
+        [XmlElement("Flow")]
+        public double WaterFlow { get; set; }
     }
 }
