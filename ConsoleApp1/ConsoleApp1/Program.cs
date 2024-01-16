@@ -73,7 +73,7 @@ public class Program
         powerFormulas.Add(newFormula);
 
         // Сохранение списка формул в XML-файл
-        powerFormulaFileManager.Save("formulas123.xml", powerFormulas);
+        powerFormulaFileManager.Save("newFormulas.xml", powerFormulas);
     }
 
     /// <summary>
