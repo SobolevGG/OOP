@@ -75,7 +75,7 @@ namespace HydroGeneratorOptimization
             }
             else
             {
-                Console.WriteLine("Invalid index or formulas list is null.");
+                Console.WriteLine("Недопустимый индекс или список формул имеет значение null.");
             }
         }
     }
