@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System;
 using System.IO;
-using System.Xml.Serialization;
 
 namespace HydroGeneratorOptimization
 {

@@ -5,7 +5,9 @@ using System.Xml.Serialization;
 using HydroGeneratorOptimization;
 using static HydroGeneratorOptimization.Formulas;
 
-public class Program
+namespace HydroGeneratorOptimization
+{
+    public class Program
 {
     public static void Main()
     {
@@ -75,4 +77,5 @@ public class Program
     }
 
     
+}
 }
