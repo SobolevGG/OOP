@@ -80,7 +80,8 @@ public class Program
         for (int i = 0; i < expectedGeneratorsCount; i++)
         {
             var generatorFlow = generatorFlows.Flows[i];
-            if (generatorFlow == null || generatorFlow.WaterFlow <= 0)
+            // Допускается, что значение расхода воды может быть равно 0
+            if (generatorFlow == null || generatorFlow.WaterFlow < 0)
             {
                 throw new Exception($"Отсутствует или некорректное значение расхода воды для гидрогенератора {i + 1}.");
             }
