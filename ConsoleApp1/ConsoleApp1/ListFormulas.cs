@@ -65,9 +65,9 @@ namespace HydroGeneratorOptimization
         /// <param name="index">Номер формулы.</param>
         public static void RemoveFormByNum(List<PowerFormula> powerFormulas, int index)
         {
-            if (powerFormulas != null && index >= 0 && index < powerFormulas.Count)
+            if (powerFormulas != null && index > 0 && index <= powerFormulas.Count)
             {
-                powerFormulas.RemoveAt(index);
+                powerFormulas.RemoveAt(index - 1);
 
                 // Сохранение обновленного списка формул в XML-файл
                 var powerFormulaFileManager = new XmlFileManager<List<PowerFormula>>();
