@@ -24,25 +24,7 @@ namespace HydroGeneratorOptimization
 
         public const double g = 9.81;
 
-        public static double CalculatePower(double[] flowRates, double head, List<PowerFormula> formulas)
-        {
-            const double rho = 1000.0;
-            double sum = 0.0;
-
-            for (int i = 0; i < flowRates.Length; i++)
-            {
-                double Qi = flowRates[i];
-                var formula = formulas.FirstOrDefault(f => f.Name == $"HU{i + 1}");
-
-                if (formula != null)
-                {
-                    sum += formula.Formula(Qi, head);
-                }
-            }
-
-            double power = 0.01 * head * g * rho * sum;
-            return power;
-        }
+        
 
         public static PowerFormula GetGeneratorFormula(List<PowerFormula> formulas, int generatorNumber)
         {
@@ -70,7 +52,7 @@ namespace HydroGeneratorOptimization
             Func<MathNet.Numerics.LinearAlgebra.Vector<double>, double> objectiveFunction = point =>
             {
                 double head = point[0];
-                double power = -CalculatePower(initialFlowRates, head, powerFormulas);
+                double power = -PowerCalculation.CalculatePower(initialFlowRates, head, powerFormulas);
                 return power;
             };
 
@@ -118,7 +100,7 @@ namespace HydroGeneratorOptimization
 
                     foreach (var formula in formulas)
                     {
-                        formula.Formula = BuildFormulaDelegate(formula.FormulaExpression);
+                        formula.Formula = PowerCalculation.BuildFormulaDelegate(formula.FormulaExpression);
                     }
                 }
             }
@@ -144,20 +126,6 @@ namespace HydroGeneratorOptimization
             {
                 Console.WriteLine($"Error saving formulas: {ex.Message}");
             }
-        }
-
-        private static Func<double, double, double> BuildFormulaDelegate(string formulaExpression)
-        {
-            var QiParam = Expression.Parameter(typeof(double), "Qi");
-            var headParam = Expression.Parameter(typeof(double), "head");
-
-            var formulaLambda = DynamicExpressionParser.ParseLambda(
-                new[] { QiParam, headParam },
-                null,
-                formulaExpression
-            );
-
-            return (Func<double, double, double>)formulaLambda.Compile();
         }
 
         public class OptimizationResult
