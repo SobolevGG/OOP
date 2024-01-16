@@ -44,24 +44,21 @@ namespace HydroGeneratorOptimization
             return power;
         }
 
-        public static string GetGeneratorFormula(List<PowerFormula> formulas, int generatorNumber)
+        public static PowerFormula GetGeneratorFormula(List<PowerFormula> formulas, int generatorNumber)
         {
             var formula = formulas.FirstOrDefault(f => f.Name == $"HU{generatorNumber}");
-            return formula != null ? formula.Name : "FormulaForAll";
+            return formula ?? formulas.FirstOrDefault(f => f.Name == "FormulaForAll");
         }
 
-        public static double EvaluateFormula(double Qi, double head, string formula)
+        public static double EvaluateFormula(double Qi, double head, PowerFormula formula)
         {
-            switch (formula)
+            if (formula != null && formula.Formula != null)
             {
-                case "FormulaForAll":
-                    return Qi * (96.7 - (
-                        Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) +
-                        Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)
-                    ));
-
-                default:
-                    throw new ArgumentException("Invalid power formula specified.");
+                return formula.Formula(Qi, head);
+            }
+            else
+            {
+                throw new ArgumentException("Formula not found for the specified generator.");
             }
         }
 
@@ -91,7 +88,7 @@ namespace HydroGeneratorOptimization
                 {
                     double Qi = initialFlowRates[i];
                     // Выбирается формула согласно списку, если ее нет, то по умолчанию
-                    string formula = GetGeneratorFormula(powerFormulas, i + 1);
+                    var formula = GetGeneratorFormula(powerFormulas, i + 1);
                     sum += EvaluateFormula(Qi, head, formula);
                 }
 
