@@ -42,9 +42,13 @@ public class Program
         Display.DisplayUserConstraints(userConstraints);
 
 
-        CreateNewListAndAddForm("Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 494), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 91), 1.5) / Math.Pow(4, 2)))", "NewFormula");
+        // CreateNewListAndAddForm("Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 494), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 91), 1.5) / Math.Pow(4, 2)))", "NewFormula");
 
-        AddInListNewForm("Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 494), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 91), 1.5) / Math.Pow(4, 2)))", "NewFormula321");
+        // AddInListNewForm("Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 494), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 91), 1.5) / Math.Pow(4, 2)))", "NewFormula321");
+
+        // Пример удаления формулы с индексом 2
+        RemoveFormByNum(powerFormulaFileManager.Load("formulas.xml"), 14);
+
     }
 
     /// <summary>
@@ -95,4 +99,26 @@ public class Program
         // Сохранение обновленного списка формул в XML-файл
         powerFormulaFileManager.Save("formulas.xml", powerFormulas);
     }
+
+    /// <summary>
+    /// Метод удаления формулы из списка и последующего сохранения в XML-документ.
+    /// </summary>
+    /// <param name="powerFormulas">Список формул.</param>
+    /// <param name="index">Номер формулы.</param>
+    public static void RemoveFormByNum(List<PowerFormula> powerFormulas, int index)
+    {
+        if (powerFormulas != null && index >= 0 && index < powerFormulas.Count)
+        {
+            powerFormulas.RemoveAt(index);
+
+            // Сохранение обновленного списка формул в XML-файл
+            var powerFormulaFileManager = new XmlFileManager<List<PowerFormula>>();
+            powerFormulaFileManager.Save("formulas.xml", powerFormulas);
+        }
+        else
+        {
+            Console.WriteLine("Invalid index or formulas list is null.");
+        }
+    }
+
 }
