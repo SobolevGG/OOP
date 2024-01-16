@@ -22,13 +22,13 @@ public class Program
 
 
         // Создаем экземпляр XmlFileManager для List<PowerFormula>
-        // var powerFormulaFileManager = new XmlFileManager<List<PowerFormula>>();
+        var powerFormulaFileManager = new XmlFileManager<List<PowerFormula>>();
 
         // Загрузка файла формул
-        // List<PowerFormula> powerFormulas = powerFormulaFileManager.Load("formulas.xml");
+        List<PowerFormula> powerFormulas = powerFormulaFileManager.Load("formulas.xml");
 
         // Вывод формул в консоль
-        // Display.DisplayFormulas(powerFormulas);
+        Display.DisplayFormulas(powerFormulas);
 
 
 
@@ -40,6 +40,8 @@ public class Program
 
         // Вывод ограничений пользователя в консоль
         Display.DisplayUserConstraints(userConstraints);
+
+
         CreateNewListAndAddForm("Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 494), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 91), 1.5) / Math.Pow(4, 2)))", "NewFormula");
 
         AddInListNewForm("Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 494), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 91), 1.5) / Math.Pow(4, 2)))", "NewFormula321");
@@ -48,7 +50,7 @@ public class Program
     /// <summary>
     /// Создание нового документа и ввод новой формулы.
     /// </summary>
-    private static void CreateNewListAndAddForm(string formulaExpression, string nameFormula)
+    public static void CreateNewListAndAddForm(string formulaExpression, string nameFormula)
     {
         string newFormulaExpression = formulaExpression;
 
@@ -73,7 +75,7 @@ public class Program
     /// <summary>
     /// Ввод новой формулы в список.
     /// </summary>
-    private static void AddInListNewForm(string newFormulaExpression, string nameNewFormula)
+    public static void AddInListNewForm(string newFormulaExpression, string nameNewFormula)
     {
         // Создаем экземпляр XmlFileManager для List<PowerFormula>
         var powerFormulaFileManager = new XmlFileManager<List<PowerFormula>>();

@@ -47,7 +47,7 @@ namespace HydroGeneratorOptimization
         public static PowerFormula GetGeneratorFormula(List<PowerFormula> formulas, int generatorNumber)
         {
             var formula = formulas.FirstOrDefault(f => f.Name == $"HU{generatorNumber}");
-            return formula ?? formulas.FirstOrDefault(f => f.Name == "FormulaForAll");
+            return formula ?? formulas.FirstOrDefault(f => f.Name == "Default");
         }
 
         public static double EvaluateFormula(double Qi, double head, PowerFormula formula)
