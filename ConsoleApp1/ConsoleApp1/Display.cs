@@ -39,7 +39,7 @@ namespace HydroGeneratorOptimization
             }
         }
 
-        private static void InputUserContains(UserConstraints userConstraints)
+        public static void InputUserContains(UserConstraints userConstraints)
         {
             Console.Write("Введите минимальное значение расхода (куб. м/с): ");
             userConstraints.MinFlowRate = Convert.ToDouble(Console.ReadLine());
@@ -52,6 +52,22 @@ namespace HydroGeneratorOptimization
 
             Console.Write("Введите максимальное значение напора (м): ");
             userConstraints.MaxHead = Convert.ToDouble(Console.ReadLine());
+        }
+
+        public static void DisplayUserConstraints(UserConstraints userConstraints)
+        {
+            if (userConstraints != null)
+            {
+                Console.WriteLine("Ограничения пользователя:");
+                Console.WriteLine($"Минимальный расход: {userConstraints.MinFlowRate}");
+                Console.WriteLine($"Максимальный расход: {userConstraints.MaxFlowRate}");
+                Console.WriteLine($"Минимальный напор: {userConstraints.MinHead}");
+                Console.WriteLine($"Максимальный напор: {userConstraints.MaxHead}");
+            }
+            else
+            {
+                Console.WriteLine("Не удалось загрузить ограничения пользователя.");
+            }
         }
     }
 }

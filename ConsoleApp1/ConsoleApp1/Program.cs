@@ -29,5 +29,18 @@ public class Program
 
         // Вывод формул в консоль
         Display.DisplayFormulas(powerFormulas);
+
+
+
+        // Создаем экземпляр XmlFileManager для UserConstraints
+        var userConstraintsFileManager = new XmlFileManager<UserConstraints>();
+
+        // Загрузка файла ограничений пользователя
+        UserConstraints userConstraints = userConstraintsFileManager.Load("userConstraints.xml");
+
+        // Вывод ограничений пользователя в консоль
+        Display.DisplayUserConstraints(userConstraints);
     }
+
+    
 }
