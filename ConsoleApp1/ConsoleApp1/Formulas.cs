@@ -40,7 +40,7 @@ namespace HydroGeneratorOptimization
             }
             else
             {
-                throw new ArgumentException("Formula not found for the specified generator.");
+                throw new ArgumentException("Формула не найдена для указанного генератора.");
             }
         }
 
@@ -124,7 +124,7 @@ namespace HydroGeneratorOptimization
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error saving formulas: {ex.Message}");
+                Console.WriteLine($"Ошибка сохранения формул: {ex.Message}");
             }
         }
 
