@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ConsoleApp1",
+    "\\ConsoleApp\\WpfApp"
   ],
-  "SelectedNode": "\\ConsoleApp1.sln (lb1\\ConsoleApp1\\ConsoleApp1.sln)",
+  "SelectedNode": "\\ConsoleApp1\\DiplomaNew.sln",
   "PreviewInSolutionExplorer": false
 }
