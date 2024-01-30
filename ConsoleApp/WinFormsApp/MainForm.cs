@@ -89,6 +89,12 @@ namespace WinFormsApp
 
             // Отключение автоматического изменения размеров столбцов
             dataGridView.AllowUserToResizeColumns = false;
+
+            // Выравнивание заголовков столбцов по центру
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
         }
 
         private GeneratorFlows LoadGeneratorFlowsFromFile(string filePath)
@@ -108,14 +114,11 @@ namespace WinFormsApp
         // Вызывается при загрузке формы
         private void MainForm_Load(object sender, EventArgs e)
         {
-
-
         }
 
         // Нажатие на сохранить расходы воды
         private void saveWaterFlow_Click(object sender, EventArgs e)
         {
-            
         }
 
         // Нажатие на открыть расходы воды

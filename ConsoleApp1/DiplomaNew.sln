@@ -5,7 +5,9 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HydroGeneratorOptimization", "ConsoleApp1\HydroGeneratorOptimization.csproj", "{54D1EA2C-7368-4D3B-9C11-2429F915CDBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsApp", "..\ConsoleApp\WinFormsApp\WinFormsApp.csproj", "{3E9A8A17-6554-4204-9234-2AF65DC4B819}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsApp", "..\ConsoleApp\WinFormsApp\WinFormsApp.csproj", "{3E9A8A17-6554-4204-9234-2AF65DC4B819}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsApp2", "WinFormsApp2\WinFormsApp2.csproj", "{AFF39641-944E-4EC5-B7A4-E7C51A07E1E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{3E9A8A17-6554-4204-9234-2AF65DC4B819}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E9A8A17-6554-4204-9234-2AF65DC4B819}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E9A8A17-6554-4204-9234-2AF65DC4B819}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFF39641-944E-4EC5-B7A4-E7C51A07E1E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFF39641-944E-4EC5-B7A4-E7C51A07E1E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFF39641-944E-4EC5-B7A4-E7C51A07E1E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFF39641-944E-4EC5-B7A4-E7C51A07E1E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

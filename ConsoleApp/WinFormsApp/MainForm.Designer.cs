@@ -42,21 +42,14 @@
             справкаToolStripMenuItem = new ToolStripMenuItem();
             toolStrip1 = new ToolStrip();
             toolButtonAuthorization = new ToolStripButton();
-            toolStripButton2 = new ToolStripButton();
-            создатьToolStripButton = new ToolStripButton();
-            открытьToolStripButton = new ToolStripButton();
-            сохранитьToolStripButton = new ToolStripButton();
-            печатьToolStripButton = new ToolStripButton();
+            saveToolStripButton = new ToolStripButton();
             toolStripSeparator = new ToolStripSeparator();
-            вырезатьToolStripButton = new ToolStripButton();
-            копироватьToolStripButton = new ToolStripButton();
-            вставитьToolStripButton = new ToolStripButton();
-            toolStripSeparator1 = new ToolStripSeparator();
             справкаToolStripButton = new ToolStripButton();
-            dataGridView = new DataGridView();
+            toolStripButton1 = new ToolStripButton();
+            toolStripSeparator1 = new ToolStripSeparator();
+            экспортВБДToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -70,7 +63,7 @@
             // 
             // файлToolStripMenuItem
             // 
-            файлToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { создатьToolStripMenuItem, открытьToolStripMenuItem });
+            файлToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { создатьToolStripMenuItem, открытьToolStripMenuItem, экспортВБДToolStripMenuItem });
             файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             файлToolStripMenuItem.Size = new Size(48, 20);
             файлToolStripMenuItem.Text = "Файл";
@@ -86,14 +79,14 @@
             // saveWaterFlow
             // 
             saveWaterFlow.Name = "saveWaterFlow";
-            saveWaterFlow.Size = new Size(180, 22);
+            saveWaterFlow.Size = new Size(152, 22);
             saveWaterFlow.Text = "Расходы воды";
             saveWaterFlow.Click += saveWaterFlow_Click;
             // 
             // ограниченияToolStripMenuItem
             // 
             ограниченияToolStripMenuItem.Name = "ограниченияToolStripMenuItem";
-            ограниченияToolStripMenuItem.Size = new Size(180, 22);
+            ограниченияToolStripMenuItem.Size = new Size(152, 22);
             ограниченияToolStripMenuItem.Text = "Ограничения";
             // 
             // открытьToolStripMenuItem
@@ -107,14 +100,14 @@
             // openWaterFlow
             // 
             openWaterFlow.Name = "openWaterFlow";
-            openWaterFlow.Size = new Size(180, 22);
+            openWaterFlow.Size = new Size(152, 22);
             openWaterFlow.Text = "Расходы воды";
             openWaterFlow.Click += openWaterFlow_Click;
             // 
             // openRestrictions
             // 
             openRestrictions.Name = "openRestrictions";
-            openRestrictions.Size = new Size(180, 22);
+            openRestrictions.Size = new Size(152, 22);
             openRestrictions.Text = "Ограничения";
             // 
             // расчётToolStripMenuItem
@@ -138,7 +131,7 @@
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolButtonAuthorization, toolStripButton2, создатьToolStripButton, открытьToolStripButton, сохранитьToolStripButton, печатьToolStripButton, toolStripSeparator, вырезатьToolStripButton, копироватьToolStripButton, вставитьToolStripButton, toolStripSeparator1, справкаToolStripButton });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { this.saveToolStripButton, toolStripSeparator, toolButtonAuthorization, toolStripButton1, toolStripSeparator1, справкаToolStripButton });
             toolStrip1.Location = new Point(0, 24);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 25);
@@ -152,122 +145,62 @@
             toolButtonAuthorization.Name = "toolButtonAuthorization";
             toolButtonAuthorization.Size = new Size(98, 22);
             toolButtonAuthorization.Text = "Авторизация";
+
             // 
-            // toolStripButton2
+            // saveToolStripButton
             // 
-            toolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
-            toolStripButton2.ImageTransparentColor = Color.Magenta;
-            toolStripButton2.Name = "toolStripButton2";
-            toolStripButton2.Size = new Size(23, 22);
-            toolStripButton2.Text = "toolStripButton2";
-            // 
-            // создатьToolStripButton
-            // 
-            создатьToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            создатьToolStripButton.Image = (Image)resources.GetObject("создатьToolStripButton.Image");
-            создатьToolStripButton.ImageTransparentColor = Color.Magenta;
-            создатьToolStripButton.Name = "создатьToolStripButton";
-            создатьToolStripButton.Size = new Size(23, 22);
-            создатьToolStripButton.Text = "&Создать";
-            // 
-            // открытьToolStripButton
-            // 
-            открытьToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            открытьToolStripButton.Image = (Image)resources.GetObject("открытьToolStripButton.Image");
-            открытьToolStripButton.ImageTransparentColor = Color.Magenta;
-            открытьToolStripButton.Name = "открытьToolStripButton";
-            открытьToolStripButton.Size = new Size(23, 22);
-            открытьToolStripButton.Text = "&Открыть";
-            // 
-            // сохранитьToolStripButton
-            // 
-            сохранитьToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            сохранитьToolStripButton.Image = (Image)resources.GetObject("сохранитьToolStripButton.Image");
-            сохранитьToolStripButton.ImageTransparentColor = Color.Magenta;
-            сохранитьToolStripButton.Name = "сохранитьToolStripButton";
-            сохранитьToolStripButton.Size = new Size(23, 22);
-            сохранитьToolStripButton.Text = "&Сохранить";
-            // 
-            // печатьToolStripButton
-            // 
-            печатьToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            печатьToolStripButton.Image = (Image)resources.GetObject("печатьToolStripButton.Image");
-            печатьToolStripButton.ImageTransparentColor = Color.Magenta;
-            печатьToolStripButton.Name = "печатьToolStripButton";
-            печатьToolStripButton.Size = new Size(23, 22);
-            печатьToolStripButton.Text = "&Печать";
+            saveToolStripButton.Image = (Image)resources.GetObject("saveToolStripButton.Image");
+            saveToolStripButton.ImageTransparentColor = Color.Magenta;
+            saveToolStripButton.Name = "saveToolStripButton";
+            saveToolStripButton.Size = new Size(86, 22);
+            saveToolStripButton.Text = "&Сохранить";
             // 
             // toolStripSeparator
             // 
             toolStripSeparator.Name = "toolStripSeparator";
             toolStripSeparator.Size = new Size(6, 25);
             // 
-            // вырезатьToolStripButton
+            // справкаToolStripButton
             // 
-            вырезатьToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            вырезатьToolStripButton.Image = (Image)resources.GetObject("вырезатьToolStripButton.Image");
-            вырезатьToolStripButton.ImageTransparentColor = Color.Magenta;
-            вырезатьToolStripButton.Name = "вырезатьToolStripButton";
-            вырезатьToolStripButton.Size = new Size(23, 22);
-            вырезатьToolStripButton.Text = "Вы&резать";
+            справкаToolStripButton.Image = (Image)resources.GetObject("справкаToolStripButton.Image");
+            справкаToolStripButton.ImageTransparentColor = Color.Magenta;
+            справкаToolStripButton.Name = "справкаToolStripButton";
+            справкаToolStripButton.Size = new Size(73, 22);
+            справкаToolStripButton.Text = "С&правка";
             // 
-            // копироватьToolStripButton
+            // toolStripButton1
             // 
-            копироватьToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            копироватьToolStripButton.Image = (Image)resources.GetObject("копироватьToolStripButton.Image");
-            копироватьToolStripButton.ImageTransparentColor = Color.Magenta;
-            копироватьToolStripButton.Name = "копироватьToolStripButton";
-            копироватьToolStripButton.Size = new Size(23, 22);
-            копироватьToolStripButton.Text = "&Копировать";
-            // 
-            // вставитьToolStripButton
-            // 
-            вставитьToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            вставитьToolStripButton.Image = (Image)resources.GetObject("вставитьToolStripButton.Image");
-            вставитьToolStripButton.ImageTransparentColor = Color.Magenta;
-            вставитьToolStripButton.Name = "вставитьToolStripButton";
-            вставитьToolStripButton.Size = new Size(23, 22);
-            вставитьToolStripButton.Text = "&Вставить";
+            toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
+            toolStripButton1.ImageTransparentColor = Color.Magenta;
+            toolStripButton1.Name = "toolStripButton1";
+            toolStripButton1.Size = new Size(86, 22);
+            toolStripButton1.Text = "Сохранить";
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
             toolStripSeparator1.Size = new Size(6, 25);
             // 
-            // справкаToolStripButton
+            // экспортВБДToolStripMenuItem
             // 
-            справкаToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            справкаToolStripButton.Image = (Image)resources.GetObject("справкаToolStripButton.Image");
-            справкаToolStripButton.ImageTransparentColor = Color.Magenta;
-            справкаToolStripButton.Name = "справкаToolStripButton";
-            справкаToolStripButton.Size = new Size(23, 22);
-            справкаToolStripButton.Text = "С&правка";
+            экспортВБДToolStripMenuItem.Name = "экспортВБДToolStripMenuItem";
+            экспортВБДToolStripMenuItem.Size = new Size(180, 22);
+            экспортВБДToolStripMenuItem.Text = "Б";
             // 
-            // dataGridView
-            // 
-            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Location = new Point(12, 52);
-            dataGridView.Name = "dataGridView";
-            dataGridView.Size = new Size(240, 150);
-            dataGridView.TabIndex = 2;
-            // 
-            // Form1
+            // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(dataGridView);
             Controls.Add(toolStrip1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Name = "Form1";
+            Name = "MainForm";
             Text = "Form1";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -290,14 +223,12 @@
         private ToolStripMenuItem openRestrictions;
         private ToolStripButton создатьToolStripButton;
         private ToolStripButton открытьToolStripButton;
-        private ToolStripButton сохранитьToolStripButton;
-        private ToolStripButton печатьToolStripButton;
+        private ToolStripButton saveToolStripButton;
         private ToolStripSeparator toolStripSeparator;
-        private ToolStripButton вырезатьToolStripButton;
-        private ToolStripButton копироватьToolStripButton;
-        private ToolStripButton вставитьToolStripButton;
-        private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton справкаToolStripButton;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripButton toolStripButton1;
+        private ToolStripMenuItem экспортВБДToolStripMenuItem;
         private DataGridView dataGridView;
     }
 }
