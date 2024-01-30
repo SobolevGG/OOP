@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             menuStrip1 = new MenuStrip();
             файлToolStripMenuItem = new ToolStripMenuItem();
             создатьToolStripMenuItem = new ToolStripMenuItem();
-            расходыВодыToolStripMenuItem = new ToolStripMenuItem();
+            saveWaterFlow = new ToolStripMenuItem();
             ограниченияToolStripMenuItem = new ToolStripMenuItem();
             открытьToolStripMenuItem = new ToolStripMenuItem();
-            расходыВодыToolStripMenuItem1 = new ToolStripMenuItem();
-            ограниченияToolStripMenuItem1 = new ToolStripMenuItem();
+            openWaterFlow = new ToolStripMenuItem();
+            openRestrictions = new ToolStripMenuItem();
             расчётToolStripMenuItem = new ToolStripMenuItem();
             расчётToolStripMenuItem1 = new ToolStripMenuItem();
             справкаToolStripMenuItem = new ToolStripMenuItem();
@@ -53,10 +53,10 @@
             вставитьToolStripButton = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             справкаToolStripButton = new ToolStripButton();
-            dataGridView1 = new DataGridView();
+            dataGridView = new DataGridView();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -77,43 +77,45 @@
             // 
             // создатьToolStripMenuItem
             // 
-            создатьToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { расходыВодыToolStripMenuItem, ограниченияToolStripMenuItem });
+            создатьToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveWaterFlow, ограниченияToolStripMenuItem });
             создатьToolStripMenuItem.Image = (Image)resources.GetObject("создатьToolStripMenuItem.Image");
             создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-            создатьToolStripMenuItem.Size = new Size(133, 22);
+            создатьToolStripMenuItem.Size = new Size(180, 22);
             создатьToolStripMenuItem.Text = "Сохранить";
             // 
-            // расходыВодыToolStripMenuItem
+            // saveWaterFlow
             // 
-            расходыВодыToolStripMenuItem.Name = "расходыВодыToolStripMenuItem";
-            расходыВодыToolStripMenuItem.Size = new Size(152, 22);
-            расходыВодыToolStripMenuItem.Text = "Расходы воды";
+            saveWaterFlow.Name = "saveWaterFlow";
+            saveWaterFlow.Size = new Size(180, 22);
+            saveWaterFlow.Text = "Расходы воды";
+            saveWaterFlow.Click += saveWaterFlow_Click;
             // 
             // ограниченияToolStripMenuItem
             // 
             ограниченияToolStripMenuItem.Name = "ограниченияToolStripMenuItem";
-            ограниченияToolStripMenuItem.Size = new Size(152, 22);
+            ограниченияToolStripMenuItem.Size = new Size(180, 22);
             ограниченияToolStripMenuItem.Text = "Ограничения";
             // 
             // открытьToolStripMenuItem
             // 
-            открытьToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { расходыВодыToolStripMenuItem1, ограниченияToolStripMenuItem1 });
+            открытьToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openWaterFlow, openRestrictions });
             открытьToolStripMenuItem.Image = (Image)resources.GetObject("открытьToolStripMenuItem.Image");
             открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            открытьToolStripMenuItem.Size = new Size(133, 22);
+            открытьToolStripMenuItem.Size = new Size(180, 22);
             открытьToolStripMenuItem.Text = "Открыть";
             // 
-            // расходыВодыToolStripMenuItem1
+            // openWaterFlow
             // 
-            расходыВодыToolStripMenuItem1.Name = "расходыВодыToolStripMenuItem1";
-            расходыВодыToolStripMenuItem1.Size = new Size(152, 22);
-            расходыВодыToolStripMenuItem1.Text = "Расходы воды";
+            openWaterFlow.Name = "openWaterFlow";
+            openWaterFlow.Size = new Size(180, 22);
+            openWaterFlow.Text = "Расходы воды";
+            openWaterFlow.Click += openWaterFlow_Click;
             // 
-            // ограниченияToolStripMenuItem1
+            // openRestrictions
             // 
-            ограниченияToolStripMenuItem1.Name = "ограниченияToolStripMenuItem1";
-            ограниченияToolStripMenuItem1.Size = new Size(152, 22);
-            ограниченияToolStripMenuItem1.Text = "Ограничения";
+            openRestrictions.Name = "openRestrictions";
+            openRestrictions.Size = new Size(180, 22);
+            openRestrictions.Text = "Ограничения";
             // 
             // расчётToolStripMenuItem
             // 
@@ -242,20 +244,20 @@
             справкаToolStripButton.Size = new Size(23, 22);
             справкаToolStripButton.Text = "С&правка";
             // 
-            // dataGridView1
+            // dataGridView
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 52);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(240, 150);
-            dataGridView1.TabIndex = 2;
+            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView.Location = new Point(12, 52);
+            dataGridView.Name = "dataGridView";
+            dataGridView.Size = new Size(240, 150);
+            dataGridView.TabIndex = 2;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(dataGridView1);
+            Controls.Add(dataGridView);
             Controls.Add(toolStrip1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
@@ -265,7 +267,7 @@
             menuStrip1.PerformLayout();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -277,15 +279,15 @@
         private ToolStripMenuItem расчётToolStripMenuItem;
         private ToolStripMenuItem справкаToolStripMenuItem;
         private ToolStripMenuItem создатьToolStripMenuItem;
-        private ToolStripMenuItem расходыВодыToolStripMenuItem;
+        private ToolStripMenuItem saveWaterFlow;
         private ToolStripMenuItem ограниченияToolStripMenuItem;
         private ToolStripMenuItem расчётToolStripMenuItem1;
         private ToolStrip toolStrip1;
         private ToolStripButton toolButtonAuthorization;
         private ToolStripButton toolStripButton2;
         private ToolStripMenuItem открытьToolStripMenuItem;
-        private ToolStripMenuItem расходыВодыToolStripMenuItem1;
-        private ToolStripMenuItem ограниченияToolStripMenuItem1;
+        private ToolStripMenuItem openWaterFlow;
+        private ToolStripMenuItem openRestrictions;
         private ToolStripButton создатьToolStripButton;
         private ToolStripButton открытьToolStripButton;
         private ToolStripButton сохранитьToolStripButton;
@@ -296,6 +298,6 @@
         private ToolStripButton вставитьToolStripButton;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton справкаToolStripButton;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridView;
     }
 }
