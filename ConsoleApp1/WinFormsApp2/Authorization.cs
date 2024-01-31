@@ -19,10 +19,19 @@ namespace View
             InitializeComponent();
         }
 
+        // Пароль для доступа к базе данных
+        private static string passwordDB = "023098";
+
+        // Только для чтения свойство
+        public static string PasswordDB
+        {
+            get { return passwordDB; }
+        }
+
         private void okButton_Click(object sender, EventArgs e)
         {
-            // Ваш пароль для сравнения (замените его на фактический пароль)
-            string actualPassword = "023098";
+            // Ваш пароль для сравнения
+            string actualPassword = passwordDB;
 
             // Получить введенный пользователем пароль
             string enteredPassword = passwordTextBox.Text;
@@ -33,11 +42,14 @@ namespace View
                 Password = enteredPassword;
                 DialogResult = DialogResult.OK;
                 Close();
+                MessageBox.Show("Пароль верный. Авторизация успешна.", 
+                    "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
                 passwordTextBox.Text = string.Empty; // Очистить TextBox
-                MessageBox.Show("Неверный пароль. Авторизация не удалась.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Неверный пароль. Авторизация не удалась.", 
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -382,7 +382,7 @@ namespace View
                 return;
             }
 
-            var connector = new PostgresConnector("localhost", "HPPs", "postgres", "023098");
+            var connector = new PostgresConnector("localhost", "HPPs", "postgres", $"{Authorization.PasswordDB}");
 
             try
             {
@@ -423,7 +423,7 @@ namespace View
                 connector.CloseConnection();
             }
         }
-        private string dbPassword = "023098";  // Пароль для доступа к базе данных
+
         private void authorizationButton_Click(object sender, EventArgs e)
         {
             // Вывести диалоговое окно для авторизации
@@ -432,13 +432,7 @@ namespace View
 
             if (result == DialogResult.OK)
             {
-                string enteredPassword = authorizationForm.Password;
-
-                if (enteredPassword == dbPassword)
-                {
-                    MessageBox.Show("Пароль верный. Авторизация успешна.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    importDBButton.Enabled = true;  // Разблокировать кнопку после успешной авторизации
-                }
+                importDBButton.Enabled = true;  // Разблокировать кнопку после успешной авторизации
             }
         }
     }
