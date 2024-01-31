@@ -150,6 +150,52 @@ namespace WinFormsApp2
                     cell.ReadOnly = true;
                 }
             }
+
+            // Добавляем TextBox-ы в TableLayoutPanel
+            AddTextBoxesToTableLayoutPanel(tableLayoutPanel);
+
+            // Добавляем TableLayoutPanel в calcGroupBox
+            calcGroupBox.Controls.Add(tableLayoutPanel);
+        }
+
+        private void AddTextBoxesToTableLayoutPanel(TableLayoutPanel tableLayoutPanel)
+        {
+            // Создаем TextBox-ы
+            TextBox textBox1 = new TextBox();
+            textBox1.Dock = DockStyle.Fill;
+            textBox1.Text = "СВМ 500 кВ";
+            textBox1.ReadOnly = true;
+            // невозможность установки курсора
+            textBox1.Enter += TextBox_Enter;
+            // Убираем рамку
+            textBox1.BorderStyle = BorderStyle.None; 
+
+            TextBox textBox2 = new TextBox();
+            textBox2.Dock = DockStyle.Fill;
+
+            TextBox textBox3 = new TextBox();
+            textBox3.Dock = DockStyle.Fill;
+            textBox3.Text = "СВМ 220 кВ";
+            textBox3.ReadOnly = true;
+            textBox3.Enter += TextBox_Enter;
+            // Убираем рамку
+            textBox3.BorderStyle = BorderStyle.None;
+
+            TextBox textBox4 = new TextBox();
+            textBox4.Dock = DockStyle.Fill;
+            
+
+            // Добавляем TextBox-ы в ячейки TableLayoutPanel
+            tableLayoutPanel.Controls.Add(textBox1, 0, 0);
+            tableLayoutPanel.Controls.Add(textBox2, 1, 0);
+            tableLayoutPanel.Controls.Add(textBox3, 0, 1);
+            tableLayoutPanel.Controls.Add(textBox4, 1, 1);
+        }
+
+        private void TextBox_Enter(object sender, EventArgs e)
+        {
+            // При активации TextBox устанавливаем фокус на другой элемент
+            ActiveControl = null;
         }
 
         private void btnSave_Click(object sender, EventArgs e)

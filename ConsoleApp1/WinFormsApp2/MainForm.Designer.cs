@@ -273,7 +273,7 @@
             tableLayoutPanel.RowCount = 2;
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel.Size = new Size(144, 52);
+            tableLayoutPanel.Size = new Size(162, 52);
             tableLayoutPanel.TabIndex = 0;
             // 
             // MainForm
