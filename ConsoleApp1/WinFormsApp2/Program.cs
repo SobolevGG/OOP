@@ -1,4 +1,4 @@
-namespace WinFormsApp2
+namespace View
 {
     internal static class Program
     {

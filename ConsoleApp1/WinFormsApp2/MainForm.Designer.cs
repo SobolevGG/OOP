@@ -1,4 +1,4 @@
-﻿namespace WinFormsApp2
+﻿namespace View
 {
     partial class MainForm
     {
@@ -268,6 +268,7 @@
             authorizationButton.Name = "authorizationButton";
             authorizationButton.Size = new Size(98, 22);
             authorizationButton.Text = "Авторизация";
+            authorizationButton.Click += authorizationButton_Click;
             // 
             // importDBButton
             // 

@@ -1,11 +1,12 @@
+using System.Data;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using System.Xml;
 using System.Xml.Serialization;
-using static WinFormsApp2.MainForm;
+using static View.MainForm;
 
-namespace WinFormsApp2
+namespace View
 {
     public partial class MainForm : Form
     {
@@ -367,26 +368,80 @@ namespace WinFormsApp2
             }
         }
 
+        private string dbPassword = "023098";  // Пароль для доступа к базе данных
+
         private void importDBButton_Click(object sender, EventArgs e)
         {
-            var connector = new PostgresConnector("localhost", "HPPs", "postgres", "023098");
-
-            // Запрос с результатом
-            string selectQuery = "SELECT * FROM example_table;";
-            var reader = connector.ExecuteQuery(selectQuery);
-            
-            if (reader != null)
+            // Проверка доступности кнопки
+            if (!importDBButton.Enabled)
             {
-                while (reader.Read())
-                {
-                    Console.WriteLine($"ID: {reader["id"]}, Name: {reader["name"]}");
-                }
-            
-                reader.Close();
+                MessageBox.Show("Авторизация не выполнена. Введите правильный пароль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            // Закрытие соединения
-            connector.CloseConnection();
+            var connector = new PostgresConnector("localhost", "HPPs", "postgres", "023098");
+
+            try
+            {
+                // Чтение данных из столбцов 'generator_id' и 'characteristic' таблицы 'generator_characteristic_history'
+                string selectQuery = "SELECT generator_id, characteristic FROM generator_characteristic_history;";
+                var reader = connector.ExecuteQuery(selectQuery);
+
+                if (reader != null)
+                {
+                    DataTable dataTable = new DataTable("GeneratorCharacteristicHistory");
+                    dataTable.Load(reader);
+
+                    // Создание XML-файла и запись в него данных
+                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    {
+                        Filter = "XML files (*.xml)|*.xml",
+                        Title = "Сохранить данные в XML"
+                    };
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string filePath = saveFileDialog.FileName;
+                        dataTable.WriteXml(filePath);
+
+                        MessageBox.Show("Данные успешно сохранены в XML файл.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при чтении данных из базы данных: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Закрытие соединения
+                connector.CloseConnection();
+            }
+        }
+
+        private void authorizationButton_Click(object sender, EventArgs e)
+        {
+            // Вывести диалоговое окно для авторизации
+            Authorization authorizationForm = new Authorization();
+            DialogResult result = authorizationForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                string enteredPassword = authorizationForm.Password;
+
+                if (enteredPassword == dbPassword)
+                {
+                    MessageBox.Show("Пароль верный. Авторизация успешна.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    importDBButton.Enabled = true;  // Разблокировать кнопку после успешной авторизации
+                }
+                else
+                {
+                    MessageBox.Show("Неверный пароль. Авторизация не удалась.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    importDBButton.Enabled = false;  // Заблокировать кнопку при неверном пароле
+                }
+            }
         }
     }
 }
