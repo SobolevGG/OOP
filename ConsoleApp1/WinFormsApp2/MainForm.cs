@@ -366,5 +366,27 @@ namespace WinFormsApp2
                 MessageBox.Show($"Выбран файл XML: {selectedFilePath}", "Выбор файла", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void importDBButton_Click(object sender, EventArgs e)
+        {
+            var connector = new PostgresConnector("localhost", "HPPs", "postgres", "023098");
+
+            // Запрос с результатом
+            string selectQuery = "SELECT * FROM example_table;";
+            var reader = connector.ExecuteQuery(selectQuery);
+            
+            if (reader != null)
+            {
+                while (reader.Read())
+                {
+                    Console.WriteLine($"ID: {reader["id"]}, Name: {reader["name"]}");
+                }
+            
+                reader.Close();
+            }
+
+            // Закрытие соединения
+            connector.CloseConnection();
+        }
     }
 }

@@ -48,6 +48,7 @@
             saveButton = new ToolStripSplitButton();
             параметрыГАToolStripMenuItem = new ToolStripMenuItem();
             ограниченияToolStripMenuItem = new ToolStripMenuItem();
+            характеристикиГАToolStripMenuItem = new ToolStripMenuItem();
             editingModeButton = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             authorizationButton = new ToolStripButton();
@@ -58,7 +59,6 @@
             CalcButton = new Button();
             calcGroupBox = new GroupBox();
             tableLayoutPanel = new TableLayoutPanel();
-            характеристикиГАToolStripMenuItem = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -230,15 +230,22 @@
             // 
             параметрыГАToolStripMenuItem.Image = (Image)resources.GetObject("параметрыГАToolStripMenuItem.Image");
             параметрыГАToolStripMenuItem.Name = "параметрыГАToolStripMenuItem";
-            параметрыГАToolStripMenuItem.Size = new Size(180, 22);
+            параметрыГАToolStripMenuItem.Size = new Size(179, 22);
             параметрыГАToolStripMenuItem.Text = "Параметры ГА";
             // 
             // ограниченияToolStripMenuItem
             // 
             ограниченияToolStripMenuItem.Image = (Image)resources.GetObject("ограниченияToolStripMenuItem.Image");
             ограниченияToolStripMenuItem.Name = "ограниченияToolStripMenuItem";
-            ограниченияToolStripMenuItem.Size = new Size(180, 22);
+            ограниченияToolStripMenuItem.Size = new Size(179, 22);
             ограниченияToolStripMenuItem.Text = "Ограничения";
+            // 
+            // характеристикиГАToolStripMenuItem
+            // 
+            характеристикиГАToolStripMenuItem.Image = (Image)resources.GetObject("характеристикиГАToolStripMenuItem.Image");
+            характеристикиГАToolStripMenuItem.Name = "характеристикиГАToolStripMenuItem";
+            характеристикиГАToolStripMenuItem.Size = new Size(179, 22);
+            характеристикиГАToolStripMenuItem.Text = "Характеристики ГА";
             // 
             // editingModeButton
             // 
@@ -269,6 +276,7 @@
             importDBButton.Name = "importDBButton";
             importDBButton.Size = new Size(98, 22);
             importDBButton.Text = "Импорт с БД";
+            importDBButton.Click += importDBButton_Click;
             // 
             // exportDBButton
             // 
@@ -322,13 +330,6 @@
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel.Size = new Size(125, 52);
             tableLayoutPanel.TabIndex = 0;
-            // 
-            // характеристикиГАToolStripMenuItem
-            // 
-            характеристикиГАToolStripMenuItem.Image = (Image)resources.GetObject("характеристикиГАToolStripMenuItem.Image");
-            характеристикиГАToolStripMenuItem.Name = "характеристикиГАToolStripMenuItem";
-            характеристикиГАToolStripMenuItem.Size = new Size(180, 22);
-            характеристикиГАToolStripMenuItem.Text = "Характеристики ГА";
             // 
             // MainForm
             // 

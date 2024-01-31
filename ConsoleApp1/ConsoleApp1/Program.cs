@@ -25,6 +25,7 @@ using Meta.Numerics;
 using Meta.Numerics.Matrices;
 using Meta.Numerics.Functions;
 using Meta.Numerics.Analysis;
+using Npgsql;
 
 
 namespace HydroGeneratorOptimization
@@ -33,6 +34,17 @@ namespace HydroGeneratorOptimization
     {
         public static void Main()
         {
+            var cs = "localhost, HPPs, postgres, 023098";
+            using var con = new NpgsqlConnection(cs);
+            con.Open();
+
+            var sql = "SELECT version()";
+
+            using var cmd = new NpgsqlCommand(sql, con);
+
+            var version = cmd.ExecuteScalar().ToString();
+            Console.WriteLine($"PostgreSQL version: {version}");
+
             // Загрузка формул и настройка параметров
             var powerFormulas = Formulas.LoadFormulas();
             double initialHead = /* Ваш начальный напор */93;
