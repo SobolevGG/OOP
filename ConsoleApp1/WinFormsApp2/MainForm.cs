@@ -160,6 +160,9 @@ namespace View
 
             // Добавляем TableLayoutPanel в calcGroupBox
             calcGroupBox.Controls.Add(tableLayoutPanel);
+
+            // Заблокировать кнопку при неверном пароле
+            importDBButton.Enabled = false;  
         }
 
         private void AddTextBoxesToTableLayoutPanel(TableLayoutPanel tableLayoutPanel)
@@ -368,7 +371,7 @@ namespace View
             }
         }
 
-        private string dbPassword = "023098";  // Пароль для доступа к базе данных
+        
 
         private void importDBButton_Click(object sender, EventArgs e)
         {
@@ -420,7 +423,7 @@ namespace View
                 connector.CloseConnection();
             }
         }
-
+        private string dbPassword = "023098";  // Пароль для доступа к базе данных
         private void authorizationButton_Click(object sender, EventArgs e)
         {
             // Вывести диалоговое окно для авторизации
@@ -435,11 +438,6 @@ namespace View
                 {
                     MessageBox.Show("Пароль верный. Авторизация успешна.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     importDBButton.Enabled = true;  // Разблокировать кнопку после успешной авторизации
-                }
-                else
-                {
-                    MessageBox.Show("Неверный пароль. Авторизация не удалась.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    importDBButton.Enabled = false;  // Заблокировать кнопку при неверном пароле
                 }
             }
         }

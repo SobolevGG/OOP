@@ -36,8 +36,8 @@ namespace View
             }
             else
             {
-                errorLabel.Text = "Неверный пароль. Попробуйте снова.";
                 passwordTextBox.Text = string.Empty; // Очистить TextBox
+                MessageBox.Show("Неверный пароль. Авторизация не удалась.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
