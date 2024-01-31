@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
@@ -179,6 +180,11 @@ namespace WinFormsApp2
         // Режим правки
         private void editingMode_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void editingModeButton_Click(object sender, EventArgs e)
+        {
             // Переключаем режим редактирования
             isEditingEnabled = !isEditingEnabled;
 
@@ -205,6 +211,41 @@ namespace WinFormsApp2
             else
             {
                 editingModeButton.Text = "Режим правки";
+            }
+        }
+
+        /// <summary>
+        /// Открытие руководства пользователя.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void openDoc_Click(object sender, EventArgs e)
+        {
+            // Формируем путь к файлу "Руководство пользователя.pdf" в директории приложения
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Руководство пользователя.pdf");
+
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    // Пытаемся запустить процесс для открытия файла
+                    Process.Start(new ProcessStartInfo
+                    {
+                        // Указываем имя файла для запуска
+                        FileName = filePath,
+                        // Используем оболочку операционной системы для открытия файла
+                        UseShellExecute = true
+                    });
+                }
+
+                else
+                {
+                    MessageBox.Show("Файл 'Руководство пользователя.pdf' не найден в директории: ..\\bin\\Debug\\net8.0-windows.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
