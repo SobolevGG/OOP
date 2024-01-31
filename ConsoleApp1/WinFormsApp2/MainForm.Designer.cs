@@ -35,19 +35,19 @@
             файлToolStripMenuItem = new ToolStripMenuItem();
             saveToolStripMenuItem = new ToolStripMenuItem();
             saveParamsHU = new ToolStripMenuItem();
+            referenceButton = new ToolStripDropDownButton();
+            openDoc = new ToolStripMenuItem();
+            техническаяПоддержкаToolStripMenuItem = new ToolStripMenuItem();
             tabControl = new TabControl();
             tabPage1 = new TabPage();
             dataGridView = new DataGridView();
             tabPage2 = new TabPage();
             toolStrip2 = new ToolStrip();
-            editingModeButton = new ToolStripButton();
-            authorizationButton = new ToolStripButton();
             toolStripButton2 = new ToolStripButton();
+            editingModeButton = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
-            referenceButton = new ToolStripDropDownButton();
+            authorizationButton = new ToolStripButton();
             toolStripButton1 = new ToolStripButton();
-            openDoc = new ToolStripMenuItem();
-            техническаяПоддержкаToolStripMenuItem = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -99,15 +99,41 @@
             // saveParamsHU
             // 
             saveParamsHU.Name = "saveParamsHU";
-            saveParamsHU.Size = new Size(180, 22);
+            saveParamsHU.Size = new Size(155, 22);
             saveParamsHU.Text = "Параметры ГА";
             saveParamsHU.Click += btnSave_Click;
+            // 
+            // referenceButton
+            // 
+            referenceButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            referenceButton.DropDownItems.AddRange(new ToolStripItem[] { openDoc, техническаяПоддержкаToolStripMenuItem });
+            referenceButton.Image = (Image)resources.GetObject("referenceButton.Image");
+            referenceButton.ImageTransparentColor = Color.Magenta;
+            referenceButton.Name = "referenceButton";
+            referenceButton.Size = new Size(66, 22);
+            referenceButton.Text = "Справка";
+            referenceButton.Click += editingMode_Click;
+            // 
+            // openDoc
+            // 
+            openDoc.Image = (Image)resources.GetObject("openDoc.Image");
+            openDoc.Name = "openDoc";
+            openDoc.Size = new Size(206, 22);
+            openDoc.Text = "Открыть";
+            openDoc.Click += openDoc_Click;
+            // 
+            // техническаяПоддержкаToolStripMenuItem
+            // 
+            техническаяПоддержкаToolStripMenuItem.Image = (Image)resources.GetObject("техническаяПоддержкаToolStripMenuItem.Image");
+            техническаяПоддержкаToolStripMenuItem.Name = "техническаяПоддержкаToolStripMenuItem";
+            техническаяПоддержкаToolStripMenuItem.Size = new Size(206, 22);
+            техническаяПоддержкаToolStripMenuItem.Text = "Техническая поддержка";
             // 
             // tabControl
             // 
             tabControl.Controls.Add(tabPage1);
             tabControl.Controls.Add(tabPage2);
-            tabControl.Location = new Point(9, 28);
+            tabControl.Location = new Point(0, 53);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
             tabControl.Size = new Size(593, 372);
@@ -152,6 +178,14 @@
             toolStrip2.TabIndex = 3;
             toolStrip2.Text = "toolStrip2";
             // 
+            // toolStripButton2
+            // 
+            toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
+            toolStripButton2.ImageTransparentColor = Color.Magenta;
+            toolStripButton2.Name = "toolStripButton2";
+            toolStripButton2.Size = new Size(86, 22);
+            toolStripButton2.Text = "Сохранить";
+            // 
             // editingModeButton
             // 
             editingModeButton.Image = (Image)resources.GetObject("editingModeButton.Image");
@@ -161,6 +195,11 @@
             editingModeButton.Text = "Режим правки";
             editingModeButton.Click += editingModeButton_Click;
             // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 25);
+            // 
             // authorizationButton
             // 
             authorizationButton.Image = (Image)resources.GetObject("authorizationButton.Image");
@@ -169,30 +208,6 @@
             authorizationButton.Size = new Size(98, 22);
             authorizationButton.Text = "Авторизация";
             // 
-            // toolStripButton2
-            // 
-            toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
-            toolStripButton2.ImageTransparentColor = Color.Magenta;
-            toolStripButton2.Name = "toolStripButton2";
-            toolStripButton2.Size = new Size(86, 22);
-            toolStripButton2.Text = "Сохранить";
-            // 
-            // toolStripSeparator1
-            // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 25);
-            // 
-            // referenceButton
-            // 
-            referenceButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            referenceButton.DropDownItems.AddRange(new ToolStripItem[] { openDoc, техническаяПоддержкаToolStripMenuItem });
-            referenceButton.Image = (Image)resources.GetObject("referenceButton.Image");
-            referenceButton.ImageTransparentColor = Color.Magenta;
-            referenceButton.Name = "referenceButton";
-            referenceButton.Size = new Size(66, 22);
-            referenceButton.Text = "Справка";
-            referenceButton.Click += editingMode_Click;
-            // 
             // toolStripButton1
             // 
             toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
@@ -200,21 +215,6 @@
             toolStripButton1.Name = "toolStripButton1";
             toolStripButton1.Size = new Size(114, 22);
             toolStripButton1.Text = "toolStripButton1";
-            // 
-            // openDoc
-            // 
-            openDoc.Image = (Image)resources.GetObject("openDoc.Image");
-            openDoc.Name = "openDoc";
-            openDoc.Size = new Size(206, 22);
-            openDoc.Text = "Открыть";
-            openDoc.Click += openDoc_Click;
-            // 
-            // техническаяПоддержкаToolStripMenuItem
-            // 
-            техническаяПоддержкаToolStripMenuItem.Image = (Image)resources.GetObject("техническаяПоддержкаToolStripMenuItem.Image");
-            техническаяПоддержкаToolStripMenuItem.Name = "техническаяПоддержкаToolStripMenuItem";
-            техническаяПоддержкаToolStripMenuItem.Size = new Size(206, 22);
-            техническаяПоддержкаToolStripMenuItem.Text = "Техническая поддержка";
             // 
             // MainForm
             // 
