@@ -31,9 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             toolStrip1 = new ToolStrip();
             toolStripDropDownButton1 = new ToolStripDropDownButton();
-            открытьToolStripMenuItem = new ToolStripMenuItem();
+            openToolStripMenuItem = new ToolStripMenuItem();
             файлToolStripMenuItem = new ToolStripMenuItem();
-            сохранитьToolStripMenuItem = new ToolStripMenuItem();
+            saveToolStripMenuItem = new ToolStripMenuItem();
+            saveParamsHU = new ToolStripMenuItem();
+            editingModeButton = new ToolStripButton();
             tabControl = new TabControl();
             tabPage1 = new TabPage();
             dataGridView = new DataGridView();
@@ -46,7 +48,7 @@
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1, editingModeButton });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 25);
@@ -56,19 +58,19 @@
             // toolStripDropDownButton1
             // 
             toolStripDropDownButton1.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripDropDownButton1.DropDownItems.AddRange(new ToolStripItem[] { открытьToolStripMenuItem, сохранитьToolStripMenuItem });
+            toolStripDropDownButton1.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem, saveToolStripMenuItem });
             toolStripDropDownButton1.Image = (Image)resources.GetObject("toolStripDropDownButton1.Image");
             toolStripDropDownButton1.ImageTransparentColor = Color.Magenta;
             toolStripDropDownButton1.Name = "toolStripDropDownButton1";
             toolStripDropDownButton1.Size = new Size(49, 22);
             toolStripDropDownButton1.Text = "Файл";
             // 
-            // открытьToolStripMenuItem
+            // openToolStripMenuItem
             // 
-            открытьToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { файлToolStripMenuItem });
-            открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            открытьToolStripMenuItem.Size = new Size(133, 22);
-            открытьToolStripMenuItem.Text = "Открыть";
+            openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { файлToolStripMenuItem });
+            openToolStripMenuItem.Name = "openToolStripMenuItem";
+            openToolStripMenuItem.Size = new Size(180, 22);
+            openToolStripMenuItem.Text = "Открыть";
             // 
             // файлToolStripMenuItem
             // 
@@ -76,11 +78,28 @@
             файлToolStripMenuItem.Size = new Size(103, 22);
             файлToolStripMenuItem.Text = "Файл";
             // 
-            // сохранитьToolStripMenuItem
+            // saveToolStripMenuItem
             // 
-            сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            сохранитьToolStripMenuItem.Size = new Size(133, 22);
-            сохранитьToolStripMenuItem.Text = "Сохранить";
+            saveToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveParamsHU });
+            saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            saveToolStripMenuItem.Size = new Size(180, 22);
+            saveToolStripMenuItem.Text = "Сохранить";
+            // 
+            // saveParamsHU
+            // 
+            saveParamsHU.Name = "saveParamsHU";
+            saveParamsHU.Size = new Size(180, 22);
+            saveParamsHU.Text = "Параметры ГА";
+            saveParamsHU.Click += btnSave_Click;
+            // 
+            // editingModeButton
+            // 
+            editingModeButton.Image = (Image)resources.GetObject("editingModeButton.Image");
+            editingModeButton.ImageTransparentColor = Color.Magenta;
+            editingModeButton.Name = "editingModeButton";
+            editingModeButton.Size = new Size(107, 22);
+            editingModeButton.Text = "Режим правки";
+            editingModeButton.Click += editingMode_Click;
             // 
             // tabControl
             // 
@@ -109,7 +128,7 @@
             dataGridView.Location = new Point(3, 3);
             dataGridView.Name = "dataGridView";
             dataGridView.RowHeadersVisible = false;
-            dataGridView.Size = new Size(294, 150);
+            dataGridView.Size = new Size(294, 338);
             dataGridView.TabIndex = 0;
             // 
             // tabPage2
@@ -131,7 +150,7 @@
             Controls.Add(toolStrip1);
             Name = "MainForm";
             Text = "Form1";
-            Load += Form1_Load;
+            Load += MainForm_Load;
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             tabControl.ResumeLayout(false);
@@ -145,12 +164,15 @@
 
         private ToolStrip toolStrip1;
         private ToolStripDropDownButton toolStripDropDownButton1;
-        private ToolStripMenuItem открытьToolStripMenuItem;
+        private ToolStripMenuItem openToolStripMenuItem;
         private ToolStripMenuItem файлToolStripMenuItem;
-        private ToolStripMenuItem сохранитьToolStripMenuItem;
+        private ToolStripMenuItem saveToolStripMenuItem;
         private TabControl tabControl;
         private TabPage tabPage1;
         private TabPage tabPage2;
         private DataGridView dataGridView;
+        private ToolStripMenuItem paramsHUToolStripMenuItem;
+        private ToolStripButton editingModeButton;
+        private ToolStripMenuItem saveParamsHU;
     }
 }

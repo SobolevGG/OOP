@@ -1,15 +1,32 @@
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
+using static WinFormsApp2.MainForm;
 
 namespace WinFormsApp2
 {
     public partial class MainForm : Form
     {
+        private bool isEditingEnabled = false;
+
         public MainForm()
         {
             InitializeComponent();
 
+
+
             // Вызываем тестовый метод при загрузке формы
             TestFillData();
+        }
+
+        // Класс для хранения данных
+        [Serializable]
+        public class DataItem
+        {
+            public string GA { get; set; }
+            public int Load { get; set; }
+            public int Zone { get; set; }
+            public string Status { get; set; }
         }
 
         private void TestFillData()
@@ -99,9 +116,96 @@ namespace WinFormsApp2
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        // Метод для сериализации данных в XML
+        private void SerializeToXml(List<DataItem> data, string fileName)
         {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<DataItem>));
 
+            using (FileStream fs = new FileStream(fileName, FileMode.Create))
+            {
+                serializer.Serialize(fs, data);
+            }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            // Устанавливаем свойство ReadOnly для всех ячеек в true
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    cell.ReadOnly = true;
+                }
+            }
+        }
+
+
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            // Создаем список для хранения данных
+            List<DataItem> dataItems = new List<DataItem>();
+
+            // Проходим по каждой строке в DataGridView
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                // Создаем объект DataItem на основе данных в строке
+                DataItem item = new DataItem
+                {
+                    GA = row.Cells[0].Value?.ToString(), // Индекс 0 соответствует первому столбцу
+                    Load = Convert.ToInt32(row.Cells[1].Value), // Индекс 1 соответствует второму столбцу
+                    Zone = Convert.ToInt32(row.Cells[2].Value), // Индекс 2 соответствует третьему столбцу
+                    Status = row.Cells[3].Value?.ToString() // Индекс 3 соответствует четвертому столбцу
+                };
+
+                // Добавляем объект в список
+                dataItems.Add(item);
+            }
+
+            // Инициализируем SaveFileDialog
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+            saveFileDialog.Title = "Save XML File";
+            saveFileDialog.ShowDialog();
+
+            // Если пользователь выбрал файл
+            if (saveFileDialog.FileName != "")
+            {
+                // Сохраняем данные в выбранный файл
+                SerializeToXml(dataItems, saveFileDialog.FileName);
+            }
+        }
+
+        // Режим правки
+        private void editingMode_Click(object sender, EventArgs e)
+        {
+            // Переключаем режим редактирования
+            isEditingEnabled = !isEditingEnabled;
+
+            // Устанавливаем свойство ReadOnly для всех ячеек, кроме первого столбца, в зависимости от режима редактирования
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.ColumnIndex != 0) // Проверяем, что это не первый столбец
+                    {
+                        cell.ReadOnly = !isEditingEnabled;
+                    }
+                }
+            }
+
+            // Теперь делаем кнопку saveParamsHU доступной или недоступной в зависимости от режима редактирования
+            saveParamsHU.Enabled = isEditingEnabled;
+
+            // Меняем текст кнопки в зависимости от режима редактирования
+            if (isEditingEnabled)
+            {
+                editingModeButton.Text = "Сохранить (включен режим правки)";
+            }
+            else
+            {
+                editingModeButton.Text = "Режим правки";
+            }
         }
     }
 }
