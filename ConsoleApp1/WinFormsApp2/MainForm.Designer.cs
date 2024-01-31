@@ -42,6 +42,8 @@
             tabPage1 = new TabPage();
             dataGridView = new DataGridView();
             tabPage2 = new TabPage();
+            powerDRroupBox = new GroupBox();
+            powerDRtableLayoutPanel = new TableLayoutPanel();
             toolStrip2 = new ToolStrip();
             saveButton = new ToolStripButton();
             editingModeButton = new ToolStripButton();
@@ -51,13 +53,15 @@
             exportDBButton = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             importBMPButton = new ToolStripButton();
-            button1 = new Button();
+            CalcButton = new Button();
             calcGroupBox = new GroupBox();
             tableLayoutPanel = new TableLayoutPanel();
             toolStrip1.SuspendLayout();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
+            tabPage2.SuspendLayout();
+            powerDRroupBox.SuspendLayout();
             toolStrip2.SuspendLayout();
             calcGroupBox.SuspendLayout();
             SuspendLayout();
@@ -67,7 +71,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1, referenceButton });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(800, 25);
+            toolStrip1.Size = new Size(608, 25);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -168,6 +172,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(powerDRroupBox);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -176,12 +181,36 @@
             tabPage2.Text = "Ограничения";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // powerDRroupBox
+            // 
+            powerDRroupBox.Controls.Add(powerDRtableLayoutPanel);
+            powerDRroupBox.Location = new Point(3, 3);
+            powerDRroupBox.Name = "powerDRroupBox";
+            powerDRroupBox.Size = new Size(174, 82);
+            powerDRroupBox.TabIndex = 0;
+            powerDRroupBox.TabStop = false;
+            powerDRroupBox.Text = "Схема выдачи мощности";
+            // 
+            // powerDRtableLayoutPanel
+            // 
+            powerDRtableLayoutPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            powerDRtableLayoutPanel.ColumnCount = 2;
+            powerDRtableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            powerDRtableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            powerDRtableLayoutPanel.Location = new Point(6, 22);
+            powerDRtableLayoutPanel.Name = "powerDRtableLayoutPanel";
+            powerDRtableLayoutPanel.RowCount = 2;
+            powerDRtableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 48.8372078F));
+            powerDRtableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 51.1627922F));
+            powerDRtableLayoutPanel.Size = new Size(162, 52);
+            powerDRtableLayoutPanel.TabIndex = 0;
+            // 
             // toolStrip2
             // 
             toolStrip2.Items.AddRange(new ToolStripItem[] { saveButton, editingModeButton, toolStripSeparator1, authorizationButton, importDBButton, exportDBButton, toolStripSeparator2, importBMPButton });
             toolStrip2.Location = new Point(0, 25);
             toolStrip2.Name = "toolStrip2";
-            toolStrip2.Size = new Size(800, 25);
+            toolStrip2.Size = new Size(608, 25);
             toolStrip2.TabIndex = 3;
             toolStrip2.Text = "toolStrip2";
             // 
@@ -244,19 +273,19 @@
             importBMPButton.Size = new Size(97, 22);
             importBMPButton.Text = "Импорт ПБР";
             // 
-            // button1
+            // CalcButton
             // 
-            button1.Location = new Point(317, 402);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 4;
-            button1.Text = "Расчёт РВР";
-            button1.UseVisualStyleBackColor = true;
+            CalcButton.Location = new Point(379, 173);
+            CalcButton.Name = "CalcButton";
+            CalcButton.Size = new Size(82, 23);
+            CalcButton.TabIndex = 4;
+            CalcButton.Text = "Расчёт РВР";
+            CalcButton.UseVisualStyleBackColor = true;
             // 
             // calcGroupBox
             // 
             calcGroupBox.Controls.Add(tableLayoutPanel);
-            calcGroupBox.Location = new Point(257, 77);
+            calcGroupBox.Location = new Point(261, 67);
             calcGroupBox.Name = "calcGroupBox";
             calcGroupBox.Size = new Size(200, 100);
             calcGroupBox.TabIndex = 5;
@@ -273,16 +302,16 @@
             tableLayoutPanel.RowCount = 2;
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel.Size = new Size(162, 52);
+            tableLayoutPanel.Size = new Size(125, 52);
             tableLayoutPanel.TabIndex = 0;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(608, 450);
             Controls.Add(calcGroupBox);
-            Controls.Add(button1);
+            Controls.Add(CalcButton);
             Controls.Add(toolStrip2);
             Controls.Add(tabControl);
             Controls.Add(toolStrip1);
@@ -295,6 +324,8 @@
             tabControl.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
+            tabPage2.ResumeLayout(false);
+            powerDRroupBox.ResumeLayout(false);
             toolStrip2.ResumeLayout(false);
             toolStrip2.PerformLayout();
             calcGroupBox.ResumeLayout(false);
@@ -323,12 +354,14 @@
         private ToolStripDropDownButton referenceButton;
         private ToolStripMenuItem openDoc;
         private ToolStripMenuItem техническаяПоддержкаToolStripMenuItem;
-        private Button button1;
+        private Button CalcButton;
         private ToolStripButton saveButton;
         private GroupBox calcGroupBox;
         private TableLayoutPanel tableLayoutPanel;
         private ToolStripButton exportDBButton;
         private ToolStripButton importBMPButton;
         private ToolStripSeparator toolStripSeparator2;
+        private GroupBox powerDRroupBox;
+        private TableLayoutPanel powerDRtableLayoutPanel;
     }
 }
