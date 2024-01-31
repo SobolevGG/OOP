@@ -74,7 +74,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1, referenceButton });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(608, 25);
+            toolStrip1.Size = new Size(619, 25);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -213,7 +213,7 @@
             toolStrip2.Items.AddRange(new ToolStripItem[] { saveButton, editingModeButton, toolStripSeparator1, authorizationButton, importDBButton, exportDBButton, toolStripSeparator2, importBMPButton });
             toolStrip2.Location = new Point(0, 25);
             toolStrip2.Name = "toolStrip2";
-            toolStrip2.Size = new Size(608, 25);
+            toolStrip2.Size = new Size(619, 25);
             toolStrip2.TabIndex = 3;
             toolStrip2.Text = "toolStrip2";
             // 
@@ -297,7 +297,7 @@
             importBMPButton.Image = (Image)resources.GetObject("importBMPButton.Image");
             importBMPButton.ImageTransparentColor = Color.Magenta;
             importBMPButton.Name = "importBMPButton";
-            importBMPButton.Size = new Size(97, 20);
+            importBMPButton.Size = new Size(97, 22);
             importBMPButton.Text = "Импорт ПБР";
             // 
             // CalcButton
@@ -336,7 +336,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(608, 450);
+            ClientSize = new Size(619, 450);
             Controls.Add(calcGroupBox);
             Controls.Add(CalcButton);
             Controls.Add(toolStrip2);

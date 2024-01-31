@@ -17,6 +17,9 @@ namespace View
         public Authorization()
         {
             InitializeComponent();
+
+            // Установить свойство PasswordChar для скрытия введенных символов
+            passwordTextBox.PasswordChar = '*';
         }
 
         // Пароль для доступа к базе данных
@@ -42,13 +45,13 @@ namespace View
                 Password = enteredPassword;
                 DialogResult = DialogResult.OK;
                 Close();
-                MessageBox.Show("Пароль верный. Авторизация успешна.", 
+                MessageBox.Show("Пароль верный. Авторизация успешна.",
                     "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
                 passwordTextBox.Text = string.Empty; // Очистить TextBox
-                MessageBox.Show("Неверный пароль. Авторизация не удалась.", 
+                MessageBox.Show("Неверный пароль. Авторизация не удалась.",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -56,6 +59,11 @@ namespace View
         private void cancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        private void cancelButton_Click_1(object sender, EventArgs e)
+        {
             Close();
         }
     }

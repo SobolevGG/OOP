@@ -28,47 +28,62 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Authorization));
             passwordTextBox = new TextBox();
             okButton = new Button();
             errorLabel = new Label();
+            cancelButton = new Button();
             SuspendLayout();
             // 
             // passwordTextBox
             // 
-            passwordTextBox.Location = new Point(43, 39);
+            passwordTextBox.Location = new Point(38, 39);
             passwordTextBox.Name = "passwordTextBox";
-            passwordTextBox.Size = new Size(100, 23);
+            passwordTextBox.Size = new Size(143, 23);
             passwordTextBox.TabIndex = 0;
             // 
             // okButton
             // 
-            okButton.Location = new Point(126, 86);
+            okButton.Location = new Point(38, 80);
             okButton.Name = "okButton";
-            okButton.Size = new Size(75, 23);
+            okButton.Size = new Size(59, 23);
             okButton.TabIndex = 1;
-            okButton.Text = "button1";
+            okButton.Text = "Вход";
             okButton.UseVisualStyleBackColor = true;
             okButton.Click += okButton_Click;
             // 
             // errorLabel
             // 
             errorLabel.AutoSize = true;
-            errorLabel.Location = new Point(166, 14);
+            errorLabel.Location = new Point(38, 21);
             errorLabel.Name = "errorLabel";
-            errorLabel.Size = new Size(38, 15);
+            errorLabel.Size = new Size(96, 15);
             errorLabel.TabIndex = 2;
-            errorLabel.Text = "label1";
+            errorLabel.Text = "Введите пароль:";
+            // 
+            // cancelButton
+            // 
+            cancelButton.Location = new Point(122, 80);
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new Size(59, 23);
+            cancelButton.TabIndex = 3;
+            cancelButton.Text = "Отмена";
+            cancelButton.UseVisualStyleBackColor = true;
+            cancelButton.Click += cancelButton_Click_1;
             // 
             // Authorization
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.White;
+            ClientSize = new Size(216, 146);
+            Controls.Add(cancelButton);
             Controls.Add(errorLabel);
             Controls.Add(okButton);
             Controls.Add(passwordTextBox);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Authorization";
-            Text = "Authorization";
+            Text = "Авторизация";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -78,5 +93,7 @@
         private TextBox passwordTextBox;
         private Button okButton;
         private Label errorLabel;
+        private MenuStrip menuStrip1;
+        private Button cancelButton;
     }
 }
