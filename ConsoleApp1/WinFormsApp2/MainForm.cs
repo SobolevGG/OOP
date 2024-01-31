@@ -171,7 +171,7 @@ namespace WinFormsApp2
             // невозможность установки курсора
             textBox1.Enter += TextBox_Enter;
             // Убираем рамку
-            textBox1.BorderStyle = BorderStyle.None; 
+            textBox1.BorderStyle = BorderStyle.None;
 
             TextBox textBox2 = new TextBox();
             textBox2.Dock = DockStyle.Fill;
@@ -186,7 +186,7 @@ namespace WinFormsApp2
 
             TextBox textBox4 = new TextBox();
             textBox4.Dock = DockStyle.Fill;
-            
+
 
             // Добавляем TextBox-ы в ячейки TableLayoutPanel
             tableLayoutPanel.Controls.Add(textBox1, 0, 0);
@@ -213,7 +213,7 @@ namespace WinFormsApp2
 
             TextBox textBox3 = new TextBox();
             textBox3.Dock = DockStyle.Fill;
-            
+
             textBox3.Text = "СВМ 500 кВ";
             textBox3.ReadOnly = true;
             textBox3.Enter += TextBox_Enter;
@@ -273,12 +273,6 @@ namespace WinFormsApp2
                 // Сохраняем данные в выбранный файл
                 SerializeToXml(dataItems, saveFileDialog.FileName);
             }
-        }
-
-        // Режим правки
-        private void editingMode_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void editingModeButton_Click(object sender, EventArgs e)
@@ -344,6 +338,32 @@ namespace WinFormsApp2
             catch (Exception ex)
             {
                 MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void файлToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Создаем объект OpenFileDialog
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            // Устанавливаем фильтр для выбора файлов формата XML
+            openFileDialog.Filter = "XML files (*.xml)|*.xml";
+
+            // Устанавливаем заголовок диалогового окна
+            openFileDialog.Title = "Выберите файл XML";
+
+            // Устанавливаем свойство ShowHelp в false, чтобы скрыть опцию "All Files"
+            openFileDialog.ShowHelp = false;
+
+            // Показываем диалоговое окно и проверяем, был ли выбран файл
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Получаем путь к выбранному файлу
+                string selectedFilePath = openFileDialog.FileName;
+
+                // Ваш код для обработки выбранного файла
+                // Например, загрузка данных из файла или отображение пути к файлу
+                MessageBox.Show($"Выбран файл XML: {selectedFilePath}", "Выбор файла", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

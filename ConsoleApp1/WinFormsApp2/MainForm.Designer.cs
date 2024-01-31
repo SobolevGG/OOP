@@ -37,15 +37,17 @@
             saveParamsHU = new ToolStripMenuItem();
             referenceButton = new ToolStripDropDownButton();
             openDoc = new ToolStripMenuItem();
-            техническаяПоддержкаToolStripMenuItem = new ToolStripMenuItem();
+            SupportToolStripMenu = new ToolStripMenuItem();
             tabControl = new TabControl();
             tabPage1 = new TabPage();
             dataGridView = new DataGridView();
             tabPage2 = new TabPage();
-            powerDRroupBox = new GroupBox();
+            powerDRGroupBox = new GroupBox();
             powerDRtableLayoutPanel = new TableLayoutPanel();
             toolStrip2 = new ToolStrip();
-            saveButton = new ToolStripButton();
+            saveButton = new ToolStripSplitButton();
+            параметрыГАToolStripMenuItem = new ToolStripMenuItem();
+            ограниченияToolStripMenuItem = new ToolStripMenuItem();
             editingModeButton = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             authorizationButton = new ToolStripButton();
@@ -56,12 +58,13 @@
             CalcButton = new Button();
             calcGroupBox = new GroupBox();
             tableLayoutPanel = new TableLayoutPanel();
+            характеристикиГАToolStripMenuItem = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             tabPage2.SuspendLayout();
-            powerDRroupBox.SuspendLayout();
+            powerDRGroupBox.SuspendLayout();
             toolStrip2.SuspendLayout();
             calcGroupBox.SuspendLayout();
             SuspendLayout();
@@ -98,6 +101,7 @@
             файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             файлToolStripMenuItem.Size = new Size(103, 22);
             файлToolStripMenuItem.Text = "Файл";
+            файлToolStripMenuItem.Click += файлToolStripMenuItem_Click;
             // 
             // saveToolStripMenuItem
             // 
@@ -117,13 +121,12 @@
             // referenceButton
             // 
             referenceButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            referenceButton.DropDownItems.AddRange(new ToolStripItem[] { openDoc, техническаяПоддержкаToolStripMenuItem });
+            referenceButton.DropDownItems.AddRange(new ToolStripItem[] { openDoc, SupportToolStripMenu });
             referenceButton.Image = (Image)resources.GetObject("referenceButton.Image");
             referenceButton.ImageTransparentColor = Color.Magenta;
             referenceButton.Name = "referenceButton";
             referenceButton.Size = new Size(66, 22);
             referenceButton.Text = "Справка";
-            referenceButton.Click += editingMode_Click;
             // 
             // openDoc
             // 
@@ -133,12 +136,12 @@
             openDoc.Text = "Открыть";
             openDoc.Click += openDoc_Click;
             // 
-            // техническаяПоддержкаToolStripMenuItem
+            // SupportToolStripMenu
             // 
-            техническаяПоддержкаToolStripMenuItem.Image = (Image)resources.GetObject("техническаяПоддержкаToolStripMenuItem.Image");
-            техническаяПоддержкаToolStripMenuItem.Name = "техническаяПоддержкаToolStripMenuItem";
-            техническаяПоддержкаToolStripMenuItem.Size = new Size(206, 22);
-            техническаяПоддержкаToolStripMenuItem.Text = "Техническая поддержка";
+            SupportToolStripMenu.Image = (Image)resources.GetObject("SupportToolStripMenu.Image");
+            SupportToolStripMenu.Name = "SupportToolStripMenu";
+            SupportToolStripMenu.Size = new Size(206, 22);
+            SupportToolStripMenu.Text = "Техническая поддержка";
             // 
             // tabControl
             // 
@@ -172,7 +175,7 @@
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(powerDRroupBox);
+            tabPage2.Controls.Add(powerDRGroupBox);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -181,15 +184,15 @@
             tabPage2.Text = "Ограничения";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // powerDRroupBox
+            // powerDRGroupBox
             // 
-            powerDRroupBox.Controls.Add(powerDRtableLayoutPanel);
-            powerDRroupBox.Location = new Point(3, 3);
-            powerDRroupBox.Name = "powerDRroupBox";
-            powerDRroupBox.Size = new Size(174, 82);
-            powerDRroupBox.TabIndex = 0;
-            powerDRroupBox.TabStop = false;
-            powerDRroupBox.Text = "Схема выдачи мощности";
+            powerDRGroupBox.Controls.Add(powerDRtableLayoutPanel);
+            powerDRGroupBox.Location = new Point(3, 3);
+            powerDRGroupBox.Name = "powerDRGroupBox";
+            powerDRGroupBox.Size = new Size(174, 82);
+            powerDRGroupBox.TabIndex = 0;
+            powerDRGroupBox.TabStop = false;
+            powerDRGroupBox.Text = "Схема выдачи мощности";
             // 
             // powerDRtableLayoutPanel
             // 
@@ -216,11 +219,26 @@
             // 
             // saveButton
             // 
+            saveButton.DropDownItems.AddRange(new ToolStripItem[] { параметрыГАToolStripMenuItem, ограниченияToolStripMenuItem, характеристикиГАToolStripMenuItem });
             saveButton.Image = (Image)resources.GetObject("saveButton.Image");
             saveButton.ImageTransparentColor = Color.Magenta;
             saveButton.Name = "saveButton";
-            saveButton.Size = new Size(86, 22);
+            saveButton.Size = new Size(98, 22);
             saveButton.Text = "Сохранить";
+            // 
+            // параметрыГАToolStripMenuItem
+            // 
+            параметрыГАToolStripMenuItem.Image = (Image)resources.GetObject("параметрыГАToolStripMenuItem.Image");
+            параметрыГАToolStripMenuItem.Name = "параметрыГАToolStripMenuItem";
+            параметрыГАToolStripMenuItem.Size = new Size(180, 22);
+            параметрыГАToolStripMenuItem.Text = "Параметры ГА";
+            // 
+            // ограниченияToolStripMenuItem
+            // 
+            ограниченияToolStripMenuItem.Image = (Image)resources.GetObject("ограниченияToolStripMenuItem.Image");
+            ограниченияToolStripMenuItem.Name = "ограниченияToolStripMenuItem";
+            ограниченияToolStripMenuItem.Size = new Size(180, 22);
+            ограниченияToolStripMenuItem.Text = "Ограничения";
             // 
             // editingModeButton
             // 
@@ -270,7 +288,7 @@
             importBMPButton.Image = (Image)resources.GetObject("importBMPButton.Image");
             importBMPButton.ImageTransparentColor = Color.Magenta;
             importBMPButton.Name = "importBMPButton";
-            importBMPButton.Size = new Size(97, 22);
+            importBMPButton.Size = new Size(97, 20);
             importBMPButton.Text = "Импорт ПБР";
             // 
             // CalcButton
@@ -305,6 +323,13 @@
             tableLayoutPanel.Size = new Size(125, 52);
             tableLayoutPanel.TabIndex = 0;
             // 
+            // характеристикиГАToolStripMenuItem
+            // 
+            характеристикиГАToolStripMenuItem.Image = (Image)resources.GetObject("характеристикиГАToolStripMenuItem.Image");
+            характеристикиГАToolStripMenuItem.Name = "характеристикиГАToolStripMenuItem";
+            характеристикиГАToolStripMenuItem.Size = new Size(180, 22);
+            характеристикиГАToolStripMenuItem.Text = "Характеристики ГА";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -325,7 +350,7 @@
             tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             tabPage2.ResumeLayout(false);
-            powerDRroupBox.ResumeLayout(false);
+            powerDRGroupBox.ResumeLayout(false);
             toolStrip2.ResumeLayout(false);
             toolStrip2.PerformLayout();
             calcGroupBox.ResumeLayout(false);
@@ -353,15 +378,18 @@
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripDropDownButton referenceButton;
         private ToolStripMenuItem openDoc;
-        private ToolStripMenuItem техническаяПоддержкаToolStripMenuItem;
+        private ToolStripMenuItem SupportToolStripMenu;
         private Button CalcButton;
-        private ToolStripButton saveButton;
         private GroupBox calcGroupBox;
         private TableLayoutPanel tableLayoutPanel;
         private ToolStripButton exportDBButton;
         private ToolStripButton importBMPButton;
         private ToolStripSeparator toolStripSeparator2;
-        private GroupBox powerDRroupBox;
+        private GroupBox powerDRGroupBox;
         private TableLayoutPanel powerDRtableLayoutPanel;
+        private ToolStripSplitButton saveButton;
+        private ToolStripMenuItem параметрыГАToolStripMenuItem;
+        private ToolStripMenuItem ограниченияToolStripMenuItem;
+        private ToolStripMenuItem характеристикиГАToolStripMenuItem;
     }
 }
