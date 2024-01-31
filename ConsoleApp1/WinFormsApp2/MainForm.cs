@@ -18,6 +18,7 @@ namespace WinFormsApp2
 
             // Вызываем тестовый метод при загрузке формы
             TestFillData();
+
         }
 
         // Класс для хранения данных
@@ -139,8 +140,6 @@ namespace WinFormsApp2
                 }
             }
         }
-
-
 
         private void btnSave_Click(object sender, EventArgs e)
         {

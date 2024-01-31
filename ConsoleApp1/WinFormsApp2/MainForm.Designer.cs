@@ -43,16 +43,23 @@
             dataGridView = new DataGridView();
             tabPage2 = new TabPage();
             toolStrip2 = new ToolStrip();
-            toolStripButton2 = new ToolStripButton();
+            saveButton = new ToolStripButton();
             editingModeButton = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             authorizationButton = new ToolStripButton();
-            toolStripButton1 = new ToolStripButton();
+            importDBButton = new ToolStripButton();
+            exportDBButton = new ToolStripButton();
+            toolStripSeparator2 = new ToolStripSeparator();
+            importBMPButton = new ToolStripButton();
+            button1 = new Button();
+            calcGroupBox = new GroupBox();
+            tableLayoutPanel = new TableLayoutPanel();
             toolStrip1.SuspendLayout();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             toolStrip2.SuspendLayout();
+            calcGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // toolStrip1
@@ -79,7 +86,7 @@
             openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { файлToolStripMenuItem });
             openToolStripMenuItem.Image = (Image)resources.GetObject("openToolStripMenuItem.Image");
             openToolStripMenuItem.Name = "openToolStripMenuItem";
-            openToolStripMenuItem.Size = new Size(180, 22);
+            openToolStripMenuItem.Size = new Size(133, 22);
             openToolStripMenuItem.Text = "Открыть";
             // 
             // файлToolStripMenuItem
@@ -93,7 +100,7 @@
             saveToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { saveParamsHU });
             saveToolStripMenuItem.Image = (Image)resources.GetObject("saveToolStripMenuItem.Image");
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(180, 22);
+            saveToolStripMenuItem.Size = new Size(133, 22);
             saveToolStripMenuItem.Text = "Сохранить";
             // 
             // saveParamsHU
@@ -136,7 +143,7 @@
             tabControl.Location = new Point(0, 53);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
-            tabControl.Size = new Size(593, 372);
+            tabControl.Size = new Size(251, 372);
             tabControl.TabIndex = 2;
             // 
             // tabPage1
@@ -145,7 +152,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(585, 344);
+            tabPage1.Size = new Size(243, 344);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Параметры ГА";
             tabPage1.UseVisualStyleBackColor = true;
@@ -156,7 +163,7 @@
             dataGridView.Location = new Point(3, 3);
             dataGridView.Name = "dataGridView";
             dataGridView.RowHeadersVisible = false;
-            dataGridView.Size = new Size(294, 338);
+            dataGridView.Size = new Size(237, 338);
             dataGridView.TabIndex = 0;
             // 
             // tabPage2
@@ -164,27 +171,27 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(585, 344);
+            tabPage2.Size = new Size(243, 344);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Ограничения";
             tabPage2.UseVisualStyleBackColor = true;
             // 
             // toolStrip2
             // 
-            toolStrip2.Items.AddRange(new ToolStripItem[] { toolStripButton2, editingModeButton, toolStripSeparator1, authorizationButton, toolStripButton1 });
+            toolStrip2.Items.AddRange(new ToolStripItem[] { saveButton, editingModeButton, toolStripSeparator1, authorizationButton, importDBButton, exportDBButton, toolStripSeparator2, importBMPButton });
             toolStrip2.Location = new Point(0, 25);
             toolStrip2.Name = "toolStrip2";
             toolStrip2.Size = new Size(800, 25);
             toolStrip2.TabIndex = 3;
             toolStrip2.Text = "toolStrip2";
             // 
-            // toolStripButton2
+            // saveButton
             // 
-            toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
-            toolStripButton2.ImageTransparentColor = Color.Magenta;
-            toolStripButton2.Name = "toolStripButton2";
-            toolStripButton2.Size = new Size(86, 22);
-            toolStripButton2.Text = "Сохранить";
+            saveButton.Image = (Image)resources.GetObject("saveButton.Image");
+            saveButton.ImageTransparentColor = Color.Magenta;
+            saveButton.Name = "saveButton";
+            saveButton.Size = new Size(86, 22);
+            saveButton.Text = "Сохранить";
             // 
             // editingModeButton
             // 
@@ -208,24 +215,80 @@
             authorizationButton.Size = new Size(98, 22);
             authorizationButton.Text = "Авторизация";
             // 
-            // toolStripButton1
+            // importDBButton
             // 
-            toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
-            toolStripButton1.ImageTransparentColor = Color.Magenta;
-            toolStripButton1.Name = "toolStripButton1";
-            toolStripButton1.Size = new Size(114, 22);
-            toolStripButton1.Text = "toolStripButton1";
+            importDBButton.Image = (Image)resources.GetObject("importDBButton.Image");
+            importDBButton.ImageTransparentColor = Color.Magenta;
+            importDBButton.Name = "importDBButton";
+            importDBButton.Size = new Size(98, 22);
+            importDBButton.Text = "Импорт с БД";
+            // 
+            // exportDBButton
+            // 
+            exportDBButton.Image = (Image)resources.GetObject("exportDBButton.Image");
+            exportDBButton.ImageTransparentColor = Color.Magenta;
+            exportDBButton.Name = "exportDBButton";
+            exportDBButton.Size = new Size(99, 22);
+            exportDBButton.Text = "Экспорт в БД";
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(6, 25);
+            // 
+            // importBMPButton
+            // 
+            importBMPButton.Image = (Image)resources.GetObject("importBMPButton.Image");
+            importBMPButton.ImageTransparentColor = Color.Magenta;
+            importBMPButton.Name = "importBMPButton";
+            importBMPButton.Size = new Size(97, 22);
+            importBMPButton.Text = "Импорт ПБР";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(317, 402);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 4;
+            button1.Text = "Расчёт РВР";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // calcGroupBox
+            // 
+            calcGroupBox.Controls.Add(tableLayoutPanel);
+            calcGroupBox.Location = new Point(257, 77);
+            calcGroupBox.Name = "calcGroupBox";
+            calcGroupBox.Size = new Size(200, 100);
+            calcGroupBox.TabIndex = 5;
+            calcGroupBox.TabStop = false;
+            calcGroupBox.Text = "Расчёт РВР";
+            // 
+            // tableLayoutPanel
+            // 
+            tableLayoutPanel.ColumnCount = 2;
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel.Location = new Point(6, 22);
+            tableLayoutPanel.Name = "tableLayoutPanel";
+            tableLayoutPanel.RowCount = 2;
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel.Size = new Size(144, 52);
+            tableLayoutPanel.TabIndex = 0;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(calcGroupBox);
+            Controls.Add(button1);
             Controls.Add(toolStrip2);
             Controls.Add(tabControl);
             Controls.Add(toolStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
-            Text = "Form1";
+            Text = "Расчёт РВР";
             Load += MainForm_Load;
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
@@ -234,6 +297,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             toolStrip2.ResumeLayout(false);
             toolStrip2.PerformLayout();
+            calcGroupBox.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -250,15 +314,21 @@
         private TabPage tabPage2;
         private DataGridView dataGridView;
         private ToolStripMenuItem paramsHUToolStripMenuItem;
-        private ToolStripButton toolStripButton1;
+        private ToolStripButton importDBButton;
         private ToolStripMenuItem saveParamsHU;
         private ToolStrip toolStrip2;
         private ToolStripButton editingModeButton;
         private ToolStripButton authorizationButton;
-        private ToolStripButton toolStripButton2;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripDropDownButton referenceButton;
         private ToolStripMenuItem openDoc;
         private ToolStripMenuItem техническаяПоддержкаToolStripMenuItem;
+        private Button button1;
+        private ToolStripButton saveButton;
+        private GroupBox calcGroupBox;
+        private TableLayoutPanel tableLayoutPanel;
+        private ToolStripButton exportDBButton;
+        private ToolStripButton importBMPButton;
+        private ToolStripSeparator toolStripSeparator2;
     }
 }
