@@ -17,7 +17,7 @@ namespace WinFormsApp2
 
 
             // Вызываем тестовый метод при загрузке формы
-            TestFillData();
+            FillData();
 
         }
 
@@ -31,14 +31,14 @@ namespace WinFormsApp2
             public string Status { get; set; }
         }
 
-        private void TestFillData()
+        // Метод для создания таблицы
+        private void CreateDataGridView()
         {
             // Создаем колонки
             DataGridViewTextBoxColumn gaColumn = new DataGridViewTextBoxColumn();
             gaColumn.HeaderText = "ГА";
             gaColumn.Width = 44; // Устанавливаем ширину для столбца "ГА"
             gaColumn.ReadOnly = true;
-
 
             DataGridViewTextBoxColumn loadColumn = new DataGridViewTextBoxColumn();
             loadColumn.HeaderText = "Загрузка, МВт";
@@ -81,23 +81,6 @@ namespace WinFormsApp2
             // Устанавливаем DataGridView на вкладку tabPage1
             tabPage1.Controls.Add(dataGridView);
 
-            // Генерируем тестовые данные и заполняем таблицу
-            Random random = new Random();
-            for (int i = 1; i <= 12; i++)
-            {
-                // Выбираем случайный диапазон расходов
-                int[] диапазон = random.Next(2) == 0 ? new[] { 0, 150 } : new[] { 320, 500 };
-
-                // Генерируем случайный расход внутри выбранного диапазона
-                int расход = random.Next(диапазон[0], диапазон[1] + 1);
-
-                // Вычисляем зону работы
-                int зона = расход >= 320 ? 3 : (расход <= 150 ? 1 : 2);
-
-                // Добавляем строку с тестовыми данными
-                dataGridView.Rows.Add($"{i}", расход, зона, "В работе");
-            }
-
             // Устанавливаем размеры таблицы
             dataGridView.Width = 237;
             dataGridView.Height = 340;
@@ -114,8 +97,36 @@ namespace WinFormsApp2
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
+        }
 
+        // Метод для тестовых данных
+        private void TestFillData()
+        {
+            // Генерируем тестовые данные и заполняем таблицу
+            Random random = new Random();
+            for (int i = 1; i <= 12; i++)
+            {
+                // Выбираем случайный диапазон расходов
+                int[] диапазон = random.Next(2) == 0 ? new[] { 0, 150 } : new[] { 320, 500 };
 
+                // Генерируем случайный расход внутри выбранного диапазона
+                int расход = random.Next(диапазон[0], диапазон[1] + 1);
+
+                // Вычисляем зону работы
+                int зона = расход >= 320 ? 3 : (расход <= 150 ? 1 : 2);
+
+                // Добавляем строку с тестовыми данными
+                dataGridView.Rows.Add($"{i}", расход, зона, "В работе");
+            }
+        }
+
+        private void FillData()
+        {
+            // Создаем таблицу
+            CreateDataGridView();
+
+            // Заполняем таблицу данными
+            TestFillData();
         }
 
         // Метод для сериализации данных в XML
