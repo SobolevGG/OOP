@@ -476,12 +476,36 @@ namespace View
 
         private void exportDBButton_Click(object sender, EventArgs e)
         {
+            var connector = new PostgresConnector("localhost", "HPPs", "postgres", $"{Authorization.PasswordDB}");
+
             // Проверка доступности кнопки
             if (!exportDBButton.Enabled)
             {
                 MessageBox.Show("Авторизация не выполнена. Введите правильный пароль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
 
+            }
+
+            // Ваш запрос на вставку/обновление данных
+            string sqlQuery = @"
+            INSERT INTO hydro_generators (id, name, hydro_power_plant_id, characteristic, last_change_date)
+            VALUES (10, 'Гидрогенератор 10', 1, 'Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))', CURRENT_TIMESTAMP)
+            ON CONFLICT (id) DO UPDATE
+            SET
+                name = EXCLUDED.name,
+                hydro_power_plant_id = EXCLUDED.hydro_power_plant_id,
+                characteristic = EXCLUDED.characteristic,
+                last_change_date = EXCLUDED.last_change_date;";
+
+            try
+            {
+                // Выполнение запроса
+                connector.ExecuteNonQuery(sqlQuery);
+                MessageBox.Show("Данные успешно вставлены/обновлены.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при выполнении запроса: {ex.Message}");
             }
         }
     }
