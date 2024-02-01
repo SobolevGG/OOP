@@ -46,9 +46,9 @@
             cubic4Label = new Label();
             unitsSec4Label = new Label();
             cubic3Label = new Label();
-            label3 = new Label();
+            roughZoneIndex2Label = new Label();
             roughZone2Label = new Label();
-            label1 = new Label();
+            roughZoneIndex1Label = new Label();
             roughZone1Label = new Label();
             textBox8 = new TextBox();
             textBox7 = new TextBox();
@@ -233,9 +233,9 @@
             groupBox3.Controls.Add(cubic4Label);
             groupBox3.Controls.Add(unitsSec4Label);
             groupBox3.Controls.Add(cubic3Label);
-            groupBox3.Controls.Add(label3);
+            groupBox3.Controls.Add(roughZoneIndex2Label);
             groupBox3.Controls.Add(roughZone2Label);
-            groupBox3.Controls.Add(label1);
+            groupBox3.Controls.Add(roughZoneIndex1Label);
             groupBox3.Controls.Add(roughZone1Label);
             groupBox3.Controls.Add(textBox8);
             groupBox3.Controls.Add(textBox7);
@@ -260,7 +260,7 @@
             // unitsSec4Label
             // 
             unitsSec4Label.AutoSize = true;
-            unitsSec4Label.Location = new Point(68, 51);
+            unitsSec4Label.Location = new Point(68, 55);
             unitsSec4Label.Name = "unitsSec4Label";
             unitsSec4Label.Size = new Size(21, 15);
             unitsSec4Label.TabIndex = 18;
@@ -277,34 +277,34 @@
             cubic3Label.TabIndex = 16;
             cubic3Label.Text = "3";
             // 
-            // label3
+            // roughZoneIndex2Label
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label3.Location = new Point(22, 59);
-            label3.Name = "label3";
-            label3.Size = new Size(26, 12);
-            label3.TabIndex = 14;
-            label3.Text = "ЗНР2";
+            roughZoneIndex2Label.AutoSize = true;
+            roughZoneIndex2Label.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            roughZoneIndex2Label.Location = new Point(22, 63);
+            roughZoneIndex2Label.Name = "roughZoneIndex2Label";
+            roughZoneIndex2Label.Size = new Size(26, 12);
+            roughZoneIndex2Label.TabIndex = 14;
+            roughZoneIndex2Label.Text = "ЗНР2";
             // 
             // roughZone2Label
             // 
             roughZone2Label.AutoSize = true;
-            roughZone2Label.Location = new Point(10, 51);
+            roughZone2Label.Location = new Point(10, 55);
             roughZone2Label.Name = "roughZone2Label";
             roughZone2Label.Size = new Size(61, 15);
             roughZone2Label.TabIndex = 15;
             roughZone2Label.Text = "Q         , м ";
             // 
-            // label1
+            // roughZoneIndex1Label
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label1.Location = new Point(22, 33);
-            label1.Name = "label1";
-            label1.Size = new Size(26, 12);
-            label1.TabIndex = 12;
-            label1.Text = "ЗНР1";
+            roughZoneIndex1Label.AutoSize = true;
+            roughZoneIndex1Label.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            roughZoneIndex1Label.Location = new Point(22, 33);
+            roughZoneIndex1Label.Name = "roughZoneIndex1Label";
+            roughZoneIndex1Label.Size = new Size(26, 12);
+            roughZoneIndex1Label.TabIndex = 12;
+            roughZoneIndex1Label.Text = "ЗНР1";
             // 
             // roughZone1Label
             // 
@@ -318,16 +318,16 @@
             // 
             // textBox8
             // 
-            textBox8.Location = new Point(110, 51);
+            textBox8.Location = new Point(93, 51);
             textBox8.Name = "textBox8";
-            textBox8.Size = new Size(66, 23);
+            textBox8.Size = new Size(96, 23);
             textBox8.TabIndex = 3;
             // 
             // textBox7
             // 
-            textBox7.Location = new Point(110, 22);
+            textBox7.Location = new Point(93, 22);
             textBox7.Name = "textBox7";
-            textBox7.Size = new Size(66, 23);
+            textBox7.Size = new Size(96, 23);
             textBox7.TabIndex = 2;
             // 
             // unitsSec3Label
@@ -529,14 +529,14 @@
             // 
             // powerRestrictions500TextBox
             // 
-            powerRestrictions500TextBox.Location = new Point(110, 51);
+            powerRestrictions500TextBox.Location = new Point(123, 51);
             powerRestrictions500TextBox.Name = "powerRestrictions500TextBox";
             powerRestrictions500TextBox.Size = new Size(66, 23);
             powerRestrictions500TextBox.TabIndex = 3;
             // 
             // powerRestrictions220TextBox
             // 
-            powerRestrictions220TextBox.Location = new Point(110, 22);
+            powerRestrictions220TextBox.Location = new Point(123, 22);
             powerRestrictions220TextBox.Name = "powerRestrictions220TextBox";
             powerRestrictions220TextBox.Size = new Size(66, 23);
             powerRestrictions220TextBox.TabIndex = 2;
@@ -845,9 +845,9 @@
         private TextBox textBox2;
         private TextBox textBox1;
         private Label label5;
-        private Label label3;
+        private Label roughZoneIndex2Label;
         private Label roughZone2Label;
-        private Label label1;
+        private Label roughZoneIndex1Label;
         private Label roughZone1Label;
         private Label cubic3Label;
         private Label unitsSec3Label;
