@@ -76,7 +76,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1, referenceButton });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(634, 25);
+            toolStrip1.Size = new Size(637, 25);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -215,7 +215,7 @@
             toolStrip2.Items.AddRange(new ToolStripItem[] { saveButton, editingModeButton, toolStripSeparator1, authorizationButton, importDBButton, exportDBButton, toolStripSeparator2, importBMPButton });
             toolStrip2.Location = new Point(0, 25);
             toolStrip2.Name = "toolStrip2";
-            toolStrip2.Size = new Size(634, 25);
+            toolStrip2.Size = new Size(637, 25);
             toolStrip2.TabIndex = 3;
             toolStrip2.Text = "toolStrip2";
             // 
@@ -278,8 +278,8 @@
             importDBButton.Image = (Image)resources.GetObject("importDBButton.Image");
             importDBButton.ImageTransparentColor = Color.Magenta;
             importDBButton.Name = "importDBButton";
-            importDBButton.Size = new Size(110, 22);
-            importDBButton.Text = "Импорт с БД";
+            importDBButton.Size = new Size(116, 22);
+            importDBButton.Text = "Импорт из БД";
             // 
             // currentCharacteristicsToolStripMenu
             // 
@@ -304,6 +304,8 @@
             exportDBButton.Name = "exportDBButton";
             exportDBButton.Size = new Size(99, 22);
             exportDBButton.Text = "Экспорт в БД";
+            exportDBButton.ToolTipText = "Для экспорта в БД требуется авторизация";
+            exportDBButton.Click += exportDBButton_Click;
             // 
             // toolStripSeparator2
             // 
@@ -354,7 +356,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(634, 450);
+            ClientSize = new Size(637, 450);
             Controls.Add(calcGroupBox);
             Controls.Add(CalcButton);
             Controls.Add(toolStrip2);

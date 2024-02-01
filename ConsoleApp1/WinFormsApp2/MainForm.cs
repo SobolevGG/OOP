@@ -162,7 +162,7 @@ namespace View
             calcGroupBox.Controls.Add(tableLayoutPanel);
 
             // Заблокировать кнопку при неверном пароле
-            importDBButton.Enabled = false;
+            exportDBButton.Enabled = false;
         }
 
         private void AddTextBoxesToTableLayoutPanel(TableLayoutPanel tableLayoutPanel)
@@ -379,19 +379,13 @@ namespace View
 
             if (result == DialogResult.OK)
             {
-                importDBButton.Enabled = true;  // Разблокировать кнопку после успешной авторизации
+                // Разблокировать кнопку после успешной авторизации
+                exportDBButton.Enabled = true;
             }
         }
 
         private void currentCharacteristicsToolStripMenu_Click(object sender, EventArgs e)
         {
-            // Проверка доступности кнопки
-            if (!importDBButton.Enabled)
-            {
-                MessageBox.Show("Авторизация не выполнена. Введите правильный пароль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             var connector = new PostgresConnector("localhost", "HPPs", "postgres", $"{Authorization.PasswordDB}");
 
             try
@@ -436,13 +430,6 @@ namespace View
 
         private void protocolToolStripMenu_Click(object sender, EventArgs e)
         {
-            // Проверка доступности кнопки
-            if (!importDBButton.Enabled)
-            {
-                MessageBox.Show("Авторизация не выполнена. Введите правильный пароль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             var connector = new PostgresConnector("localhost", "HPPs", "postgres", $"{Authorization.PasswordDB}");
 
             try
@@ -484,6 +471,17 @@ namespace View
             {
                 // Закрытие соединения
                 connector.CloseConnection();
+            }
+        }
+
+        private void exportDBButton_Click(object sender, EventArgs e)
+        {
+            // Проверка доступности кнопки
+            if (!exportDBButton.Enabled)
+            {
+                MessageBox.Show("Авторизация не выполнена. Введите правильный пароль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+
             }
         }
     }
