@@ -476,8 +476,6 @@ namespace View
 
         private void exportDBButton_Click(object sender, EventArgs e)
         {
-            var connector = new PostgresConnector("localhost", "HPPs", "postgres", $"{Authorization.PasswordDB}");
-
             // Проверка доступности кнопки
             if (!exportDBButton.Enabled)
             {
@@ -489,7 +487,7 @@ namespace View
             // Вызов нового метода для вставки/обновления данных
             try
             {
-                InsertOrUpdateHydroGenerator(connector, 10, "Гидрогенератор 10", "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))");
+                InsertOrUpdateHydroGenerator(10, "Гидрогенератор 10", "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))");
                 MessageBox.Show("Данные успешно вставлены/обновлены.", "Выполнено", 
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -509,8 +507,9 @@ namespace View
         /// <param name="hydroPowerPlantId">Идентификатор связанной ГЭС.</param>
         /// <param name="characteristic">Текущая эксплуатационная характеристика.</param>
 
-        private void InsertOrUpdateHydroGenerator(PostgresConnector connector, int id, string name, string characteristic)
+        private void InsertOrUpdateHydroGenerator(int id, string name, string characteristic)
         {
+            var connector = new PostgresConnector("localhost", "HPPs", "postgres", $"{Authorization.PasswordDB}");
             string sqlQuery = $@"
         INSERT INTO hydro_generators (id, name, hydro_power_plant_id, characteristic, last_change_date)
         VALUES ({id}, '{name}', 1, '{characteristic}', CURRENT_TIMESTAMP)
