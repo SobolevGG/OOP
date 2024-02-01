@@ -37,14 +37,14 @@
             // 
             // passwordTextBox
             // 
-            passwordTextBox.Location = new Point(38, 39);
+            passwordTextBox.Location = new Point(38, 34);
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.Size = new Size(143, 23);
             passwordTextBox.TabIndex = 0;
             // 
             // okButton
             // 
-            okButton.Location = new Point(38, 80);
+            okButton.Location = new Point(38, 75);
             okButton.Name = "okButton";
             okButton.Size = new Size(59, 23);
             okButton.TabIndex = 1;
@@ -55,7 +55,7 @@
             // errorLabel
             // 
             errorLabel.AutoSize = true;
-            errorLabel.Location = new Point(38, 21);
+            errorLabel.Location = new Point(38, 16);
             errorLabel.Name = "errorLabel";
             errorLabel.Size = new Size(96, 15);
             errorLabel.TabIndex = 2;
@@ -63,7 +63,7 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(122, 80);
+            cancelButton.Location = new Point(122, 75);
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new Size(59, 23);
             cancelButton.TabIndex = 3;
@@ -76,7 +76,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(216, 146);
+            ClientSize = new Size(220, 115);
             Controls.Add(cancelButton);
             Controls.Add(errorLabel);
             Controls.Add(okButton);
