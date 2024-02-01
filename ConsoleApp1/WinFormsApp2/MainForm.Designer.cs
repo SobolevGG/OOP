@@ -42,11 +42,12 @@
             tabPage1 = new TabPage();
             dataGridView = new DataGridView();
             tabPage2 = new TabPage();
-            groupBox3 = new GroupBox();
-            textBox10 = new TextBox();
+            waterManagementGroupBox = new GroupBox();
             groupBox2 = new GroupBox();
-            LRIndexLabel = new Label();
             URRestrictionsLabel = new Label();
+            URIndexLabel = new Label();
+            LRIndexLabel = new Label();
+            LRRestrictionsLabel = new Label();
             inequalitySignLRComboBox = new ComboBox();
             inequalitySignURComboBox = new ComboBox();
             LRRestrictionsTextBox = new TextBox();
@@ -87,7 +88,6 @@
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             tabPage2.SuspendLayout();
-            groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             powerDRGroupBox.SuspendLayout();
             toolStrip2.SuspendLayout();
@@ -202,7 +202,7 @@
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(groupBox3);
+            tabPage2.Controls.Add(waterManagementGroupBox);
             tabPage2.Controls.Add(groupBox2);
             tabPage2.Controls.Add(powerDRGroupBox);
             tabPage2.Location = new Point(4, 24);
@@ -213,30 +213,21 @@
             tabPage2.Text = "Ограничения";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // waterManagementGroupBox
             // 
-            groupBox3.Controls.Add(textBox10);
-            groupBox3.Location = new Point(34, 216);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(174, 82);
-            groupBox3.TabIndex = 2;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Водное управление";
-            // 
-            // textBox10
-            // 
-            textBox10.BorderStyle = BorderStyle.None;
-            textBox10.Location = new Point(6, 25);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(30, 16);
-            textBox10.TabIndex = 0;
-            textBox10.Text = "Q";
-            textBox10.TextAlign = HorizontalAlignment.Center;
+            waterManagementGroupBox.Location = new Point(34, 216);
+            waterManagementGroupBox.Name = "waterManagementGroupBox";
+            waterManagementGroupBox.Size = new Size(174, 82);
+            waterManagementGroupBox.TabIndex = 2;
+            waterManagementGroupBox.TabStop = false;
+            waterManagementGroupBox.Text = "Водное управление";
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(LRIndexLabel);
             groupBox2.Controls.Add(URRestrictionsLabel);
+            groupBox2.Controls.Add(URIndexLabel);
+            groupBox2.Controls.Add(LRIndexLabel);
+            groupBox2.Controls.Add(LRRestrictionsLabel);
             groupBox2.Controls.Add(inequalitySignLRComboBox);
             groupBox2.Controls.Add(inequalitySignURComboBox);
             groupBox2.Controls.Add(LRRestrictionsTextBox);
@@ -248,6 +239,25 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Водное управление";
             // 
+            // URRestrictionsLabel
+            // 
+            URRestrictionsLabel.AutoSize = true;
+            URRestrictionsLabel.Location = new Point(10, 26);
+            URRestrictionsLabel.Name = "URRestrictionsLabel";
+            URRestrictionsLabel.Size = new Size(16, 15);
+            URRestrictionsLabel.TabIndex = 8;
+            URRestrictionsLabel.Text = "Q";
+            // 
+            // URIndexLabel
+            // 
+            URIndexLabel.AutoSize = true;
+            URIndexLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            URIndexLabel.Location = new Point(23, 35);
+            URIndexLabel.Name = "URIndexLabel";
+            URIndexLabel.Size = new Size(15, 12);
+            URIndexLabel.TabIndex = 12;
+            URIndexLabel.Text = "ВБ";
+            // 
             // LRIndexLabel
             // 
             LRIndexLabel.AutoSize = true;
@@ -258,14 +268,14 @@
             LRIndexLabel.TabIndex = 10;
             LRIndexLabel.Text = "НБ";
             // 
-            // URRestrictionsLabel
+            // LRRestrictionsLabel
             // 
-            URRestrictionsLabel.AutoSize = true;
-            URRestrictionsLabel.Location = new Point(14, 26);
-            URRestrictionsLabel.Name = "URRestrictionsLabel";
-            URRestrictionsLabel.Size = new Size(14, 15);
-            URRestrictionsLabel.TabIndex = 8;
-            URRestrictionsLabel.Text = "Z";
+            LRRestrictionsLabel.AutoSize = true;
+            LRRestrictionsLabel.Location = new Point(10, 54);
+            LRRestrictionsLabel.Name = "LRRestrictionsLabel";
+            LRRestrictionsLabel.Size = new Size(16, 15);
+            LRRestrictionsLabel.TabIndex = 11;
+            LRRestrictionsLabel.Text = "Q";
             // 
             // inequalitySignLRComboBox
             // 
@@ -597,8 +607,6 @@
             tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             tabPage2.ResumeLayout(false);
-            groupBox3.ResumeLayout(false);
-            groupBox3.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             powerDRGroupBox.ResumeLayout(false);
@@ -659,20 +667,18 @@
         private GroupBox groupBox2;
         private TextBox LRRestrictionsTextBox;
         private TextBox URRestrictionsTextBox;
-        private TextBox LRRestrictionsLabel;
         private ComboBox inequalitySignURComboBox;
         private ComboBox inequalitySignLRComboBox;
         private Label label2;
         private Label label1;
         private TextBox textBox6;
         private TextBox textBox5;
-        private GroupBox groupBox3;
-        private Label label3;
+        private GroupBox waterManagementGroupBox;
+        private Label LRRestrictionsLabel;
         private TextBox textBox7;
         private TextBox textBox8;
-        private TextBox textBox10;
         private Label label5;
-        private Label label4;
+        private Label URIndexLabel;
         private Label label6;
         private Label LRIndexLabel;
         private Label label8;
