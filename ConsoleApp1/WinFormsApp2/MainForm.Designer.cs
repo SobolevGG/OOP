@@ -43,14 +43,10 @@
             dataGridView = new DataGridView();
             tabPage2 = new TabPage();
             groupBox3 = new GroupBox();
-            this.roughZone2IndexLabel = new Label();
-            this.roughZone2Label = new Label();
-            this.roughZone1IndexLabel = new Label();
-            this.roughZone2TextBox = new TextBox();
-            this.roughZone1TextBox = new TextBox();
             textBox10 = new TextBox();
             groupBox2 = new GroupBox();
-            LRRestrictionsLabel = new Label();
+            LRIndexLabel = new Label();
+            URRestrictionsLabel = new Label();
             inequalitySignLRComboBox = new ComboBox();
             inequalitySignURComboBox = new ComboBox();
             LRRestrictionsTextBox = new TextBox();
@@ -86,9 +82,6 @@
             textBox2 = new TextBox();
             textBox3 = new TextBox();
             textBox4 = new TextBox();
-            URRestrictionsLabel = new Label();
-            this.URIndexLabel = new Label();
-            LRIndexLabel = new Label();
             toolStrip1.SuspendLayout();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -222,11 +215,6 @@
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(this.roughZone2IndexLabel);
-            groupBox3.Controls.Add(this.roughZone2Label);
-            groupBox3.Controls.Add(this.roughZone1IndexLabel);
-            groupBox3.Controls.Add(this.roughZone2TextBox);
-            groupBox3.Controls.Add(this.roughZone1TextBox);
             groupBox3.Controls.Add(textBox10);
             groupBox3.Location = new Point(34, 216);
             groupBox3.Name = "groupBox3";
@@ -234,49 +222,6 @@
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Водное управление";
-            // 
-            // roughZone2IndexLabel
-            // 
-            this.roughZone2IndexLabel.AutoSize = true;
-            this.roughZone2IndexLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            this.roughZone2IndexLabel.Location = new Point(25, 62);
-            this.roughZone2IndexLabel.Name = "roughZone2IndexLabel";
-            this.roughZone2IndexLabel.Size = new Size(26, 12);
-            this.roughZone2IndexLabel.TabIndex = 7;
-            this.roughZone2IndexLabel.Text = "ЗНР2";
-            // 
-            // roughZone2Label
-            // 
-            this.roughZone2Label.AutoSize = true;
-            this.roughZone2Label.Location = new Point(13, 55);
-            this.roughZone2Label.Name = "roughZone2Label";
-            this.roughZone2Label.Size = new Size(16, 15);
-            this.roughZone2Label.TabIndex = 6;
-            this.roughZone2Label.Text = "Q";
-            // 
-            // roughZone1IndexLabel
-            // 
-            this.roughZone1IndexLabel.AutoSize = true;
-            this.roughZone1IndexLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            this.roughZone1IndexLabel.Location = new Point(25, 33);
-            this.roughZone1IndexLabel.Name = "roughZone1IndexLabel";
-            this.roughZone1IndexLabel.Size = new Size(26, 12);
-            this.roughZone1IndexLabel.TabIndex = 5;
-            this.roughZone1IndexLabel.Text = "ЗНР1";
-            // 
-            // roughZone2TextBox
-            // 
-            this.roughZone2TextBox.Location = new Point(87, 51);
-            this.roughZone2TextBox.Name = "roughZone2TextBox";
-            this.roughZone2TextBox.Size = new Size(66, 23);
-            this.roughZone2TextBox.TabIndex = 3;
-            // 
-            // roughZone1TextBox
-            // 
-            this.roughZone1TextBox.Location = new Point(87, 22);
-            this.roughZone1TextBox.Name = "roughZone1TextBox";
-            this.roughZone1TextBox.Size = new Size(66, 23);
-            this.roughZone1TextBox.TabIndex = 2;
             // 
             // textBox10
             // 
@@ -291,9 +236,7 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(LRIndexLabel);
-            groupBox2.Controls.Add(this.URIndexLabel);
             groupBox2.Controls.Add(URRestrictionsLabel);
-            groupBox2.Controls.Add(LRRestrictionsLabel);
             groupBox2.Controls.Add(inequalitySignLRComboBox);
             groupBox2.Controls.Add(inequalitySignURComboBox);
             groupBox2.Controls.Add(LRRestrictionsTextBox);
@@ -305,14 +248,24 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Водное управление";
             // 
-            // LRRestrictionsLabel
+            // LRIndexLabel
             // 
-            LRRestrictionsLabel.AutoSize = true;
-            LRRestrictionsLabel.Location = new Point(13, 54);
-            LRRestrictionsLabel.Name = "LRRestrictionsLabel";
-            LRRestrictionsLabel.Size = new Size(14, 15);
-            LRRestrictionsLabel.TabIndex = 7;
-            LRRestrictionsLabel.Text = "Z";
+            LRIndexLabel.AutoSize = true;
+            LRIndexLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            LRIndexLabel.Location = new Point(23, 62);
+            LRIndexLabel.Name = "LRIndexLabel";
+            LRIndexLabel.Size = new Size(16, 12);
+            LRIndexLabel.TabIndex = 10;
+            LRIndexLabel.Text = "НБ";
+            // 
+            // URRestrictionsLabel
+            // 
+            URRestrictionsLabel.AutoSize = true;
+            URRestrictionsLabel.Location = new Point(14, 26);
+            URRestrictionsLabel.Name = "URRestrictionsLabel";
+            URRestrictionsLabel.Size = new Size(14, 15);
+            URRestrictionsLabel.TabIndex = 8;
+            URRestrictionsLabel.Text = "Z";
             // 
             // inequalitySignLRComboBox
             // 
@@ -622,35 +575,6 @@
             textBox4.Size = new Size(57, 23);
             textBox4.TabIndex = 3;
             textBox4.TextAlign = HorizontalAlignment.Center;
-            // 
-            // URRestrictionsLabel
-            // 
-            URRestrictionsLabel.AutoSize = true;
-            URRestrictionsLabel.Location = new Point(14, 26);
-            URRestrictionsLabel.Name = "URRestrictionsLabel";
-            URRestrictionsLabel.Size = new Size(14, 15);
-            URRestrictionsLabel.TabIndex = 8;
-            URRestrictionsLabel.Text = "Z";
-            // 
-            // URIndexLabel
-            // 
-            this.URIndexLabel.AutoSize = true;
-            this.URIndexLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            this.URIndexLabel.Location = new Point(23, 35);
-            this.URIndexLabel.Name = "URIndexLabel";
-            this.URIndexLabel.Size = new Size(15, 12);
-            this.URIndexLabel.TabIndex = 9;
-            this.URIndexLabel.Text = "ВБ";
-            // 
-            // LRIndexLabel
-            // 
-            LRIndexLabel.AutoSize = true;
-            LRIndexLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            LRIndexLabel.Location = new Point(23, 62);
-            LRIndexLabel.Name = "LRIndexLabel";
-            LRIndexLabel.Size = new Size(16, 12);
-            LRIndexLabel.TabIndex = 10;
-            LRIndexLabel.Text = "НБ";
             // 
             // MainForm
             // 
