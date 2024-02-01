@@ -245,7 +245,7 @@
             groupBox3.Size = new Size(205, 82);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
-            groupBox3.Text = "groupBox3";
+            groupBox3.Text = "Зона нерекомендуемой работы";
             // 
             // label4
             // 
@@ -359,7 +359,7 @@
             groupBox2.Size = new Size(205, 82);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Водное управление";
+            groupBox2.Text = "Бассейновое водное управление";
             // 
             // URRestrictionsLabel
             // 
@@ -452,18 +452,18 @@
             powerRestrictions500Label.AutoSize = true;
             powerRestrictions500Label.Location = new Point(10, 55);
             powerRestrictions500Label.Name = "powerRestrictions500Label";
-            powerRestrictions500Label.Size = new Size(97, 15);
+            powerRestrictions500Label.Size = new Size(85, 15);
             powerRestrictions500Label.TabIndex = 5;
-            powerRestrictions500Label.Text = "P                 , МВт:";
+            powerRestrictions500Label.Text = "P             , МВт:";
             // 
             // powerRestrictions220Label
             // 
             powerRestrictions220Label.AutoSize = true;
             powerRestrictions220Label.Location = new Point(10, 26);
             powerRestrictions220Label.Name = "powerRestrictions220Label";
-            powerRestrictions220Label.Size = new Size(97, 15);
+            powerRestrictions220Label.Size = new Size(85, 15);
             powerRestrictions220Label.TabIndex = 4;
-            powerRestrictions220Label.Text = "P                 , МВт:";
+            powerRestrictions220Label.Text = "P             , МВт:";
             // 
             // powerRestrictions500TextBox
             // 
@@ -694,9 +694,9 @@
             restrictions220IndexLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
             restrictions220IndexLabel.Location = new Point(19, 33);
             restrictions220IndexLabel.Name = "restrictions220IndexLabel";
-            restrictions220IndexLabel.Size = new Size(52, 12);
+            restrictions220IndexLabel.Size = new Size(39, 12);
             restrictions220IndexLabel.TabIndex = 6;
-            restrictions220IndexLabel.Text = "СВМ 220 кВ";
+            restrictions220IndexLabel.Text = "СВМ220";
             // 
             // label8
             // 
@@ -704,9 +704,9 @@
             label8.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
             label8.Location = new Point(19, 62);
             label8.Name = "label8";
-            label8.Size = new Size(52, 12);
+            label8.Size = new Size(39, 12);
             label8.TabIndex = 7;
-            label8.Text = "СВМ 500 кВ";
+            label8.Text = "СВМ500";
             // 
             // label9
             // 
