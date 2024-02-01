@@ -17,20 +17,19 @@ namespace View
         {
             InitializeComponent();
 
-
+            
+            // Создаем таблицу
+            CreateDataGridView();
 
             // Вызываем тестовый метод при загрузке формы
-            FillData();
-
-            // Добавляем TextBox-ы для powerDRtableLayoutPanel
-            AddPowerDRTextBoxesToTableLayoutPanel(powerDRtableLayoutPanel);
+            TestFillData();
         }
 
         // Класс для хранения данных
         [Serializable]
         public class DataItem
         {
-            public string GA { get; set; }
+            public string GU { get; set; }
             public int Load { get; set; }
             public int Zone { get; set; }
             public string Status { get; set; }
@@ -42,23 +41,25 @@ namespace View
             // Создаем колонки
             DataGridViewTextBoxColumn gaColumn = new DataGridViewTextBoxColumn();
             gaColumn.HeaderText = "ГА";
-            gaColumn.Width = 44; // Устанавливаем ширину для столбца "ГА"
+            // Устанавливаем ширину для столбца "ГА"
+            gaColumn.Width = 44;
             gaColumn.ReadOnly = true;
 
             DataGridViewTextBoxColumn loadColumn = new DataGridViewTextBoxColumn();
             loadColumn.HeaderText = "Загрузка, МВт";
-            loadColumn.Width = 70; // Устанавливаем ширину для столбца "Загрузка"
+            loadColumn.Width = 70;
 
             DataGridViewTextBoxColumn zoneColumn = new DataGridViewTextBoxColumn();
             zoneColumn.HeaderText = "Зона";
-            zoneColumn.Width = 40; // Устанавливаем ширину для столбца "Зона работы"
+            zoneColumn.Width = 40;
 
             // Создаем комбобокс для столбца "Статус"
             DataGridViewComboBoxColumn statusColumn = new DataGridViewComboBoxColumn();
             statusColumn.HeaderText = "Статус";
             statusColumn.Items.AddRange("В работе", "Выведен");
-            statusColumn.Width = 80; // Устанавливаем ширину для столбца "Статус"
+            statusColumn.Width = 80;
 
+            // Перенос названия столбца на новую строку, если он не помещается
             loadColumn.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
 
             // Устанавливаем выравнивание по центру для ячеек и заголовков столбцов
@@ -125,14 +126,6 @@ namespace View
             }
         }
 
-        private void FillData()
-        {
-            // Создаем таблицу
-            CreateDataGridView();
-
-            // Заполняем таблицу данными
-            TestFillData();
-        }
 
         // Метод для сериализации данных в XML
         private void SerializeToXml(List<DataItem> data, string fileName)
@@ -156,96 +149,11 @@ namespace View
                 }
             }
 
-            // Добавляем TextBox-ы в TableLayoutPanel
-            AddTextBoxesToTableLayoutPanel(tableLayoutPanel);
-
-            // Добавляем TableLayoutPanel в calcGroupBox
-            calcGroupBox.Controls.Add(tableLayoutPanel);
-
-            // Заблокировать кнопку при неверном пароле
+            // Недоступность кнопки экспорта по умолчанию
             exportDBButton.Enabled = false;
         }
 
-        private void AddTextBoxesToTableLayoutPanel(TableLayoutPanel tableLayoutPanel)
-        {
-            // Создаем TextBox-ы
-            TextBox textBox1 = new TextBox();
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Text = "НПРЧ";
-            textBox1.ReadOnly = true;
-            // невозможность установки курсора
-            textBox1.Enter += TextBox_Enter;
-            // Убираем рамку
-            textBox1.BorderStyle = BorderStyle.None;
-
-            TextBox textBox2 = new TextBox();
-            textBox2.Dock = DockStyle.Fill;
-
-            TextBox textBox3 = new TextBox();
-            textBox3.Dock = DockStyle.Fill;
-            textBox3.Text = "ОГ";
-            textBox3.ReadOnly = true;
-            textBox3.Enter += TextBox_Enter;
-            // Убираем рамку
-            textBox3.BorderStyle = BorderStyle.None;
-
-            TextBox textBox4 = new TextBox();
-            textBox4.Dock = DockStyle.Fill;
-
-
-            // Добавляем TextBox-ы в ячейки TableLayoutPanel
-            tableLayoutPanel.Controls.Add(textBox1, 0, 0);
-            tableLayoutPanel.Controls.Add(textBox2, 1, 0);
-            tableLayoutPanel.Controls.Add(textBox3, 0, 1);
-            tableLayoutPanel.Controls.Add(textBox4, 1, 1);
-        }
-
-        private void AddPowerDRTextBoxesToTableLayoutPanel(TableLayoutPanel tableLayoutPanel)
-        {
-            // Создаем TextBox-ы
-            TextBox textBox1 = new TextBox();
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Text = "СВМ 220 кВ";
-            textBox1.ReadOnly = true;
-            textBox1.Enter += TextBox_Enter;
-            // Убираем рамку
-            textBox1.BorderStyle = BorderStyle.None;
-
-            TextBox textBox2 = new TextBox();
-            textBox2.Dock = DockStyle.Fill;
-            // Оставляем рамку (по умолчанию)
-            textBox2.BorderStyle = BorderStyle.FixedSingle;
-
-            TextBox textBox3 = new TextBox();
-            textBox3.Dock = DockStyle.Fill;
-
-            textBox3.Text = "СВМ 500 кВ";
-            textBox3.ReadOnly = true;
-            textBox3.Enter += TextBox_Enter;
-            // Убираем рамку
-            textBox3.BorderStyle = BorderStyle.None;
-
-            TextBox textBox4 = new TextBox();
-            textBox4.Dock = DockStyle.Fill;
-            // Оставляем рамку (по умолчанию)
-            textBox4.BorderStyle = BorderStyle.FixedSingle;
-
-            // Добавляем TextBox-ы в ячейки TableLayoutPanel
-            tableLayoutPanel.Controls.Add(textBox1, 0, 0);
-            tableLayoutPanel.Controls.Add(textBox2, 1, 0);
-            tableLayoutPanel.Controls.Add(textBox3, 0, 1);
-            tableLayoutPanel.Controls.Add(textBox4, 1, 1);
-        }
-
-
-
-        private void TextBox_Enter(object sender, EventArgs e)
-        {
-            // При активации TextBox устанавливаем фокус на другой элемент
-            ActiveControl = null;
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
+        private void Save_Click(object sender, EventArgs e)
         {
             // Создаем список для хранения данных
             List<DataItem> dataItems = new List<DataItem>();
@@ -256,10 +164,10 @@ namespace View
                 // Создаем объект DataItem на основе данных в строке
                 DataItem item = new DataItem
                 {
-                    GA = row.Cells[0].Value?.ToString(), // Индекс 0 соответствует первому столбцу
-                    Load = Convert.ToInt32(row.Cells[1].Value), // Индекс 1 соответствует второму столбцу
-                    Zone = Convert.ToInt32(row.Cells[2].Value), // Индекс 2 соответствует третьему столбцу
-                    Status = row.Cells[3].Value?.ToString() // Индекс 3 соответствует четвертому столбцу
+                    GU = row.Cells[0].Value?.ToString(),
+                    Load = Convert.ToInt32(row.Cells[1].Value),
+                    Zone = Convert.ToInt32(row.Cells[2].Value),
+                    Status = row.Cells[3].Value?.ToString()
                 };
 
                 // Добавляем объект в список
@@ -280,7 +188,7 @@ namespace View
             }
         }
 
-        private void editingModeButton_Click(object sender, EventArgs e)
+        private void EditingModeButton_Click(object sender, EventArgs e)
         {
             // Переключаем режим редактирования
             isEditingEnabled = !isEditingEnabled;
@@ -316,7 +224,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void openDoc_Click(object sender, EventArgs e)
+        private void OpenGuide_Click(object sender, EventArgs e)
         {
             // Формируем путь к файлу "Руководство пользователя.pdf" в директории приложения
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Руководство пользователя.pdf");
@@ -346,7 +254,7 @@ namespace View
             }
         }
 
-        private void файлToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenParamsHU_Click(object sender, EventArgs e)
         {
             // Создаем объект OpenFileDialog
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -372,7 +280,7 @@ namespace View
             }
         }
 
-        private void authorizationButton_Click(object sender, EventArgs e)
+        private void AuthorizationButton_Click(object sender, EventArgs e)
         {
             // Вывести диалоговое окно для авторизации
             Authorization authorizationForm = new Authorization();
@@ -385,7 +293,7 @@ namespace View
             }
         }
 
-        private void currentCharacteristicsToolStripMenu_Click(object sender, EventArgs e)
+        private void CurrentCharacteristicsToolStripMenu_Click(object sender, EventArgs e)
         {
             var connector = new PostgresConnector("localhost", "HPPs", "postgres", $"{Model.PostgresQueries.PasswordDB}");
 

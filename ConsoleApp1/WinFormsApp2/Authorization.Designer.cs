@@ -93,7 +93,6 @@
         private TextBox passwordTextBox;
         private Button okButton;
         private Label errorLabel;
-        private MenuStrip menuStrip1;
         private Button cancelButton;
     }
 }
