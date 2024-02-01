@@ -44,11 +44,11 @@
             tabPage2 = new TabPage();
             label10 = new Label();
             groupBox3 = new GroupBox();
-            label9 = new Label();
+            cubic5Label = new Label();
             label7 = new Label();
-            label4 = new Label();
-            label3 = new Label();
-            textBox3 = new TextBox();
+            flowMaxLoadIndex = new Label();
+            flowMaxLoadTextBoxLabel = new Label();
+            flowMaxLoadTextBox = new TextBox();
             cubic4Label = new Label();
             unitsSec4Label = new Label();
             cubic3Label = new Label();
@@ -56,8 +56,8 @@
             roughZone2Label = new Label();
             roughZoneIndex1Label = new Label();
             roughZone1Label = new Label();
-            textBox8 = new TextBox();
-            textBox7 = new TextBox();
+            roughZone2TextBox = new TextBox();
+            roughZone1TextBox = new TextBox();
             unitsSec3Label = new Label();
             groupBox2 = new GroupBox();
             cubic2Label = new Label();
@@ -251,11 +251,11 @@
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(label9);
+            groupBox3.Controls.Add(cubic5Label);
             groupBox3.Controls.Add(label7);
-            groupBox3.Controls.Add(label4);
-            groupBox3.Controls.Add(label3);
-            groupBox3.Controls.Add(textBox3);
+            groupBox3.Controls.Add(flowMaxLoadIndex);
+            groupBox3.Controls.Add(flowMaxLoadTextBoxLabel);
+            groupBox3.Controls.Add(flowMaxLoadTextBox);
             groupBox3.Controls.Add(cubic4Label);
             groupBox3.Controls.Add(unitsSec4Label);
             groupBox3.Controls.Add(cubic3Label);
@@ -263,8 +263,8 @@
             groupBox3.Controls.Add(roughZone2Label);
             groupBox3.Controls.Add(roughZoneIndex1Label);
             groupBox3.Controls.Add(roughZone1Label);
-            groupBox3.Controls.Add(textBox8);
-            groupBox3.Controls.Add(textBox7);
+            groupBox3.Controls.Add(roughZone2TextBox);
+            groupBox3.Controls.Add(roughZone1TextBox);
             groupBox3.Controls.Add(unitsSec3Label);
             groupBox3.Location = new Point(8, 210);
             groupBox3.Name = "groupBox3";
@@ -273,15 +273,15 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Вычисляются*";
             // 
-            // label9
+            // cubic5Label
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label9.Location = new Point(63, 80);
-            label9.Name = "label9";
-            label9.Size = new Size(10, 12);
-            label9.TabIndex = 24;
-            label9.Text = "3";
+            cubic5Label.AutoSize = true;
+            cubic5Label.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            cubic5Label.Location = new Point(63, 80);
+            cubic5Label.Name = "cubic5Label";
+            cubic5Label.Size = new Size(10, 12);
+            cubic5Label.TabIndex = 24;
+            cubic5Label.Text = "3";
             // 
             // label7
             // 
@@ -293,33 +293,34 @@
             label7.Text = "/с:";
             label7.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // label4
+            // flowMaxLoadIndex
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label4.Location = new Point(22, 92);
-            label4.Name = "label4";
-            label4.Size = new Size(26, 12);
-            label4.TabIndex = 22;
-            label4.Text = "ЛОМ";
+            flowMaxLoadIndex.AutoSize = true;
+            flowMaxLoadIndex.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            flowMaxLoadIndex.Location = new Point(22, 92);
+            flowMaxLoadIndex.Name = "flowMaxLoadIndex";
+            flowMaxLoadIndex.Size = new Size(26, 12);
+            flowMaxLoadIndex.TabIndex = 22;
+            flowMaxLoadIndex.Text = "ЛОМ";
             // 
-            // label3
+            // flowMaxLoadTextBoxLabel
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(10, 84);
-            label3.Name = "label3";
-            label3.Size = new Size(61, 15);
-            label3.TabIndex = 21;
-            label3.Text = "Q         , м ";
+            flowMaxLoadTextBoxLabel.AutoSize = true;
+            flowMaxLoadTextBoxLabel.Location = new Point(10, 84);
+            flowMaxLoadTextBoxLabel.Name = "flowMaxLoadTextBoxLabel";
+            flowMaxLoadTextBoxLabel.Size = new Size(61, 15);
+            flowMaxLoadTextBoxLabel.TabIndex = 21;
+            flowMaxLoadTextBoxLabel.Text = "Q         , м ";
             // 
-            // textBox3
+            // flowMaxLoadTextBox
             // 
-            textBox3.Location = new Point(104, 80);
-            textBox3.Name = "textBox3";
-            textBox3.ReadOnly = true;
-            textBox3.Size = new Size(96, 23);
-            textBox3.TabIndex = 20;
-            textBox3.TextAlign = HorizontalAlignment.Center;
+            flowMaxLoadTextBox.Cursor = Cursors.No;
+            flowMaxLoadTextBox.Location = new Point(104, 80);
+            flowMaxLoadTextBox.Name = "flowMaxLoadTextBox";
+            flowMaxLoadTextBox.ReadOnly = true;
+            flowMaxLoadTextBox.Size = new Size(96, 23);
+            flowMaxLoadTextBox.TabIndex = 20;
+            flowMaxLoadTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // cubic4Label
             // 
@@ -390,23 +391,25 @@
             roughZone1Label.Text = "Q         , м ";
             roughZone1Label.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // textBox8
+            // roughZone2TextBox
             // 
-            textBox8.Location = new Point(104, 51);
-            textBox8.Name = "textBox8";
-            textBox8.ReadOnly = true;
-            textBox8.Size = new Size(96, 23);
-            textBox8.TabIndex = 3;
-            textBox8.TextAlign = HorizontalAlignment.Center;
+            roughZone2TextBox.Cursor = Cursors.No;
+            roughZone2TextBox.Location = new Point(104, 51);
+            roughZone2TextBox.Name = "roughZone2TextBox";
+            roughZone2TextBox.ReadOnly = true;
+            roughZone2TextBox.Size = new Size(96, 23);
+            roughZone2TextBox.TabIndex = 3;
+            roughZone2TextBox.TextAlign = HorizontalAlignment.Center;
             // 
-            // textBox7
+            // roughZone1TextBox
             // 
-            textBox7.Location = new Point(104, 22);
-            textBox7.Name = "textBox7";
-            textBox7.ReadOnly = true;
-            textBox7.Size = new Size(96, 23);
-            textBox7.TabIndex = 2;
-            textBox7.TextAlign = HorizontalAlignment.Center;
+            roughZone1TextBox.Cursor = Cursors.No;
+            roughZone1TextBox.Location = new Point(104, 22);
+            roughZone1TextBox.Name = "roughZone1TextBox";
+            roughZone1TextBox.ReadOnly = true;
+            roughZone1TextBox.Size = new Size(96, 23);
+            roughZone1TextBox.TabIndex = 2;
+            roughZone1TextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // unitsSec3Label
             // 
@@ -952,8 +955,8 @@
         private TextBox LRTextBox;
         private TextBox URTextBox;
         private Label LRRestrictionsLabel;
-        private TextBox textBox7;
-        private TextBox textBox8;
+        private TextBox roughZone1TextBox;
+        private TextBox roughZone2TextBox;
         private Label powerRestrictions220Label;
         private Label URIndexLabel;
         private Label label6;
@@ -981,10 +984,10 @@
         private Label label2;
         private Label label1;
         private Label label7;
-        private Label label4;
-        private Label label3;
-        private TextBox textBox3;
-        private Label label9;
+        private Label flowMaxLoadIndex;
+        private Label flowMaxLoadTextBoxLabel;
+        private TextBox flowMaxLoadTextBox;
+        private Label cubic5Label;
         private GroupBox groupBox1;
         private Label label10;
     }
