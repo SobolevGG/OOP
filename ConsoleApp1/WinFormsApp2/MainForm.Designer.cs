@@ -37,7 +37,6 @@
             saveParamsHU = new ToolStripMenuItem();
             referenceButton = new ToolStripDropDownButton();
             openGuide = new ToolStripMenuItem();
-            SupportToolStripMenu = new ToolStripMenuItem();
             tabControl = new TabControl();
             tabPage1 = new TabPage();
             dataGridView = new DataGridView();
@@ -174,7 +173,7 @@
             // referenceButton
             // 
             referenceButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            referenceButton.DropDownItems.AddRange(new ToolStripItem[] { openGuide, SupportToolStripMenu });
+            referenceButton.DropDownItems.AddRange(new ToolStripItem[] { openGuide });
             referenceButton.Image = (Image)resources.GetObject("referenceButton.Image");
             referenceButton.ImageTransparentColor = Color.Magenta;
             referenceButton.Name = "referenceButton";
@@ -188,13 +187,6 @@
             openGuide.Size = new Size(206, 22);
             openGuide.Text = "Открыть";
             openGuide.Click += OpenGuide_Click;
-            // 
-            // SupportToolStripMenu
-            // 
-            SupportToolStripMenu.Image = (Image)resources.GetObject("SupportToolStripMenu.Image");
-            SupportToolStripMenu.Name = "SupportToolStripMenu";
-            SupportToolStripMenu.Size = new Size(206, 22);
-            SupportToolStripMenu.Text = "Техническая поддержка";
             // 
             // tabControl
             // 
@@ -939,7 +931,6 @@
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripDropDownButton referenceButton;
         private ToolStripMenuItem openGuide;
-        private ToolStripMenuItem SupportToolStripMenu;
         private Button CalcButton;
         private GroupBox ULRGroupBox;
         private ToolStripButton exportDBButton;
