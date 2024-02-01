@@ -107,6 +107,7 @@
             textBox1 = new TextBox();
             label6 = new Label();
             label5 = new Label();
+            button1 = new Button();
             toolStrip.SuspendLayout();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -748,9 +749,9 @@
             // 
             // CalcButton
             // 
-            CalcButton.Location = new Point(308, 274);
+            CalcButton.Location = new Point(294, 289);
             CalcButton.Name = "CalcButton";
-            CalcButton.Size = new Size(82, 23);
+            CalcButton.Size = new Size(111, 23);
             CalcButton.TabIndex = 4;
             CalcButton.Text = "Расчёт РВР";
             CalcButton.UseVisualStyleBackColor = true;
@@ -830,7 +831,7 @@
             calcGroupBox.Controls.Add(textBox1);
             calcGroupBox.Controls.Add(label6);
             calcGroupBox.Controls.Add(label5);
-            calcGroupBox.Location = new Point(266, 174);
+            calcGroupBox.Location = new Point(266, 198);
             calcGroupBox.Name = "calcGroupBox";
             calcGroupBox.Size = new Size(167, 83);
             calcGroupBox.TabIndex = 6;
@@ -871,11 +872,21 @@
             label5.TabIndex = 0;
             label5.Text = "НПРЧ, МВт:";
             // 
+            // button1
+            // 
+            button1.Location = new Point(294, 158);
+            button1.Name = "button1";
+            button1.Size = new Size(111, 23);
+            button1.TabIndex = 7;
+            button1.Text = "Импорт из ОИК";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(452, 424);
+            Controls.Add(button1);
             Controls.Add(calcGroupBox);
             Controls.Add(ULRGroupBox);
             Controls.Add(CalcButton);
@@ -990,5 +1001,6 @@
         private Label cubic5Label;
         private GroupBox groupBox1;
         private Label label10;
+        private Button button1;
     }
 }
