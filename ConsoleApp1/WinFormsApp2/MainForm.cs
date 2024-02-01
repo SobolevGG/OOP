@@ -335,7 +335,7 @@ namespace View
             }
         }
 
-        private void protocolToolStripMenu_Click(object sender, EventArgs e)
+        private void ProtocolToolStripMenu_Click(object sender, EventArgs e)
         {
             var connector = new PostgresConnector("localhost", "HPPs", "postgres", $"{Model.PostgresQueries.PasswordDB}");
 
@@ -377,7 +377,7 @@ namespace View
             }
         }
 
-        private void exportDBButton_Click(object sender, EventArgs e)
+        private void ExportDBButton_Click(object sender, EventArgs e)
         {
             // Проверка доступности кнопки
             if (!exportDBButton.Enabled)

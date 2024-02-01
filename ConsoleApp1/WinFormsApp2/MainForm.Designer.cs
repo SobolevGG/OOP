@@ -721,7 +721,7 @@
             protocolToolStripMenu.Name = "protocolToolStripMenu";
             protocolToolStripMenu.Size = new Size(230, 22);
             protocolToolStripMenu.Text = "Протокол актуализации";
-            protocolToolStripMenu.Click += protocolToolStripMenu_Click;
+            protocolToolStripMenu.Click += ProtocolToolStripMenu_Click;
             // 
             // exportDBButton
             // 
@@ -731,7 +731,7 @@
             exportDBButton.Size = new Size(99, 20);
             exportDBButton.Text = "Экспорт в БД";
             exportDBButton.ToolTipText = "Для экспорта в БД требуется авторизация";
-            exportDBButton.Click += exportDBButton_Click;
+            exportDBButton.Click += ExportDBButton_Click;
             // 
             // toolStripSeparator2
             // 
