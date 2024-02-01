@@ -71,6 +71,7 @@
             URRestrictionsLabel = new Label();
             unitsSec1Label = new Label();
             unitsSec2Label = new Label();
+            groupBox1 = new GroupBox();
             powerDRGroupBox = new GroupBox();
             label8 = new Label();
             restrictions220IndexLabel = new Label();
@@ -105,7 +106,7 @@
             textBox1 = new TextBox();
             label6 = new Label();
             label5 = new Label();
-            groupBox1 = new GroupBox();
+            label10 = new Label();
             toolStrip.SuspendLayout();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -113,11 +114,11 @@
             tabPage2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
+            groupBox1.SuspendLayout();
             powerDRGroupBox.SuspendLayout();
             toolBar.SuspendLayout();
             ULRGroupBox.SuspendLayout();
             calcGroupBox.SuspendLayout();
-            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // toolStrip
@@ -226,6 +227,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(label10);
             tabPage2.Controls.Add(groupBox3);
             tabPage2.Controls.Add(groupBox2);
             tabPage2.Controls.Add(groupBox1);
@@ -254,12 +256,12 @@
             groupBox3.Controls.Add(textBox8);
             groupBox3.Controls.Add(textBox7);
             groupBox3.Controls.Add(unitsSec3Label);
-            groupBox3.Location = new Point(19, 210);
+            groupBox3.Location = new Point(8, 210);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(205, 111);
+            groupBox3.Size = new Size(229, 111);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
-            groupBox3.Text = "Вычисляются";
+            groupBox3.Text = "Вычисляются*";
             // 
             // label9
             // 
@@ -304,8 +306,10 @@
             // 
             textBox3.Location = new Point(93, 80);
             textBox3.Name = "textBox3";
+            textBox3.ReadOnly = true;
             textBox3.Size = new Size(96, 23);
             textBox3.TabIndex = 20;
+            textBox3.TextAlign = HorizontalAlignment.Center;
             // 
             // cubic4Label
             // 
@@ -380,15 +384,19 @@
             // 
             textBox8.Location = new Point(93, 51);
             textBox8.Name = "textBox8";
+            textBox8.ReadOnly = true;
             textBox8.Size = new Size(96, 23);
             textBox8.TabIndex = 3;
+            textBox8.TextAlign = HorizontalAlignment.Center;
             // 
             // textBox7
             // 
             textBox7.Location = new Point(93, 22);
             textBox7.Name = "textBox7";
+            textBox7.ReadOnly = true;
             textBox7.Size = new Size(96, 23);
             textBox7.TabIndex = 2;
+            textBox7.TextAlign = HorizontalAlignment.Center;
             // 
             // unitsSec3Label
             // 
@@ -497,6 +505,7 @@
             LRRestrictionsTextBox.Name = "LRRestrictionsTextBox";
             LRRestrictionsTextBox.Size = new Size(66, 23);
             LRRestrictionsTextBox.TabIndex = 3;
+            LRRestrictionsTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // URRestrictionsTextBox
             // 
@@ -504,6 +513,7 @@
             URRestrictionsTextBox.Name = "URRestrictionsTextBox";
             URRestrictionsTextBox.Size = new Size(66, 23);
             URRestrictionsTextBox.TabIndex = 2;
+            URRestrictionsTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // URRestrictionsLabel
             // 
@@ -533,6 +543,16 @@
             unitsSec2Label.TabIndex = 20;
             unitsSec2Label.Text = "/с:";
             unitsSec2Label.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(powerDRGroupBox);
+            groupBox1.Location = new Point(8, 6);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(229, 198);
+            groupBox1.TabIndex = 3;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Задаются";
             // 
             // powerDRGroupBox
             // 
@@ -593,6 +613,7 @@
             powerRestrictions500TextBox.Name = "powerRestrictions500TextBox";
             powerRestrictions500TextBox.Size = new Size(66, 23);
             powerRestrictions500TextBox.TabIndex = 3;
+            powerRestrictions500TextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // powerRestrictions220TextBox
             // 
@@ -600,6 +621,7 @@
             powerRestrictions220TextBox.Name = "powerRestrictions220TextBox";
             powerRestrictions220TextBox.Size = new Size(66, 23);
             powerRestrictions220TextBox.TabIndex = 2;
+            powerRestrictions220TextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // toolBar
             // 
@@ -761,6 +783,7 @@
             LRTextBox.Name = "LRTextBox";
             LRTextBox.Size = new Size(66, 23);
             LRTextBox.TabIndex = 3;
+            LRTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // URTextBox
             // 
@@ -768,6 +791,7 @@
             URTextBox.Name = "URTextBox";
             URTextBox.Size = new Size(66, 23);
             URTextBox.TabIndex = 2;
+            URTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // LRLabel
             // 
@@ -806,6 +830,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(66, 23);
             textBox2.TabIndex = 3;
+            textBox2.TextAlign = HorizontalAlignment.Center;
             // 
             // textBox1
             // 
@@ -813,6 +838,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(66, 23);
             textBox1.TabIndex = 2;
+            textBox1.TextAlign = HorizontalAlignment.Center;
             // 
             // label6
             // 
@@ -832,15 +858,15 @@
             label5.TabIndex = 0;
             label5.Text = "НПРЧ, МВт:";
             // 
-            // groupBox1
+            // label10
             // 
-            groupBox1.Controls.Add(powerDRGroupBox);
-            groupBox1.Location = new Point(8, 6);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(229, 198);
-            groupBox1.TabIndex = 3;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Задаются";
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label10.Location = new Point(29, 324);
+            label10.Name = "label10";
+            label10.Size = new Size(185, 12);
+            label10.TabIndex = 4;
+            label10.Text = "* - уровни бьефов должны быть заполнены.";
             // 
             // MainForm
             // 
@@ -863,10 +889,12 @@
             tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
+            groupBox1.ResumeLayout(false);
             powerDRGroupBox.ResumeLayout(false);
             powerDRGroupBox.PerformLayout();
             toolBar.ResumeLayout(false);
@@ -875,7 +903,6 @@
             ULRGroupBox.PerformLayout();
             calcGroupBox.ResumeLayout(false);
             calcGroupBox.PerformLayout();
-            groupBox1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -959,5 +986,6 @@
         private TextBox textBox3;
         private Label label9;
         private GroupBox groupBox1;
+        private Label label10;
     }
 }
