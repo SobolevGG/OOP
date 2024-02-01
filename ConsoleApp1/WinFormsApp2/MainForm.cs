@@ -162,7 +162,7 @@ namespace View
             calcGroupBox.Controls.Add(tableLayoutPanel);
 
             // Заблокировать кнопку при неверном пароле
-            importDBButton.Enabled = false;  
+            importDBButton.Enabled = false;
         }
 
         private void AddTextBoxesToTableLayoutPanel(TableLayoutPanel tableLayoutPanel)
@@ -371,9 +371,19 @@ namespace View
             }
         }
 
-        
+        private void authorizationButton_Click(object sender, EventArgs e)
+        {
+            // Вывести диалоговое окно для авторизации
+            Authorization authorizationForm = new Authorization();
+            DialogResult result = authorizationForm.ShowDialog();
 
-        private void importDBButton_Click(object sender, EventArgs e)
+            if (result == DialogResult.OK)
+            {
+                importDBButton.Enabled = true;  // Разблокировать кнопку после успешной авторизации
+            }
+        }
+
+        private void currentCharacteristicsToolStripMenu_Click(object sender, EventArgs e)
         {
             // Проверка доступности кнопки
             if (!importDBButton.Enabled)
@@ -386,8 +396,8 @@ namespace View
 
             try
             {
-                // Чтение данных из столбцов 'generator_id' и 'characteristic' таблицы 'generator_characteristic_history'
-                string selectQuery = "SELECT generator_id, characteristic FROM generator_characteristic_history;";
+                // Чтение данных из столбцов name, characteristic и change_date из таблицы generator_characteristic_history
+                string selectQuery = "SELECT name, characteristic FROM hydro_generators;";
                 var reader = connector.ExecuteQuery(selectQuery);
 
                 if (reader != null)
@@ -424,15 +434,56 @@ namespace View
             }
         }
 
-        private void authorizationButton_Click(object sender, EventArgs e)
+        private void protocolToolStripMenu_Click(object sender, EventArgs e)
         {
-            // Вывести диалоговое окно для авторизации
-            Authorization authorizationForm = new Authorization();
-            DialogResult result = authorizationForm.ShowDialog();
-
-            if (result == DialogResult.OK)
+            // Проверка доступности кнопки
+            if (!importDBButton.Enabled)
             {
-                importDBButton.Enabled = true;  // Разблокировать кнопку после успешной авторизации
+                MessageBox.Show("Авторизация не выполнена. Введите правильный пароль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var connector = new PostgresConnector("localhost", "HPPs", "postgres", $"{Authorization.PasswordDB}");
+
+            try
+            {
+                // Чтение данных из столбцов name, characteristic и change_date из таблицы generator_characteristic_history
+                string selectQuery = "SELECT hydro_generators.name, generator_characteristic_history.characteristic, generator_characteristic_history.change_date " +
+                    "FROM generator_characteristic_history " +
+                    "JOIN hydro_generators ON generator_characteristic_history.generator_id = hydro_generators.id;";
+                var reader = connector.ExecuteQuery(selectQuery);
+
+                if (reader != null)
+                {
+                    DataTable dataTable = new DataTable("GeneratorCharacteristicHistory");
+                    dataTable.Load(reader);
+
+                    // Создание XML-файла и запись в него данных
+                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    {
+                        Filter = "XML files (*.xml)|*.xml",
+                        Title = "Сохранить данные в XML"
+                    };
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string filePath = saveFileDialog.FileName;
+                        dataTable.WriteXml(filePath);
+
+                        MessageBox.Show("Данные успешно сохранены в XML файл.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при чтении данных из базы данных: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Закрытие соединения
+                connector.CloseConnection();
             }
         }
     }

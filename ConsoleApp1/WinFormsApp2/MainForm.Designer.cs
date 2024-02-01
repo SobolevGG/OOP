@@ -52,7 +52,9 @@
             editingModeButton = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             authorizationButton = new ToolStripButton();
-            importDBButton = new ToolStripButton();
+            importDBButton = new ToolStripSplitButton();
+            currentCharacteristicsToolStripMenu = new ToolStripMenuItem();
+            protocolToolStripMenu = new ToolStripMenuItem();
             exportDBButton = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             importBMPButton = new ToolStripButton();
@@ -74,7 +76,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1, referenceButton });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(619, 25);
+            toolStrip1.Size = new Size(634, 25);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -213,7 +215,7 @@
             toolStrip2.Items.AddRange(new ToolStripItem[] { saveButton, editingModeButton, toolStripSeparator1, authorizationButton, importDBButton, exportDBButton, toolStripSeparator2, importBMPButton });
             toolStrip2.Location = new Point(0, 25);
             toolStrip2.Name = "toolStrip2";
-            toolStrip2.Size = new Size(619, 25);
+            toolStrip2.Size = new Size(634, 25);
             toolStrip2.TabIndex = 3;
             toolStrip2.Text = "toolStrip2";
             // 
@@ -272,12 +274,28 @@
             // 
             // importDBButton
             // 
+            importDBButton.DropDownItems.AddRange(new ToolStripItem[] { currentCharacteristicsToolStripMenu, protocolToolStripMenu });
             importDBButton.Image = (Image)resources.GetObject("importDBButton.Image");
             importDBButton.ImageTransparentColor = Color.Magenta;
             importDBButton.Name = "importDBButton";
-            importDBButton.Size = new Size(98, 22);
+            importDBButton.Size = new Size(110, 22);
             importDBButton.Text = "Импорт с БД";
-            importDBButton.Click += importDBButton_Click;
+            // 
+            // currentCharacteristicsToolStripMenu
+            // 
+            currentCharacteristicsToolStripMenu.Image = (Image)resources.GetObject("currentCharacteristicsToolStripMenu.Image");
+            currentCharacteristicsToolStripMenu.Name = "currentCharacteristicsToolStripMenu";
+            currentCharacteristicsToolStripMenu.Size = new Size(230, 22);
+            currentCharacteristicsToolStripMenu.Text = "Актуальные характеристики";
+            currentCharacteristicsToolStripMenu.Click += currentCharacteristicsToolStripMenu_Click;
+            // 
+            // protocolToolStripMenu
+            // 
+            protocolToolStripMenu.Image = (Image)resources.GetObject("protocolToolStripMenu.Image");
+            protocolToolStripMenu.Name = "protocolToolStripMenu";
+            protocolToolStripMenu.Size = new Size(230, 22);
+            protocolToolStripMenu.Text = "Протокол актуализации";
+            protocolToolStripMenu.Click += protocolToolStripMenu_Click;
             // 
             // exportDBButton
             // 
@@ -297,7 +315,7 @@
             importBMPButton.Image = (Image)resources.GetObject("importBMPButton.Image");
             importBMPButton.ImageTransparentColor = Color.Magenta;
             importBMPButton.Name = "importBMPButton";
-            importBMPButton.Size = new Size(97, 22);
+            importBMPButton.Size = new Size(97, 20);
             importBMPButton.Text = "Импорт ПБР";
             // 
             // CalcButton
@@ -336,7 +354,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(619, 450);
+            ClientSize = new Size(634, 450);
             Controls.Add(calcGroupBox);
             Controls.Add(CalcButton);
             Controls.Add(toolStrip2);
@@ -372,7 +390,6 @@
         private TabPage tabPage2;
         private DataGridView dataGridView;
         private ToolStripMenuItem paramsHUToolStripMenuItem;
-        private ToolStripButton importDBButton;
         private ToolStripMenuItem saveParamsHU;
         private ToolStrip toolStrip2;
         private ToolStripButton editingModeButton;
@@ -393,5 +410,8 @@
         private ToolStripMenuItem параметрыГАToolStripMenuItem;
         private ToolStripMenuItem ограниченияToolStripMenuItem;
         private ToolStripMenuItem характеристикиГАToolStripMenuItem;
+        private ToolStripSplitButton importDBButton;
+        private ToolStripMenuItem currentCharacteristicsToolStripMenu;
+        private ToolStripMenuItem protocolToolStripMenu;
     }
 }
