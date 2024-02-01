@@ -22,19 +22,10 @@ namespace View
             passwordTextBox.PasswordChar = '*';
         }
 
-        // Пароль для доступа к базе данных
-        private static string passwordDB = "023098";
-
-        // Только для чтения свойство
-        public static string PasswordDB
-        {
-            get { return passwordDB; }
-        }
-
         private void okButton_Click(object sender, EventArgs e)
         {
             // Ваш пароль для сравнения
-            string actualPassword = passwordDB;
+            string actualPassword = Model.PostgresQueries.PasswordDB;
 
             // Получить введенный пользователем пароль
             string enteredPassword = passwordTextBox.Text;

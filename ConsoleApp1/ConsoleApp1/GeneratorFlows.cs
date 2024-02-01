@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace HydroGeneratorOptimization
+namespace Model
 {
     [Serializable]
     [XmlRoot("GeneratorFlows")]

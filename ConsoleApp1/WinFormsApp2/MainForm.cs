@@ -386,7 +386,7 @@ namespace View
 
         private void currentCharacteristicsToolStripMenu_Click(object sender, EventArgs e)
         {
-            var connector = new PostgresConnector("localhost", "HPPs", "postgres", $"{Authorization.PasswordDB}");
+            var connector = new PostgresConnector("localhost", "HPPs", "postgres", $"{Model.PostgresQueries.PasswordDB}");
 
             try
             {
@@ -430,7 +430,7 @@ namespace View
 
         private void protocolToolStripMenu_Click(object sender, EventArgs e)
         {
-            var connector = new PostgresConnector("localhost", "HPPs", "postgres", $"{Authorization.PasswordDB}");
+            var connector = new PostgresConnector("localhost", "HPPs", "postgres", $"{Model.PostgresQueries.PasswordDB}");
 
             try
             {
@@ -487,7 +487,7 @@ namespace View
             // Вызов нового метода для вставки/обновления данных
             try
             {
-                InsertOrUpdateHydroGenerator(10, "Гидрогенератор 10", "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))");
+                Model.PostgresQueries.InsertOrUpdateHydroGenerator(10, "Гидрогенератор 10", "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))");
                 MessageBox.Show("Данные успешно вставлены/обновлены.", "Выполнено", 
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -498,30 +498,7 @@ namespace View
             }
         }
 
-        /// <summary>
-        /// Вставляет или обновляет данные гидрогенератора в базе данных.
-        /// </summary>
-        /// <param name="connector">Объект для подключения к базе данных.</param>
-        /// <param name="id">Идентификатор гидрогенератора.</param>
-        /// <param name="name">Название гидрогенератора.</param>
-        /// <param name="hydroPowerPlantId">Идентификатор связанной ГЭС.</param>
-        /// <param name="characteristic">Текущая эксплуатационная характеристика.</param>
-
-        private void InsertOrUpdateHydroGenerator(int id, string name, string characteristic)
-        {
-            var connector = new PostgresConnector("localhost", "HPPs", "postgres", $"{Authorization.PasswordDB}");
-            string sqlQuery = $@"
-        INSERT INTO hydro_generators (id, name, hydro_power_plant_id, characteristic, last_change_date)
-        VALUES ({id}, '{name}', 1, '{characteristic}', CURRENT_TIMESTAMP)
-        ON CONFLICT (id) DO UPDATE
-        SET
-            name = EXCLUDED.name,
-            hydro_power_plant_id = EXCLUDED.hydro_power_plant_id,
-            characteristic = EXCLUDED.characteristic,
-            last_change_date = EXCLUDED.last_change_date;";
-
-            connector.ExecuteNonQuery(sqlQuery);
-        }
+        
 
     }
 }

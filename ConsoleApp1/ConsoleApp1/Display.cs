@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using static HydroGeneratorOptimization.Formulas;
+using static Model.Formulas;
 
-namespace HydroGeneratorOptimization
+namespace Model
 {
     public class Display
     {

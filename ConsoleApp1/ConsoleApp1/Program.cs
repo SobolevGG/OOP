@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 // using Extreme.Mathematics;
-using HydroGeneratorOptimization;
-using static HydroGeneratorOptimization.Formulas;
+using Model;
+using static Model.Formulas;
 using MathNet.Numerics.Optimization;
 using System;
 using MathNet.Numerics;
@@ -28,7 +28,7 @@ using Meta.Numerics.Analysis;
 using Npgsql;
 
 
-namespace HydroGeneratorOptimization
+namespace Model
 {
     public class Program
     {

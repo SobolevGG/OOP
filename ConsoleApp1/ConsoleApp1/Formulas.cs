@@ -5,10 +5,10 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 using System.Xml.Serialization;
-using HydroGeneratorOptimization;
+using Model;
 using MathNet.Numerics.Optimization;
 
-namespace HydroGeneratorOptimization
+namespace Model
 {
     public class Formulas
     {

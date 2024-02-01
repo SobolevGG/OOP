@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HydroGeneratorOptimization
+namespace Model
 {
     using System;
     using System.Collections.Generic;
@@ -12,8 +12,8 @@ namespace HydroGeneratorOptimization
     using System.Linq.Dynamic.Core;
     using System.Linq.Expressions;
     using System.Xml.Serialization;
-    using HydroGeneratorOptimization;
-    using static HydroGeneratorOptimization.Formulas;
+    using Model;
+    using static Model.Formulas;
 
     public class PowerCalculation
     {

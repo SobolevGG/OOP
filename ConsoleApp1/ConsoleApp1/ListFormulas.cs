@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static HydroGeneratorOptimization.Formulas;
+using static Model.Formulas;
 
-namespace HydroGeneratorOptimization
+namespace Model
 {
     public class ListFormulas
     {

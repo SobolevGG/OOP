@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 using System;
 using System.IO;
 
-namespace HydroGeneratorOptimization
+namespace Model
 {
     public class XmlFileManager<T>
     {

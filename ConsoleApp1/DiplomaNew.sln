@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HydroGeneratorOptimization", "ConsoleApp1\HydroGeneratorOptimization.csproj", "{54D1EA2C-7368-4D3B-9C11-2429F915CDBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "ConsoleApp1\Model.csproj", "{54D1EA2C-7368-4D3B-9C11-2429F915CDBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "WinFormsApp2\View.csproj", "{AFF39641-944E-4EC5-B7A4-E7C51A07E1E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "View", "WinFormsApp2\View.csproj", "{AFF39641-944E-4EC5-B7A4-E7C51A07E1E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
