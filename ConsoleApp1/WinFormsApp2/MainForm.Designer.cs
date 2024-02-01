@@ -42,6 +42,7 @@
             tabPage1 = new TabPage();
             dataGridView = new DataGridView();
             tabPage2 = new TabPage();
+            label10 = new Label();
             groupBox3 = new GroupBox();
             label9 = new Label();
             label7 = new Label();
@@ -106,7 +107,6 @@
             textBox1 = new TextBox();
             label6 = new Label();
             label5 = new Label();
-            label10 = new Label();
             toolStrip.SuspendLayout();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -126,7 +126,7 @@
             toolStrip.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1, referenceButton });
             toolStrip.Location = new Point(0, 0);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(469, 25);
+            toolStrip.Size = new Size(452, 25);
             toolStrip.TabIndex = 0;
             toolStrip.Text = "toolStrip1";
             // 
@@ -239,6 +239,16 @@
             tabPage2.Text = "Ограничения";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label10.Location = new Point(29, 324);
+            label10.Name = "label10";
+            label10.Size = new Size(185, 12);
+            label10.TabIndex = 4;
+            label10.Text = "* - уровни бьефов должны быть заполнены.";
+            // 
             // groupBox3
             // 
             groupBox3.Controls.Add(label9);
@@ -304,7 +314,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(93, 80);
+            textBox3.Location = new Point(104, 80);
             textBox3.Name = "textBox3";
             textBox3.ReadOnly = true;
             textBox3.Size = new Size(96, 23);
@@ -382,7 +392,7 @@
             // 
             // textBox8
             // 
-            textBox8.Location = new Point(93, 51);
+            textBox8.Location = new Point(104, 51);
             textBox8.Name = "textBox8";
             textBox8.ReadOnly = true;
             textBox8.Size = new Size(96, 23);
@@ -391,7 +401,7 @@
             // 
             // textBox7
             // 
-            textBox7.Location = new Point(93, 22);
+            textBox7.Location = new Point(104, 22);
             textBox7.Name = "textBox7";
             textBox7.ReadOnly = true;
             textBox7.Size = new Size(96, 23);
@@ -422,7 +432,7 @@
             groupBox2.Controls.Add(URRestrictionsLabel);
             groupBox2.Controls.Add(unitsSec1Label);
             groupBox2.Controls.Add(unitsSec2Label);
-            groupBox2.Location = new Point(19, 111);
+            groupBox2.Location = new Point(20, 111);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(205, 82);
             groupBox2.TabIndex = 1;
@@ -562,7 +572,7 @@
             powerDRGroupBox.Controls.Add(powerRestrictions220Label);
             powerDRGroupBox.Controls.Add(powerRestrictions500TextBox);
             powerDRGroupBox.Controls.Add(powerRestrictions220TextBox);
-            powerDRGroupBox.Location = new Point(11, 19);
+            powerDRGroupBox.Location = new Point(12, 19);
             powerDRGroupBox.Name = "powerDRGroupBox";
             powerDRGroupBox.Size = new Size(205, 82);
             powerDRGroupBox.TabIndex = 0;
@@ -628,7 +638,7 @@
             toolBar.Items.AddRange(new ToolStripItem[] { saveButton, editingModeButton, toolStripSeparator1, authorizationButton, importDBButton, exportDBButton, toolStripSeparator2, importBMPButton });
             toolBar.Location = new Point(0, 25);
             toolBar.Name = "toolBar";
-            toolBar.Size = new Size(469, 25);
+            toolBar.Size = new Size(452, 25);
             toolBar.TabIndex = 3;
             toolBar.Text = "toolStrip2";
             // 
@@ -735,7 +745,7 @@
             // 
             // CalcButton
             // 
-            CalcButton.Location = new Point(379, 279);
+            CalcButton.Location = new Point(308, 274);
             CalcButton.Name = "CalcButton";
             CalcButton.Size = new Size(82, 23);
             CalcButton.TabIndex = 4;
@@ -750,9 +760,9 @@
             ULRGroupBox.Controls.Add(URTextBox);
             ULRGroupBox.Controls.Add(LRLabel);
             ULRGroupBox.Controls.Add(URLabel);
-            ULRGroupBox.Location = new Point(261, 67);
+            ULRGroupBox.Location = new Point(266, 67);
             ULRGroupBox.Name = "ULRGroupBox";
-            ULRGroupBox.Size = new Size(144, 83);
+            ULRGroupBox.Size = new Size(167, 83);
             ULRGroupBox.TabIndex = 5;
             ULRGroupBox.TabStop = false;
             ULRGroupBox.Text = "Уровни бьефов, м";
@@ -779,7 +789,7 @@
             // 
             // LRTextBox
             // 
-            LRTextBox.Location = new Point(65, 52);
+            LRTextBox.Location = new Point(87, 52);
             LRTextBox.Name = "LRTextBox";
             LRTextBox.Size = new Size(66, 23);
             LRTextBox.TabIndex = 3;
@@ -787,7 +797,7 @@
             // 
             // URTextBox
             // 
-            URTextBox.Location = new Point(65, 23);
+            URTextBox.Location = new Point(87, 23);
             URTextBox.Name = "URTextBox";
             URTextBox.Size = new Size(66, 23);
             URTextBox.TabIndex = 2;
@@ -817,9 +827,9 @@
             calcGroupBox.Controls.Add(textBox1);
             calcGroupBox.Controls.Add(label6);
             calcGroupBox.Controls.Add(label5);
-            calcGroupBox.Location = new Point(261, 173);
+            calcGroupBox.Location = new Point(266, 174);
             calcGroupBox.Name = "calcGroupBox";
-            calcGroupBox.Size = new Size(200, 100);
+            calcGroupBox.Size = new Size(167, 83);
             calcGroupBox.TabIndex = 6;
             calcGroupBox.TabStop = false;
             calcGroupBox.Text = "Расчёт РВР, МВт";
@@ -858,21 +868,11 @@
             label5.TabIndex = 0;
             label5.Text = "НПРЧ, МВт:";
             // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label10.Location = new Point(29, 324);
-            label10.Name = "label10";
-            label10.Size = new Size(185, 12);
-            label10.TabIndex = 4;
-            label10.Text = "* - уровни бьефов должны быть заполнены.";
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(469, 424);
+            ClientSize = new Size(452, 424);
             Controls.Add(calcGroupBox);
             Controls.Add(ULRGroupBox);
             Controls.Add(CalcButton);
