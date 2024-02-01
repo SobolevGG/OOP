@@ -43,18 +43,19 @@
             dataGridView = new DataGridView();
             tabPage2 = new TabPage();
             groupBox3 = new GroupBox();
-            label4 = new Label();
-            label2 = new Label();
-            label7 = new Label();
+            cubic4Label = new Label();
+            unitsSec4Label = new Label();
+            cubic3Label = new Label();
             label3 = new Label();
             roughZone2Label = new Label();
             label1 = new Label();
             roughZone1Label = new Label();
             textBox8 = new TextBox();
             textBox7 = new TextBox();
-            secondLabel = new Label();
+            unitsSec3Label = new Label();
             groupBox2 = new GroupBox();
-            URRestrictionsLabel = new Label();
+            cubic2Label = new Label();
+            cubic1Label = new Label();
             URIndexLabel = new Label();
             LRIndexLabel = new Label();
             LRRestrictionsLabel = new Label();
@@ -62,7 +63,12 @@
             inequalitySignURComboBox = new ComboBox();
             LRRestrictionsTextBox = new TextBox();
             URRestrictionsTextBox = new TextBox();
+            URRestrictionsLabel = new Label();
+            unitsSec1Label = new Label();
+            unitsSec2Label = new Label();
             powerDRGroupBox = new GroupBox();
+            label8 = new Label();
+            restrictions220IndexLabel = new Label();
             powerRestrictions500Label = new Label();
             powerRestrictions220Label = new Label();
             powerRestrictions500TextBox = new TextBox();
@@ -92,12 +98,6 @@
             textBox1 = new TextBox();
             label6 = new Label();
             label5 = new Label();
-            restrictions220IndexLabel = new Label();
-            label8 = new Label();
-            label9 = new Label();
-            label10 = new Label();
-            label11 = new Label();
-            label12 = new Label();
             toolStrip.SuspendLayout();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -230,16 +230,16 @@
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(label4);
-            groupBox3.Controls.Add(label2);
-            groupBox3.Controls.Add(label7);
+            groupBox3.Controls.Add(cubic4Label);
+            groupBox3.Controls.Add(unitsSec4Label);
+            groupBox3.Controls.Add(cubic3Label);
             groupBox3.Controls.Add(label3);
             groupBox3.Controls.Add(roughZone2Label);
             groupBox3.Controls.Add(label1);
             groupBox3.Controls.Add(roughZone1Label);
             groupBox3.Controls.Add(textBox8);
             groupBox3.Controls.Add(textBox7);
-            groupBox3.Controls.Add(secondLabel);
+            groupBox3.Controls.Add(unitsSec3Label);
             groupBox3.Location = new Point(3, 202);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(205, 82);
@@ -247,35 +247,35 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Зона нерекомендуемой работы";
             // 
-            // label4
+            // cubic4Label
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label4.Location = new Point(63, 47);
-            label4.Name = "label4";
-            label4.Size = new Size(10, 12);
-            label4.TabIndex = 19;
-            label4.Text = "3";
+            cubic4Label.AutoSize = true;
+            cubic4Label.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            cubic4Label.Location = new Point(63, 47);
+            cubic4Label.Name = "cubic4Label";
+            cubic4Label.Size = new Size(10, 12);
+            cubic4Label.TabIndex = 19;
+            cubic4Label.Text = "3";
             // 
-            // label2
+            // unitsSec4Label
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(68, 51);
-            label2.Name = "label2";
-            label2.Size = new Size(21, 15);
-            label2.TabIndex = 18;
-            label2.Text = "/с:";
-            label2.TextAlign = ContentAlignment.MiddleLeft;
+            unitsSec4Label.AutoSize = true;
+            unitsSec4Label.Location = new Point(68, 51);
+            unitsSec4Label.Name = "unitsSec4Label";
+            unitsSec4Label.Size = new Size(21, 15);
+            unitsSec4Label.TabIndex = 18;
+            unitsSec4Label.Text = "/с:";
+            unitsSec4Label.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // label7
+            // cubic3Label
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label7.Location = new Point(63, 21);
-            label7.Name = "label7";
-            label7.Size = new Size(10, 12);
-            label7.TabIndex = 16;
-            label7.Text = "3";
+            cubic3Label.AutoSize = true;
+            cubic3Label.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            cubic3Label.Location = new Point(63, 21);
+            cubic3Label.Name = "cubic3Label";
+            cubic3Label.Size = new Size(10, 12);
+            cubic3Label.TabIndex = 16;
+            cubic3Label.Text = "3";
             // 
             // label3
             // 
@@ -330,20 +330,20 @@
             textBox7.Size = new Size(66, 23);
             textBox7.TabIndex = 2;
             // 
-            // secondLabel
+            // unitsSec3Label
             // 
-            secondLabel.AutoSize = true;
-            secondLabel.Location = new Point(68, 25);
-            secondLabel.Name = "secondLabel";
-            secondLabel.Size = new Size(21, 15);
-            secondLabel.TabIndex = 17;
-            secondLabel.Text = "/с:";
-            secondLabel.TextAlign = ContentAlignment.MiddleLeft;
+            unitsSec3Label.AutoSize = true;
+            unitsSec3Label.Location = new Point(68, 25);
+            unitsSec3Label.Name = "unitsSec3Label";
+            unitsSec3Label.Size = new Size(21, 15);
+            unitsSec3Label.TabIndex = 17;
+            unitsSec3Label.Text = "/с:";
+            unitsSec3Label.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(label10);
-            groupBox2.Controls.Add(label9);
+            groupBox2.Controls.Add(cubic2Label);
+            groupBox2.Controls.Add(cubic1Label);
             groupBox2.Controls.Add(URIndexLabel);
             groupBox2.Controls.Add(LRIndexLabel);
             groupBox2.Controls.Add(LRRestrictionsLabel);
@@ -352,8 +352,8 @@
             groupBox2.Controls.Add(LRRestrictionsTextBox);
             groupBox2.Controls.Add(URRestrictionsTextBox);
             groupBox2.Controls.Add(URRestrictionsLabel);
-            groupBox2.Controls.Add(label11);
-            groupBox2.Controls.Add(label12);
+            groupBox2.Controls.Add(unitsSec1Label);
+            groupBox2.Controls.Add(unitsSec2Label);
             groupBox2.Location = new Point(3, 114);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(205, 82);
@@ -361,14 +361,27 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Бассейновое водное управление";
             // 
-            // URRestrictionsLabel
+            // cubic2Label
             // 
-            URRestrictionsLabel.AutoSize = true;
-            URRestrictionsLabel.Location = new Point(10, 26);
-            URRestrictionsLabel.Name = "URRestrictionsLabel";
-            URRestrictionsLabel.Size = new Size(46, 15);
-            URRestrictionsLabel.TabIndex = 8;
-            URRestrictionsLabel.Text = "Q     , м";
+            cubic2Label.AutoSize = true;
+            cubic2Label.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            cubic2Label.Location = new Point(51, 50);
+            cubic2Label.Name = "cubic2Label";
+            cubic2Label.Size = new Size(10, 12);
+            cubic2Label.TabIndex = 18;
+            cubic2Label.Text = "3";
+            cubic2Label.TextAlign = ContentAlignment.BottomLeft;
+            // 
+            // cubic1Label
+            // 
+            cubic1Label.AutoSize = true;
+            cubic1Label.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            cubic1Label.Location = new Point(51, 22);
+            cubic1Label.Name = "cubic1Label";
+            cubic1Label.Size = new Size(10, 12);
+            cubic1Label.TabIndex = 17;
+            cubic1Label.Text = "3";
+            cubic1Label.TextAlign = ContentAlignment.BottomLeft;
             // 
             // URIndexLabel
             // 
@@ -432,6 +445,35 @@
             URRestrictionsTextBox.Size = new Size(66, 23);
             URRestrictionsTextBox.TabIndex = 2;
             // 
+            // URRestrictionsLabel
+            // 
+            URRestrictionsLabel.AutoSize = true;
+            URRestrictionsLabel.Location = new Point(10, 26);
+            URRestrictionsLabel.Name = "URRestrictionsLabel";
+            URRestrictionsLabel.Size = new Size(46, 15);
+            URRestrictionsLabel.TabIndex = 8;
+            URRestrictionsLabel.Text = "Q     , м";
+            // 
+            // unitsSec1Label
+            // 
+            unitsSec1Label.AutoSize = true;
+            unitsSec1Label.Location = new Point(56, 26);
+            unitsSec1Label.Name = "unitsSec1Label";
+            unitsSec1Label.Size = new Size(21, 15);
+            unitsSec1Label.TabIndex = 19;
+            unitsSec1Label.Text = "/с:";
+            unitsSec1Label.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // unitsSec2Label
+            // 
+            unitsSec2Label.AutoSize = true;
+            unitsSec2Label.Location = new Point(56, 54);
+            unitsSec2Label.Name = "unitsSec2Label";
+            unitsSec2Label.Size = new Size(21, 15);
+            unitsSec2Label.TabIndex = 20;
+            unitsSec2Label.Text = "/с:";
+            unitsSec2Label.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // powerDRGroupBox
             // 
             powerDRGroupBox.Controls.Add(label8);
@@ -446,6 +488,26 @@
             powerDRGroupBox.TabIndex = 0;
             powerDRGroupBox.TabStop = false;
             powerDRGroupBox.Text = "Схема выдачи мощности";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label8.Location = new Point(19, 62);
+            label8.Name = "label8";
+            label8.Size = new Size(39, 12);
+            label8.TabIndex = 7;
+            label8.Text = "СВМ500";
+            // 
+            // restrictions220IndexLabel
+            // 
+            restrictions220IndexLabel.AutoSize = true;
+            restrictions220IndexLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            restrictions220IndexLabel.Location = new Point(19, 33);
+            restrictions220IndexLabel.Name = "restrictions220IndexLabel";
+            restrictions220IndexLabel.Size = new Size(39, 12);
+            restrictions220IndexLabel.TabIndex = 6;
+            restrictions220IndexLabel.Text = "СВМ220";
             // 
             // powerRestrictions500Label
             // 
@@ -688,68 +750,6 @@
             label5.TabIndex = 0;
             label5.Text = "НПРЧ, МВт:";
             // 
-            // restrictions220IndexLabel
-            // 
-            restrictions220IndexLabel.AutoSize = true;
-            restrictions220IndexLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            restrictions220IndexLabel.Location = new Point(19, 33);
-            restrictions220IndexLabel.Name = "restrictions220IndexLabel";
-            restrictions220IndexLabel.Size = new Size(39, 12);
-            restrictions220IndexLabel.TabIndex = 6;
-            restrictions220IndexLabel.Text = "СВМ220";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label8.Location = new Point(19, 62);
-            label8.Name = "label8";
-            label8.Size = new Size(39, 12);
-            label8.TabIndex = 7;
-            label8.Text = "СВМ500";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label9.Location = new Point(51, 22);
-            label9.Name = "label9";
-            label9.Size = new Size(10, 12);
-            label9.TabIndex = 17;
-            label9.Text = "3";
-            label9.TextAlign = ContentAlignment.BottomLeft;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label10.Location = new Point(51, 50);
-            label10.Name = "label10";
-            label10.Size = new Size(10, 12);
-            label10.TabIndex = 18;
-            label10.Text = "3";
-            label10.TextAlign = ContentAlignment.BottomLeft;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(56, 26);
-            label11.Name = "label11";
-            label11.Size = new Size(21, 15);
-            label11.TabIndex = 19;
-            label11.Text = "/с:";
-            label11.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(56, 54);
-            label12.Name = "label12";
-            label12.Size = new Size(21, 15);
-            label12.TabIndex = 20;
-            label12.Text = "/с:";
-            label12.TextAlign = ContentAlignment.MiddleLeft;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -849,14 +849,14 @@
         private Label roughZone2Label;
         private Label label1;
         private Label roughZone1Label;
-        private Label label7;
-        private Label secondLabel;
-        private Label label4;
-        private Label label2;
+        private Label cubic3Label;
+        private Label unitsSec3Label;
+        private Label cubic4Label;
+        private Label unitsSec4Label;
         private Label label8;
-        private Label label9;
-        private Label label10;
-        private Label label11;
-        private Label label12;
+        private Label cubic1Label;
+        private Label cubic2Label;
+        private Label unitsSec1Label;
+        private Label unitsSec2Label;
     }
 }
