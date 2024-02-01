@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            toolStrip1 = new ToolStrip();
+            toolStrip = new ToolStrip();
             toolStripDropDownButton1 = new ToolStripDropDownButton();
             openFile = new ToolStripMenuItem();
             OpenParamsHU = new ToolStripMenuItem();
@@ -43,10 +43,13 @@
             dataGridView = new DataGridView();
             tabPage2 = new TabPage();
             groupBox3 = new GroupBox();
+            label7 = new Label();
+            label3 = new Label();
+            roughZone2Label = new Label();
+            label1 = new Label();
+            roughZone1Label = new Label();
             textBox8 = new TextBox();
             textBox7 = new TextBox();
-            label4 = new Label();
-            label3 = new Label();
             groupBox2 = new GroupBox();
             URRestrictionsLabel = new Label();
             URIndexLabel = new Label();
@@ -61,7 +64,7 @@
             powerRestrictions220Label = new Label();
             powerRestrictions500TextBox = new TextBox();
             powerRestrictions220TextBox = new TextBox();
-            toolStrip2 = new ToolStrip();
+            toolBar = new ToolStrip();
             saveButton = new ToolStripSplitButton();
             параметрыГАToolStripMenuItem = new ToolStripMenuItem();
             ограниченияToolStripMenuItem = new ToolStripMenuItem();
@@ -82,11 +85,14 @@
             LRLabel = new Label();
             URLabel = new Label();
             calcGroupBox = new GroupBox();
-            label5 = new Label();
-            label6 = new Label();
-            textBox1 = new TextBox();
             textBox2 = new TextBox();
-            toolStrip1.SuspendLayout();
+            textBox1 = new TextBox();
+            label6 = new Label();
+            label5 = new Label();
+            secondLabel = new Label();
+            label2 = new Label();
+            label4 = new Label();
+            toolStrip.SuspendLayout();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
@@ -94,19 +100,19 @@
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             powerDRGroupBox.SuspendLayout();
-            toolStrip2.SuspendLayout();
+            toolBar.SuspendLayout();
             ULRGroupBox.SuspendLayout();
             calcGroupBox.SuspendLayout();
             SuspendLayout();
             // 
-            // toolStrip1
+            // toolStrip
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1, referenceButton });
-            toolStrip1.Location = new Point(0, 0);
-            toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(469, 25);
-            toolStrip1.TabIndex = 0;
-            toolStrip1.Text = "toolStrip1";
+            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1, referenceButton });
+            toolStrip.Location = new Point(0, 0);
+            toolStrip.Name = "toolStrip";
+            toolStrip.Size = new Size(469, 25);
+            toolStrip.TabIndex = 0;
+            toolStrip.Text = "toolStrip1";
             // 
             // toolStripDropDownButton1
             // 
@@ -218,10 +224,16 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(label4);
+            groupBox3.Controls.Add(label2);
+            groupBox3.Controls.Add(label7);
+            groupBox3.Controls.Add(label3);
+            groupBox3.Controls.Add(roughZone2Label);
+            groupBox3.Controls.Add(label1);
+            groupBox3.Controls.Add(roughZone1Label);
             groupBox3.Controls.Add(textBox8);
             groupBox3.Controls.Add(textBox7);
-            groupBox3.Controls.Add(label4);
-            groupBox3.Controls.Add(label3);
+            groupBox3.Controls.Add(secondLabel);
             groupBox3.Location = new Point(34, 203);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(174, 82);
@@ -229,37 +241,68 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "groupBox3";
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label7.Location = new Point(63, 21);
+            label7.Name = "label7";
+            label7.Size = new Size(10, 12);
+            label7.TabIndex = 16;
+            label7.Text = "3";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label3.Location = new Point(23, 59);
+            label3.Name = "label3";
+            label3.Size = new Size(26, 12);
+            label3.TabIndex = 14;
+            label3.Text = "ЗНР2";
+            // 
+            // roughZone2Label
+            // 
+            roughZone2Label.AutoSize = true;
+            roughZone2Label.Location = new Point(10, 51);
+            roughZone2Label.Name = "roughZone2Label";
+            roughZone2Label.Size = new Size(61, 15);
+            roughZone2Label.TabIndex = 15;
+            roughZone2Label.Text = "Q         , м ";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label1.Location = new Point(23, 33);
+            label1.Name = "label1";
+            label1.Size = new Size(26, 12);
+            label1.TabIndex = 12;
+            label1.Text = "ЗНР1";
+            // 
+            // roughZone1Label
+            // 
+            roughZone1Label.AutoSize = true;
+            roughZone1Label.Location = new Point(10, 25);
+            roughZone1Label.Name = "roughZone1Label";
+            roughZone1Label.Size = new Size(61, 15);
+            roughZone1Label.TabIndex = 13;
+            roughZone1Label.Text = "Q         , м ";
+            roughZone1Label.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // textBox8
             // 
-            textBox8.Location = new Point(87, 51);
+            textBox8.Location = new Point(92, 51);
             textBox8.Name = "textBox8";
             textBox8.Size = new Size(66, 23);
             textBox8.TabIndex = 3;
             // 
             // textBox7
             // 
-            textBox7.Location = new Point(87, 22);
+            textBox7.Location = new Point(92, 22);
             textBox7.Name = "textBox7";
             textBox7.Size = new Size(66, 23);
             textBox7.TabIndex = 2;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(10, 54);
-            label4.Name = "label4";
-            label4.Size = new Size(38, 15);
-            label4.TabIndex = 1;
-            label4.Text = "label4";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(23, 26);
-            label3.Name = "label3";
-            label3.Size = new Size(38, 15);
-            label3.TabIndex = 0;
-            label3.Text = "label3";
             // 
             // groupBox2
             // 
@@ -394,14 +437,14 @@
             powerRestrictions220TextBox.Size = new Size(66, 23);
             powerRestrictions220TextBox.TabIndex = 2;
             // 
-            // toolStrip2
+            // toolBar
             // 
-            toolStrip2.Items.AddRange(new ToolStripItem[] { saveButton, editingModeButton, toolStripSeparator1, authorizationButton, importDBButton, exportDBButton, toolStripSeparator2, importBMPButton });
-            toolStrip2.Location = new Point(0, 25);
-            toolStrip2.Name = "toolStrip2";
-            toolStrip2.Size = new Size(469, 25);
-            toolStrip2.TabIndex = 3;
-            toolStrip2.Text = "toolStrip2";
+            toolBar.Items.AddRange(new ToolStripItem[] { saveButton, editingModeButton, toolStripSeparator1, authorizationButton, importDBButton, exportDBButton, toolStripSeparator2, importBMPButton });
+            toolBar.Location = new Point(0, 25);
+            toolBar.Name = "toolBar";
+            toolBar.Size = new Size(469, 25);
+            toolBar.TabIndex = 3;
+            toolBar.Text = "toolStrip2";
             // 
             // saveButton
             // 
@@ -528,14 +571,14 @@
             // 
             // LRTextBox
             // 
-            LRTextBox.Location = new Point(36, 52);
+            LRTextBox.Location = new Point(87, 52);
             LRTextBox.Name = "LRTextBox";
             LRTextBox.Size = new Size(66, 23);
             LRTextBox.TabIndex = 3;
             // 
             // URTextBox
             // 
-            URTextBox.Location = new Point(36, 23);
+            URTextBox.Location = new Point(87, 23);
             URTextBox.Name = "URTextBox";
             URTextBox.Size = new Size(66, 23);
             URTextBox.TabIndex = 2;
@@ -571,37 +614,67 @@
             calcGroupBox.TabStop = false;
             calcGroupBox.Text = "Расчёт РВР, МВт";
             // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(87, 49);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(66, 23);
+            textBox2.TabIndex = 3;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(87, 23);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(66, 23);
+            textBox1.TabIndex = 2;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(9, 52);
+            label6.Name = "label6";
+            label6.Size = new Size(56, 15);
+            label6.TabIndex = 1;
+            label6.Text = "ПА, МВт:";
+            // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Location = new Point(9, 26);
             label5.Name = "label5";
-            label5.Size = new Size(43, 15);
+            label5.Size = new Size(72, 15);
             label5.TabIndex = 0;
-            label5.Text = "НПРЧ:";
+            label5.Text = "НПРЧ, МВт:";
             // 
-            // label6
+            // secondLabel
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(29, 52);
-            label6.Name = "label6";
-            label6.Size = new Size(38, 15);
-            label6.TabIndex = 1;
-            label6.Text = "label6";
+            secondLabel.AutoSize = true;
+            secondLabel.Location = new Point(68, 25);
+            secondLabel.Name = "secondLabel";
+            secondLabel.Size = new Size(21, 15);
+            secondLabel.TabIndex = 17;
+            secondLabel.Text = "/с:";
+            secondLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // textBox1
+            // label2
             // 
-            textBox1.Location = new Point(62, 23);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(66, 23);
-            textBox1.TabIndex = 2;
+            label2.AutoSize = true;
+            label2.Location = new Point(68, 51);
+            label2.Name = "label2";
+            label2.Size = new Size(21, 15);
+            label2.TabIndex = 18;
+            label2.Text = "/с:";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // textBox2
+            // label4
             // 
-            textBox2.Location = new Point(36, 49);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(66, 23);
-            textBox2.TabIndex = 3;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label4.Location = new Point(63, 47);
+            label4.Name = "label4";
+            label4.Size = new Size(10, 12);
+            label4.TabIndex = 19;
+            label4.Text = "3";
             // 
             // MainForm
             // 
@@ -611,15 +684,15 @@
             Controls.Add(calcGroupBox);
             Controls.Add(ULRGroupBox);
             Controls.Add(CalcButton);
-            Controls.Add(toolStrip2);
+            Controls.Add(toolBar);
             Controls.Add(tabControl);
-            Controls.Add(toolStrip1);
+            Controls.Add(toolStrip);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
             Text = "Расчёт РВР";
             Load += MainForm_Load;
-            toolStrip1.ResumeLayout(false);
-            toolStrip1.PerformLayout();
+            toolStrip.ResumeLayout(false);
+            toolStrip.PerformLayout();
             tabControl.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
@@ -630,8 +703,8 @@
             groupBox2.PerformLayout();
             powerDRGroupBox.ResumeLayout(false);
             powerDRGroupBox.PerformLayout();
-            toolStrip2.ResumeLayout(false);
-            toolStrip2.PerformLayout();
+            toolBar.ResumeLayout(false);
+            toolBar.PerformLayout();
             ULRGroupBox.ResumeLayout(false);
             ULRGroupBox.PerformLayout();
             calcGroupBox.ResumeLayout(false);
@@ -642,7 +715,7 @@
 
         #endregion
 
-        private ToolStrip toolStrip1;
+        private ToolStrip toolStrip;
         private ToolStripDropDownButton toolStripDropDownButton1;
         private ToolStripMenuItem openFile;
         private ToolStripMenuItem OpenParamsHU;
@@ -652,7 +725,7 @@
         private TabPage tabPage2;
         private DataGridView dataGridView;
         private ToolStripMenuItem saveParamsHU;
-        private ToolStrip toolStrip2;
+        private ToolStrip toolBar;
         private ToolStripButton editingModeButton;
         private ToolStripButton authorizationButton;
         private ToolStripSeparator toolStripSeparator1;
@@ -694,11 +767,17 @@
         private Label label8;
         private Label URRestrictionsLabel;
         private GroupBox groupBox3;
-        private Label label4;
-        private Label label3;
         private Label powerRestrictions500Label;
         private TextBox textBox2;
         private TextBox textBox1;
         private Label label5;
+        private Label label3;
+        private Label roughZone2Label;
+        private Label label1;
+        private Label roughZone1Label;
+        private Label label7;
+        private Label secondLabel;
+        private Label label4;
+        private Label label2;
     }
 }
