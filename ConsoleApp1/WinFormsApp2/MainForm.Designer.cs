@@ -43,6 +43,8 @@
             dataGridView = new DataGridView();
             tabPage2 = new TabPage();
             groupBox3 = new GroupBox();
+            label4 = new Label();
+            label2 = new Label();
             label7 = new Label();
             label3 = new Label();
             roughZone2Label = new Label();
@@ -50,6 +52,7 @@
             roughZone1Label = new Label();
             textBox8 = new TextBox();
             textBox7 = new TextBox();
+            secondLabel = new Label();
             groupBox2 = new GroupBox();
             URRestrictionsLabel = new Label();
             URIndexLabel = new Label();
@@ -89,9 +92,12 @@
             textBox1 = new TextBox();
             label6 = new Label();
             label5 = new Label();
-            secondLabel = new Label();
-            label2 = new Label();
-            label4 = new Label();
+            restrictions220IndexLabel = new Label();
+            label8 = new Label();
+            label9 = new Label();
+            label10 = new Label();
+            label11 = new Label();
+            label12 = new Label();
             toolStrip.SuspendLayout();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -234,12 +240,32 @@
             groupBox3.Controls.Add(textBox8);
             groupBox3.Controls.Add(textBox7);
             groupBox3.Controls.Add(secondLabel);
-            groupBox3.Location = new Point(34, 203);
+            groupBox3.Location = new Point(3, 202);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(174, 82);
+            groupBox3.Size = new Size(205, 82);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "groupBox3";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label4.Location = new Point(63, 47);
+            label4.Name = "label4";
+            label4.Size = new Size(10, 12);
+            label4.TabIndex = 19;
+            label4.Text = "3";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(68, 51);
+            label2.Name = "label2";
+            label2.Size = new Size(21, 15);
+            label2.TabIndex = 18;
+            label2.Text = "/с:";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label7
             // 
@@ -255,7 +281,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label3.Location = new Point(23, 59);
+            label3.Location = new Point(22, 59);
             label3.Name = "label3";
             label3.Size = new Size(26, 12);
             label3.TabIndex = 14;
@@ -274,7 +300,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label1.Location = new Point(23, 33);
+            label1.Location = new Point(22, 33);
             label1.Name = "label1";
             label1.Size = new Size(26, 12);
             label1.TabIndex = 12;
@@ -292,21 +318,32 @@
             // 
             // textBox8
             // 
-            textBox8.Location = new Point(92, 51);
+            textBox8.Location = new Point(110, 51);
             textBox8.Name = "textBox8";
             textBox8.Size = new Size(66, 23);
             textBox8.TabIndex = 3;
             // 
             // textBox7
             // 
-            textBox7.Location = new Point(92, 22);
+            textBox7.Location = new Point(110, 22);
             textBox7.Name = "textBox7";
             textBox7.Size = new Size(66, 23);
             textBox7.TabIndex = 2;
             // 
+            // secondLabel
+            // 
+            secondLabel.AutoSize = true;
+            secondLabel.Location = new Point(68, 25);
+            secondLabel.Name = "secondLabel";
+            secondLabel.Size = new Size(21, 15);
+            secondLabel.TabIndex = 17;
+            secondLabel.Text = "/с:";
+            secondLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(URRestrictionsLabel);
+            groupBox2.Controls.Add(label10);
+            groupBox2.Controls.Add(label9);
             groupBox2.Controls.Add(URIndexLabel);
             groupBox2.Controls.Add(LRIndexLabel);
             groupBox2.Controls.Add(LRRestrictionsLabel);
@@ -314,9 +351,12 @@
             groupBox2.Controls.Add(inequalitySignURComboBox);
             groupBox2.Controls.Add(LRRestrictionsTextBox);
             groupBox2.Controls.Add(URRestrictionsTextBox);
-            groupBox2.Location = new Point(34, 114);
+            groupBox2.Controls.Add(URRestrictionsLabel);
+            groupBox2.Controls.Add(label11);
+            groupBox2.Controls.Add(label12);
+            groupBox2.Location = new Point(3, 114);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(174, 82);
+            groupBox2.Size = new Size(205, 82);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Водное управление";
@@ -326,15 +366,15 @@
             URRestrictionsLabel.AutoSize = true;
             URRestrictionsLabel.Location = new Point(10, 26);
             URRestrictionsLabel.Name = "URRestrictionsLabel";
-            URRestrictionsLabel.Size = new Size(16, 15);
+            URRestrictionsLabel.Size = new Size(46, 15);
             URRestrictionsLabel.TabIndex = 8;
-            URRestrictionsLabel.Text = "Q";
+            URRestrictionsLabel.Text = "Q     , м";
             // 
             // URIndexLabel
             // 
             URIndexLabel.AutoSize = true;
             URIndexLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            URIndexLabel.Location = new Point(23, 35);
+            URIndexLabel.Location = new Point(22, 35);
             URIndexLabel.Name = "URIndexLabel";
             URIndexLabel.Size = new Size(15, 12);
             URIndexLabel.TabIndex = 12;
@@ -344,7 +384,7 @@
             // 
             LRIndexLabel.AutoSize = true;
             LRIndexLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            LRIndexLabel.Location = new Point(23, 62);
+            LRIndexLabel.Location = new Point(22, 63);
             LRIndexLabel.Name = "LRIndexLabel";
             LRIndexLabel.Size = new Size(16, 12);
             LRIndexLabel.TabIndex = 10;
@@ -355,15 +395,15 @@
             LRRestrictionsLabel.AutoSize = true;
             LRRestrictionsLabel.Location = new Point(10, 54);
             LRRestrictionsLabel.Name = "LRRestrictionsLabel";
-            LRRestrictionsLabel.Size = new Size(16, 15);
+            LRRestrictionsLabel.Size = new Size(46, 15);
             LRRestrictionsLabel.TabIndex = 11;
-            LRRestrictionsLabel.Text = "Q";
+            LRRestrictionsLabel.Text = "Q     , м";
             // 
             // inequalitySignLRComboBox
             // 
             inequalitySignLRComboBox.FormattingEnabled = true;
             inequalitySignLRComboBox.Items.AddRange(new object[] { ">=", "<=" });
-            inequalitySignLRComboBox.Location = new Point(42, 51);
+            inequalitySignLRComboBox.Location = new Point(78, 51);
             inequalitySignLRComboBox.Name = "inequalitySignLRComboBox";
             inequalitySignLRComboBox.Size = new Size(39, 23);
             inequalitySignLRComboBox.TabIndex = 5;
@@ -373,34 +413,36 @@
             inequalitySignURComboBox.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             inequalitySignURComboBox.FormattingEnabled = true;
             inequalitySignURComboBox.Items.AddRange(new object[] { ">=", "<=" });
-            inequalitySignURComboBox.Location = new Point(42, 22);
+            inequalitySignURComboBox.Location = new Point(78, 22);
             inequalitySignURComboBox.Name = "inequalitySignURComboBox";
             inequalitySignURComboBox.Size = new Size(39, 23);
             inequalitySignURComboBox.TabIndex = 4;
             // 
             // LRRestrictionsTextBox
             // 
-            LRRestrictionsTextBox.Location = new Point(87, 51);
+            LRRestrictionsTextBox.Location = new Point(123, 51);
             LRRestrictionsTextBox.Name = "LRRestrictionsTextBox";
             LRRestrictionsTextBox.Size = new Size(66, 23);
             LRRestrictionsTextBox.TabIndex = 3;
             // 
             // URRestrictionsTextBox
             // 
-            URRestrictionsTextBox.Location = new Point(87, 22);
+            URRestrictionsTextBox.Location = new Point(123, 22);
             URRestrictionsTextBox.Name = "URRestrictionsTextBox";
             URRestrictionsTextBox.Size = new Size(66, 23);
             URRestrictionsTextBox.TabIndex = 2;
             // 
             // powerDRGroupBox
             // 
+            powerDRGroupBox.Controls.Add(label8);
+            powerDRGroupBox.Controls.Add(restrictions220IndexLabel);
             powerDRGroupBox.Controls.Add(powerRestrictions500Label);
             powerDRGroupBox.Controls.Add(powerRestrictions220Label);
             powerDRGroupBox.Controls.Add(powerRestrictions500TextBox);
             powerDRGroupBox.Controls.Add(powerRestrictions220TextBox);
-            powerDRGroupBox.Location = new Point(34, 26);
+            powerDRGroupBox.Location = new Point(3, 26);
             powerDRGroupBox.Name = "powerDRGroupBox";
-            powerDRGroupBox.Size = new Size(174, 82);
+            powerDRGroupBox.Size = new Size(205, 82);
             powerDRGroupBox.TabIndex = 0;
             powerDRGroupBox.TabStop = false;
             powerDRGroupBox.Text = "Схема выдачи мощности";
@@ -410,29 +452,29 @@
             powerRestrictions500Label.AutoSize = true;
             powerRestrictions500Label.Location = new Point(10, 55);
             powerRestrictions500Label.Name = "powerRestrictions500Label";
-            powerRestrictions500Label.Size = new Size(70, 15);
+            powerRestrictions500Label.Size = new Size(97, 15);
             powerRestrictions500Label.TabIndex = 5;
-            powerRestrictions500Label.Text = "СВМ 500 кВ";
+            powerRestrictions500Label.Text = "P                 , МВт:";
             // 
             // powerRestrictions220Label
             // 
             powerRestrictions220Label.AutoSize = true;
             powerRestrictions220Label.Location = new Point(10, 26);
             powerRestrictions220Label.Name = "powerRestrictions220Label";
-            powerRestrictions220Label.Size = new Size(70, 15);
+            powerRestrictions220Label.Size = new Size(97, 15);
             powerRestrictions220Label.TabIndex = 4;
-            powerRestrictions220Label.Text = "СВМ 220 кВ";
+            powerRestrictions220Label.Text = "P                 , МВт:";
             // 
             // powerRestrictions500TextBox
             // 
-            powerRestrictions500TextBox.Location = new Point(87, 51);
+            powerRestrictions500TextBox.Location = new Point(110, 51);
             powerRestrictions500TextBox.Name = "powerRestrictions500TextBox";
             powerRestrictions500TextBox.Size = new Size(66, 23);
             powerRestrictions500TextBox.TabIndex = 3;
             // 
             // powerRestrictions220TextBox
             // 
-            powerRestrictions220TextBox.Location = new Point(87, 22);
+            powerRestrictions220TextBox.Location = new Point(110, 22);
             powerRestrictions220TextBox.Name = "powerRestrictions220TextBox";
             powerRestrictions220TextBox.Size = new Size(66, 23);
             powerRestrictions220TextBox.TabIndex = 2;
@@ -646,35 +688,67 @@
             label5.TabIndex = 0;
             label5.Text = "НПРЧ, МВт:";
             // 
-            // secondLabel
+            // restrictions220IndexLabel
             // 
-            secondLabel.AutoSize = true;
-            secondLabel.Location = new Point(68, 25);
-            secondLabel.Name = "secondLabel";
-            secondLabel.Size = new Size(21, 15);
-            secondLabel.TabIndex = 17;
-            secondLabel.Text = "/с:";
-            secondLabel.TextAlign = ContentAlignment.MiddleLeft;
+            restrictions220IndexLabel.AutoSize = true;
+            restrictions220IndexLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            restrictions220IndexLabel.Location = new Point(19, 33);
+            restrictions220IndexLabel.Name = "restrictions220IndexLabel";
+            restrictions220IndexLabel.Size = new Size(52, 12);
+            restrictions220IndexLabel.TabIndex = 6;
+            restrictions220IndexLabel.Text = "СВМ 220 кВ";
             // 
-            // label2
+            // label8
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(68, 51);
-            label2.Name = "label2";
-            label2.Size = new Size(21, 15);
-            label2.TabIndex = 18;
-            label2.Text = "/с:";
-            label2.TextAlign = ContentAlignment.MiddleLeft;
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label8.Location = new Point(19, 62);
+            label8.Name = "label8";
+            label8.Size = new Size(52, 12);
+            label8.TabIndex = 7;
+            label8.Text = "СВМ 500 кВ";
             // 
-            // label4
+            // label9
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label4.Location = new Point(63, 47);
-            label4.Name = "label4";
-            label4.Size = new Size(10, 12);
-            label4.TabIndex = 19;
-            label4.Text = "3";
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label9.Location = new Point(51, 22);
+            label9.Name = "label9";
+            label9.Size = new Size(10, 12);
+            label9.TabIndex = 17;
+            label9.Text = "3";
+            label9.TextAlign = ContentAlignment.BottomLeft;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label10.Location = new Point(51, 50);
+            label10.Name = "label10";
+            label10.Size = new Size(10, 12);
+            label10.TabIndex = 18;
+            label10.Text = "3";
+            label10.TextAlign = ContentAlignment.BottomLeft;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(56, 26);
+            label11.Name = "label11";
+            label11.Size = new Size(21, 15);
+            label11.TabIndex = 19;
+            label11.Text = "/с:";
+            label11.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(56, 54);
+            label12.Name = "label12";
+            label12.Size = new Size(21, 15);
+            label12.TabIndex = 20;
+            label12.Text = "/с:";
+            label12.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // MainForm
             // 
@@ -764,7 +838,7 @@
         private Label URIndexLabel;
         private Label label6;
         private Label LRIndexLabel;
-        private Label label8;
+        private Label restrictions220IndexLabel;
         private Label URRestrictionsLabel;
         private GroupBox groupBox3;
         private Label powerRestrictions500Label;
@@ -779,5 +853,10 @@
         private Label secondLabel;
         private Label label4;
         private Label label2;
+        private Label label8;
+        private Label label9;
+        private Label label10;
+        private Label label11;
+        private Label label12;
     }
 }
