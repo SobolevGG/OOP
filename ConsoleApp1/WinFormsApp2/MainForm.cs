@@ -489,7 +489,7 @@ namespace View
             // Вызов нового метода для вставки/обновления данных
             try
             {
-                InsertOrUpdateHydroGenerator(connector, 10, "Гидрогенератор 10", 1, "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))");
+                InsertOrUpdateHydroGenerator(connector, 10, "Гидрогенератор 10", "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))");
                 MessageBox.Show("Данные успешно вставлены/обновлены.", "Выполнено", 
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -509,11 +509,11 @@ namespace View
         /// <param name="hydroPowerPlantId">Идентификатор связанной ГЭС.</param>
         /// <param name="characteristic">Текущая эксплуатационная характеристика.</param>
 
-        private void InsertOrUpdateHydroGenerator(PostgresConnector connector, int id, string name, int hydroPowerPlantId, string characteristic)
+        private void InsertOrUpdateHydroGenerator(PostgresConnector connector, int id, string name, string characteristic)
         {
             string sqlQuery = $@"
         INSERT INTO hydro_generators (id, name, hydro_power_plant_id, characteristic, last_change_date)
-        VALUES ({id}, '{name}', {hydroPowerPlantId}, '{characteristic}', CURRENT_TIMESTAMP)
+        VALUES ({id}, '{name}', 1, '{characteristic}', CURRENT_TIMESTAMP)
         ON CONFLICT (id) DO UPDATE
         SET
             name = EXCLUDED.name,
