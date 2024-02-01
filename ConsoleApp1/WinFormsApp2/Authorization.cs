@@ -46,7 +46,7 @@ namespace View
                 DialogResult = DialogResult.OK;
                 Close();
                 MessageBox.Show("Пароль верный. Авторизация успешна.",
-                    "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "Выполнено", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {

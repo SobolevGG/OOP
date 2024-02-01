@@ -411,7 +411,7 @@ namespace View
                         string filePath = saveFileDialog.FileName;
                         dataTable.WriteXml(filePath);
 
-                        MessageBox.Show("Данные успешно сохранены в XML файл.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Данные успешно сохранены в XML файл.", "Выполнено", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                     reader.Close();
@@ -457,7 +457,7 @@ namespace View
                         string filePath = saveFileDialog.FileName;
                         dataTable.WriteXml(filePath);
 
-                        MessageBox.Show("Данные успешно сохранены в XML файл.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Данные успешно сохранены в XML файл.", "Выполнено", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                     reader.Close();
@@ -481,7 +481,8 @@ namespace View
             // Проверка доступности кнопки
             if (!exportDBButton.Enabled)
             {
-                MessageBox.Show("Авторизация не выполнена. Введите правильный пароль.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Авторизация не выполнена. Введите правильный пароль.", 
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
 
             }
@@ -501,11 +502,12 @@ namespace View
             {
                 // Выполнение запроса
                 connector.ExecuteNonQuery(sqlQuery);
-                MessageBox.Show("Данные успешно вставлены/обновлены.");
+                MessageBox.Show("Данные успешно вставлены/обновлены.", "Выполнено", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при выполнении запроса: {ex.Message}");
+                MessageBox.Show($"Ошибка при выполнении запроса: {ex.Message}", 
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
