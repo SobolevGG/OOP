@@ -34,17 +34,6 @@ namespace Model
     {
         public static void Main()
         {
-            var cs = "localhost, HPPs, postgres, 023098";
-            using var con = new NpgsqlConnection(cs);
-            con.Open();
-
-            var sql = "SELECT version()";
-
-            using var cmd = new NpgsqlCommand(sql, con);
-
-            var version = cmd.ExecuteScalar().ToString();
-            Console.WriteLine($"PostgreSQL version: {version}");
-
             // Загрузка формул и настройка параметров
             var powerFormulas = Formulas.LoadFormulas();
             double initialHead = /* Ваш начальный напор */93;
@@ -56,7 +45,7 @@ namespace Model
 
             // Вывод результатов
             Console.WriteLine($"Оптимальный расход воды: {result.OptimalFlowRate}");
-            Console.WriteLine($"Максимальная мощность: {result.MaxPower/ 1_000_000}");
+            Console.WriteLine($"Максимальная мощность: {result.MaxPower}");
 
 
 
@@ -101,7 +90,7 @@ namespace Model
 
 
 
-
+#endif
 
             // Создаем экземпляр XmlFileManager для GeneratorFlows
             var generatorFlowsFileManager = new XmlFileManager<GeneratorFlows>();
@@ -111,7 +100,7 @@ namespace Model
 
             // Предполагается, что есть 12 гидрогенераторов
             double[] initialFlowRates = GeneratorFlow.CheckWaterFlows(generatorFlows, 12);
-            double initialHead = 90.0;
+            //double initialHead = 90.0;
 
 
 
@@ -122,7 +111,7 @@ namespace Model
 
 
 
-#endif
+
         }
     }
 }
