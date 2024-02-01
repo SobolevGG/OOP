@@ -42,7 +42,11 @@
             tabPage1 = new TabPage();
             dataGridView = new DataGridView();
             tabPage2 = new TabPage();
-            waterManagementGroupBox = new GroupBox();
+            groupBox3 = new GroupBox();
+            textBox8 = new TextBox();
+            textBox7 = new TextBox();
+            label4 = new Label();
+            label3 = new Label();
             groupBox2 = new GroupBox();
             URRestrictionsLabel = new Label();
             URIndexLabel = new Label();
@@ -53,10 +57,10 @@
             LRRestrictionsTextBox = new TextBox();
             URRestrictionsTextBox = new TextBox();
             powerDRGroupBox = new GroupBox();
+            powerRestrictions500Label = new Label();
+            powerRestrictions220Label = new Label();
             powerRestrictions500TextBox = new TextBox();
             powerRestrictions220TextBox = new TextBox();
-            powerRestrictions500Label = new TextBox();
-            powerRestrictions220Label = new TextBox();
             toolStrip2 = new ToolStrip();
             saveButton = new ToolStripSplitButton();
             параметрыГАToolStripMenuItem = new ToolStripMenuItem();
@@ -72,28 +76,27 @@
             toolStripSeparator2 = new ToolStripSeparator();
             importBMPButton = new ToolStripButton();
             CalcButton = new Button();
+            ULRGroupBox = new GroupBox();
+            LRTextBox = new TextBox();
+            URTextBox = new TextBox();
+            LRLabel = new Label();
+            URLabel = new Label();
             calcGroupBox = new GroupBox();
-            textBox6 = new TextBox();
-            textBox5 = new TextBox();
-            label2 = new Label();
-            label1 = new Label();
-            groupBox1 = new GroupBox();
-            tableLayoutPanel1 = new TableLayoutPanel();
+            label5 = new Label();
+            label6 = new Label();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
             toolStrip1.SuspendLayout();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             tabPage2.SuspendLayout();
+            groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             powerDRGroupBox.SuspendLayout();
             toolStrip2.SuspendLayout();
+            ULRGroupBox.SuspendLayout();
             calcGroupBox.SuspendLayout();
-            groupBox1.SuspendLayout();
-            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // toolStrip1
@@ -202,7 +205,7 @@
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(waterManagementGroupBox);
+            tabPage2.Controls.Add(groupBox3);
             tabPage2.Controls.Add(groupBox2);
             tabPage2.Controls.Add(powerDRGroupBox);
             tabPage2.Location = new Point(4, 24);
@@ -213,14 +216,50 @@
             tabPage2.Text = "Ограничения";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // waterManagementGroupBox
+            // groupBox3
             // 
-            waterManagementGroupBox.Location = new Point(34, 216);
-            waterManagementGroupBox.Name = "waterManagementGroupBox";
-            waterManagementGroupBox.Size = new Size(174, 82);
-            waterManagementGroupBox.TabIndex = 2;
-            waterManagementGroupBox.TabStop = false;
-            waterManagementGroupBox.Text = "Водное управление";
+            groupBox3.Controls.Add(textBox8);
+            groupBox3.Controls.Add(textBox7);
+            groupBox3.Controls.Add(label4);
+            groupBox3.Controls.Add(label3);
+            groupBox3.Location = new Point(34, 203);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(174, 82);
+            groupBox3.TabIndex = 2;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "groupBox3";
+            // 
+            // textBox8
+            // 
+            textBox8.Location = new Point(87, 51);
+            textBox8.Name = "textBox8";
+            textBox8.Size = new Size(66, 23);
+            textBox8.TabIndex = 3;
+            // 
+            // textBox7
+            // 
+            textBox7.Location = new Point(87, 22);
+            textBox7.Name = "textBox7";
+            textBox7.Size = new Size(66, 23);
+            textBox7.TabIndex = 2;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(10, 54);
+            label4.Name = "label4";
+            label4.Size = new Size(38, 15);
+            label4.TabIndex = 1;
+            label4.Text = "label4";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(23, 26);
+            label3.Name = "label3";
+            label3.Size = new Size(38, 15);
+            label3.TabIndex = 0;
+            label3.Text = "label3";
             // 
             // groupBox2
             // 
@@ -312,16 +351,34 @@
             // 
             // powerDRGroupBox
             // 
-            powerDRGroupBox.Controls.Add(powerRestrictions500TextBox);
-            powerDRGroupBox.Controls.Add(powerRestrictions220TextBox);
             powerDRGroupBox.Controls.Add(powerRestrictions500Label);
             powerDRGroupBox.Controls.Add(powerRestrictions220Label);
+            powerDRGroupBox.Controls.Add(powerRestrictions500TextBox);
+            powerDRGroupBox.Controls.Add(powerRestrictions220TextBox);
             powerDRGroupBox.Location = new Point(34, 26);
             powerDRGroupBox.Name = "powerDRGroupBox";
             powerDRGroupBox.Size = new Size(174, 82);
             powerDRGroupBox.TabIndex = 0;
             powerDRGroupBox.TabStop = false;
             powerDRGroupBox.Text = "Схема выдачи мощности";
+            // 
+            // powerRestrictions500Label
+            // 
+            powerRestrictions500Label.AutoSize = true;
+            powerRestrictions500Label.Location = new Point(10, 55);
+            powerRestrictions500Label.Name = "powerRestrictions500Label";
+            powerRestrictions500Label.Size = new Size(70, 15);
+            powerRestrictions500Label.TabIndex = 5;
+            powerRestrictions500Label.Text = "СВМ 500 кВ";
+            // 
+            // powerRestrictions220Label
+            // 
+            powerRestrictions220Label.AutoSize = true;
+            powerRestrictions220Label.Location = new Point(10, 26);
+            powerRestrictions220Label.Name = "powerRestrictions220Label";
+            powerRestrictions220Label.Size = new Size(70, 15);
+            powerRestrictions220Label.TabIndex = 4;
+            powerRestrictions220Label.Text = "СВМ 220 кВ";
             // 
             // powerRestrictions500TextBox
             // 
@@ -336,26 +393,6 @@
             powerRestrictions220TextBox.Name = "powerRestrictions220TextBox";
             powerRestrictions220TextBox.Size = new Size(66, 23);
             powerRestrictions220TextBox.TabIndex = 2;
-            // 
-            // powerRestrictions500Label
-            // 
-            powerRestrictions500Label.BorderStyle = BorderStyle.None;
-            powerRestrictions500Label.Location = new Point(6, 54);
-            powerRestrictions500Label.Name = "powerRestrictions500Label";
-            powerRestrictions500Label.Size = new Size(75, 16);
-            powerRestrictions500Label.TabIndex = 1;
-            powerRestrictions500Label.Text = "СВМ 500 кВ";
-            powerRestrictions500Label.TextAlign = HorizontalAlignment.Center;
-            // 
-            // powerRestrictions220Label
-            // 
-            powerRestrictions220Label.BorderStyle = BorderStyle.None;
-            powerRestrictions220Label.Location = new Point(6, 25);
-            powerRestrictions220Label.Name = "powerRestrictions220Label";
-            powerRestrictions220Label.Size = new Size(75, 16);
-            powerRestrictions220Label.TabIndex = 0;
-            powerRestrictions220Label.Text = "СВМ 220 кВ";
-            powerRestrictions220Label.TextAlign = HorizontalAlignment.Center;
             // 
             // toolStrip2
             // 
@@ -476,123 +513,103 @@
             CalcButton.Text = "Расчёт РВР";
             CalcButton.UseVisualStyleBackColor = true;
             // 
+            // ULRGroupBox
+            // 
+            ULRGroupBox.Controls.Add(LRTextBox);
+            ULRGroupBox.Controls.Add(URTextBox);
+            ULRGroupBox.Controls.Add(LRLabel);
+            ULRGroupBox.Controls.Add(URLabel);
+            ULRGroupBox.Location = new Point(261, 67);
+            ULRGroupBox.Name = "ULRGroupBox";
+            ULRGroupBox.Size = new Size(200, 100);
+            ULRGroupBox.TabIndex = 5;
+            ULRGroupBox.TabStop = false;
+            ULRGroupBox.Text = "Уровни бьефов, м";
+            // 
+            // LRTextBox
+            // 
+            LRTextBox.Location = new Point(36, 52);
+            LRTextBox.Name = "LRTextBox";
+            LRTextBox.Size = new Size(66, 23);
+            LRTextBox.TabIndex = 3;
+            // 
+            // URTextBox
+            // 
+            URTextBox.Location = new Point(36, 23);
+            URTextBox.Name = "URTextBox";
+            URTextBox.Size = new Size(66, 23);
+            URTextBox.TabIndex = 2;
+            // 
+            // LRLabel
+            // 
+            LRLabel.AutoSize = true;
+            LRLabel.Location = new Point(9, 56);
+            LRLabel.Name = "LRLabel";
+            LRLabel.Size = new Size(26, 15);
+            LRLabel.TabIndex = 1;
+            LRLabel.Text = "НБ:";
+            // 
+            // URLabel
+            // 
+            URLabel.AutoSize = true;
+            URLabel.Location = new Point(9, 27);
+            URLabel.Name = "URLabel";
+            URLabel.Size = new Size(24, 15);
+            URLabel.TabIndex = 0;
+            URLabel.Text = "ВБ:";
+            // 
             // calcGroupBox
             // 
-            calcGroupBox.Controls.Add(textBox6);
-            calcGroupBox.Controls.Add(textBox5);
-            calcGroupBox.Controls.Add(label2);
-            calcGroupBox.Controls.Add(label1);
-            calcGroupBox.Location = new Point(261, 67);
+            calcGroupBox.Controls.Add(textBox2);
+            calcGroupBox.Controls.Add(textBox1);
+            calcGroupBox.Controls.Add(label6);
+            calcGroupBox.Controls.Add(label5);
+            calcGroupBox.Location = new Point(261, 173);
             calcGroupBox.Name = "calcGroupBox";
             calcGroupBox.Size = new Size(200, 100);
-            calcGroupBox.TabIndex = 5;
+            calcGroupBox.TabIndex = 6;
             calcGroupBox.TabStop = false;
-            calcGroupBox.Text = "Уровни бьефов, м";
+            calcGroupBox.Text = "Расчёт РВР, МВт";
             // 
-            // textBox6
+            // label5
             // 
-            textBox6.Location = new Point(36, 52);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(66, 23);
-            textBox6.TabIndex = 3;
+            label5.AutoSize = true;
+            label5.Location = new Point(9, 26);
+            label5.Name = "label5";
+            label5.Size = new Size(43, 15);
+            label5.TabIndex = 0;
+            label5.Text = "НПРЧ:";
             // 
-            // textBox5
+            // label6
             // 
-            textBox5.Location = new Point(36, 23);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(66, 23);
-            textBox5.TabIndex = 2;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(9, 54);
-            label2.Name = "label2";
-            label2.Size = new Size(23, 15);
-            label2.TabIndex = 1;
-            label2.Text = "НБ";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(9, 26);
-            label1.Name = "label1";
-            label1.Size = new Size(21, 15);
-            label1.TabIndex = 0;
-            label1.Text = "ВБ";
-            // 
-            // groupBox1
-            // 
-            groupBox1.Controls.Add(tableLayoutPanel1);
-            groupBox1.Location = new Point(261, 173);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(200, 100);
-            groupBox1.TabIndex = 6;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Расчёт РВР, МВт";
-            // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Controls.Add(textBox1, 0, 0);
-            tableLayoutPanel1.Controls.Add(textBox2, 0, 1);
-            tableLayoutPanel1.Controls.Add(textBox3, 1, 0);
-            tableLayoutPanel1.Controls.Add(textBox4, 1, 1);
-            tableLayoutPanel1.Location = new Point(6, 22);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(125, 52);
-            tableLayoutPanel1.TabIndex = 0;
+            label6.AutoSize = true;
+            label6.Location = new Point(29, 52);
+            label6.Name = "label6";
+            label6.Size = new Size(38, 15);
+            label6.TabIndex = 1;
+            label6.Text = "label6";
             // 
             // textBox1
             // 
-            textBox1.BackColor = SystemColors.Menu;
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Location = new Point(3, 3);
+            textBox1.Location = new Point(62, 23);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(56, 16);
-            textBox1.TabIndex = 0;
-            textBox1.Text = "НПРЧ";
-            textBox1.TextAlign = HorizontalAlignment.Center;
+            textBox1.Size = new Size(66, 23);
+            textBox1.TabIndex = 2;
             // 
             // textBox2
             // 
-            textBox2.BackColor = SystemColors.Menu;
-            textBox2.BorderStyle = BorderStyle.None;
-            textBox2.Location = new Point(3, 29);
+            textBox2.Location = new Point(36, 49);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(56, 16);
-            textBox2.TabIndex = 1;
-            textBox2.Text = "ОГ";
-            textBox2.TextAlign = HorizontalAlignment.Center;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(65, 3);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(57, 23);
-            textBox3.TabIndex = 2;
-            textBox3.TextAlign = HorizontalAlignment.Center;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(65, 29);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(57, 23);
-            textBox4.TabIndex = 3;
-            textBox4.TextAlign = HorizontalAlignment.Center;
+            textBox2.Size = new Size(66, 23);
+            textBox2.TabIndex = 3;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(469, 424);
-            Controls.Add(groupBox1);
             Controls.Add(calcGroupBox);
+            Controls.Add(ULRGroupBox);
             Controls.Add(CalcButton);
             Controls.Add(toolStrip2);
             Controls.Add(tabControl);
@@ -607,17 +624,18 @@
             tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             tabPage2.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             powerDRGroupBox.ResumeLayout(false);
             powerDRGroupBox.PerformLayout();
             toolStrip2.ResumeLayout(false);
             toolStrip2.PerformLayout();
+            ULRGroupBox.ResumeLayout(false);
+            ULRGroupBox.PerformLayout();
             calcGroupBox.ResumeLayout(false);
             calcGroupBox.PerformLayout();
-            groupBox1.ResumeLayout(false);
-            tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -642,7 +660,7 @@
         private ToolStripMenuItem openGuide;
         private ToolStripMenuItem SupportToolStripMenu;
         private Button CalcButton;
-        private GroupBox calcGroupBox;
+        private GroupBox ULRGroupBox;
         private ToolStripButton exportDBButton;
         private ToolStripButton importBMPButton;
         private ToolStripSeparator toolStripSeparator2;
@@ -654,34 +672,33 @@
         private ToolStripSplitButton importDBButton;
         private ToolStripMenuItem currentCharacteristicsToolStripMenu;
         private ToolStripMenuItem protocolToolStripMenu;
-        private GroupBox groupBox1;
-        private TableLayoutPanel tableLayoutPanel1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox powerRestrictions220Label;
+        private GroupBox calcGroupBox;
         private TextBox powerRestrictions220TextBox;
-        private TextBox powerRestrictions500Label;
         private TextBox powerRestrictions500TextBox;
         private GroupBox groupBox2;
         private TextBox LRRestrictionsTextBox;
         private TextBox URRestrictionsTextBox;
         private ComboBox inequalitySignURComboBox;
         private ComboBox inequalitySignLRComboBox;
-        private Label label2;
-        private Label label1;
-        private TextBox textBox6;
-        private TextBox textBox5;
-        private GroupBox waterManagementGroupBox;
+        private Label LRLabel;
+        private Label URLabel;
+        private TextBox LRTextBox;
+        private TextBox URTextBox;
         private Label LRRestrictionsLabel;
         private TextBox textBox7;
         private TextBox textBox8;
-        private Label label5;
+        private Label powerRestrictions220Label;
         private Label URIndexLabel;
         private Label label6;
         private Label LRIndexLabel;
         private Label label8;
         private Label URRestrictionsLabel;
+        private GroupBox groupBox3;
+        private Label label4;
+        private Label label3;
+        private Label powerRestrictions500Label;
+        private TextBox textBox2;
+        private TextBox textBox1;
+        private Label label5;
     }
 }
