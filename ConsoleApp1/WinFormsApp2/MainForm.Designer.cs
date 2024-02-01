@@ -61,6 +61,8 @@
             CalcButton = new Button();
             calcGroupBox = new GroupBox();
             tableLayoutPanel = new TableLayoutPanel();
+            groupBox1 = new GroupBox();
+            tableLayoutPanel1 = new TableLayoutPanel();
             toolStrip1.SuspendLayout();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -69,6 +71,7 @@
             powerDRGroupBox.SuspendLayout();
             toolStrip2.SuspendLayout();
             calcGroupBox.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // toolStrip1
@@ -317,12 +320,12 @@
             importBMPButton.Image = (Image)resources.GetObject("importBMPButton.Image");
             importBMPButton.ImageTransparentColor = Color.Magenta;
             importBMPButton.Name = "importBMPButton";
-            importBMPButton.Size = new Size(97, 20);
+            importBMPButton.Size = new Size(97, 22);
             importBMPButton.Text = "Импорт ПБР";
             // 
             // CalcButton
             // 
-            CalcButton.Location = new Point(379, 173);
+            CalcButton.Location = new Point(379, 279);
             CalcButton.Name = "CalcButton";
             CalcButton.Size = new Size(82, 23);
             CalcButton.TabIndex = 4;
@@ -352,11 +355,35 @@
             tableLayoutPanel.Size = new Size(125, 52);
             tableLayoutPanel.TabIndex = 0;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(tableLayoutPanel1);
+            groupBox1.Location = new Point(261, 173);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(200, 100);
+            groupBox1.TabIndex = 6;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Расчёт РВР";
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Location = new Point(6, 22);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Size = new Size(125, 52);
+            tableLayoutPanel1.TabIndex = 0;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(637, 450);
+            Controls.Add(groupBox1);
             Controls.Add(calcGroupBox);
             Controls.Add(CalcButton);
             Controls.Add(toolStrip2);
@@ -376,6 +403,7 @@
             toolStrip2.ResumeLayout(false);
             toolStrip2.PerformLayout();
             calcGroupBox.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -415,5 +443,7 @@
         private ToolStripSplitButton importDBButton;
         private ToolStripMenuItem currentCharacteristicsToolStripMenu;
         private ToolStripMenuItem protocolToolStripMenu;
+        private GroupBox groupBox1;
+        private TableLayoutPanel tableLayoutPanel1;
     }
 }

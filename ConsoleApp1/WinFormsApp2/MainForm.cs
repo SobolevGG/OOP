@@ -1,3 +1,4 @@
+using Npgsql;
 using System.Data;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -390,9 +391,7 @@ namespace View
 
             try
             {
-                // Чтение данных из столбцов name, characteristic и change_date из таблицы generator_characteristic_history
-                string selectQuery = "SELECT name, characteristic FROM hydro_generators;";
-                var reader = connector.ExecuteQuery(selectQuery);
+                NpgsqlDataReader reader = Model.PostgresQueries.SelectCharacteristics(connector);
 
                 if (reader != null)
                 {
@@ -434,11 +433,7 @@ namespace View
 
             try
             {
-                // Чтение данных из столбцов name, characteristic и change_date из таблицы generator_characteristic_history
-                string selectQuery = "SELECT hydro_generators.name, generator_characteristic_history.characteristic, generator_characteristic_history.change_date " +
-                    "FROM generator_characteristic_history " +
-                    "JOIN hydro_generators ON generator_characteristic_history.generator_id = hydro_generators.id;";
-                var reader = connector.ExecuteQuery(selectQuery);
+                NpgsqlDataReader reader = Model.PostgresQueries.SelectProtocol(connector);
 
                 if (reader != null)
                 {
@@ -497,8 +492,5 @@ namespace View
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        
-
     }
 }
