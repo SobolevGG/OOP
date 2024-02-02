@@ -43,13 +43,9 @@
             tabPage2 = new TabPage();
             label10 = new Label();
             groupBox3 = new GroupBox();
-            cubic5Label = new Label();
-            label7 = new Label();
             flowMaxLoadIndex = new Label();
             flowMaxLoadTextBoxLabel = new Label();
             flowMaxLoadTextBox = new TextBox();
-            cubic4Label = new Label();
-            unitsSec4Label = new Label();
             cubic3Label = new Label();
             roughZoneIndex2Label = new Label();
             roughZone2Label = new Label();
@@ -57,7 +53,6 @@
             roughZone1Label = new Label();
             roughZone2TextBox = new TextBox();
             roughZone1TextBox = new TextBox();
-            unitsSec3Label = new Label();
             groupBox2 = new GroupBox();
             cubic2Label = new Label();
             cubic1Label = new Label();
@@ -184,7 +179,7 @@
             // 
             openGuide.Image = (Image)resources.GetObject("openGuide.Image");
             openGuide.Name = "openGuide";
-            openGuide.Size = new Size(206, 22);
+            openGuide.Size = new Size(121, 22);
             openGuide.Text = "Открыть";
             openGuide.Click += OpenGuide_Click;
             // 
@@ -244,13 +239,9 @@
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(cubic5Label);
-            groupBox3.Controls.Add(label7);
             groupBox3.Controls.Add(flowMaxLoadIndex);
             groupBox3.Controls.Add(flowMaxLoadTextBoxLabel);
             groupBox3.Controls.Add(flowMaxLoadTextBox);
-            groupBox3.Controls.Add(cubic4Label);
-            groupBox3.Controls.Add(unitsSec4Label);
             groupBox3.Controls.Add(cubic3Label);
             groupBox3.Controls.Add(roughZoneIndex2Label);
             groupBox3.Controls.Add(roughZone2Label);
@@ -258,7 +249,6 @@
             groupBox3.Controls.Add(roughZone1Label);
             groupBox3.Controls.Add(roughZone2TextBox);
             groupBox3.Controls.Add(roughZone1TextBox);
-            groupBox3.Controls.Add(unitsSec3Label);
             groupBox3.Location = new Point(8, 210);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(229, 111);
@@ -266,31 +256,11 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Вычисляются*";
             // 
-            // cubic5Label
-            // 
-            cubic5Label.AutoSize = true;
-            cubic5Label.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            cubic5Label.Location = new Point(63, 80);
-            cubic5Label.Name = "cubic5Label";
-            cubic5Label.Size = new Size(10, 12);
-            cubic5Label.TabIndex = 24;
-            cubic5Label.Text = "3";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(68, 84);
-            label7.Name = "label7";
-            label7.Size = new Size(21, 15);
-            label7.TabIndex = 23;
-            label7.Text = "/с:";
-            label7.TextAlign = ContentAlignment.MiddleLeft;
-            // 
             // flowMaxLoadIndex
             // 
             flowMaxLoadIndex.AutoSize = true;
             flowMaxLoadIndex.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            flowMaxLoadIndex.Location = new Point(22, 92);
+            flowMaxLoadIndex.Location = new Point(18, 92);
             flowMaxLoadIndex.Name = "flowMaxLoadIndex";
             flowMaxLoadIndex.Size = new Size(26, 12);
             flowMaxLoadIndex.TabIndex = 22;
@@ -301,9 +271,9 @@
             flowMaxLoadTextBoxLabel.AutoSize = true;
             flowMaxLoadTextBoxLabel.Location = new Point(10, 84);
             flowMaxLoadTextBoxLabel.Name = "flowMaxLoadTextBoxLabel";
-            flowMaxLoadTextBoxLabel.Size = new Size(61, 15);
+            flowMaxLoadTextBoxLabel.Size = new Size(67, 15);
             flowMaxLoadTextBoxLabel.TabIndex = 21;
-            flowMaxLoadTextBoxLabel.Text = "Q         , м ";
+            flowMaxLoadTextBoxLabel.Text = "P        , МВт";
             // 
             // flowMaxLoadTextBox
             // 
@@ -315,41 +285,20 @@
             flowMaxLoadTextBox.TabIndex = 20;
             flowMaxLoadTextBox.TextAlign = HorizontalAlignment.Center;
             // 
-            // cubic4Label
-            // 
-            cubic4Label.AutoSize = true;
-            cubic4Label.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            cubic4Label.Location = new Point(63, 51);
-            cubic4Label.Name = "cubic4Label";
-            cubic4Label.Size = new Size(10, 12);
-            cubic4Label.TabIndex = 19;
-            cubic4Label.Text = "3";
-            // 
-            // unitsSec4Label
-            // 
-            unitsSec4Label.AutoSize = true;
-            unitsSec4Label.Location = new Point(68, 55);
-            unitsSec4Label.Name = "unitsSec4Label";
-            unitsSec4Label.Size = new Size(21, 15);
-            unitsSec4Label.TabIndex = 18;
-            unitsSec4Label.Text = "/с:";
-            unitsSec4Label.TextAlign = ContentAlignment.MiddleLeft;
-            // 
             // cubic3Label
             // 
             cubic3Label.AutoSize = true;
             cubic3Label.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
             cubic3Label.Location = new Point(63, 21);
             cubic3Label.Name = "cubic3Label";
-            cubic3Label.Size = new Size(10, 12);
+            cubic3Label.Size = new Size(0, 12);
             cubic3Label.TabIndex = 16;
-            cubic3Label.Text = "3";
             // 
             // roughZoneIndex2Label
             // 
             roughZoneIndex2Label.AutoSize = true;
             roughZoneIndex2Label.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            roughZoneIndex2Label.Location = new Point(22, 63);
+            roughZoneIndex2Label.Location = new Point(18, 63);
             roughZoneIndex2Label.Name = "roughZoneIndex2Label";
             roughZoneIndex2Label.Size = new Size(26, 12);
             roughZoneIndex2Label.TabIndex = 14;
@@ -360,15 +309,15 @@
             roughZone2Label.AutoSize = true;
             roughZone2Label.Location = new Point(10, 55);
             roughZone2Label.Name = "roughZone2Label";
-            roughZone2Label.Size = new Size(61, 15);
+            roughZone2Label.Size = new Size(67, 15);
             roughZone2Label.TabIndex = 15;
-            roughZone2Label.Text = "Q         , м ";
+            roughZone2Label.Text = "P        , МВт";
             // 
             // roughZoneIndex1Label
             // 
             roughZoneIndex1Label.AutoSize = true;
             roughZoneIndex1Label.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            roughZoneIndex1Label.Location = new Point(22, 33);
+            roughZoneIndex1Label.Location = new Point(18, 33);
             roughZoneIndex1Label.Name = "roughZoneIndex1Label";
             roughZoneIndex1Label.Size = new Size(26, 12);
             roughZoneIndex1Label.TabIndex = 12;
@@ -379,9 +328,9 @@
             roughZone1Label.AutoSize = true;
             roughZone1Label.Location = new Point(10, 25);
             roughZone1Label.Name = "roughZone1Label";
-            roughZone1Label.Size = new Size(61, 15);
+            roughZone1Label.Size = new Size(70, 15);
             roughZone1Label.TabIndex = 13;
-            roughZone1Label.Text = "Q         , м ";
+            roughZone1Label.Text = "P        , МВт ";
             roughZone1Label.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // roughZone2TextBox
@@ -403,16 +352,6 @@
             roughZone1TextBox.Size = new Size(96, 23);
             roughZone1TextBox.TabIndex = 2;
             roughZone1TextBox.TextAlign = HorizontalAlignment.Center;
-            // 
-            // unitsSec3Label
-            // 
-            unitsSec3Label.AutoSize = true;
-            unitsSec3Label.Location = new Point(68, 25);
-            unitsSec3Label.Name = "unitsSec3Label";
-            unitsSec3Label.Size = new Size(21, 15);
-            unitsSec3Label.TabIndex = 17;
-            unitsSec3Label.Text = "/с:";
-            unitsSec3Label.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // groupBox2
             // 
@@ -975,9 +914,6 @@
         private Label roughZoneIndex1Label;
         private Label roughZone1Label;
         private Label cubic3Label;
-        private Label unitsSec3Label;
-        private Label cubic4Label;
-        private Label unitsSec4Label;
         private Label label8;
         private Label cubic1Label;
         private Label cubic2Label;
@@ -985,11 +921,9 @@
         private Label unitsSec2Label;
         private Label label2;
         private Label label1;
-        private Label label7;
         private Label flowMaxLoadIndex;
         private Label flowMaxLoadTextBoxLabel;
         private TextBox flowMaxLoadTextBox;
-        private Label cubic5Label;
         private GroupBox groupBox1;
         private Label label10;
         private Button button1;
