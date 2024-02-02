@@ -30,7 +30,7 @@ namespace View
         public class DataItem
         {
             public string GU { get; set; }
-            public int Load { get; set; }
+            public double Load { get; set; }
             public int Zone { get; set; }
             public string Status { get; set; }
         }
