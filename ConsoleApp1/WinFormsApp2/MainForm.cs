@@ -399,6 +399,7 @@ namespace View
                 MessageBox.Show($"Ошибка при выполнении запроса: {ex.Message}",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
     }
 }

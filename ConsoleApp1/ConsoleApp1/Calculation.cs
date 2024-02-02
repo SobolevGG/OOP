@@ -10,7 +10,7 @@ using MathNet.Numerics.Optimization;
 
 namespace Model
 {
-    public class Formulas
+    public class Calculation
     {
         [Serializable]
         public class PowerFormula
@@ -23,8 +23,6 @@ namespace Model
         }
 
         public const double g = 9.81;
-
-        
 
         public static PowerFormula GetGeneratorFormula(List<PowerFormula> formulas, int generatorNumber)
         {
@@ -77,7 +75,6 @@ namespace Model
                 MaxPower = -result.FunctionInfoAtMinimum.Value
             };
         }
-
 
         public static List<PowerFormula> LoadFormulas()
         {

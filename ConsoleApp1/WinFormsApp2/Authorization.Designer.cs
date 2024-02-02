@@ -69,7 +69,7 @@
             cancelButton.TabIndex = 3;
             cancelButton.Text = "Отмена";
             cancelButton.UseVisualStyleBackColor = true;
-            cancelButton.Click += cancelButton_Click_1;
+            cancelButton.Click += cancelButton_Click;
             // 
             // Authorization
             // 

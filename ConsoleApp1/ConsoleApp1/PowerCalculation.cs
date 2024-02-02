@@ -13,13 +13,13 @@ namespace Model
     using System.Linq.Expressions;
     using System.Xml.Serialization;
     using Model;
-    using static Model.Formulas;
+    using static Model.Calculation;
 
     public class PowerCalculation
     {
         public static void CalculatePower(string formulasFilePath, double[] flowRates, double head)
         {
-            List<Formulas.PowerFormula> powerFormulas = LoadFormulas(formulasFilePath);
+            List<Calculation.PowerFormula> powerFormulas = LoadFormulas(formulasFilePath);
 
             if (powerFormulas.Count == 0)
             {
@@ -37,19 +37,19 @@ namespace Model
 
         public static double DefaultPowerCalculation(double[] flowRates, double head)
         {
-            return CalculatePower(flowRates, head, new List<Formulas.PowerFormula>());
+            return CalculatePower(flowRates, head, new List<Calculation.PowerFormula>());
         }
 
-        public static List<Formulas.PowerFormula> LoadFormulas(string formulasFilePath)
+        public static List<Calculation.PowerFormula> LoadFormulas(string formulasFilePath)
         {
-            List<Formulas.PowerFormula> formulas;
+            List<Calculation.PowerFormula> formulas;
 
             try
             {
                 using (var streamReader = new StreamReader(formulasFilePath))
                 {
-                    var serializer = new XmlSerializer(typeof(List<Formulas.PowerFormula>));
-                    formulas = (List<Formulas.PowerFormula>)serializer.Deserialize(streamReader);
+                    var serializer = new XmlSerializer(typeof(List<Calculation.PowerFormula>));
+                    formulas = (List<Calculation.PowerFormula>)serializer.Deserialize(streamReader);
 
                     foreach (var formula in formulas)
                     {
@@ -59,7 +59,7 @@ namespace Model
             }
             catch
             {
-                formulas = new List<Formulas.PowerFormula>();
+                formulas = new List<Calculation.PowerFormula>();
             }
 
             return formulas;

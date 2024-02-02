@@ -52,10 +52,5 @@ namespace View
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
-        private void cancelButton_Click_1(object sender, EventArgs e)
-        {
-            Close();
-        }
     }
 }

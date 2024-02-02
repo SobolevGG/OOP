@@ -4,7 +4,7 @@ using System.IO;
 using System.Xml.Serialization;
 // using Extreme.Mathematics;
 using Model;
-using static Model.Formulas;
+using static Model.Calculation;
 using MathNet.Numerics.Optimization;
 using System;
 using MathNet.Numerics;
@@ -35,13 +35,13 @@ namespace Model
         public static void Main()
         {
             // Загрузка формул и настройка параметров
-            var powerFormulas = Formulas.LoadFormulas();
+            var powerFormulas = Calculation.LoadFormulas();
             double initialHead = /* Ваш начальный напор */93;
             double minFlowRate = /* Ваш минимальный расход воды */ 0;
             double maxFlowRate = /* Ваш максимальный расход воды */ 615;
 
             // Вызов метода Optimize
-            var result = Formulas.Optimize(initialHead, minFlowRate, maxFlowRate);
+            var result = Calculation.Optimize(initialHead, minFlowRate, maxFlowRate);
 
             // Вывод результатов
             Console.WriteLine($"Оптимальный расход воды: {result.OptimalFlowRate}");
