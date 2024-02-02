@@ -102,6 +102,13 @@
             label6 = new Label();
             label5 = new Label();
             button1 = new Button();
+            groupBox4 = new GroupBox();
+            label7 = new Label();
+            textBox3 = new TextBox();
+            textBox4 = new TextBox();
+            label3 = new Label();
+            label4 = new Label();
+            label9 = new Label();
             toolStrip.SuspendLayout();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -114,6 +121,7 @@
             toolBar.SuspendLayout();
             ULRGroupBox.SuspendLayout();
             calcGroupBox.SuspendLayout();
+            groupBox4.SuspendLayout();
             SuspendLayout();
             // 
             // toolStrip
@@ -271,9 +279,9 @@
             flowMaxLoadTextBoxLabel.AutoSize = true;
             flowMaxLoadTextBoxLabel.Location = new Point(10, 84);
             flowMaxLoadTextBoxLabel.Name = "flowMaxLoadTextBoxLabel";
-            flowMaxLoadTextBoxLabel.Size = new Size(67, 15);
+            flowMaxLoadTextBoxLabel.Size = new Size(70, 15);
             flowMaxLoadTextBoxLabel.TabIndex = 21;
-            flowMaxLoadTextBoxLabel.Text = "P        , МВт";
+            flowMaxLoadTextBoxLabel.Text = "P        , МВт:";
             // 
             // flowMaxLoadTextBox
             // 
@@ -283,6 +291,7 @@
             flowMaxLoadTextBox.ReadOnly = true;
             flowMaxLoadTextBox.Size = new Size(96, 23);
             flowMaxLoadTextBox.TabIndex = 20;
+            flowMaxLoadTextBox.Text = "508";
             flowMaxLoadTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // cubic3Label
@@ -309,9 +318,9 @@
             roughZone2Label.AutoSize = true;
             roughZone2Label.Location = new Point(10, 55);
             roughZone2Label.Name = "roughZone2Label";
-            roughZone2Label.Size = new Size(67, 15);
+            roughZone2Label.Size = new Size(70, 15);
             roughZone2Label.TabIndex = 15;
-            roughZone2Label.Text = "P        , МВт";
+            roughZone2Label.Text = "P        , МВт:";
             // 
             // roughZoneIndex1Label
             // 
@@ -330,7 +339,7 @@
             roughZone1Label.Name = "roughZone1Label";
             roughZone1Label.Size = new Size(70, 15);
             roughZone1Label.TabIndex = 13;
-            roughZone1Label.Text = "P        , МВт ";
+            roughZone1Label.Text = "P        , МВт:";
             roughZone1Label.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // roughZone2TextBox
@@ -341,6 +350,7 @@
             roughZone2TextBox.ReadOnly = true;
             roughZone2TextBox.Size = new Size(96, 23);
             roughZone2TextBox.TabIndex = 3;
+            roughZone2TextBox.Text = "250";
             roughZone2TextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // roughZone1TextBox
@@ -351,6 +361,7 @@
             roughZone1TextBox.ReadOnly = true;
             roughZone1TextBox.Size = new Size(96, 23);
             roughZone1TextBox.TabIndex = 2;
+            roughZone1TextBox.Text = "77.9";
             roughZone1TextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // groupBox2
@@ -700,7 +711,7 @@
             ULRGroupBox.Size = new Size(167, 83);
             ULRGroupBox.TabIndex = 5;
             ULRGroupBox.TabStop = false;
-            ULRGroupBox.Text = "Уровни бьефов, м";
+            ULRGroupBox.Text = "Уровни бьефов";
             // 
             // label2
             // 
@@ -767,7 +778,7 @@
             calcGroupBox.Size = new Size(167, 83);
             calcGroupBox.TabIndex = 6;
             calcGroupBox.TabStop = false;
-            calcGroupBox.Text = "Расчёт РВР, МВт";
+            calcGroupBox.Text = "НПРЧ и ОГ";
             // 
             // textBox2
             // 
@@ -790,9 +801,9 @@
             label6.AutoSize = true;
             label6.Location = new Point(9, 52);
             label6.Name = "label6";
-            label6.Size = new Size(56, 15);
+            label6.Size = new Size(54, 15);
             label6.TabIndex = 1;
-            label6.Text = "ПА, МВт:";
+            label6.Text = "ОГ, МВт:";
             // 
             // label5
             // 
@@ -812,11 +823,81 @@
             button1.Text = "Импорт из ОИК";
             button1.UseVisualStyleBackColor = true;
             // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(label9);
+            groupBox4.Controls.Add(label7);
+            groupBox4.Controls.Add(textBox3);
+            groupBox4.Controls.Add(textBox4);
+            groupBox4.Controls.Add(label3);
+            groupBox4.Controls.Add(label4);
+            groupBox4.Location = new Point(266, 329);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(167, 83);
+            groupBox4.TabIndex = 8;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Результаты расчёта РВР";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label7.Location = new Point(18, 33);
+            label7.Name = "label7";
+            label7.Size = new Size(22, 12);
+            label7.TabIndex = 4;
+            label7.Text = "max";
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(87, 49);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(66, 23);
+            textBox3.TabIndex = 3;
+            textBox3.TextAlign = HorizontalAlignment.Center;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(87, 23);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(66, 23);
+            textBox4.TabIndex = 2;
+            textBox4.TextAlign = HorizontalAlignment.Center;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(9, 52);
+            label3.Name = "label3";
+            label3.Size = new Size(67, 15);
+            label3.TabIndex = 1;
+            label3.Text = "P       , МВт:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(9, 26);
+            label4.Name = "label4";
+            label4.Size = new Size(67, 15);
+            label4.TabIndex = 0;
+            label4.Text = "P       , МВт:";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label9.Location = new Point(18, 59);
+            label9.Name = "label9";
+            label9.Size = new Size(20, 12);
+            label9.TabIndex = 5;
+            label9.Text = "min";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(452, 424);
+            Controls.Add(groupBox4);
             Controls.Add(button1);
             Controls.Add(calcGroupBox);
             Controls.Add(ULRGroupBox);
@@ -848,6 +929,8 @@
             ULRGroupBox.PerformLayout();
             calcGroupBox.ResumeLayout(false);
             calcGroupBox.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -927,5 +1010,12 @@
         private GroupBox groupBox1;
         private Label label10;
         private Button button1;
+        private GroupBox groupBox4;
+        private TextBox textBox3;
+        private TextBox textBox4;
+        private Label label3;
+        private Label label4;
+        private Label label7;
+        private Label label9;
     }
 }
