@@ -209,7 +209,7 @@ namespace View
             }
 
             // Теперь делаем кнопку saveParamsHU доступной или недоступной в зависимости от режима редактирования
-            saveParamsHU.Enabled = isEditingEnabled;
+            saveParamsHU.Enabled = !isEditingEnabled;
 
             // Меняем текст кнопки в зависимости от режима редактирования
             if (isEditingEnabled)
@@ -358,11 +358,21 @@ namespace View
             }
         }
 
+        /// <summary>
+        /// Сохранение актуальных характерситик.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CurrentCharacteristicsToolStripMenu_Click(object sender, EventArgs e)
         {
             SaveDataToXml("Characteristics");
         }
 
+        /// <summary>
+        /// Сохранение протокола актуализации.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ProtocolToolStripMenu_Click(object sender, EventArgs e)
         {
             SaveDataToXml("Protocol");
