@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
             toolStrip = new ToolStrip();
             toolStripDropDownButton1 = new ToolStripDropDownButton();
             openFile = new ToolStripMenuItem();
@@ -47,14 +47,6 @@
             parametersHUTabPage = new TabPage();
             parametersHUGridView = new DataGridView();
             inputRestrictionsTabPage = new TabPage();
-            label10 = new Label();
-            groupBox3 = new GroupBox();
-            flowMaxLoadIndex = new Label();
-            flowMaxLoadTextBoxLabel = new Label();
-            flowMaxLoadTextBox = new TextBox();
-            cubic3Label = new Label();
-            roughZone2TextBox = new TextBox();
-            roughZone1TextBox = new TextBox();
             groupBox2 = new GroupBox();
             cubic2Label = new Label();
             cubic1Label = new Label();
@@ -132,7 +124,6 @@
             parametersHUTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)parametersHUGridView).BeginInit();
             inputRestrictionsTabPage.SuspendLayout();
-            groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             powerDRGroupBox.SuspendLayout();
@@ -244,8 +235,6 @@
             // 
             // inputRestrictionsTabPage
             // 
-            inputRestrictionsTabPage.Controls.Add(label10);
-            inputRestrictionsTabPage.Controls.Add(groupBox3);
             inputRestrictionsTabPage.Controls.Add(groupBox2);
             inputRestrictionsTabPage.Controls.Add(groupBox1);
             inputRestrictionsTabPage.Location = new Point(4, 24);
@@ -255,86 +244,6 @@
             inputRestrictionsTabPage.TabIndex = 1;
             inputRestrictionsTabPage.Text = "СВМ и БВУ";
             inputRestrictionsTabPage.UseVisualStyleBackColor = true;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label10.Location = new Point(29, 324);
-            label10.Name = "label10";
-            label10.Size = new Size(185, 12);
-            label10.TabIndex = 4;
-            label10.Text = "* - уровни бьефов должны быть заполнены.";
-            // 
-            // groupBox3
-            // 
-            groupBox3.Controls.Add(flowMaxLoadIndex);
-            groupBox3.Controls.Add(flowMaxLoadTextBoxLabel);
-            groupBox3.Controls.Add(flowMaxLoadTextBox);
-            groupBox3.Controls.Add(cubic3Label);
-            groupBox3.Controls.Add(roughZone2TextBox);
-            groupBox3.Controls.Add(roughZone1TextBox);
-            groupBox3.Location = new Point(8, 210);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(229, 111);
-            groupBox3.TabIndex = 2;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Вычисляются*";
-            // 
-            // flowMaxLoadIndex
-            // 
-            flowMaxLoadIndex.AutoSize = true;
-            flowMaxLoadIndex.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            flowMaxLoadIndex.Location = new Point(18, 92);
-            flowMaxLoadIndex.Name = "flowMaxLoadIndex";
-            flowMaxLoadIndex.Size = new Size(26, 12);
-            flowMaxLoadIndex.TabIndex = 22;
-            flowMaxLoadIndex.Text = "ЛОМ";
-            // 
-            // flowMaxLoadTextBoxLabel
-            // 
-            flowMaxLoadTextBoxLabel.AutoSize = true;
-            flowMaxLoadTextBoxLabel.Location = new Point(10, 84);
-            flowMaxLoadTextBoxLabel.Name = "flowMaxLoadTextBoxLabel";
-            flowMaxLoadTextBoxLabel.Size = new Size(70, 15);
-            flowMaxLoadTextBoxLabel.TabIndex = 21;
-            flowMaxLoadTextBoxLabel.Text = "P        , МВт:";
-            // 
-            // flowMaxLoadTextBox
-            // 
-            flowMaxLoadTextBox.Location = new Point(104, 80);
-            flowMaxLoadTextBox.Name = "flowMaxLoadTextBox";
-            flowMaxLoadTextBox.ReadOnly = true;
-            flowMaxLoadTextBox.Size = new Size(96, 23);
-            flowMaxLoadTextBox.TabIndex = 20;
-            flowMaxLoadTextBox.TextAlign = HorizontalAlignment.Center;
-            // 
-            // cubic3Label
-            // 
-            cubic3Label.AutoSize = true;
-            cubic3Label.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            cubic3Label.Location = new Point(63, 21);
-            cubic3Label.Name = "cubic3Label";
-            cubic3Label.Size = new Size(0, 12);
-            cubic3Label.TabIndex = 16;
-            // 
-            // roughZone2TextBox
-            // 
-            roughZone2TextBox.Location = new Point(104, 51);
-            roughZone2TextBox.Name = "roughZone2TextBox";
-            roughZone2TextBox.ReadOnly = true;
-            roughZone2TextBox.Size = new Size(96, 23);
-            roughZone2TextBox.TabIndex = 3;
-            roughZone2TextBox.TextAlign = HorizontalAlignment.Center;
-            // 
-            // roughZone1TextBox
-            // 
-            roughZone1TextBox.Location = new Point(104, 22);
-            roughZone1TextBox.Name = "roughZone1TextBox";
-            roughZone1TextBox.ReadOnly = true;
-            roughZone1TextBox.Size = new Size(96, 23);
-            roughZone1TextBox.TabIndex = 2;
-            roughZone1TextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // groupBox2
             // 
@@ -647,35 +556,35 @@
             restrictionsHUGridView.AllowUserToDeleteRows = false;
             restrictionsHUGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             restrictionsHUGridView.Columns.AddRange(new DataGridViewColumn[] { HU, RoughZoneFB, RoughZoneSB, MaxLoad });
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = SystemColors.Window;
-            dataGridViewCellStyle10.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle10.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
-            restrictionsHUGridView.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = SystemColors.Window;
+            dataGridViewCellStyle16.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle16.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.False;
+            restrictionsHUGridView.DefaultCellStyle = dataGridViewCellStyle16;
             restrictionsHUGridView.Location = new Point(3, 3);
             restrictionsHUGridView.Name = "restrictionsHUGridView";
             restrictionsHUGridView.ReadOnly = true;
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = SystemColors.Control;
-            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle11.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
-            restrictionsHUGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = SystemColors.Control;
+            dataGridViewCellStyle17.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle17.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
+            restrictionsHUGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
             restrictionsHUGridView.RowHeadersVisible = false;
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            restrictionsHUGridView.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            restrictionsHUGridView.RowsDefaultCellStyle = dataGridViewCellStyle18;
             restrictionsHUGridView.Size = new Size(237, 338);
             restrictionsHUGridView.TabIndex = 0;
             // 
             // HU
             // 
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            HU.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            HU.DefaultCellStyle = dataGridViewCellStyle13;
             HU.HeaderText = "        ";
             HU.Name = "HU";
             HU.ReadOnly = true;
@@ -683,8 +592,8 @@
             // 
             // RoughZoneFB
             // 
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            RoughZoneFB.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            RoughZoneFB.DefaultCellStyle = dataGridViewCellStyle14;
             RoughZoneFB.HeaderText = "";
             RoughZoneFB.Name = "RoughZoneFB";
             RoughZoneFB.ReadOnly = true;
@@ -692,8 +601,8 @@
             // 
             // RoughZoneSB
             // 
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            RoughZoneSB.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            RoughZoneSB.DefaultCellStyle = dataGridViewCellStyle15;
             RoughZoneSB.HeaderText = "";
             RoughZoneSB.Name = "RoughZoneSB";
             RoughZoneSB.ReadOnly = true;
@@ -1076,9 +985,6 @@
             parametersHUTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)parametersHUGridView).EndInit();
             inputRestrictionsTabPage.ResumeLayout(false);
-            inputRestrictionsTabPage.PerformLayout();
-            groupBox3.ResumeLayout(false);
-            groupBox3.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox1.ResumeLayout(false);
@@ -1143,20 +1049,16 @@
         private TextBox LRTextBox;
         private TextBox URTextBox;
         private Label LRRestrictionsLabel;
-        private TextBox roughZone1TextBox;
-        private TextBox roughZone2TextBox;
         private Label powerRestrictions220Label;
         private Label URIndexLabel;
         private Label label6;
         private Label LRIndexLabel;
         private Label restrictions220IndexLabel;
         private Label URRestrictionsLabel;
-        private GroupBox groupBox3;
         private Label powerRestrictions500Label;
         private TextBox textBox2;
         private TextBox textBox1;
         private Label label5;
-        private Label cubic3Label;
         private Label label8;
         private Label cubic1Label;
         private Label cubic2Label;
@@ -1164,11 +1066,7 @@
         private Label unitsSec2Label;
         private Label label2;
         private Label label1;
-        private Label flowMaxLoadIndex;
-        private Label flowMaxLoadTextBoxLabel;
-        private TextBox flowMaxLoadTextBox;
         private GroupBox groupBox1;
-        private Label label10;
         private Button button1;
         private GroupBox groupBox4;
         private TextBox textBox3;
