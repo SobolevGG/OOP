@@ -8,7 +8,7 @@ namespace Model
 {
     // Класс для хранения данных
     [Serializable]
-    public class DataItem
+    public class ParametersHU
     {
         public string GU { get; set; }
         public double Load { get; set; }

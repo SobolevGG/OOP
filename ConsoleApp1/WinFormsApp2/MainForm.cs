@@ -37,11 +37,11 @@ namespace View
         private void CreateDataGridView()
         {
             // Создаем колонки
-            DataGridViewTextBoxColumn gaColumn = new DataGridViewTextBoxColumn();
-            gaColumn.HeaderText = "ГА";
+            DataGridViewTextBoxColumn HUColumn = new DataGridViewTextBoxColumn();
+            HUColumn.HeaderText = "ГА";
             // Устанавливаем ширину для столбца "ГА"
-            gaColumn.Width = 44;
-            gaColumn.ReadOnly = true;
+            HUColumn.Width = 44;
+            HUColumn.ReadOnly = true;
 
             loadColumn = new DataGridViewTextBoxColumn();
             loadColumn.HeaderText = "Загрузка, МВт";
@@ -64,8 +64,8 @@ namespace View
             DataGridViewCellStyle centerAlignmentStyle = new DataGridViewCellStyle();
             centerAlignmentStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            gaColumn.DefaultCellStyle = centerAlignmentStyle;
-            gaColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            HUColumn.DefaultCellStyle = centerAlignmentStyle;
+            HUColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             loadColumn.DefaultCellStyle = centerAlignmentStyle;
             loadColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -77,7 +77,7 @@ namespace View
             statusColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             // Добавляем колонки на DataGridView
-            dataGridView.Columns.Add(gaColumn);
+            dataGridView.Columns.Add(HUColumn);
             dataGridView.Columns.Add(loadColumn);
             dataGridView.Columns.Add(zoneColumn);
             dataGridView.Columns.Add(statusColumn);
@@ -125,9 +125,9 @@ namespace View
         }
 
         // Метод для сериализации данных в XML
-        private void SerializeToXml(List<DataItem> data, string fileName)
+        private void SerializeToXml(List<ParametersHU> data, string fileName)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<DataItem>));
+            XmlSerializer serializer = new XmlSerializer(typeof(List<ParametersHU>));
 
             using (FileStream fs = new FileStream(fileName, FileMode.Create))
             {
@@ -216,13 +216,13 @@ namespace View
         private void Save_Click(object sender, EventArgs e)
         {
             // Создаем список для хранения данных
-            List<DataItem> dataItems = new List<DataItem>();
+            List<ParametersHU> dataItems = new List<ParametersHU>();
 
             // Проходим по каждой строке в DataGridView
             foreach (DataGridViewRow row in dataGridView.Rows)
             {
                 // Создаем объект DataItem на основе данных в строке
-                DataItem item = new DataItem
+                ParametersHU item = new ParametersHU
                 {
                     GU = row.Cells[0].Value?.ToString(),
                     Load = Convert.ToInt32(row.Cells[1].Value),
