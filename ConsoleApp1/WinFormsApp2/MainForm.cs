@@ -16,11 +16,15 @@ namespace View
 
         private Authorization authorizationForm;
 
+        // Добавляем переменные как члены класса
+        private DataGridViewTextBoxColumn zoneColumn;
+        private DataGridViewTextBoxColumn loadColumn;
+        private DataGridViewComboBoxColumn statusColumn;
+
         public MainForm()
         {
             InitializeComponent();
 
-            
             // Создаем таблицу
             CreateDataGridView();
 
@@ -48,16 +52,16 @@ namespace View
             gaColumn.Width = 44;
             gaColumn.ReadOnly = true;
 
-            DataGridViewTextBoxColumn loadColumn = new DataGridViewTextBoxColumn();
+            loadColumn = new DataGridViewTextBoxColumn();
             loadColumn.HeaderText = "Загрузка, МВт";
             loadColumn.Width = 70;
 
-            DataGridViewTextBoxColumn zoneColumn = new DataGridViewTextBoxColumn();
+            zoneColumn = new DataGridViewTextBoxColumn();
             zoneColumn.HeaderText = "Зона";
             zoneColumn.Width = 40;
 
             // Создаем комбобокс для столбца "Статус"
-            DataGridViewComboBoxColumn statusColumn = new DataGridViewComboBoxColumn();
+            statusColumn = new DataGridViewComboBoxColumn();
             statusColumn.HeaderText = "Статус";
             statusColumn.Items.AddRange("В работе", "Выведен");
             statusColumn.Width = 80;
@@ -154,7 +158,70 @@ namespace View
 
             // Недоступность кнопки экспорта по умолчанию
             exportDBButton.Enabled = false;
+
+            // Подписываемся на событие CellValueChanged
+            dataGridView.CellEndEdit += dataGridView_CellEndEdit;
         }
+
+        private void dataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewCell cell = dataGridView[e.ColumnIndex, e.RowIndex];
+
+            if (cell.Value == null)
+            {
+                MessageBox.Show("Значение не может быть пустым.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cell.Value = "1";
+                return;
+            }
+
+            // Проверка значений в столбце zoneColumn
+            if (e.ColumnIndex == zoneColumn.Index)
+            {
+                if (cell.Value.ToString() != "1" && cell.Value.ToString() != "3")
+                {
+                    MessageBox.Show("Значение в столбце 'Зона' должно быть 1 или 3.",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cell.Value = "1";
+                }
+            }
+
+            // Проверка значений в столбце loadColumn
+            if (e.ColumnIndex == loadColumn.Index)
+            {
+                double loadValue;
+                if (!double.TryParse(cell.Value.ToString(), out loadValue))
+                {
+                    MessageBox.Show("Значение в столбце 'Загрузка' должно быть числовым.",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cell.Value = "0";
+                    return;
+                }
+
+                if (loadValue < 0 || loadValue > 508)
+                {
+                    MessageBox.Show("Значение в столбце 'Загрузка' должно быть в диапазоне от 0 до 508.",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cell.Value = "0";
+                }
+            }
+
+            // Проверка значений в столбце statusColumn
+            if (e.ColumnIndex == dataGridView.Columns.IndexOf(statusColumn))
+            {
+                // Если выбрано "Выведен", устанавливаем значение в столбце "Загрузка" равным 0
+                if (cell.Value.ToString() == "Выведен")
+                {
+                    dataGridView.Rows[e.RowIndex].Cells[loadColumn.Index].Value = "0";
+                }
+                // Если выбрано "В работе", устанавливаем значение в столбце "Загрузка" равным 400
+                else if (cell.Value.ToString() == "В работе")
+                {
+                    dataGridView.Rows[e.RowIndex].Cells[loadColumn.Index].Value = "400";
+                }
+            }
+        }
+
+
 
         private void Save_Click(object sender, EventArgs e)
         {
