@@ -296,9 +296,9 @@ namespace View
             }
         }
 
-        private void CurrentCharacteristicsToolStripMenu_Click(object sender, EventArgs e)
+
+        private void SaveDataToXml(string queryType)
         {
-            // Создаем объект Credential
             using (var cred = new Credential())
             {
                 // Указываем таргет
@@ -311,7 +311,9 @@ namespace View
 
                     try
                     {
-                        NpgsqlDataReader reader = Model.PostgresQueries.SelectCharacteristics(connector);
+                        NpgsqlDataReader reader = queryType == "Characteristics"
+                            ? Model.PostgresQueries.SelectCharacteristics(connector)
+                            : Model.PostgresQueries.SelectProtocol(connector);
 
                         if (reader != null)
                         {
@@ -330,7 +332,7 @@ namespace View
                                 string filePath = saveFileDialog.FileName;
                                 dataTable.WriteXml(filePath);
 
-                                MessageBox.Show("Данные успешно сохранены в XML файл.", 
+                                MessageBox.Show("Данные успешно сохранены в XML файл.",
                                     "Выполнено", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
 
@@ -339,7 +341,7 @@ namespace View
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Ошибка при чтении данных из базы данных: {ex.Message}", 
+                        MessageBox.Show($"Ошибка при чтении данных из базы данных: {ex.Message}",
                             "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     finally
@@ -356,69 +358,16 @@ namespace View
             }
         }
 
+        private void CurrentCharacteristicsToolStripMenu_Click(object sender, EventArgs e)
+        {
+            SaveDataToXml("Characteristics");
+        }
 
-        /// <summary>
-        /// Сохранить протокол актуализации.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void ProtocolToolStripMenu_Click(object sender, EventArgs e)
         {
-            // Создаем объект Credential
-            using (var cred = new Credential())
-            {
-                // Указываем таргет
-                cred.Target = Authorization.TargetDB;
-
-                // Находим сохраненные учетные данные
-                if (cred.Load())
-                {
-                    var connector = new PostgresConnector("localhost", "HPPs", "postgres", cred.Password);
-
-                    try
-                    {
-                        NpgsqlDataReader reader = Model.PostgresQueries.SelectProtocol(connector);
-
-                        if (reader != null)
-                        {
-                            DataTable dataTable = new DataTable("GeneratorCharacteristicHistory");
-                            dataTable.Load(reader);
-
-                            // Создание XML-файла и запись в него данных
-                            SaveFileDialog saveFileDialog = new SaveFileDialog
-                            {
-                                Filter = "XML files (*.xml)|*.xml",
-                                Title = "Сохранить данные в XML"
-                            };
-
-                            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                            {
-                                string filePath = saveFileDialog.FileName;
-                                dataTable.WriteXml(filePath);
-
-                                MessageBox.Show("Данные успешно сохранены в XML файл.", "Выполнено", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-
-                            reader.Close();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Ошибка при чтении данных из базы данных: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    finally
-                    {
-                        // Закрытие соединения
-                        connector.CloseConnection();
-                    }
-                }
-                else
-                {
-                    // Учетные данные не найдены или пользователь отменил ввод
-                    MessageBox.Show("Данные не найдены или ввод отменен.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            SaveDataToXml("Protocol");
         }
+
 
         private void ExportDBButton_Click(object sender, EventArgs e)
         {
