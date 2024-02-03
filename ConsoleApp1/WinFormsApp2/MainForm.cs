@@ -22,15 +22,16 @@ namespace View
         {
             InitializeComponent();
             
-            // Создаем таблицу
-            CreateDataGridView();
+            // Создаем таблицы
+            ParametersHUGridView();
+            RestrictionsHUGridView();
 
             // Вызываем тестовый метод при загрузке формы
             TestFillData();
         }
 
-        // Метод для создания таблицы
-        private void CreateDataGridView()
+        // Метод для создания таблицы ParametersHU
+        private void ParametersHUGridView()
         {
             // Создаем колонки
             DataGridViewTextBoxColumn HUColumn = new DataGridViewTextBoxColumn();
@@ -41,6 +42,76 @@ namespace View
 
             loadColumn = new DataGridViewTextBoxColumn();
             loadColumn.HeaderText = "Загрузка, МВт";
+            loadColumn.Width = 70;
+
+            zoneColumn = new DataGridViewTextBoxColumn();
+            zoneColumn.HeaderText = "Зона";
+            zoneColumn.Width = 40;
+
+            // Создаем комбобокс для столбца "Статус"
+            statusColumn = new DataGridViewComboBoxColumn();
+            statusColumn.HeaderText = "Статус";
+            statusColumn.Items.AddRange("В работе", "Выведен");
+            statusColumn.Width = 80;
+
+            // Перенос названия столбца на новую строку, если он не помещается
+            loadColumn.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+
+            // Устанавливаем выравнивание по центру для ячеек и заголовков столбцов
+            DataGridViewCellStyle centerAlignmentStyle = new DataGridViewCellStyle();
+            centerAlignmentStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            HUColumn.DefaultCellStyle = centerAlignmentStyle;
+            HUColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            loadColumn.DefaultCellStyle = centerAlignmentStyle;
+            loadColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            zoneColumn.DefaultCellStyle = centerAlignmentStyle;
+            zoneColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            statusColumn.DefaultCellStyle = centerAlignmentStyle;
+            statusColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Добавляем колонки на DataGridView
+            parametersHUGridView.Columns.Add(HUColumn);
+            parametersHUGridView.Columns.Add(loadColumn);
+            parametersHUGridView.Columns.Add(zoneColumn);
+            parametersHUGridView.Columns.Add(statusColumn);
+
+            // Устанавливаем DataGridView на вкладку tabPage1
+            parametersHUTabPage.Controls.Add(parametersHUGridView);
+
+            // Устанавливаем размеры таблицы
+            parametersHUGridView.Width = 237;
+            parametersHUGridView.Height = 340;
+
+            // запрет изменения размера
+            parametersHUGridView.AllowUserToResizeRows = false;
+            parametersHUGridView.AllowUserToResizeColumns = false;
+
+            // Запрет добавления новых строк
+            parametersHUGridView.AllowUserToAddRows = false;
+
+            // для всех колонок отключена сортировка
+            foreach (DataGridViewColumn column in parametersHUGridView.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+        }
+
+        // Метод для создания таблицы RestrictionsHU
+        private void RestrictionsHUGridView()
+        {
+            // Создаем колонки
+            DataGridViewTextBoxColumn HUColumn = new DataGridViewTextBoxColumn();
+            HUColumn.HeaderText = "ГА ";
+            // Устанавливаем ширину для столбца "ГА"
+            HUColumn.Width = 44;
+            HUColumn.ReadOnly = true;
+
+            loadColumn = new DataGridViewTextBoxColumn();
+            loadColumn.HeaderText = "Pзнр1, МВт";
             loadColumn.Width = 70;
 
             zoneColumn = new DataGridViewTextBoxColumn();
