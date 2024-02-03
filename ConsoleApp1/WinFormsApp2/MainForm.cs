@@ -25,7 +25,7 @@ namespace View
         public MainForm()
         {
             InitializeComponent();
-
+            
             // Создаем таблицу
             CreateDataGridView();
 
