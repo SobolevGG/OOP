@@ -15,6 +15,9 @@ namespace Model
         private int _zone;
         private string _status;
 
+        private static double _maxLoad = 508;
+        public static double MaxLoad { get => _maxLoad; set => _maxLoad = value; }
+
         public string HU
         {
             get { return _HU; }
@@ -22,7 +25,7 @@ namespace Model
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("Значение не может быть пустым.", nameof(HU));
+                    throw new ArgumentException("Ввод не может быть пустым.", nameof(HU));
                 }
                 _HU = value;
             }
@@ -33,10 +36,21 @@ namespace Model
             get { return _load; }
             set
             {
+                if (string.IsNullOrEmpty(value.ToString()))
+                {
+                    throw new ArgumentException("Ввод не может быть пустым.", nameof(Load));
+                }
+
                 if (value < 0 || value > 508)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(Load), "Значение должно быть в диапазоне от 0 до 508.");
+                    throw new ArgumentOutOfRangeException(nameof(Load), $"Значение должно быть в диапазоне от 0 до {MaxLoad} МВт.");
                 }
+
+                if (!double.TryParse(value.ToString(), out _))
+                {
+                    throw new ArgumentException("Значение в столбце 'Загрузка' должно быть числовым.", nameof(Load));
+                }
+                
                 _load = value;
             }
         }
@@ -48,7 +62,7 @@ namespace Model
             {
                 if (value != 1 && value != 3)
                 {
-                    throw new ArgumentException("Значение должно быть 1 или 3.", nameof(Zone));
+                    throw new ArgumentException("Значение в столбце 'Зона' должно быть 1 или 3.", nameof(Zone));
                 }
                 _zone = value;
             }
@@ -61,7 +75,8 @@ namespace Model
             {
                 if (value != "Выведен" && value != "В работе")
                 {
-                    throw new ArgumentException("Недопустимое значение для столбца 'Статус'.", nameof(Status));
+                    throw new ArgumentException("Недопустимое значение для столбца 'Статус'. " +
+                        "Доступные варианты: 'Выведен' или 'В работе'", nameof(Status));
                 }
                 _status = value;
             }

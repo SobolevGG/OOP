@@ -161,50 +161,51 @@ namespace View
         /// <param name="e"></param>
         private void dataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            DataGridViewCell cell = dataGridView[e.ColumnIndex, e.RowIndex];
-
-            try
+            if (e.ColumnIndex == zoneColumn.Index)
             {
-                if (cell.ColumnIndex == loadColumn.Index)
+                string input = e.FormattedValue.ToString();
+
+                if (input != "1" && input != "3")
                 {
-                    double loadValue;
-                    if (!double.TryParse(e.FormattedValue.ToString(), out loadValue))
-                    {
-                        throw new Exception("Значение в столбце 'Загрузка' должно быть числовым.");
-                    }
+                    MessageBox.Show("Значение в столбце 'Зона' должно быть 1 или 3.",
+                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    if (loadValue < 0 || loadValue > 508)
-                    {
-                        throw new Exception("Значение в столбце 'Загрузка' должно быть в диапазоне от 0 до 508.");
-                    }
+                    e.Cancel = true; // Отменяем изменение значения
                 }
-                else if (cell.ColumnIndex == zoneColumn.Index)
-                {
-                    int zoneValue;
-                    if (!int.TryParse(e.FormattedValue.ToString(), out zoneValue))
-                    {
-                        throw new Exception("Значение в столбце 'Зона' должно быть числовым.");
-                    }
-
-                    if (zoneValue != 1 && zoneValue != 3)
-                    {
-                        throw new Exception("Значение в столбце 'Зона' должно быть 1 или 3.");
-                    }
-                }
-                // Другие проверки по необходимости...
-
-                // Очищаем сообщение об ошибке, если валидация успешна
-                dataGridView[cell.ColumnIndex, cell.RowIndex].ErrorText = "";
             }
-            catch (Exception ex)
-            {
-                // Отображаем сообщение об ошибке в ячейке
-                dataGridView[cell.ColumnIndex, cell.RowIndex].ErrorText = ex.Message;
 
-                // Отменяем изменения
-                e.Cancel = true;
+            if (e.ColumnIndex == loadColumn.Index)
+            {
+                string input = e.FormattedValue.ToString();
+
+                if (string.IsNullOrEmpty(input))
+                {
+                    MessageBox.Show("Ввод не может быть пустым.",
+                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    e.Cancel = true; // Отменяем изменение значения
+                    return;
+                }
+
+                if (!double.TryParse(input, out double loadValue))
+                {
+                    MessageBox.Show("Значение в столбце 'Загрузка' должно быть числовым.",
+                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    e.Cancel = true; // Отменяем изменение значения
+                    return;
+                }
+
+                if (loadValue < 0 || loadValue > 508)
+                {
+                    MessageBox.Show($"Значение в столбце 'Загрузка' должно быть в диапазоне от 0 до {ParametersHU.MaxLoad} МВт.",
+                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    e.Cancel = true; // Отменяем изменение значения
+                }
             }
         }
+
 
         private void Save_Click(object sender, EventArgs e)
         {
