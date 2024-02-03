@@ -115,6 +115,8 @@ namespace View
 
 
             HU.ReadOnly = true;
+            RoughZoneFB.ReadOnly = true;
+            RoughZoneSB.ReadOnly = true;
             RoughZoneFB.Width = 95;
             RoughZoneSB.Width = 95;
 
