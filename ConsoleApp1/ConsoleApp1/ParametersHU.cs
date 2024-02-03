@@ -18,47 +18,25 @@ namespace Model
         public string HU
         {
             get { return _HU; }
-            set { _HU = ValidateHU(value); }
+            set { _HU = !string.IsNullOrEmpty(value) ? value : "defaultHU"; }
         }
 
         public double Load
         {
             get { return _load; }
-            set { _load = ValidateLoad(value); }
+            set { _load = (value >= 0 && value <= 508) ? value : 0; }
         }
 
         public int Zone
         {
             get { return _zone; }
-            set { _zone = ValidateZone(value); }
+            set { _zone = (value == 1 || value == 3) ? value : 1; }
         }
 
         public string Status
         {
             get { return _status; }
-            set { _status = ValidateStatus(value); }
-        }
-
-        // Методы для проверки и установки значений по умолчанию
-        private string ValidateHU(string value)
-        {
-            return !string.IsNullOrEmpty(value) ? value : "defaultHU";
-        }
-
-        private double ValidateLoad(double value)
-        {
-            return (value >= 0 && value <= 508) ? value : 0;
-        }
-
-        private int ValidateZone(int value)
-        {
-            return (value == 1 || value == 3) ? value : 1;
-        }
-
-        private string ValidateStatus(string value)
-        {
-            // Допустим, что "В работе" - это значение по умолчанию
-            return value == "Выведен" ? "Выведен" : "В работе";
+            set { _status = (value == "Выведен") ? "Выведен" : "В работе"; }
         }
     }
 }
