@@ -38,9 +38,9 @@
             referenceButton = new ToolStripDropDownButton();
             openGuide = new ToolStripMenuItem();
             tabControl = new TabControl();
-            tabPage1 = new TabPage();
+            parametersHUTabPage = new TabPage();
             dataGridView = new DataGridView();
-            tabPage2 = new TabPage();
+            inputRestrictionsTabPage = new TabPage();
             label10 = new Label();
             groupBox3 = new GroupBox();
             flowMaxLoadIndex = new Label();
@@ -74,6 +74,7 @@
             powerRestrictions220Label = new Label();
             powerRestrictions500TextBox = new TextBox();
             powerRestrictions220TextBox = new TextBox();
+            outputRestrictionsTabPage = new TabPage();
             toolBar = new ToolStrip();
             saveButton = new ToolStripSplitButton();
             параметрыГАToolStripMenuItem = new ToolStripMenuItem();
@@ -111,9 +112,9 @@
             label4 = new Label();
             toolStrip.SuspendLayout();
             tabControl.SuspendLayout();
-            tabPage1.SuspendLayout();
+            parametersHUTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
-            tabPage2.SuspendLayout();
+            inputRestrictionsTabPage.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -193,24 +194,25 @@
             // 
             // tabControl
             // 
-            tabControl.Controls.Add(tabPage1);
-            tabControl.Controls.Add(tabPage2);
+            tabControl.Controls.Add(parametersHUTabPage);
+            tabControl.Controls.Add(inputRestrictionsTabPage);
+            tabControl.Controls.Add(outputRestrictionsTabPage);
             tabControl.Location = new Point(0, 53);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
             tabControl.Size = new Size(251, 372);
             tabControl.TabIndex = 2;
             // 
-            // tabPage1
+            // parametersHUTabPage
             // 
-            tabPage1.Controls.Add(dataGridView);
-            tabPage1.Location = new Point(4, 24);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(243, 344);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "Параметры ГА";
-            tabPage1.UseVisualStyleBackColor = true;
+            parametersHUTabPage.Controls.Add(dataGridView);
+            parametersHUTabPage.Location = new Point(4, 24);
+            parametersHUTabPage.Name = "parametersHUTabPage";
+            parametersHUTabPage.Padding = new Padding(3);
+            parametersHUTabPage.Size = new Size(243, 344);
+            parametersHUTabPage.TabIndex = 0;
+            parametersHUTabPage.Text = "Параметры ГА";
+            parametersHUTabPage.UseVisualStyleBackColor = true;
             // 
             // dataGridView
             // 
@@ -221,19 +223,19 @@
             dataGridView.Size = new Size(237, 338);
             dataGridView.TabIndex = 0;
             // 
-            // tabPage2
+            // inputRestrictionsTabPage
             // 
-            tabPage2.Controls.Add(label10);
-            tabPage2.Controls.Add(groupBox3);
-            tabPage2.Controls.Add(groupBox2);
-            tabPage2.Controls.Add(groupBox1);
-            tabPage2.Location = new Point(4, 24);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(243, 344);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Ограничения";
-            tabPage2.UseVisualStyleBackColor = true;
+            inputRestrictionsTabPage.Controls.Add(label10);
+            inputRestrictionsTabPage.Controls.Add(groupBox3);
+            inputRestrictionsTabPage.Controls.Add(groupBox2);
+            inputRestrictionsTabPage.Controls.Add(groupBox1);
+            inputRestrictionsTabPage.Location = new Point(4, 24);
+            inputRestrictionsTabPage.Name = "inputRestrictionsTabPage";
+            inputRestrictionsTabPage.Padding = new Padding(3);
+            inputRestrictionsTabPage.Size = new Size(243, 344);
+            inputRestrictionsTabPage.TabIndex = 1;
+            inputRestrictionsTabPage.Text = "СВМ и БВУ";
+            inputRestrictionsTabPage.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
@@ -285,13 +287,11 @@
             // 
             // flowMaxLoadTextBox
             // 
-            flowMaxLoadTextBox.Cursor = Cursors.No;
             flowMaxLoadTextBox.Location = new Point(104, 80);
             flowMaxLoadTextBox.Name = "flowMaxLoadTextBox";
             flowMaxLoadTextBox.ReadOnly = true;
             flowMaxLoadTextBox.Size = new Size(96, 23);
             flowMaxLoadTextBox.TabIndex = 20;
-            flowMaxLoadTextBox.Text = "508";
             flowMaxLoadTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // cubic3Label
@@ -344,24 +344,20 @@
             // 
             // roughZone2TextBox
             // 
-            roughZone2TextBox.Cursor = Cursors.No;
             roughZone2TextBox.Location = new Point(104, 51);
             roughZone2TextBox.Name = "roughZone2TextBox";
             roughZone2TextBox.ReadOnly = true;
             roughZone2TextBox.Size = new Size(96, 23);
             roughZone2TextBox.TabIndex = 3;
-            roughZone2TextBox.Text = "250";
             roughZone2TextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // roughZone1TextBox
             // 
-            roughZone1TextBox.Cursor = Cursors.No;
             roughZone1TextBox.Location = new Point(104, 22);
             roughZone1TextBox.Name = "roughZone1TextBox";
             roughZone1TextBox.ReadOnly = true;
             roughZone1TextBox.Size = new Size(96, 23);
             roughZone1TextBox.TabIndex = 2;
-            roughZone1TextBox.Text = "78";
             roughZone1TextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // groupBox2
@@ -578,6 +574,15 @@
             powerRestrictions220TextBox.Size = new Size(66, 23);
             powerRestrictions220TextBox.TabIndex = 2;
             powerRestrictions220TextBox.TextAlign = HorizontalAlignment.Center;
+            // 
+            // outputRestrictionsTabPage
+            // 
+            outputRestrictionsTabPage.Location = new Point(4, 24);
+            outputRestrictionsTabPage.Name = "outputRestrictionsTabPage";
+            outputRestrictionsTabPage.Size = new Size(243, 344);
+            outputRestrictionsTabPage.TabIndex = 2;
+            outputRestrictionsTabPage.Text = "ЛОМ и ЗНР";
+            outputRestrictionsTabPage.UseVisualStyleBackColor = true;
             // 
             // toolBar
             // 
@@ -916,10 +921,10 @@
             toolStrip.ResumeLayout(false);
             toolStrip.PerformLayout();
             tabControl.ResumeLayout(false);
-            tabPage1.ResumeLayout(false);
+            parametersHUTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
-            tabPage2.ResumeLayout(false);
-            tabPage2.PerformLayout();
+            inputRestrictionsTabPage.ResumeLayout(false);
+            inputRestrictionsTabPage.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -947,8 +952,8 @@
         private ToolStripMenuItem OpenParamsHU;
         private ToolStripMenuItem saveFile;
         private TabControl tabControl;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
+        private TabPage parametersHUTabPage;
+        private TabPage inputRestrictionsTabPage;
         private DataGridView dataGridView;
         private ToolStripMenuItem saveParamsHU;
         private ToolStrip toolBar;
@@ -1021,5 +1026,6 @@
         private Label label4;
         private Label label7;
         private Label label9;
+        private TabPage outputRestrictionsTabPage;
     }
 }

@@ -1,11 +1,7 @@
 using Npgsql;
 using System.Data;
 using System.Diagnostics;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using System.Xml;
 using System.Xml.Serialization;
-using static View.MainForm;
 using CredentialManagement;
 using Model;
 
@@ -83,7 +79,7 @@ namespace View
             dataGridView.Columns.Add(statusColumn);
 
             // Устанавливаем DataGridView на вкладку tabPage1
-            tabPage1.Controls.Add(dataGridView);
+            parametersHUTabPage.Controls.Add(dataGridView);
 
             // Устанавливаем размеры таблицы
             dataGridView.Width = 237;
