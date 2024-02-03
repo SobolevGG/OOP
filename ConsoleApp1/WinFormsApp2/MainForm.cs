@@ -5,6 +5,7 @@ using System.Xml.Serialization;
 using CredentialManagement;
 using Model;
 using System.Windows.Forms;
+using static Npgsql.Replication.PgOutput.Messages.RelationMessage;
 
 namespace View
 {
@@ -110,17 +111,16 @@ namespace View
             restrictionsHUGridView.Columns["RoughZoneSB"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             restrictionsHUGridView.Columns["MaxLoad"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+            HU.HeaderText = "        ";
             // Настройка выравнивания ячеек по центру
             foreach (DataGridViewColumn column in restrictionsHUGridView.Columns)
             {
                 column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 column.ReadOnly = true;
-
-                // для всех колонок отключена сортировка
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
 
             // Размеры
+            HU.Width = 44;
             RoughZoneFB.Width = 63;
             RoughZoneSB.Width = 64;
             MaxLoad.Width = 63;
@@ -128,10 +128,15 @@ namespace View
             // запрет изменения размера
             parametersHUGridView.AllowUserToResizeRows = false;
             parametersHUGridView.AllowUserToResizeColumns = false;
-            
+
             // Запрет добавления новых строк
             parametersHUGridView.AllowUserToAddRows = false;
 
+            // Разрешение переноса заголовков на вторую строку
+            foreach (DataGridViewColumn column in restrictionsHUGridView.Columns)
+            {
+                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
         }
 
         // Метод для тестовых данных
