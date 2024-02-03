@@ -224,7 +224,7 @@ namespace View
                 // Создаем объект DataItem на основе данных в строке
                 ParametersHU item = new ParametersHU
                 {
-                    GU = row.Cells[0].Value?.ToString(),
+                    HU = row.Cells[0].Value?.ToString(),
                     Load = Convert.ToInt32(row.Cells[1].Value),
                     Zone = Convert.ToInt32(row.Cells[2].Value),
                     Status = row.Cells[3].Value?.ToString()
