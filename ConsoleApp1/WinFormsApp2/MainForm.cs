@@ -7,6 +7,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using static View.MainForm;
 using CredentialManagement;
+using Model;
 
 namespace View
 {
@@ -30,16 +31,6 @@ namespace View
 
             // Вызываем тестовый метод при загрузке формы
             TestFillData();
-        }
-
-        // Класс для хранения данных
-        [Serializable]
-        public class DataItem
-        {
-            public string GU { get; set; }
-            public double Load { get; set; }
-            public int Zone { get; set; }
-            public string Status { get; set; }
         }
 
         // Метод для создания таблицы
@@ -132,7 +123,6 @@ namespace View
                 dataGridView.Rows.Add($"{i}", расход, зона, "В работе");
             }
         }
-
 
         // Метод для сериализации данных в XML
         private void SerializeToXml(List<DataItem> data, string fileName)
