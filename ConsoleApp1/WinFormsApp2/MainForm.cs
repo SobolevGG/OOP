@@ -34,7 +34,7 @@ namespace View
         {
             // Создаем колонки
             DataGridViewTextBoxColumn HUColumn = new DataGridViewTextBoxColumn();
-            HUColumn.HeaderText = "ГА";
+            HUColumn.HeaderText = "ГА ";
             // Устанавливаем ширину для столбца "ГА"
             HUColumn.Width = 44;
             HUColumn.ReadOnly = true;
@@ -73,27 +73,27 @@ namespace View
             statusColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             // Добавляем колонки на DataGridView
-            dataGridView.Columns.Add(HUColumn);
-            dataGridView.Columns.Add(loadColumn);
-            dataGridView.Columns.Add(zoneColumn);
-            dataGridView.Columns.Add(statusColumn);
+            parametersHUGridView.Columns.Add(HUColumn);
+            parametersHUGridView.Columns.Add(loadColumn);
+            parametersHUGridView.Columns.Add(zoneColumn);
+            parametersHUGridView.Columns.Add(statusColumn);
 
             // Устанавливаем DataGridView на вкладку tabPage1
-            parametersHUTabPage.Controls.Add(dataGridView);
+            parametersHUTabPage.Controls.Add(parametersHUGridView);
 
             // Устанавливаем размеры таблицы
-            dataGridView.Width = 237;
-            dataGridView.Height = 340;
+            parametersHUGridView.Width = 237;
+            parametersHUGridView.Height = 340;
 
             // запрет изменения размера
-            dataGridView.AllowUserToResizeRows = false;
-            dataGridView.AllowUserToResizeColumns = false;
+            parametersHUGridView.AllowUserToResizeRows = false;
+            parametersHUGridView.AllowUserToResizeColumns = false;
 
             // Запрет добавления новых строк
-            dataGridView.AllowUserToAddRows = false;
+            parametersHUGridView.AllowUserToAddRows = false;
 
             // для всех колонок отключена сортировка
-            foreach (DataGridViewColumn column in dataGridView.Columns)
+            foreach (DataGridViewColumn column in parametersHUGridView.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
@@ -116,7 +116,7 @@ namespace View
                 int зона = расход >= 320 ? 3 : (расход <= 150 ? 1 : 2);
 
                 // Добавляем строку с тестовыми данными
-                dataGridView.Rows.Add($"{i}", расход, зона, "В работе");
+                parametersHUGridView.Rows.Add($"{i}", расход, зона, "В работе");
             }
         }
 
@@ -134,7 +134,7 @@ namespace View
         private void MainForm_Load(object sender, EventArgs e)
         {
             // Устанавливаем свойство ReadOnly для всех ячеек в true
-            foreach (DataGridViewRow row in dataGridView.Rows)
+            foreach (DataGridViewRow row in parametersHUGridView.Rows)
             {
                 foreach (DataGridViewCell cell in row.Cells)
                 {
@@ -146,7 +146,7 @@ namespace View
             exportDBButton.Enabled = false;
 
             // Подписываемся на событие CellValueChanged
-            dataGridView.CellValidating += dataGridView_CellValidating;
+            parametersHUGridView.CellValidating += dataGridView_CellValidating;
 
         }
 
@@ -209,7 +209,7 @@ namespace View
             List<ParametersHU> dataItems = new List<ParametersHU>();
 
             // Проходим по каждой строке в DataGridView
-            foreach (DataGridViewRow row in dataGridView.Rows)
+            foreach (DataGridViewRow row in parametersHUGridView.Rows)
             {
                 // Создаем объект DataItem на основе данных в строке
                 ParametersHU item = new ParametersHU
@@ -241,13 +241,13 @@ namespace View
         private void EditingModeButton_Click(object sender, EventArgs e)
         {
             // Сохраняем данные перед изменением режима редактирования
-            dataGridView.EndEdit();
+            parametersHUGridView.EndEdit();
 
             // Переключаем режим редактирования
             isEditingEnabled = !isEditingEnabled;
 
             // Устанавливаем свойство ReadOnly для всех ячеек, кроме первого столбца, в зависимости от режима редактирования
-            foreach (DataGridViewRow row in dataGridView.Rows)
+            foreach (DataGridViewRow row in parametersHUGridView.Rows)
             {
                 foreach (DataGridViewCell cell in row.Cells)
                 {

@@ -39,7 +39,7 @@
             openGuide = new ToolStripMenuItem();
             tabControl = new TabControl();
             parametersHUTabPage = new TabPage();
-            dataGridView = new DataGridView();
+            parametersHUGridView = new DataGridView();
             inputRestrictionsTabPage = new TabPage();
             label10 = new Label();
             groupBox3 = new GroupBox();
@@ -75,6 +75,7 @@
             powerRestrictions500TextBox = new TextBox();
             powerRestrictions220TextBox = new TextBox();
             outputRestrictionsTabPage = new TabPage();
+            restrictionsHUGridView = new DataGridView();
             toolBar = new ToolStrip();
             saveButton = new ToolStripSplitButton();
             параметрыГАToolStripMenuItem = new ToolStripMenuItem();
@@ -113,12 +114,14 @@
             toolStrip.SuspendLayout();
             tabControl.SuspendLayout();
             parametersHUTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)parametersHUGridView).BeginInit();
             inputRestrictionsTabPage.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             powerDRGroupBox.SuspendLayout();
+            outputRestrictionsTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)restrictionsHUGridView).BeginInit();
             toolBar.SuspendLayout();
             ULRGroupBox.SuspendLayout();
             calcGroupBox.SuspendLayout();
@@ -205,7 +208,7 @@
             // 
             // parametersHUTabPage
             // 
-            parametersHUTabPage.Controls.Add(dataGridView);
+            parametersHUTabPage.Controls.Add(parametersHUGridView);
             parametersHUTabPage.Location = new Point(4, 24);
             parametersHUTabPage.Name = "parametersHUTabPage";
             parametersHUTabPage.Padding = new Padding(3);
@@ -214,14 +217,14 @@
             parametersHUTabPage.Text = "Параметры ГА";
             parametersHUTabPage.UseVisualStyleBackColor = true;
             // 
-            // dataGridView
+            // parametersHUGridView
             // 
-            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Location = new Point(3, 3);
-            dataGridView.Name = "dataGridView";
-            dataGridView.RowHeadersVisible = false;
-            dataGridView.Size = new Size(237, 338);
-            dataGridView.TabIndex = 0;
+            parametersHUGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            parametersHUGridView.Location = new Point(3, 3);
+            parametersHUGridView.Name = "parametersHUGridView";
+            parametersHUGridView.RowHeadersVisible = false;
+            parametersHUGridView.Size = new Size(237, 338);
+            parametersHUGridView.TabIndex = 0;
             // 
             // inputRestrictionsTabPage
             // 
@@ -577,12 +580,24 @@
             // 
             // outputRestrictionsTabPage
             // 
+            outputRestrictionsTabPage.Controls.Add(restrictionsHUGridView);
             outputRestrictionsTabPage.Location = new Point(4, 24);
             outputRestrictionsTabPage.Name = "outputRestrictionsTabPage";
             outputRestrictionsTabPage.Size = new Size(243, 344);
             outputRestrictionsTabPage.TabIndex = 2;
             outputRestrictionsTabPage.Text = "ЛОМ и ЗНР";
             outputRestrictionsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // restrictionsHUGridView
+            // 
+            restrictionsHUGridView.AllowUserToAddRows = false;
+            restrictionsHUGridView.AllowUserToDeleteRows = false;
+            restrictionsHUGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            restrictionsHUGridView.Location = new Point(3, 3);
+            restrictionsHUGridView.Name = "restrictionsHUGridView";
+            restrictionsHUGridView.ReadOnly = true;
+            restrictionsHUGridView.Size = new Size(237, 338);
+            restrictionsHUGridView.TabIndex = 0;
             // 
             // toolBar
             // 
@@ -922,7 +937,7 @@
             toolStrip.PerformLayout();
             tabControl.ResumeLayout(false);
             parametersHUTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)parametersHUGridView).EndInit();
             inputRestrictionsTabPage.ResumeLayout(false);
             inputRestrictionsTabPage.PerformLayout();
             groupBox3.ResumeLayout(false);
@@ -932,6 +947,8 @@
             groupBox1.ResumeLayout(false);
             powerDRGroupBox.ResumeLayout(false);
             powerDRGroupBox.PerformLayout();
+            outputRestrictionsTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)restrictionsHUGridView).EndInit();
             toolBar.ResumeLayout(false);
             toolBar.PerformLayout();
             ULRGroupBox.ResumeLayout(false);
@@ -954,7 +971,7 @@
         private TabControl tabControl;
         private TabPage parametersHUTabPage;
         private TabPage inputRestrictionsTabPage;
-        private DataGridView dataGridView;
+        private DataGridView parametersHUGridView;
         private ToolStripMenuItem saveParamsHU;
         private ToolStrip toolBar;
         private ToolStripButton editingModeButton;
@@ -1027,5 +1044,6 @@
         private Label label7;
         private Label label9;
         private TabPage outputRestrictionsTabPage;
+        private DataGridView restrictionsHUGridView;
     }
 }
