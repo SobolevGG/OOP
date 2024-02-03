@@ -16,10 +16,11 @@ namespace Model
         /// <param name="id">Идентификатор гидрогенератора.</param>
         /// <param name="name">Название гидрогенератора.</param>
         /// <param name="characteristic">Текущая эксплуатационная характеристика.</param>
-
-        public static void InsertOrUpdateHydroGenerator(int id, string name, string characteristic, string enteredPassword)
+        /// <param name="enteredLogin">Введенное значение логина.</param>
+        /// <param name="enteredPassword">Введенное значение пароля.</param>
+        public static void InsertOrUpdateHydroGenerator(int id, string name, string characteristic, string enteredLogin, string enteredPassword)
         {
-            var connector = new PostgresConnector("localhost", "HPPs", "postgres", enteredPassword);
+            var connector = new PostgresConnector("localhost", "HPPs", enteredLogin, enteredPassword);
             string sqlQuery = $@"
             INSERT INTO hydro_generators (id, name, 
             hydro_power_plant_id, characteristic, last_change_date)

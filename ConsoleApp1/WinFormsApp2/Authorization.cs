@@ -14,6 +14,7 @@ namespace View
     public partial class Authorization : Form
     {
         public string Password { get; private set; }
+        public string Login { get; private set; }
         public static string TargetDB { get => targetDB; set => targetDB = value; }
 
         private static string targetDB = @"HPPsDatabase";
@@ -21,6 +22,11 @@ namespace View
         public string GetEnteredPassword()
         {
             return passwordTextBox.Text;
+        }
+
+        public string GetEnteredLogin()
+        {
+            return loginTextBox.Text;
         }
 
         public Authorization()
@@ -33,34 +39,37 @@ namespace View
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            // Получить введенный пользователем пароль
+            // Получить введенные пользователем логин и пароль
+            string enteredUsername = loginTextBox.Text;
             string enteredPassword = passwordTextBox.Text;
 
-            // Создать объект PostgresConnector с введенным паролем
-            var connector = new PostgresConnector("localhost", "HPPs", "postgres", enteredPassword);
+            // Создать объект PostgresConnector с введенными логином и паролем
+            var connector = new PostgresConnector("localhost", "HPPs", enteredUsername, enteredPassword);
 
-            // Проверить правильность пароля
+            // Проверить правильность логина и пароля
             if (connector.TestConnection()) // Метод для проверки подключения
             {
+                Login = enteredUsername;
                 Password = enteredPassword;
 
                 // Сохранить учетные данные после успешной авторизации
-                SaveCredentials(enteredPassword);
+                SaveCredentials(enteredUsername, enteredPassword);
 
                 DialogResult = System.Windows.Forms.DialogResult.OK;
                 Close();
-                MessageBox.Show("Пароль верный. Авторизация успешна.",
+                MessageBox.Show("Авторизация успешна.", 
                     "Выполнено", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                passwordTextBox.Text = string.Empty; // Очистить TextBox
-                MessageBox.Show("Неверный пароль. Авторизация не удалась.",
+                loginTextBox.Text = string.Empty; // Очистить TextBox для логина
+                passwordTextBox.Text = string.Empty; // Очистить TextBox для пароля
+                MessageBox.Show("Неверный логин или пароль. Авторизация не удалась.",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void SaveCredentials(string password)
+        private void SaveCredentials(string username, string password)
         {
             // Создать объект учетных данных
             var cred = new Credential
@@ -68,14 +77,13 @@ namespace View
                 // Уникальный идентификатор для вашего приложения
                 Target = TargetDB,
                 // Имя пользователя
-                Username = "postgres",
+                Username = username,
                 Password = password
             };
 
             // Сохранить учетные данные
             cred.Save();
         }
-
 
         private void cancelButton_Click(object sender, EventArgs e)
         {

@@ -361,7 +361,7 @@ namespace View
                 // Находим сохраненные учетные данные
                 if (cred.Load())
                 {
-                    var connector = new PostgresConnector("localhost", "HPPs", "postgres", cred.Password);
+                    var connector = new PostgresConnector("localhost", "HPPs", cred.Username, cred.Password);
 
                     try
                     {
@@ -446,10 +446,11 @@ namespace View
             // Вызов нового метода для вставки/обновления данных
             try
             {
-                // Получение пароля из формы авторизации
+                // Получение пароля и логина из формы авторизации
                 string enteredPassword = authorizationForm.GetEnteredPassword();
+                string enteredLogin = authorizationForm.GetEnteredLogin();
 
-                Model.PostgresQueries.InsertOrUpdateHydroGenerator(11, "Гидрогенератор 11", "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))", enteredPassword);
+                Model.PostgresQueries.InsertOrUpdateHydroGenerator(11, "Гидрогенератор 11", "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))", enteredLogin, enteredPassword);
                 MessageBox.Show("Данные успешно вставлены/обновлены.", "Выполнено",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
