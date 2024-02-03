@@ -109,9 +109,9 @@ namespace View
             restrictionsHUGridView.Columns["RoughZoneFB"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             restrictionsHUGridView.Columns["RoughZoneSB"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            restrictionsHUGridView.Columns["HU"].HeaderText = "√¿";
-            restrictionsHUGridView.Columns["RoughZoneFB"].HeaderText = "P       , Ã¬Ú";
-            restrictionsHUGridView.Columns["RoughZoneSB"].HeaderText = "P       , Ã¬Ú";
+            //restrictionsHUGridView.Columns["HU"].HeaderText = "√¿";
+            //restrictionsHUGridView.Columns["RoughZoneFB"].HeaderText = "      P     ,        Ã¬Ú";
+            //restrictionsHUGridView.Columns["RoughZoneSB"].HeaderText = "    P    , Ã¬Ú";
 
 
             HU.ReadOnly = true;
