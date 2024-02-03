@@ -13,6 +13,8 @@ namespace View
     {
         private bool isEditingEnabled = false;
 
+        private Authorization authorizationForm;
+
         public MainForm()
         {
             InitializeComponent();
@@ -283,7 +285,7 @@ namespace View
         private void AuthorizationButton_Click(object sender, EventArgs e)
         {
             // Вывести диалоговое окно для авторизации
-            Authorization authorizationForm = new Authorization();
+            authorizationForm = new Authorization();
             DialogResult result = authorizationForm.ShowDialog();
 
             if (result == DialogResult.OK)
@@ -295,7 +297,7 @@ namespace View
 
         private void CurrentCharacteristicsToolStripMenu_Click(object sender, EventArgs e)
         {
-            var connector = new PostgresConnector("localhost", "HPPs", "postgres", $"{Model.PostgresQueries.PasswordDB}");
+            var connector = new PostgresConnector("localhost", "HPPs", "postgres", "023098");
 
             try
             {
@@ -337,7 +339,7 @@ namespace View
 
         private void ProtocolToolStripMenu_Click(object sender, EventArgs e)
         {
-            var connector = new PostgresConnector("localhost", "HPPs", "postgres", $"{Model.PostgresQueries.PasswordDB}");
+            var connector = new PostgresConnector("localhost", "HPPs", "postgres", "023098");
 
             try
             {
@@ -390,8 +392,11 @@ namespace View
             // Вызов нового метода для вставки/обновления данных
             try
             {
-                Model.PostgresQueries.InsertOrUpdateHydroGenerator(10, "Гидрогенератор 10", "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))");
-                MessageBox.Show("Данные успешно вставлены/обновлены.", "Выполнено", 
+                // Получение пароля из формы авторизации
+                string enteredPassword = authorizationForm.GetEnteredPassword();
+
+                Model.PostgresQueries.InsertOrUpdateHydroGenerator(11, "Гидрогенератор 11", "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))", enteredPassword);
+                MessageBox.Show("Данные успешно вставлены/обновлены.", "Выполнено",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -399,7 +404,6 @@ namespace View
                 MessageBox.Show($"Ошибка при выполнении запроса: {ex.Message}",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
         }
     }
 }

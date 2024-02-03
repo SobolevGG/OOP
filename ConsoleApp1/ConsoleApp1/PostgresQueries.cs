@@ -10,15 +10,6 @@ namespace Model
 {
     public class PostgresQueries
     {
-        // Пароль для доступа к базе данных
-        private static string passwordDB = "023098";
-
-        // Только для чтения свойство
-        public static string PasswordDB
-        {
-            get { return passwordDB; }
-        }
-
         /// <summary>
         /// Вставляет или обновляет данные гидрогенератора в базе данных.
         /// </summary>
@@ -26,14 +17,15 @@ namespace Model
         /// <param name="name">Название гидрогенератора.</param>
         /// <param name="characteristic">Текущая эксплуатационная характеристика.</param>
 
-        public static void InsertOrUpdateHydroGenerator(int id, string name, string characteristic)
+        public static void InsertOrUpdateHydroGenerator(int id, string name, string characteristic, string enteredPassword)
         {
-            var connector = new PostgresConnector("localhost", "HPPs", "postgres", $"{PasswordDB}");
+            var connector = new PostgresConnector("localhost", "HPPs", "postgres", enteredPassword);
             string sqlQuery = $@"
-        INSERT INTO hydro_generators (id, name, hydro_power_plant_id, characteristic, last_change_date)
-        VALUES ({id}, '{name}', 1, '{characteristic}', CURRENT_TIMESTAMP)
-        ON CONFLICT (id) DO UPDATE
-        SET
+            INSERT INTO hydro_generators (id, name, 
+            hydro_power_plant_id, characteristic, last_change_date)
+            VALUES ({id}, '{name}', 1, '{characteristic}', CURRENT_TIMESTAMP)
+            ON CONFLICT (id) DO UPDATE
+            SET
             name = EXCLUDED.name,
             hydro_power_plant_id = EXCLUDED.hydro_power_plant_id,
             characteristic = EXCLUDED.characteristic,
@@ -41,6 +33,7 @@ namespace Model
 
             connector.ExecuteNonQuery(sqlQuery);
         }
+
 
         public static NpgsqlDataReader SelectProtocol(PostgresConnector connector)
         {

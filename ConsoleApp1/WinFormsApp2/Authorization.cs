@@ -14,6 +14,11 @@ namespace View
     {
         public string Password { get; private set; }
 
+        public string GetEnteredPassword()
+        {
+            return passwordTextBox.Text;
+        }
+
         public Authorization()
         {
             InitializeComponent();
@@ -24,14 +29,14 @@ namespace View
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            // Ваш пароль для сравнения
-            string actualPassword = Model.PostgresQueries.PasswordDB;
-
             // Получить введенный пользователем пароль
             string enteredPassword = passwordTextBox.Text;
 
+            // Создать объект PostgresConnector с введенным паролем
+            var connector = new PostgresConnector("localhost", "HPPs", "postgres", enteredPassword);
+
             // Проверить правильность пароля
-            if (enteredPassword == actualPassword)
+            if (connector.TestConnection()) // Метод для проверки подключения
             {
                 Password = enteredPassword;
                 DialogResult = DialogResult.OK;

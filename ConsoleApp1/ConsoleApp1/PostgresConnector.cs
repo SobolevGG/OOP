@@ -16,6 +16,22 @@ public class PostgresConnector
         connectionString = $"Host={host};Database={database};Username={username};Password={password};";
     }
 
+    public bool TestConnection()
+    {
+        try
+        {
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                return true;
+            }
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
     public void ExecuteNonQuery(string sql)
     {
         try
