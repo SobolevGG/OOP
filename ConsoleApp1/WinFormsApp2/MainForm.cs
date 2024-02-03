@@ -117,8 +117,9 @@ namespace View
             HU.ReadOnly = true;
             RoughZoneFB.ReadOnly = true;
             RoughZoneSB.ReadOnly = true;
-            RoughZoneFB.Width = 95;
-            RoughZoneSB.Width = 95;
+            RoughZoneFB.Width = 63;
+            RoughZoneSB.Width = 64;
+            MaxLoad.Width = 63;
 
             // loadColumn = new DataGridViewTextBoxColumn();
             // loadColumn.HeaderText = "Pçíð1, ÌÂò";

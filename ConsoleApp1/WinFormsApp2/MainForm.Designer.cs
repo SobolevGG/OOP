@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle22 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle23 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle24 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
             toolStrip = new ToolStrip();
             toolStripDropDownButton1 = new ToolStripDropDownButton();
             openFile = new ToolStripMenuItem();
@@ -53,8 +53,6 @@
             flowMaxLoadTextBoxLabel = new Label();
             flowMaxLoadTextBox = new TextBox();
             cubic3Label = new Label();
-            roughZoneIndex2Label = new Label();
-            roughZone2Label = new Label();
             roughZone2TextBox = new TextBox();
             roughZone1TextBox = new TextBox();
             groupBox2 = new GroupBox();
@@ -79,14 +77,18 @@
             powerRestrictions500TextBox = new TextBox();
             powerRestrictions220TextBox = new TextBox();
             outputRestrictionsTabPage = new TabPage();
+            roughZoneIndeSBLabel = new Label();
+            label14 = new Label();
             roughZoneIndeFBLabel = new Label();
             roughZoneFBLabel = new Label();
-            roughZoneIndeSBLabel = new Label();
+            label13 = new Label();
+            HULabel = new Label();
             roughZoneSBLabel = new Label();
             restrictionsHUGridView = new DataGridView();
             HU = new DataGridViewTextBoxColumn();
             RoughZoneFB = new DataGridViewTextBoxColumn();
             RoughZoneSB = new DataGridViewTextBoxColumn();
+            MaxLoad = new DataGridViewTextBoxColumn();
             toolBar = new ToolStrip();
             saveButton = new ToolStripSplitButton();
             параметрыГАToolStripMenuItem = new ToolStripMenuItem();
@@ -122,7 +124,9 @@
             textBox4 = new TextBox();
             label3 = new Label();
             label4 = new Label();
-            HULabel = new Label();
+            label11 = new Label();
+            label12 = new Label();
+            label15 = new Label();
             toolStrip.SuspendLayout();
             tabControl.SuspendLayout();
             parametersHUTabPage.SuspendLayout();
@@ -268,8 +272,6 @@
             groupBox3.Controls.Add(flowMaxLoadTextBoxLabel);
             groupBox3.Controls.Add(flowMaxLoadTextBox);
             groupBox3.Controls.Add(cubic3Label);
-            groupBox3.Controls.Add(roughZoneIndex2Label);
-            groupBox3.Controls.Add(roughZone2Label);
             groupBox3.Controls.Add(roughZone2TextBox);
             groupBox3.Controls.Add(roughZone1TextBox);
             groupBox3.Location = new Point(8, 210);
@@ -315,25 +317,6 @@
             cubic3Label.Name = "cubic3Label";
             cubic3Label.Size = new Size(0, 12);
             cubic3Label.TabIndex = 16;
-            // 
-            // roughZoneIndex2Label
-            // 
-            roughZoneIndex2Label.AutoSize = true;
-            roughZoneIndex2Label.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            roughZoneIndex2Label.Location = new Point(18, 63);
-            roughZoneIndex2Label.Name = "roughZoneIndex2Label";
-            roughZoneIndex2Label.Size = new Size(26, 12);
-            roughZoneIndex2Label.TabIndex = 14;
-            roughZoneIndex2Label.Text = "ЗНР2";
-            // 
-            // roughZone2Label
-            // 
-            roughZone2Label.AutoSize = true;
-            roughZone2Label.Location = new Point(10, 55);
-            roughZone2Label.Name = "roughZone2Label";
-            roughZone2Label.Size = new Size(70, 15);
-            roughZone2Label.TabIndex = 15;
-            roughZone2Label.Text = "P        , МВт:";
             // 
             // roughZone2TextBox
             // 
@@ -570,10 +553,15 @@
             // 
             // outputRestrictionsTabPage
             // 
-            outputRestrictionsTabPage.Controls.Add(HULabel);
+            outputRestrictionsTabPage.Controls.Add(label11);
+            outputRestrictionsTabPage.Controls.Add(label12);
+            outputRestrictionsTabPage.Controls.Add(label15);
+            outputRestrictionsTabPage.Controls.Add(roughZoneIndeSBLabel);
+            outputRestrictionsTabPage.Controls.Add(label14);
             outputRestrictionsTabPage.Controls.Add(roughZoneIndeFBLabel);
             outputRestrictionsTabPage.Controls.Add(roughZoneFBLabel);
-            outputRestrictionsTabPage.Controls.Add(roughZoneIndeSBLabel);
+            outputRestrictionsTabPage.Controls.Add(label13);
+            outputRestrictionsTabPage.Controls.Add(HULabel);
             outputRestrictionsTabPage.Controls.Add(roughZoneSBLabel);
             outputRestrictionsTabPage.Controls.Add(restrictionsHUGridView);
             outputRestrictionsTabPage.Location = new Point(4, 24);
@@ -583,11 +571,31 @@
             outputRestrictionsTabPage.Text = "ЛОМ и ЗНР";
             outputRestrictionsTabPage.UseVisualStyleBackColor = true;
             // 
+            // roughZoneIndeSBLabel
+            // 
+            roughZoneIndeSBLabel.AutoSize = true;
+            roughZoneIndeSBLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            roughZoneIndeSBLabel.Location = new Point(131, 14);
+            roughZoneIndeSBLabel.Name = "roughZoneIndeSBLabel";
+            roughZoneIndeSBLabel.Size = new Size(26, 12);
+            roughZoneIndeSBLabel.TabIndex = 14;
+            roughZoneIndeSBLabel.Text = "ЗНР2";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(130, 25);
+            label14.Name = "label14";
+            label14.Size = new Size(30, 15);
+            label14.TabIndex = 26;
+            label14.Text = "МВт";
+            label14.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // roughZoneIndeFBLabel
             // 
             roughZoneIndeFBLabel.AutoSize = true;
-            roughZoneIndeFBLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            roughZoneIndeFBLabel.Location = new Point(74, 23);
+            roughZoneIndeFBLabel.Font = new Font("Segoe UI", 6.75F);
+            roughZoneIndeFBLabel.Location = new Point(68, 14);
             roughZoneIndeFBLabel.Name = "roughZoneIndeFBLabel";
             roughZoneIndeFBLabel.Size = new Size(26, 12);
             roughZoneIndeFBLabel.TabIndex = 16;
@@ -596,31 +604,41 @@
             // roughZoneFBLabel
             // 
             roughZoneFBLabel.AutoSize = true;
-            roughZoneFBLabel.Location = new Point(66, 15);
+            roughZoneFBLabel.Location = new Point(61, 6);
             roughZoneFBLabel.Name = "roughZoneFBLabel";
-            roughZoneFBLabel.Size = new Size(67, 15);
+            roughZoneFBLabel.Size = new Size(41, 15);
             roughZoneFBLabel.TabIndex = 17;
-            roughZoneFBLabel.Text = "P        , МВт";
-            roughZoneFBLabel.TextAlign = ContentAlignment.MiddleCenter;
+            roughZoneFBLabel.Text = "P        ,";
+            roughZoneFBLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // roughZoneIndeSBLabel
+            // label13
             // 
-            roughZoneIndeSBLabel.AutoSize = true;
-            roughZoneIndeSBLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            roughZoneIndeSBLabel.Location = new Point(169, 23);
-            roughZoneIndeSBLabel.Name = "roughZoneIndeSBLabel";
-            roughZoneIndeSBLabel.Size = new Size(26, 12);
-            roughZoneIndeSBLabel.TabIndex = 14;
-            roughZoneIndeSBLabel.Text = "ЗНР2";
+            label13.AutoSize = true;
+            label13.Location = new Point(66, 25);
+            label13.Name = "label13";
+            label13.Size = new Size(30, 15);
+            label13.TabIndex = 25;
+            label13.Text = "МВт";
+            label13.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // HULabel
+            // 
+            HULabel.AutoSize = true;
+            HULabel.Location = new Point(16, 16);
+            HULabel.Name = "HULabel";
+            HULabel.Size = new Size(21, 15);
+            HULabel.TabIndex = 18;
+            HULabel.Text = "ГА";
+            HULabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // roughZoneSBLabel
             // 
             roughZoneSBLabel.AutoSize = true;
-            roughZoneSBLabel.Location = new Point(161, 15);
+            roughZoneSBLabel.Location = new Point(123, 6);
             roughZoneSBLabel.Name = "roughZoneSBLabel";
-            roughZoneSBLabel.Size = new Size(67, 15);
+            roughZoneSBLabel.Size = new Size(41, 15);
             roughZoneSBLabel.TabIndex = 15;
-            roughZoneSBLabel.Text = "P        , МВт";
+            roughZoneSBLabel.Text = "P        ,";
             roughZoneSBLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // restrictionsHUGridView
@@ -628,36 +646,36 @@
             restrictionsHUGridView.AllowUserToAddRows = false;
             restrictionsHUGridView.AllowUserToDeleteRows = false;
             restrictionsHUGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            restrictionsHUGridView.Columns.AddRange(new DataGridViewColumn[] { HU, RoughZoneFB, RoughZoneSB });
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = SystemColors.Window;
-            dataGridViewCellStyle10.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle10.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
-            restrictionsHUGridView.DefaultCellStyle = dataGridViewCellStyle10;
+            restrictionsHUGridView.Columns.AddRange(new DataGridViewColumn[] { HU, RoughZoneFB, RoughZoneSB, MaxLoad });
+            dataGridViewCellStyle22.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.BackColor = SystemColors.Window;
+            dataGridViewCellStyle22.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle22.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle22.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = DataGridViewTriState.False;
+            restrictionsHUGridView.DefaultCellStyle = dataGridViewCellStyle22;
             restrictionsHUGridView.Location = new Point(3, 3);
             restrictionsHUGridView.Name = "restrictionsHUGridView";
             restrictionsHUGridView.ReadOnly = true;
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = SystemColors.Control;
-            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle11.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
-            restrictionsHUGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle23.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle23.BackColor = SystemColors.Control;
+            dataGridViewCellStyle23.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle23.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle23.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = DataGridViewTriState.True;
+            restrictionsHUGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle23;
             restrictionsHUGridView.RowHeadersVisible = false;
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            restrictionsHUGridView.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle24.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            restrictionsHUGridView.RowsDefaultCellStyle = dataGridViewCellStyle24;
             restrictionsHUGridView.Size = new Size(237, 338);
             restrictionsHUGridView.TabIndex = 0;
             // 
             // HU
             // 
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            HU.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            HU.DefaultCellStyle = dataGridViewCellStyle19;
             HU.HeaderText = "        ";
             HU.Name = "HU";
             HU.ReadOnly = true;
@@ -665,19 +683,28 @@
             // 
             // RoughZoneFB
             // 
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            RoughZoneFB.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle20.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            RoughZoneFB.DefaultCellStyle = dataGridViewCellStyle20;
             RoughZoneFB.HeaderText = "";
             RoughZoneFB.Name = "RoughZoneFB";
             RoughZoneFB.ReadOnly = true;
+            RoughZoneFB.Width = 63;
             // 
             // RoughZoneSB
             // 
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            RoughZoneSB.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle21.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            RoughZoneSB.DefaultCellStyle = dataGridViewCellStyle21;
             RoughZoneSB.HeaderText = "";
             RoughZoneSB.Name = "RoughZoneSB";
             RoughZoneSB.ReadOnly = true;
+            RoughZoneSB.Width = 64;
+            // 
+            // MaxLoad
+            // 
+            MaxLoad.HeaderText = "";
+            MaxLoad.Name = "MaxLoad";
+            MaxLoad.ReadOnly = true;
+            MaxLoad.Width = 63;
             // 
             // toolBar
             // 
@@ -994,15 +1021,35 @@
             label4.TabIndex = 0;
             label4.Text = "P       , МВт:";
             // 
-            // HULabel
+            // label11
             // 
-            HULabel.AutoSize = true;
-            HULabel.Location = new Point(16, 16);
-            HULabel.Name = "HULabel";
-            HULabel.Size = new Size(21, 15);
-            HULabel.TabIndex = 18;
-            HULabel.Text = "ГА";
-            HULabel.TextAlign = ContentAlignment.MiddleCenter;
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label11.Location = new Point(195, 14);
+            label11.Name = "label11";
+            label11.Size = new Size(26, 12);
+            label11.TabIndex = 27;
+            label11.Text = "ЛОМ";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(194, 25);
+            label12.Name = "label12";
+            label12.Size = new Size(30, 15);
+            label12.TabIndex = 29;
+            label12.Text = "МВт";
+            label12.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(187, 6);
+            label15.Name = "label15";
+            label15.Size = new Size(41, 15);
+            label15.TabIndex = 28;
+            label15.Text = "P        ,";
+            label15.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // MainForm
             // 
@@ -1109,8 +1156,6 @@
         private TextBox textBox2;
         private TextBox textBox1;
         private Label label5;
-        private Label roughZoneIndex2Label;
-        private Label roughZone2Label;
         private Label cubic3Label;
         private Label label8;
         private Label cubic1Label;
@@ -1134,13 +1179,19 @@
         private Label label9;
         private TabPage outputRestrictionsTabPage;
         private DataGridView restrictionsHUGridView;
-        private DataGridViewTextBoxColumn HU;
-        private DataGridViewTextBoxColumn RoughZoneFB;
-        private DataGridViewTextBoxColumn RoughZoneSB;
         private Label roughZoneIndeFBLabel;
         private Label roughZoneFBLabel;
         private Label roughZoneIndeSBLabel;
         private Label roughZoneSBLabel;
         private Label HULabel;
+        private Label label13;
+        private DataGridViewTextBoxColumn HU;
+        private DataGridViewTextBoxColumn RoughZoneFB;
+        private DataGridViewTextBoxColumn RoughZoneSB;
+        private DataGridViewTextBoxColumn MaxLoad;
+        private Label label14;
+        private Label label11;
+        private Label label12;
+        private Label label15;
     }
 }
