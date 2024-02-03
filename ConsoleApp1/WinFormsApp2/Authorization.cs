@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CredentialManagement;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,9 @@ namespace View
     public partial class Authorization : Form
     {
         public string Password { get; private set; }
+        public static string TargetDB { get => targetDB; set => targetDB = value; }
+
+        private static string targetDB = @"HPPsDatabase";
 
         public string GetEnteredPassword()
         {
@@ -39,7 +43,11 @@ namespace View
             if (connector.TestConnection()) // Метод для проверки подключения
             {
                 Password = enteredPassword;
-                DialogResult = DialogResult.OK;
+
+                // Сохранить учетные данные после успешной авторизации
+                SaveCredentials(enteredPassword);
+
+                DialogResult = System.Windows.Forms.DialogResult.OK;
                 Close();
                 MessageBox.Show("Пароль верный. Авторизация успешна.",
                     "Выполнено", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -52,9 +60,26 @@ namespace View
             }
         }
 
+        private void SaveCredentials(string password)
+        {
+            // Создать объект учетных данных
+            var cred = new Credential
+            {
+                // Уникальный идентификатор для вашего приложения
+                Target = TargetDB,
+                // Имя пользователя
+                Username = "postgres",
+                Password = password
+            };
+
+            // Сохранить учетные данные
+            cred.Save();
+        }
+
+
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            DialogResult = System.Windows.Forms.DialogResult.Cancel;
             Close();
         }
     }

@@ -6,6 +6,7 @@ using System.Windows.Forms.VisualStyles;
 using System.Xml;
 using System.Xml.Serialization;
 using static View.MainForm;
+using CredentialManagement;
 
 namespace View
 {
@@ -271,7 +272,7 @@ namespace View
             openFileDialog.ShowHelp = false;
 
             // Показываем диалоговое окно и проверяем, был ли выбран файл
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 // Получаем путь к выбранному файлу
                 string selectedFilePath = openFileDialog.FileName;
@@ -286,9 +287,9 @@ namespace View
         {
             // Вывести диалоговое окно для авторизации
             authorizationForm = new Authorization();
-            DialogResult result = authorizationForm.ShowDialog();
+            System.Windows.Forms.DialogResult result = authorizationForm.ShowDialog();
 
-            if (result == DialogResult.OK)
+            if (result == System.Windows.Forms.DialogResult.OK)
             {
                 // Разблокировать кнопку после успешной авторизации
                 exportDBButton.Enabled = true;
@@ -297,85 +298,125 @@ namespace View
 
         private void CurrentCharacteristicsToolStripMenu_Click(object sender, EventArgs e)
         {
-            var connector = new PostgresConnector("localhost", "HPPs", "postgres", "023098");
-
-            try
+            // Создаем объект Credential
+            using (var cred = new Credential())
             {
-                NpgsqlDataReader reader = Model.PostgresQueries.SelectCharacteristics(connector);
+                // Указываем таргет
+                cred.Target = Authorization.TargetDB;
 
-                if (reader != null)
+                // Находим сохраненные учетные данные
+                if (cred.Load())
                 {
-                    DataTable dataTable = new DataTable("GeneratorCharacteristicHistory");
-                    dataTable.Load(reader);
+                    var connector = new PostgresConnector("localhost", "HPPs", "postgres", cred.Password);
 
-                    // Создание XML-файла и запись в него данных
-                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    try
                     {
-                        Filter = "XML files (*.xml)|*.xml",
-                        Title = "Сохранить данные в XML"
-                    };
+                        NpgsqlDataReader reader = Model.PostgresQueries.SelectCharacteristics(connector);
 
-                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        string filePath = saveFileDialog.FileName;
-                        dataTable.WriteXml(filePath);
+                        if (reader != null)
+                        {
+                            DataTable dataTable = new DataTable("GeneratorCharacteristicHistory");
+                            dataTable.Load(reader);
 
-                        MessageBox.Show("Данные успешно сохранены в XML файл.", "Выполнено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            // Создание XML-файла и запись в него данных
+                            SaveFileDialog saveFileDialog = new SaveFileDialog
+                            {
+                                Filter = "XML files (*.xml)|*.xml",
+                                Title = "Сохранить данные в XML"
+                            };
+
+                            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                string filePath = saveFileDialog.FileName;
+                                dataTable.WriteXml(filePath);
+
+                                MessageBox.Show("Данные успешно сохранены в XML файл.", 
+                                    "Выполнено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+
+                            reader.Close();
+                        }
                     }
-
-                    reader.Close();
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Ошибка при чтении данных из базы данных: {ex.Message}", 
+                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        // Закрытие соединения
+                        connector.CloseConnection();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при чтении данных из базы данных: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                // Закрытие соединения
-                connector.CloseConnection();
+                else
+                {
+                    // Учетные данные не найдены или пользователь отменил ввод
+                    MessageBox.Show("Данные не найдены или ввод отменен.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
+
+        /// <summary>
+        /// Сохранить протокол актуализации.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ProtocolToolStripMenu_Click(object sender, EventArgs e)
         {
-            var connector = new PostgresConnector("localhost", "HPPs", "postgres", "023098");
-
-            try
+            // Создаем объект Credential
+            using (var cred = new Credential())
             {
-                NpgsqlDataReader reader = Model.PostgresQueries.SelectProtocol(connector);
+                // Указываем таргет
+                cred.Target = Authorization.TargetDB;
 
-                if (reader != null)
+                // Находим сохраненные учетные данные
+                if (cred.Load())
                 {
-                    DataTable dataTable = new DataTable("GeneratorCharacteristicHistory");
-                    dataTable.Load(reader);
+                    var connector = new PostgresConnector("localhost", "HPPs", "postgres", cred.Password);
 
-                    // Создание XML-файла и запись в него данных
-                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                    try
                     {
-                        Filter = "XML files (*.xml)|*.xml",
-                        Title = "Сохранить данные в XML"
-                    };
+                        NpgsqlDataReader reader = Model.PostgresQueries.SelectProtocol(connector);
 
-                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        string filePath = saveFileDialog.FileName;
-                        dataTable.WriteXml(filePath);
+                        if (reader != null)
+                        {
+                            DataTable dataTable = new DataTable("GeneratorCharacteristicHistory");
+                            dataTable.Load(reader);
 
-                        MessageBox.Show("Данные успешно сохранены в XML файл.", "Выполнено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            // Создание XML-файла и запись в него данных
+                            SaveFileDialog saveFileDialog = new SaveFileDialog
+                            {
+                                Filter = "XML files (*.xml)|*.xml",
+                                Title = "Сохранить данные в XML"
+                            };
+
+                            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                string filePath = saveFileDialog.FileName;
+                                dataTable.WriteXml(filePath);
+
+                                MessageBox.Show("Данные успешно сохранены в XML файл.", "Выполнено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+
+                            reader.Close();
+                        }
                     }
-
-                    reader.Close();
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Ошибка при чтении данных из базы данных: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        // Закрытие соединения
+                        connector.CloseConnection();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при чтении данных из базы данных: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                // Закрытие соединения
-                connector.CloseConnection();
+                else
+                {
+                    // Учетные данные не найдены или пользователь отменил ввод
+                    MessageBox.Show("Данные не найдены или ввод отменен.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
