@@ -103,12 +103,12 @@
             label5 = new Label();
             button1 = new Button();
             groupBox4 = new GroupBox();
+            label9 = new Label();
             label7 = new Label();
             textBox3 = new TextBox();
             textBox4 = new TextBox();
             label3 = new Label();
             label4 = new Label();
-            label9 = new Label();
             toolStrip.SuspendLayout();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -361,7 +361,7 @@
             roughZone1TextBox.ReadOnly = true;
             roughZone1TextBox.Size = new Size(96, 23);
             roughZone1TextBox.TabIndex = 2;
-            roughZone1TextBox.Text = "77.9";
+            roughZone1TextBox.Text = "78";
             roughZone1TextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // groupBox2
@@ -691,7 +691,7 @@
             // 
             // CalcButton
             // 
-            CalcButton.Location = new Point(294, 289);
+            CalcButton.Location = new Point(294, 294);
             CalcButton.Name = "CalcButton";
             CalcButton.Size = new Size(111, 23);
             CalcButton.TabIndex = 4;
@@ -816,7 +816,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(294, 158);
+            button1.Location = new Point(294, 163);
             button1.Name = "button1";
             button1.Size = new Size(111, 23);
             button1.TabIndex = 7;
@@ -838,6 +838,16 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Результаты расчёта РВР";
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label9.Location = new Point(18, 59);
+            label9.Name = "label9";
+            label9.Size = new Size(20, 12);
+            label9.TabIndex = 5;
+            label9.Text = "min";
+            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -852,6 +862,7 @@
             // 
             textBox3.Location = new Point(87, 49);
             textBox3.Name = "textBox3";
+            textBox3.ReadOnly = true;
             textBox3.Size = new Size(66, 23);
             textBox3.TabIndex = 3;
             textBox3.TextAlign = HorizontalAlignment.Center;
@@ -860,6 +871,7 @@
             // 
             textBox4.Location = new Point(87, 23);
             textBox4.Name = "textBox4";
+            textBox4.ReadOnly = true;
             textBox4.Size = new Size(66, 23);
             textBox4.TabIndex = 2;
             textBox4.TextAlign = HorizontalAlignment.Center;
@@ -882,16 +894,6 @@
             label4.TabIndex = 0;
             label4.Text = "P       , МВт:";
             // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label9.Location = new Point(18, 59);
-            label9.Name = "label9";
-            label9.Size = new Size(20, 12);
-            label9.TabIndex = 5;
-            label9.Text = "min";
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -905,7 +907,9 @@
             Controls.Add(toolBar);
             Controls.Add(tabControl);
             Controls.Add(toolStrip);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "MainForm";
             Text = "Расчёт РВР";
             Load += MainForm_Load;

@@ -37,14 +37,14 @@
             // 
             // passwordTextBox
             // 
-            passwordTextBox.Location = new Point(38, 34);
+            passwordTextBox.Location = new Point(50, 34);
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.Size = new Size(143, 23);
             passwordTextBox.TabIndex = 0;
             // 
             // okButton
             // 
-            okButton.Location = new Point(38, 75);
+            okButton.Location = new Point(50, 63);
             okButton.Name = "okButton";
             okButton.Size = new Size(59, 23);
             okButton.TabIndex = 1;
@@ -63,7 +63,7 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(122, 75);
+            cancelButton.Location = new Point(134, 63);
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new Size(59, 23);
             cancelButton.TabIndex = 3;
@@ -76,12 +76,14 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(220, 115);
+            ClientSize = new Size(240, 115);
             Controls.Add(cancelButton);
             Controls.Add(errorLabel);
             Controls.Add(okButton);
             Controls.Add(passwordTextBox);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "Authorization";
             Text = "Авторизация";
             ResumeLayout(false);
