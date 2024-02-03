@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Xml.Serialization;
 using CredentialManagement;
 using Model;
+using System.Windows.Forms;
 
 namespace View
 {
@@ -103,71 +104,78 @@ namespace View
         // Метод для создания таблицы RestrictionsHU
         private void RestrictionsHUGridView()
         {
-            // Создаем колонки
-            DataGridViewTextBoxColumn HUColumn = new DataGridViewTextBoxColumn();
-            HUColumn.HeaderText = "ГА ";
-            // Устанавливаем ширину для столбца "ГА"
-            HUColumn.Width = 44;
-            HUColumn.ReadOnly = true;
+            // Настройка выравнивания заголовков столбцов по центру
+            restrictionsHUGridView.Columns["HU"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            restrictionsHUGridView.Columns["RoughZoneFB"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            restrictionsHUGridView.Columns["RoughZoneSB"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            loadColumn = new DataGridViewTextBoxColumn();
-            loadColumn.HeaderText = "Pзнр1, МВт";
-            loadColumn.Width = 70;
+            restrictionsHUGridView.Columns["HU"].HeaderText = "ГА";
+            restrictionsHUGridView.Columns["RoughZoneFB"].HeaderText = "P       , МВт";
+            restrictionsHUGridView.Columns["RoughZoneSB"].HeaderText = "P       , МВт";
 
-            zoneColumn = new DataGridViewTextBoxColumn();
-            zoneColumn.HeaderText = "Зона";
-            zoneColumn.Width = 40;
 
-            // Создаем комбобокс для столбца "Статус"
-            statusColumn = new DataGridViewComboBoxColumn();
-            statusColumn.HeaderText = "Статус";
-            statusColumn.Items.AddRange("В работе", "Выведен");
-            statusColumn.Width = 80;
+            HU.ReadOnly = true;
+            RoughZoneFB.Width = 95;
+            RoughZoneSB.Width = 95;
 
-            // Перенос названия столбца на новую строку, если он не помещается
-            loadColumn.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
-
-            // Устанавливаем выравнивание по центру для ячеек и заголовков столбцов
-            DataGridViewCellStyle centerAlignmentStyle = new DataGridViewCellStyle();
-            centerAlignmentStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            HUColumn.DefaultCellStyle = centerAlignmentStyle;
-            HUColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            loadColumn.DefaultCellStyle = centerAlignmentStyle;
-            loadColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            zoneColumn.DefaultCellStyle = centerAlignmentStyle;
-            zoneColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            statusColumn.DefaultCellStyle = centerAlignmentStyle;
-            statusColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            // Добавляем колонки на DataGridView
-            parametersHUGridView.Columns.Add(HUColumn);
-            parametersHUGridView.Columns.Add(loadColumn);
-            parametersHUGridView.Columns.Add(zoneColumn);
-            parametersHUGridView.Columns.Add(statusColumn);
-
-            // Устанавливаем DataGridView на вкладку tabPage1
-            parametersHUTabPage.Controls.Add(parametersHUGridView);
-
-            // Устанавливаем размеры таблицы
-            parametersHUGridView.Width = 237;
-            parametersHUGridView.Height = 340;
-
-            // запрет изменения размера
-            parametersHUGridView.AllowUserToResizeRows = false;
-            parametersHUGridView.AllowUserToResizeColumns = false;
-
-            // Запрет добавления новых строк
-            parametersHUGridView.AllowUserToAddRows = false;
-
-            // для всех колонок отключена сортировка
-            foreach (DataGridViewColumn column in parametersHUGridView.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
+            // loadColumn = new DataGridViewTextBoxColumn();
+            // loadColumn.HeaderText = "Pзнр1, МВт";
+            // loadColumn.Width = 70;
+            // 
+            // zoneColumn = new DataGridViewTextBoxColumn();
+            // zoneColumn.HeaderText = "Зона";
+            // zoneColumn.Width = 40;
+            // 
+            // // Создаем комбобокс для столбца "Статус"
+            // statusColumn = new DataGridViewComboBoxColumn();
+            // statusColumn.HeaderText = "Статус";
+            // statusColumn.Items.AddRange("В работе", "Выведен");
+            // statusColumn.Width = 80;
+            // 
+            // // Перенос названия столбца на новую строку, если он не помещается
+            // loadColumn.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            // 
+            // // Устанавливаем выравнивание по центру для ячеек и заголовков столбцов
+            // DataGridViewCellStyle centerAlignmentStyle = new DataGridViewCellStyle();
+            // centerAlignmentStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            // 
+            // HUColumn.DefaultCellStyle = centerAlignmentStyle;
+            // HUColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            // 
+            // loadColumn.DefaultCellStyle = centerAlignmentStyle;
+            // loadColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            // 
+            // zoneColumn.DefaultCellStyle = centerAlignmentStyle;
+            // zoneColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            // 
+            // statusColumn.DefaultCellStyle = centerAlignmentStyle;
+            // statusColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            // 
+            // // Добавляем колонки на DataGridView
+            // parametersHUGridView.Columns.Add(HUColumn);
+            // parametersHUGridView.Columns.Add(loadColumn);
+            // parametersHUGridView.Columns.Add(zoneColumn);
+            // parametersHUGridView.Columns.Add(statusColumn);
+            // 
+            // // Устанавливаем DataGridView на вкладку tabPage1
+            // parametersHUTabPage.Controls.Add(parametersHUGridView);
+            // 
+            // // Устанавливаем размеры таблицы
+            // parametersHUGridView.Width = 237;
+            // parametersHUGridView.Height = 340;
+            // 
+            // // запрет изменения размера
+            // parametersHUGridView.AllowUserToResizeRows = false;
+            // parametersHUGridView.AllowUserToResizeColumns = false;
+            // 
+            // // Запрет добавления новых строк
+            // parametersHUGridView.AllowUserToAddRows = false;
+            // 
+            // // для всех колонок отключена сортировка
+            // foreach (DataGridViewColumn column in parametersHUGridView.Columns)
+            // {
+            //     column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // }
         }
 
         // Метод для тестовых данных
