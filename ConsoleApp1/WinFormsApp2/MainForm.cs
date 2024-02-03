@@ -450,7 +450,9 @@ namespace View
                 string enteredPassword = authorizationForm.GetEnteredPassword();
                 string enteredLogin = authorizationForm.GetEnteredLogin();
 
-                Model.PostgresQueries.InsertOrUpdateHydroGenerator(11, "Гидрогенератор 11", "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))", enteredLogin, enteredPassword);
+                Model.PostgresQueries.InsertOrUpdateHydroGenerator(11, "Гидрогенератор 11", 
+                    "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))", 
+                    enteredLogin, enteredPassword);
                 MessageBox.Show("Данные успешно вставлены/обновлены.", "Выполнено",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
