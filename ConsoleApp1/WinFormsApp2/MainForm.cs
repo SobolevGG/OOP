@@ -30,6 +30,8 @@ namespace View
 
             // Вызываем тестовый метод при загрузке формы
             TestFillData();
+
+            FillTestDataRestrictions();
         }
 
         // Метод для создания таблицы ParametersHU
@@ -102,6 +104,10 @@ namespace View
             }
         }
 
+        private readonly MaxLoadRoughZone maxLoadRoughZone = new MaxLoadRoughZone();
+
+
+
         // Метод для создания таблицы RestrictionsHU
         private void RestrictionsHUGridView()
         {
@@ -111,7 +117,6 @@ namespace View
             restrictionsHUGridView.Columns["RoughZoneSB"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             restrictionsHUGridView.Columns["MaxLoad"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            HU.HeaderText = "        ";
             // Настройка выравнивания ячеек по центру
             foreach (DataGridViewColumn column in restrictionsHUGridView.Columns)
             {
@@ -125,6 +130,10 @@ namespace View
             RoughZoneSB.Width = 64;
             MaxLoad.Width = 63;
 
+            // Отключение скролл бара
+            restrictionsHUGridView.ScrollBars = ScrollBars.None;
+
+
             // запрет изменения размера
             parametersHUGridView.AllowUserToResizeRows = false;
             parametersHUGridView.AllowUserToResizeColumns = false;
@@ -136,6 +145,14 @@ namespace View
             foreach (DataGridViewColumn column in restrictionsHUGridView.Columns)
             {
                 column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
+        }
+
+        private void FillTestDataRestrictions()
+        {
+            for (int i = 1; i <= 12; i++)
+            {
+                restrictionsHUGridView.Rows.Add($"{i}", $"V{i * 2 - 1}", $"V{i * 2}", $"{i * 50}");
             }
         }
 
