@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DataGridViewCellStyle dataGridViewCellStyle22 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle23 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle24 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             toolStrip = new ToolStrip();
             toolStripDropDownButton1 = new ToolStripDropDownButton();
             openFile = new ToolStripMenuItem();
             OpenParamsHU = new ToolStripMenuItem();
             saveFile = new ToolStripMenuItem();
             saveParamsHU = new ToolStripMenuItem();
-            ограниченияСВМИБВУToolStripMenuItem = new ToolStripMenuItem();
-            ограниченияЛОМИЗНРToolStripMenuItem = new ToolStripMenuItem();
+            saveMaxLoadRoughZone = new ToolStripMenuItem();
+            saveMaxLoadPoughZone = new ToolStripMenuItem();
             referenceButton = new ToolStripDropDownButton();
             openGuide = new ToolStripMenuItem();
             tabControl = new TabControl();
@@ -161,7 +161,7 @@
             openFile.DropDownItems.AddRange(new ToolStripItem[] { OpenParamsHU });
             openFile.Image = (Image)resources.GetObject("openFile.Image");
             openFile.Name = "openFile";
-            openFile.Size = new Size(133, 22);
+            openFile.Size = new Size(180, 22);
             openFile.Text = "Открыть";
             // 
             // OpenParamsHU
@@ -174,10 +174,10 @@
             // 
             // saveFile
             // 
-            saveFile.DropDownItems.AddRange(new ToolStripItem[] { saveParamsHU, ограниченияСВМИБВУToolStripMenuItem, ограниченияЛОМИЗНРToolStripMenuItem });
+            saveFile.DropDownItems.AddRange(new ToolStripItem[] { saveParamsHU, saveMaxLoadRoughZone, saveMaxLoadPoughZone });
             saveFile.Image = (Image)resources.GetObject("saveFile.Image");
             saveFile.Name = "saveFile";
-            saveFile.Size = new Size(133, 22);
+            saveFile.Size = new Size(180, 22);
             saveFile.Text = "Сохранить";
             // 
             // saveParamsHU
@@ -187,17 +187,17 @@
             saveParamsHU.Text = "Параметры ГА";
             saveParamsHU.Click += Save_Click;
             // 
-            // ограниченияСВМИБВУToolStripMenuItem
+            // saveMaxLoadRoughZone
             // 
-            ограниченияСВМИБВУToolStripMenuItem.Name = "ограниченияСВМИБВУToolStripMenuItem";
-            ограниченияСВМИБВУToolStripMenuItem.Size = new Size(215, 22);
-            ограниченияСВМИБВУToolStripMenuItem.Text = "Ограничения СВМ и БВУ";
+            saveMaxLoadRoughZone.Name = "saveMaxLoadRoughZone";
+            saveMaxLoadRoughZone.Size = new Size(215, 22);
+            saveMaxLoadRoughZone.Text = "Ограничения СВМ и БВУ";
             // 
-            // ограниченияЛОМИЗНРToolStripMenuItem
+            // saveMaxLoadPoughZone
             // 
-            ограниченияЛОМИЗНРToolStripMenuItem.Name = "ограниченияЛОМИЗНРToolStripMenuItem";
-            ограниченияЛОМИЗНРToolStripMenuItem.Size = new Size(215, 22);
-            ограниченияЛОМИЗНРToolStripMenuItem.Text = "Ограничения ЛОМ и ЗНР";
+            saveMaxLoadPoughZone.Name = "saveMaxLoadPoughZone";
+            saveMaxLoadPoughZone.Size = new Size(215, 22);
+            saveMaxLoadPoughZone.Text = "Ограничения ЛОМ и ЗНР";
             // 
             // referenceButton
             // 
@@ -602,35 +602,35 @@
             restrictionsHUGridView.ColumnHeadersHeight = 38;
             restrictionsHUGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             restrictionsHUGridView.Columns.AddRange(new DataGridViewColumn[] { HU, RoughZoneFB, RoughZoneSB, MaxLoad });
-            dataGridViewCellStyle22.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle22.BackColor = SystemColors.Window;
-            dataGridViewCellStyle22.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle22.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle22.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = DataGridViewTriState.False;
-            restrictionsHUGridView.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            restrictionsHUGridView.DefaultCellStyle = dataGridViewCellStyle4;
             restrictionsHUGridView.Location = new Point(3, 2);
             restrictionsHUGridView.Name = "restrictionsHUGridView";
             restrictionsHUGridView.ReadOnly = true;
-            dataGridViewCellStyle23.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle23.BackColor = SystemColors.Control;
-            dataGridViewCellStyle23.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle23.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle23.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = DataGridViewTriState.True;
-            restrictionsHUGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            restrictionsHUGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             restrictionsHUGridView.RowHeadersVisible = false;
-            dataGridViewCellStyle24.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            restrictionsHUGridView.RowsDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            restrictionsHUGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
             restrictionsHUGridView.Size = new Size(237, 338);
             restrictionsHUGridView.TabIndex = 0;
             // 
             // HU
             // 
-            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            HU.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            HU.DefaultCellStyle = dataGridViewCellStyle1;
             HU.HeaderText = "        ";
             HU.Name = "HU";
             HU.ReadOnly = true;
@@ -641,8 +641,8 @@
             // 
             // RoughZoneFB
             // 
-            dataGridViewCellStyle20.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            RoughZoneFB.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            RoughZoneFB.DefaultCellStyle = dataGridViewCellStyle2;
             RoughZoneFB.HeaderText = "";
             RoughZoneFB.Name = "RoughZoneFB";
             RoughZoneFB.ReadOnly = true;
@@ -653,8 +653,8 @@
             // 
             // RoughZoneSB
             // 
-            dataGridViewCellStyle21.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            RoughZoneSB.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            RoughZoneSB.DefaultCellStyle = dataGridViewCellStyle3;
             RoughZoneSB.HeaderText = "";
             RoughZoneSB.Name = "RoughZoneSB";
             RoughZoneSB.ReadOnly = true;
@@ -1116,8 +1116,8 @@
         private Label maxLoadIndexLabel;
         private Label unitsMaxLoadLabel;
         private Label maxLoadLabel;
-        private ToolStripMenuItem ограниченияСВМИБВУToolStripMenuItem;
-        private ToolStripMenuItem ограниченияЛОМИЗНРToolStripMenuItem;
+        private ToolStripMenuItem saveMaxLoadRoughZone;
+        private ToolStripMenuItem saveMaxLoadPoughZone;
         private DataGridViewTextBoxColumn HU;
         private DataGridViewTextBoxColumn RoughZoneFB;
         private DataGridViewTextBoxColumn RoughZoneSB;
