@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AcceessAPI\AcceessAPI.csproj" />
     <ProjectReference Include="..\ConsoleApp1\Model.csproj" />
   </ItemGroup>
 
