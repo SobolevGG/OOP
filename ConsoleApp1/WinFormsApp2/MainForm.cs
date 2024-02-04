@@ -6,6 +6,8 @@ using CredentialManagement;
 using Model;
 using System.Windows.Forms;
 using static Npgsql.Replication.PgOutput.Messages.RelationMessage;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Extreme.Statistics;
 
 namespace View
 {
@@ -23,7 +25,7 @@ namespace View
         public MainForm()
         {
             InitializeComponent();
-            
+
             // Создаем таблицы
             ParametersHUGridView();
             RestrictionsHUGridView();
@@ -135,11 +137,11 @@ namespace View
 
 
             // запрет изменения размера
-            parametersHUGridView.AllowUserToResizeRows = false;
-            parametersHUGridView.AllowUserToResizeColumns = false;
+            restrictionsHUGridView.AllowUserToResizeRows = false;
+            restrictionsHUGridView.AllowUserToResizeColumns = false;
 
             // Запрет добавления новых строк
-            parametersHUGridView.AllowUserToAddRows = false;
+            restrictionsHUGridView.AllowUserToAddRows = false;
 
             // Разрешение переноса заголовков на вторую строку
             foreach (DataGridViewColumn column in restrictionsHUGridView.Columns)
@@ -204,7 +206,6 @@ namespace View
 
             // Подписываемся на событие CellValueChanged
             parametersHUGridView.CellValidating += dataGridView_CellValidating;
-
         }
 
         /// <summary>
@@ -503,8 +504,8 @@ namespace View
                 string enteredPassword = authorizationForm.GetEnteredPassword();
                 string enteredLogin = authorizationForm.GetEnteredLogin();
 
-                Model.PostgresQueries.InsertOrUpdateHydroGenerator(11, "Гидрогенератор 11", 
-                    "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))", 
+                Model.PostgresQueries.InsertOrUpdateHydroGenerator(11, "Гидрогенератор 11",
+                    "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))",
                     enteredLogin, enteredPassword);
                 MessageBox.Show("Данные успешно вставлены/обновлены.", "Выполнено",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);

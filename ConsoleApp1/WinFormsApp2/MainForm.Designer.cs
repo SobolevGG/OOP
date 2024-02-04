@@ -29,18 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             toolStrip = new ToolStrip();
             toolStripDropDownButton1 = new ToolStripDropDownButton();
             openFile = new ToolStripMenuItem();
             OpenParamsHU = new ToolStripMenuItem();
             saveFile = new ToolStripMenuItem();
             saveParamsHU = new ToolStripMenuItem();
+            ограниченияСВМИБВУToolStripMenuItem = new ToolStripMenuItem();
+            ограниченияЛОМИЗНРToolStripMenuItem = new ToolStripMenuItem();
             referenceButton = new ToolStripDropDownButton();
             openGuide = new ToolStripMenuItem();
             tabControl = new TabControl();
@@ -91,13 +93,13 @@
             характеристикиГАToolStripMenuItem = new ToolStripMenuItem();
             editingModeButton = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
-            authorizationButton = new ToolStripButton();
+            importBMPButton = new ToolStripButton();
+            toolStripSeparator2 = new ToolStripSeparator();
             importDBButton = new ToolStripSplitButton();
             currentCharacteristicsToolStripMenu = new ToolStripMenuItem();
             protocolToolStripMenu = new ToolStripMenuItem();
+            authorizationButton = new ToolStripButton();
             exportDBButton = new ToolStripButton();
-            toolStripSeparator2 = new ToolStripSeparator();
-            importBMPButton = new ToolStripButton();
             CalcButton = new Button();
             ULRGroupBox = new GroupBox();
             label2 = new Label();
@@ -119,8 +121,6 @@
             textBox4 = new TextBox();
             label3 = new Label();
             label4 = new Label();
-            ограниченияСВМИБВУToolStripMenuItem = new ToolStripMenuItem();
-            ограниченияЛОМИЗНРToolStripMenuItem = new ToolStripMenuItem();
             toolStrip.SuspendLayout();
             tabControl.SuspendLayout();
             parametersHUTabPage.SuspendLayout();
@@ -142,7 +142,7 @@
             toolStrip.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1, referenceButton });
             toolStrip.Location = new Point(0, 0);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(452, 25);
+            toolStrip.Size = new Size(457, 25);
             toolStrip.TabIndex = 0;
             toolStrip.Text = "toolStrip1";
             // 
@@ -161,14 +161,14 @@
             openFile.DropDownItems.AddRange(new ToolStripItem[] { OpenParamsHU });
             openFile.Image = (Image)resources.GetObject("openFile.Image");
             openFile.Name = "openFile";
-            openFile.Size = new Size(180, 22);
+            openFile.Size = new Size(133, 22);
             openFile.Text = "Открыть";
             // 
             // OpenParamsHU
             // 
             OpenParamsHU.Image = (Image)resources.GetObject("OpenParamsHU.Image");
             OpenParamsHU.Name = "OpenParamsHU";
-            OpenParamsHU.Size = new Size(180, 22);
+            OpenParamsHU.Size = new Size(155, 22);
             OpenParamsHU.Text = "Параметры ГА";
             OpenParamsHU.Click += OpenParamsHU_Click;
             // 
@@ -177,7 +177,7 @@
             saveFile.DropDownItems.AddRange(new ToolStripItem[] { saveParamsHU, ограниченияСВМИБВУToolStripMenuItem, ограниченияЛОМИЗНРToolStripMenuItem });
             saveFile.Image = (Image)resources.GetObject("saveFile.Image");
             saveFile.Name = "saveFile";
-            saveFile.Size = new Size(180, 22);
+            saveFile.Size = new Size(133, 22);
             saveFile.Text = "Сохранить";
             // 
             // saveParamsHU
@@ -186,6 +186,18 @@
             saveParamsHU.Size = new Size(215, 22);
             saveParamsHU.Text = "Параметры ГА";
             saveParamsHU.Click += Save_Click;
+            // 
+            // ограниченияСВМИБВУToolStripMenuItem
+            // 
+            ограниченияСВМИБВУToolStripMenuItem.Name = "ограниченияСВМИБВУToolStripMenuItem";
+            ограниченияСВМИБВУToolStripMenuItem.Size = new Size(215, 22);
+            ограниченияСВМИБВУToolStripMenuItem.Text = "Ограничения СВМ и БВУ";
+            // 
+            // ограниченияЛОМИЗНРToolStripMenuItem
+            // 
+            ограниченияЛОМИЗНРToolStripMenuItem.Name = "ограниченияЛОМИЗНРToolStripMenuItem";
+            ограниченияЛОМИЗНРToolStripMenuItem.Size = new Size(215, 22);
+            ограниченияЛОМИЗНРToolStripMenuItem.Text = "Ограничения ЛОМ и ЗНР";
             // 
             // referenceButton
             // 
@@ -201,7 +213,7 @@
             // 
             openGuide.Image = (Image)resources.GetObject("openGuide.Image");
             openGuide.Name = "openGuide";
-            openGuide.Size = new Size(180, 22);
+            openGuide.Size = new Size(121, 22);
             openGuide.Text = "Открыть";
             openGuide.Click += OpenGuide_Click;
             // 
@@ -590,62 +602,65 @@
             restrictionsHUGridView.ColumnHeadersHeight = 38;
             restrictionsHUGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             restrictionsHUGridView.Columns.AddRange(new DataGridViewColumn[] { HU, RoughZoneFB, RoughZoneSB, MaxLoad });
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = SystemColors.Window;
-            dataGridViewCellStyle10.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle10.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
-            restrictionsHUGridView.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            restrictionsHUGridView.DefaultCellStyle = dataGridViewCellStyle4;
             restrictionsHUGridView.Location = new Point(3, 2);
             restrictionsHUGridView.Name = "restrictionsHUGridView";
             restrictionsHUGridView.ReadOnly = true;
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = SystemColors.Control;
-            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle11.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
-            restrictionsHUGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            restrictionsHUGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             restrictionsHUGridView.RowHeadersVisible = false;
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            restrictionsHUGridView.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            restrictionsHUGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
             restrictionsHUGridView.Size = new Size(237, 338);
             restrictionsHUGridView.TabIndex = 0;
             // 
             // HU
             // 
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            HU.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            HU.DefaultCellStyle = dataGridViewCellStyle1;
             HU.HeaderText = "        ";
             HU.Name = "HU";
             HU.ReadOnly = true;
             HU.Resizable = DataGridViewTriState.False;
             HU.SortMode = DataGridViewColumnSortMode.NotSortable;
+            HU.ToolTipText = "Это поле только для чтения.";
             HU.Width = 44;
             // 
             // RoughZoneFB
             // 
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            RoughZoneFB.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            RoughZoneFB.DefaultCellStyle = dataGridViewCellStyle2;
             RoughZoneFB.HeaderText = "";
             RoughZoneFB.Name = "RoughZoneFB";
             RoughZoneFB.ReadOnly = true;
             RoughZoneFB.Resizable = DataGridViewTriState.False;
             RoughZoneFB.SortMode = DataGridViewColumnSortMode.NotSortable;
+            RoughZoneFB.ToolTipText = "Это поле только для чтения.";
             RoughZoneFB.Width = 63;
             // 
             // RoughZoneSB
             // 
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            RoughZoneSB.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            RoughZoneSB.DefaultCellStyle = dataGridViewCellStyle3;
             RoughZoneSB.HeaderText = "";
             RoughZoneSB.Name = "RoughZoneSB";
             RoughZoneSB.ReadOnly = true;
             RoughZoneSB.Resizable = DataGridViewTriState.False;
             RoughZoneSB.SortMode = DataGridViewColumnSortMode.NotSortable;
+            RoughZoneSB.ToolTipText = "Это поле только для чтения.";
             RoughZoneSB.Width = 64;
             // 
             // MaxLoad
@@ -655,14 +670,15 @@
             MaxLoad.ReadOnly = true;
             MaxLoad.Resizable = DataGridViewTriState.False;
             MaxLoad.SortMode = DataGridViewColumnSortMode.NotSortable;
+            MaxLoad.ToolTipText = "Это поле только для чтения.";
             MaxLoad.Width = 63;
             // 
             // toolBar
             // 
-            toolBar.Items.AddRange(new ToolStripItem[] { saveButton, editingModeButton, toolStripSeparator1, authorizationButton, importDBButton, exportDBButton, toolStripSeparator2, importBMPButton });
+            toolBar.Items.AddRange(new ToolStripItem[] { saveButton, editingModeButton, toolStripSeparator1, importBMPButton, toolStripSeparator2, importDBButton, authorizationButton, exportDBButton });
             toolBar.Location = new Point(0, 25);
             toolBar.Name = "toolBar";
-            toolBar.Size = new Size(452, 25);
+            toolBar.Size = new Size(457, 25);
             toolBar.TabIndex = 3;
             toolBar.Text = "toolStrip2";
             // 
@@ -679,21 +695,21 @@
             // 
             параметрыГАToolStripMenuItem.Image = (Image)resources.GetObject("параметрыГАToolStripMenuItem.Image");
             параметрыГАToolStripMenuItem.Name = "параметрыГАToolStripMenuItem";
-            параметрыГАToolStripMenuItem.Size = new Size(180, 22);
+            параметрыГАToolStripMenuItem.Size = new Size(179, 22);
             параметрыГАToolStripMenuItem.Text = "Параметры ГА";
             // 
             // ограниченияToolStripMenuItem
             // 
             ограниченияToolStripMenuItem.Image = (Image)resources.GetObject("ограниченияToolStripMenuItem.Image");
             ограниченияToolStripMenuItem.Name = "ограниченияToolStripMenuItem";
-            ограниченияToolStripMenuItem.Size = new Size(180, 22);
+            ограниченияToolStripMenuItem.Size = new Size(179, 22);
             ограниченияToolStripMenuItem.Text = "Ограничения";
             // 
             // характеристикиГАToolStripMenuItem
             // 
             характеристикиГАToolStripMenuItem.Image = (Image)resources.GetObject("характеристикиГАToolStripMenuItem.Image");
             характеристикиГАToolStripMenuItem.Name = "характеристикиГАToolStripMenuItem";
-            характеристикиГАToolStripMenuItem.Size = new Size(180, 22);
+            характеристикиГАToolStripMenuItem.Size = new Size(179, 22);
             характеристикиГАToolStripMenuItem.Text = "Характеристики ГА";
             // 
             // editingModeButton
@@ -710,14 +726,18 @@
             toolStripSeparator1.Name = "toolStripSeparator1";
             toolStripSeparator1.Size = new Size(6, 25);
             // 
-            // authorizationButton
+            // importBMPButton
             // 
-            authorizationButton.Image = (Image)resources.GetObject("authorizationButton.Image");
-            authorizationButton.ImageTransparentColor = Color.Magenta;
-            authorizationButton.Name = "authorizationButton";
-            authorizationButton.Size = new Size(98, 22);
-            authorizationButton.Text = "Авторизация";
-            authorizationButton.Click += AuthorizationButton_Click;
+            importBMPButton.Image = (Image)resources.GetObject("importBMPButton.Image");
+            importBMPButton.ImageTransparentColor = Color.Magenta;
+            importBMPButton.Name = "importBMPButton";
+            importBMPButton.Size = new Size(97, 22);
+            importBMPButton.Text = "Импорт ПБР";
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(6, 25);
             // 
             // importDBButton
             // 
@@ -744,6 +764,15 @@
             protocolToolStripMenu.Text = "Протокол актуализации";
             protocolToolStripMenu.Click += ProtocolToolStripMenu_Click;
             // 
+            // authorizationButton
+            // 
+            authorizationButton.Image = (Image)resources.GetObject("authorizationButton.Image");
+            authorizationButton.ImageTransparentColor = Color.Magenta;
+            authorizationButton.Name = "authorizationButton";
+            authorizationButton.Size = new Size(98, 20);
+            authorizationButton.Text = "Авторизация";
+            authorizationButton.Click += AuthorizationButton_Click;
+            // 
             // exportDBButton
             // 
             exportDBButton.Image = (Image)resources.GetObject("exportDBButton.Image");
@@ -754,22 +783,9 @@
             exportDBButton.ToolTipText = "Для экспорта в БД требуется авторизация";
             exportDBButton.Click += ExportDBButton_Click;
             // 
-            // toolStripSeparator2
-            // 
-            toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(6, 25);
-            // 
-            // importBMPButton
-            // 
-            importBMPButton.Image = (Image)resources.GetObject("importBMPButton.Image");
-            importBMPButton.ImageTransparentColor = Color.Magenta;
-            importBMPButton.Name = "importBMPButton";
-            importBMPButton.Size = new Size(97, 20);
-            importBMPButton.Text = "Импорт ПБР";
-            // 
             // CalcButton
             // 
-            CalcButton.Location = new Point(294, 294);
+            CalcButton.Location = new Point(297, 294);
             CalcButton.Name = "CalcButton";
             CalcButton.Size = new Size(111, 23);
             CalcButton.TabIndex = 4;
@@ -784,7 +800,7 @@
             ULRGroupBox.Controls.Add(URTextBox);
             ULRGroupBox.Controls.Add(LRLabel);
             ULRGroupBox.Controls.Add(URLabel);
-            ULRGroupBox.Location = new Point(266, 67);
+            ULRGroupBox.Location = new Point(269, 67);
             ULRGroupBox.Name = "ULRGroupBox";
             ULRGroupBox.Size = new Size(167, 83);
             ULRGroupBox.TabIndex = 5;
@@ -851,7 +867,7 @@
             calcGroupBox.Controls.Add(textBox1);
             calcGroupBox.Controls.Add(label6);
             calcGroupBox.Controls.Add(label5);
-            calcGroupBox.Location = new Point(266, 198);
+            calcGroupBox.Location = new Point(269, 198);
             calcGroupBox.Name = "calcGroupBox";
             calcGroupBox.Size = new Size(167, 83);
             calcGroupBox.TabIndex = 6;
@@ -894,7 +910,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(294, 163);
+            button1.Location = new Point(297, 163);
             button1.Name = "button1";
             button1.Size = new Size(111, 23);
             button1.TabIndex = 7;
@@ -909,7 +925,7 @@
             groupBox4.Controls.Add(textBox4);
             groupBox4.Controls.Add(label3);
             groupBox4.Controls.Add(label4);
-            groupBox4.Location = new Point(266, 329);
+            groupBox4.Location = new Point(269, 329);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(167, 83);
             groupBox4.TabIndex = 8;
@@ -972,23 +988,11 @@
             label4.TabIndex = 0;
             label4.Text = "P       , МВт:";
             // 
-            // ограниченияСВМИБВУToolStripMenuItem
-            // 
-            ограниченияСВМИБВУToolStripMenuItem.Name = "ограниченияСВМИБВУToolStripMenuItem";
-            ограниченияСВМИБВУToolStripMenuItem.Size = new Size(215, 22);
-            ограниченияСВМИБВУToolStripMenuItem.Text = "Ограничения СВМ и БВУ";
-            // 
-            // ограниченияЛОМИЗНРToolStripMenuItem
-            // 
-            ограниченияЛОМИЗНРToolStripMenuItem.Name = "ограниченияЛОМИЗНРToolStripMenuItem";
-            ограниченияЛОМИЗНРToolStripMenuItem.Size = new Size(215, 22);
-            ограниченияЛОМИЗНРToolStripMenuItem.Text = "Ограничения ЛОМ и ЗНР";
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(452, 424);
+            ClientSize = new Size(457, 424);
             Controls.Add(groupBox4);
             Controls.Add(button1);
             Controls.Add(calcGroupBox);
@@ -1111,11 +1115,11 @@
         private Label maxLoadIndexLabel;
         private Label unitsMaxLoadLabel;
         private Label maxLoadLabel;
+        private ToolStripMenuItem ограниченияСВМИБВУToolStripMenuItem;
+        private ToolStripMenuItem ограниченияЛОМИЗНРToolStripMenuItem;
         private DataGridViewTextBoxColumn HU;
         private DataGridViewTextBoxColumn RoughZoneFB;
         private DataGridViewTextBoxColumn RoughZoneSB;
         private DataGridViewTextBoxColumn MaxLoad;
-        private ToolStripMenuItem ограниченияСВМИБВУToolStripMenuItem;
-        private ToolStripMenuItem ограниченияЛОМИЗНРToolStripMenuItem;
     }
 }
