@@ -132,6 +132,9 @@ namespace Model
             }
         }
 
+        // Конструктор - это метод, который вызывается при создании нового экземпляра класса(объекта).
+        // В данном случае, конструктор принимает аргумент waterHead -
+        // значение напора.Когда создается новый объект MaxLoadRoughZone
         public MaxLoadRoughZone(double waterHead)
         {
             WaterHead = waterHead;
@@ -158,7 +161,6 @@ namespace Model
         // Метод для интерполяции значения мощности на основе заданного уровня напора (waterHead)
         // и графика мощности (powerGraph), представленного в виде словаря, где ключи - уровни напора,
         // а значения - соответствующие значения мощности.
-
         public static double InterpolatePower(double waterHead, Dictionary<double, double> powerGraph)
         {
             // Проверяем, содержит ли коллекция элементы

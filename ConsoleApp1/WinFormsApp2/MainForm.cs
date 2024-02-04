@@ -36,9 +36,15 @@ namespace View
             ParametersHUGridView();
             RestrictionsHUGridView();
 
+
             // Создаем объект MaxLoadRoughZone
             // Здесь указывается начальный напор
             maxLoadRoughZone = new MaxLoadRoughZone(93);
+            // Очищаем restrictionsHUGridView
+            restrictionsHUGridView.Rows.Clear();
+            // Заполняем таблицу данными
+            FillDataRestrictions();
+
 
             // Вызываем тестовый метод при загрузке формы
             TestFillData();
