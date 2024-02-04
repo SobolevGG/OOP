@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Model
 {
@@ -81,7 +82,7 @@ namespace Model
         public double MaxLowerReservoirLevel => _maxUpperReservoirLevel - _minWaterHead;
         public double MinLowerReservoirLevel => _minUpperReservoirLevel - _maxWaterHead;
 
-
+        [XmlIgnore]
         public double LowerReservoirLevel
         {
             get { return _lowerReservoirLevel; }
@@ -100,7 +101,7 @@ namespace Model
                 UpdateWaterHead();
             }
         }
-
+        [XmlIgnore]
         public double UpperReservoirLevel
         {
             get { return _upperReservoirLevel; }
