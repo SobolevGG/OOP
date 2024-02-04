@@ -91,7 +91,7 @@ namespace Model
                 {
                     throw new ArgumentException("Ввод не может быть пустым.");
                 }
-                if (value < _minUpperReservoirLevel || value > _maxUpperReservoirLevel)
+                if (value < MinLowerReservoirLevel || value > MaxLowerReservoirLevel)
                 {
                     throw new ArgumentOutOfRangeException($"Значение уровня нижнего бьефа должен лежать в диапазоне от {MinLowerReservoirLevel} " +
                         $"до {MaxLowerReservoirLevel}.");
