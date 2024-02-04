@@ -22,19 +22,34 @@ namespace Model
         private readonly Dictionary<double, double> _roughZoneFB = new Dictionary<double, double>
         {
             { 76, 50 },
-            { 98, 100 }
+            { 100.5, 103.991 }
         };
 
         // График ЗНР2
         private readonly Dictionary<double, double> _roughZoneSB = new Dictionary<double, double>
         {
-            { 79, 200 },
-            { 93, 250 }
+            { 76, 191.549 },
+            { 84, 210.798 },
+            { 93, 250 },
+            { 100.5, 274.648}
         };
 
         // Максмиальный и минимальные напоры
         private readonly double _maxWaterHead = 100.5;
         private readonly double _minWaterHead = 76;
+
+        // Ограничения по верхнему бьефу
+        private readonly double _minUpperReservoirLevel = 225;
+        private readonly double _maxUpperReservoirLevel = 243;
+
+        // Напор
+        private double _waterHead;
+
+        // Поля для значений вводимых верхнего и нижнего бьефов
+        private double _upperReservoirLevel;
+        private double _lowerReservoirLevel;
+
+        
 
         public double MinWaterHead
         {
@@ -45,17 +60,6 @@ namespace Model
         {
             get => _maxWaterHead;
         }
-
-        // Напор
-        private double _waterHead;
-
-        // Поля для значений вводимых верхнего и нижнего бьефов
-        private double _upperReservoirLevel;
-        private double _lowerReservoirLevel;
-
-        // Ограничения по верхнему бьефу
-        private readonly double _minUpperReservoirLevel = 225;
-        private readonly double _maxUpperReservoirLevel = 243;
 
         public double MinUpperReservoirLevel
         {
@@ -151,17 +155,43 @@ namespace Model
 
         public double RoughZoneSB => InterpolatePower(WaterHead, _roughZoneSB);
 
+        // Метод для интерполяции значения мощности на основе заданного уровня напора (waterHead)
+        // и графика мощности (powerGraph), представленного в виде словаря, где ключи - уровни напора,
+        // а значения - соответствующие значения мощности.
+
         public static double InterpolatePower(double waterHead, Dictionary<double, double> powerGraph)
         {
-            double lowerHead = powerGraph.Keys.Where(x => x <= waterHead).Max();
-            double upperNapore = powerGraph.Keys.Where(x => x >= waterHead).Min();
+            // Проверяем, содержит ли коллекция элементы
+            if (powerGraph.Count == 0)
+            {
+                throw new InvalidOperationException("Переданная Вами коллекция не содержит элементов.");
+            }
 
+            // Находим ближайший уровень напора, не превышающий заданный waterHead
+            double lowerHead = powerGraph.Keys.Where(x => x <= waterHead).DefaultIfEmpty(powerGraph.Keys.Min()).Max();
+
+            // Находим ближайший уровень напора, не менее заданного waterHead
+            double upperHead = powerGraph.Keys.Where(x => x >= waterHead).DefaultIfEmpty(powerGraph.Keys.Max()).Min();
+
+            // Если waterHead выходит за пределы диапазона ключей, возвращаем значение ближайшего края
+            if (waterHead <= lowerHead)
+            {
+                return powerGraph[lowerHead];
+            }
+            else if (waterHead >= upperHead)
+            {
+                return powerGraph[upperHead];
+            }
+
+            // Получаем значения мощности для ближайших уровней напора
             double lowerPower = powerGraph[lowerHead];
-            double upperPower = powerGraph[upperNapore];
+            double upperPower = powerGraph[upperHead];
 
-            double interpolatedPower = lowerPower + (upperPower - lowerPower) * (waterHead - lowerHead) / (upperNapore - lowerHead);
+            // Линейная интерполяция мощности на основе заданного уровня напора
+            double interpolatedPower = lowerPower + (upperPower - lowerPower) * (waterHead - lowerHead) / (upperHead - lowerHead);
 
             return interpolatedPower;
         }
+
     }
 }

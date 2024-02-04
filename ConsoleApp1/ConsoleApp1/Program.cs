@@ -103,8 +103,12 @@ namespace Model
             //double initialHead = 90.0;
 
 
-
-
+            Dictionary<double, double> _roughZoneSB = new Dictionary<double, double>
+        {
+            { 79, 200 },
+            { 93, 250 }
+        };
+            MaxLoadRoughZone.InterpolatePower(100, _roughZoneSB);
 
 
             PowerCalculation.CalculatePower("formulas.xml", initialFlowRates, initialHead);
