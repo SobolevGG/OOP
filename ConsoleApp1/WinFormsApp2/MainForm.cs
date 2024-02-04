@@ -9,6 +9,7 @@ using static Npgsql.Replication.PgOutput.Messages.RelationMessage;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Extreme.Statistics;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace View
 {
@@ -16,10 +17,10 @@ namespace View
     {
         // Экземпляр класса для работы с данными о максимальной мощности и зонах
         private MaxLoadRoughZone maxLoadRoughZone;
-        
+
         // Флаг для отслеживания возможности редактирования
         private bool isEditingEnabled = false;
-        
+
         // Форма для авторизации
         private Authorization authorizationForm;
 
@@ -39,7 +40,9 @@ namespace View
 
             // Создаем объект MaxLoadRoughZone
             // Здесь указывается начальный напор
-            maxLoadRoughZone = new MaxLoadRoughZone(93);
+
+            double waterHead = 93;
+            maxLoadRoughZone = new MaxLoadRoughZone(waterHead);
             // Очищаем restrictionsHUGridView
             restrictionsHUGridView.Rows.Clear();
             // Заполняем таблицу данными
@@ -173,7 +176,141 @@ namespace View
                 restrictionsHUGridView.Rows.Add($"{i}", roughZoneFB, roughZoneSB, maxPower);
             }
         }
-    
+
+        private void saveMaxLoadPoughZone_Click(object sender, EventArgs e)
+        {
+            // Создаем список для хранения данных
+            List<MaxLoadRoughZone> dataItems = new List<MaxLoadRoughZone>();
+
+            double waterHead;
+
+            if ((string.IsNullOrWhiteSpace(LRTextBox.Text)) &&
+                (string.IsNullOrWhiteSpace(URTextBox.Text)) &&
+                (restrictionsHUGridView.Rows.Count > 0))
+            {
+                waterHead = 93;
+
+                // Проходим по каждой строке в DataGridView
+                foreach (DataGridViewRow row in restrictionsHUGridView.Rows)
+                {
+                    // Создаем объект MaxLoadRoughZone на основе данных в строке
+                    MaxLoadRoughZone item = new MaxLoadRoughZone(waterHead)
+                    {
+                        HU = row.Cells[0].Value?.ToString(),
+                        MaxPower = Convert.ToDouble(row.Cells[1].Value),
+                        RoughZoneFB = Convert.ToDouble(row.Cells[2].Value),
+                        RoughZoneSB = Convert.ToDouble(row.Cells[3].Value)
+                    };
+
+                    // Добавляем объект в список
+                    dataItems.Add(item);
+                }
+
+                // Инициализируем SaveFileDialog
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+                saveFileDialog.Title = "Save XML File";
+                saveFileDialog.ShowDialog();
+
+                // Если пользователь выбрал файл
+                if (saveFileDialog.FileName != "")
+                {
+                    // Сохраняем данные в выбранный файл
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<MaxLoadRoughZone>));
+
+                    using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                    {
+                        serializer.Serialize(fs, dataItems);
+                    }
+                }
+            }
+            else if (double.TryParse(URTextBox.Text, out double upperReservoirLevel) &&
+                double.TryParse(LRTextBox.Text, out double lowerReservoirLevel))
+            {
+                // Вычисляем напор
+                waterHead = upperReservoirLevel - lowerReservoirLevel;
+
+                // Проходим по каждой строке в DataGridView
+                foreach (DataGridViewRow row in restrictionsHUGridView.Rows)
+                {
+                    // Создаем объект MaxLoadRoughZone на основе данных в строке
+                    MaxLoadRoughZone item = new MaxLoadRoughZone(waterHead)
+                    {
+                        HU = row.Cells[0].Value?.ToString(),
+                        MaxPower = Convert.ToDouble(row.Cells[1].Value),
+                        RoughZoneFB = Convert.ToDouble(row.Cells[2].Value),
+                        RoughZoneSB = Convert.ToDouble(row.Cells[3].Value)
+                    };
+
+                    // Добавляем объект в список
+                    dataItems.Add(item);
+                }
+
+                // Инициализируем SaveFileDialog
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+                saveFileDialog.Title = "Save XML File";
+                saveFileDialog.ShowDialog();
+
+                // Если пользователь выбрал файл
+                if (saveFileDialog.FileName != "")
+                {
+                    // Сохраняем данные в выбранный файл
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<MaxLoadRoughZone>));
+
+                    using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                    {
+                        serializer.Serialize(fs, dataItems);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Невозможно преобразовать одно из значений уровней бьефов в число.",
+                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Метод для создания таблицы RestrictionsHU
+        private void RestrictionsHUGridView()
+        {
+            // Настройка выравнивания заголовков столбцов по центру
+            restrictionsHUGridView.Columns["HU"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            restrictionsHUGridView.Columns["RoughZoneFB"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            restrictionsHUGridView.Columns["RoughZoneSB"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            restrictionsHUGridView.Columns["MaxLoad"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Настройка выравнивания ячеек по центру
+            foreach (DataGridViewColumn column in restrictionsHUGridView.Columns)
+            {
+                column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                column.ReadOnly = true;
+            }
+
+            // Размеры
+            HU.Width = 44;
+            RoughZoneFB.Width = 63;
+            RoughZoneSB.Width = 64;
+            MaxLoad.Width = 63;
+
+            // Отключение скролл бара
+            restrictionsHUGridView.ScrollBars = ScrollBars.None;
+
+
+            // запрет изменения размера
+            restrictionsHUGridView.AllowUserToResizeRows = false;
+            restrictionsHUGridView.AllowUserToResizeColumns = false;
+
+            // Запрет добавления новых строк
+            restrictionsHUGridView.AllowUserToAddRows = false;
+
+            // Разрешение переноса заголовков на вторую строку
+            foreach (DataGridViewColumn column in restrictionsHUGridView.Columns)
+            {
+                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
+            }
+        }
+
         // Метод для создания таблицы ParametersHU
         private void ParametersHUGridView()
         {
@@ -244,46 +381,6 @@ namespace View
             }
         }
 
-        // Метод для создания таблицы RestrictionsHU
-        private void RestrictionsHUGridView()
-        {
-            // Настройка выравнивания заголовков столбцов по центру
-            restrictionsHUGridView.Columns["HU"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            restrictionsHUGridView.Columns["RoughZoneFB"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            restrictionsHUGridView.Columns["RoughZoneSB"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            restrictionsHUGridView.Columns["MaxLoad"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            // Настройка выравнивания ячеек по центру
-            foreach (DataGridViewColumn column in restrictionsHUGridView.Columns)
-            {
-                column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                column.ReadOnly = true;
-            }
-
-            // Размеры
-            HU.Width = 44;
-            RoughZoneFB.Width = 63;
-            RoughZoneSB.Width = 64;
-            MaxLoad.Width = 63;
-
-            // Отключение скролл бара
-            restrictionsHUGridView.ScrollBars = ScrollBars.None;
-
-
-            // запрет изменения размера
-            restrictionsHUGridView.AllowUserToResizeRows = false;
-            restrictionsHUGridView.AllowUserToResizeColumns = false;
-
-            // Запрет добавления новых строк
-            restrictionsHUGridView.AllowUserToAddRows = false;
-
-            // Разрешение переноса заголовков на вторую строку
-            foreach (DataGridViewColumn column in restrictionsHUGridView.Columns)
-            {
-                column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
-            }
-        }
-
         // Метод для тестовых данных
         private void TestFillData()
         {
@@ -302,17 +399,6 @@ namespace View
 
                 // Добавляем строку с тестовыми данными
                 parametersHUGridView.Rows.Add($"{i}", расход, зона, "В работе");
-            }
-        }
-
-        // Метод для сериализации данных в XML
-        private void SerializeToXml(List<ParametersHU> data, string fileName)
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<ParametersHU>));
-
-            using (FileStream fs = new FileStream(fileName, FileMode.Create))
-            {
-                serializer.Serialize(fs, data);
             }
         }
 
@@ -400,7 +486,12 @@ namespace View
             if (saveFileDialog.FileName != "")
             {
                 // Сохраняем данные в выбранный файл
-                SerializeToXml(dataItems, saveFileDialog.FileName);
+                XmlSerializer serializer = new XmlSerializer(typeof(List<ParametersHU>));
+
+                using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                {
+                    serializer.Serialize(fs, dataItems);
+                }
             }
         }
 
@@ -513,7 +604,7 @@ namespace View
         }
 
 
-        private void SaveDataToXml(string queryType)
+        private void SaveToXmlFromDB(string queryType)
         {
             using (var cred = new Credential())
             {
@@ -581,7 +672,7 @@ namespace View
         /// <param name="e"></param>
         private void CurrentCharacteristicsToolStripMenu_Click(object sender, EventArgs e)
         {
-            SaveDataToXml("Characteristics");
+            SaveToXmlFromDB("Characteristics");
         }
 
         /// <summary>
@@ -591,7 +682,7 @@ namespace View
         /// <param name="e"></param>
         private void ProtocolToolStripMenu_Click(object sender, EventArgs e)
         {
-            SaveDataToXml("Protocol");
+            SaveToXmlFromDB("Protocol");
         }
 
 
@@ -624,7 +715,5 @@ namespace View
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        
     }
 }

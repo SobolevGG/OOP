@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    [Serializable]
     public class MaxLoadRoughZone
     {
+        public MaxLoadRoughZone()
+        {
+            // По умолчанию
+        }
+
         // График максимальной мощности
         private readonly Dictionary<double, double> _maxPowerGraph = new Dictionary<double, double>
         {
@@ -118,7 +124,7 @@ namespace Model
         public double WaterHead
         {
             get { return _waterHead; }
-            private set
+            set
             {
                 if (value < _minWaterHead || value > _maxWaterHead)
                 {
@@ -152,11 +158,30 @@ namespace Model
             _waterHead = newWaterHead;
         }
 
-        public double MaxPower => InterpolatePower(WaterHead, _maxPowerGraph);
+        public string HU { get; set; }
 
-        public double RoughZoneFB => InterpolatePower(WaterHead, _roughZoneFB);
+        public double MaxPower
+        { get { return InterpolatePower(WaterHead, _maxPowerGraph); }
+            set {  }
+        }
 
-        public double RoughZoneSB => InterpolatePower(WaterHead, _roughZoneSB);
+        public double RoughZoneFB
+        {
+            get
+            {
+                return InterpolatePower(WaterHead, _roughZoneFB);
+            }
+            set { }
+        }
+
+        public double RoughZoneSB
+        {
+            get
+            {
+                return InterpolatePower(WaterHead, _roughZoneSB);
+            }
+            set { }
+        }
 
         // Метод для интерполяции значения мощности на основе заданного уровня напора (waterHead)
         // и графика мощности (powerGraph), представленного в виде словаря, где ключи - уровни напора,
