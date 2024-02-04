@@ -8,16 +8,22 @@ using System.Windows.Forms;
 using static Npgsql.Replication.PgOutput.Messages.RelationMessage;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Extreme.Statistics;
+using System.Text;
 
 namespace View
 {
     public partial class MainForm : Form
     {
+        // Экземпляр класса для работы с данными о максимальной мощности и зонах
+        private MaxLoadRoughZone maxLoadRoughZone;
+        
+        // Флаг для отслеживания возможности редактирования
         private bool isEditingEnabled = false;
-
+        
+        // Форма для авторизации
         private Authorization authorizationForm;
 
-        // Добавляем переменные как члены класса
+        // Переменные для настройки столбцов в DataGridView
         private DataGridViewTextBoxColumn zoneColumn;
         private DataGridViewTextBoxColumn loadColumn;
         private DataGridViewComboBoxColumn statusColumn;
@@ -30,12 +36,135 @@ namespace View
             ParametersHUGridView();
             RestrictionsHUGridView();
 
+            // Создаем объект MaxLoadRoughZone
+            // Здесь указывается начальный напор
+            maxLoadRoughZone = new MaxLoadRoughZone(93);
+
             // Вызываем тестовый метод при загрузке формы
             TestFillData();
-
-            FillTestDataRestrictions();
         }
 
+        // Метод для настройки формы при загрузке
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            // Устанавливаем свойство ReadOnly для всех ячеек в true
+            foreach (DataGridViewRow row in parametersHUGridView.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    cell.ReadOnly = true;
+                }
+            }
+
+            // Недоступность кнопки экспорта по умолчанию
+            exportDBButton.Enabled = false;
+        }
+
+        // Метод для обновления данных и заполнения таблицы RestrictionsHUGridView
+        private void UpdateRestrictionsData()
+        {
+            // Проверяем, что значения в URTextBox и LRTextBox можно преобразовать в числа
+            if (double.TryParse(URTextBox.Text, out double upperReservoirLevel) &&
+                double.TryParse(LRTextBox.Text, out double lowerReservoirLevel))
+            {
+                // Вычисляем напор
+                double waterHead = upperReservoirLevel - lowerReservoirLevel;
+
+                // Обновляем значения в maxLoadRoughZone
+                maxLoadRoughZone = new MaxLoadRoughZone(waterHead);
+
+                // Очищаем restrictionsHUGridView
+                restrictionsHUGridView.Rows.Clear();
+
+                // Заполняем таблицу данными
+                FillDataRestrictions();
+            }
+        }
+
+        // Событие, срабатывающее при нажатии кнопки calcHeadButton
+        private void CalcHeadButton_Click(object sender, EventArgs e)
+        {
+            // Проверка наличия данных в URTextBox
+            if (string.IsNullOrWhiteSpace(URTextBox.Text))
+            {
+                MessageBox.Show("Введите значение верхнего бьефа.",
+                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            // Проверка наличия данных в LRTextBox
+            else if (string.IsNullOrWhiteSpace(LRTextBox.Text))
+            {
+                MessageBox.Show("Введите значение нижнего бьефа.",
+                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                // Проверка возможности преобразования данных в URTextBox в double
+                if (!double.TryParse(URTextBox.Text, out double upperReservoirLevel))
+                {
+                    MessageBox.Show("Невозможно преобразовать значение верхнего бьефа в число.",
+                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                // Проверка возможности преобразования данных в LRTextBox в double
+                else if (!double.TryParse(LRTextBox.Text, out double lowerReservoirLevel))
+                {
+                    MessageBox.Show("Невозможно преобразовать значение нижнего бьефа в число.",
+                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                // Проверка на допустимые значения верхнего бьефа
+                else if (upperReservoirLevel < maxLoadRoughZone.MinUpperReservoirLevel ||
+                         upperReservoirLevel > maxLoadRoughZone.MaxUpperReservoirLevel)
+                {
+                    MessageBox.Show($"Значение верхнего бьефа должно быть в диапазоне " +
+                        $"от {maxLoadRoughZone.MinUpperReservoirLevel} " +
+                        $"до {maxLoadRoughZone.MaxUpperReservoirLevel}.",
+                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                // Проверка на допустимые значения нижнего бьефа
+                else if (lowerReservoirLevel < maxLoadRoughZone.MinLowerReservoirLevel ||
+                         lowerReservoirLevel > maxLoadRoughZone.MaxLowerReservoirLevel)
+                {
+                    MessageBox.Show($"Значение нижнего бьефа должно быть в диапазоне " +
+                        $"от {maxLoadRoughZone.MinLowerReservoirLevel} " +
+                        $"до {maxLoadRoughZone.MaxLowerReservoirLevel}.",
+                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                // Проверка на допустимое значение напора
+                else if ((upperReservoirLevel - lowerReservoirLevel) < maxLoadRoughZone.MinWaterHead ||
+                    (upperReservoirLevel - lowerReservoirLevel) > maxLoadRoughZone.MaxWaterHead)
+                {
+                    MessageBox.Show($"Значение напора должно быть в диапазоне " +
+                        $"от {maxLoadRoughZone.MinWaterHead} " +
+                        $"до {maxLoadRoughZone.MaxWaterHead}.",
+                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    // Если все проверки пройдены успешно, обновляем данные
+                    UpdateRestrictionsData();
+                }
+            }
+        }
+
+        // Метод для заполнения таблицы RestrictionsHUGridView тестовыми данными
+        private void FillDataRestrictions()
+        {
+            for (int i = 1; i <= 12; i++)
+            {
+                // Получаем значения RoughZoneFB, RoughZoneSB, MaxPower
+                double roughZoneFB = maxLoadRoughZone.RoughZoneFB;
+                double roughZoneSB = maxLoadRoughZone.RoughZoneSB;
+                double maxPower = maxLoadRoughZone.MaxPower;
+
+                // Округляем значения для отображения в DataGridView
+                roughZoneFB = Math.Round(roughZoneFB, 2);
+                roughZoneSB = Math.Round(roughZoneSB, 2);
+                maxPower = Math.Round(maxPower, 2);
+
+                // Добавляем значения в restrictionsHUGridView
+                restrictionsHUGridView.Rows.Add($"{i}", roughZoneFB, roughZoneSB, maxPower);
+            }
+        }
+    
         // Метод для создания таблицы ParametersHU
         private void ParametersHUGridView()
         {
@@ -106,10 +235,6 @@ namespace View
             }
         }
 
-        private readonly MaxLoadRoughZone maxLoadRoughZone = new MaxLoadRoughZone();
-
-
-
         // Метод для создания таблицы RestrictionsHU
         private void RestrictionsHUGridView()
         {
@@ -150,14 +275,6 @@ namespace View
             }
         }
 
-        private void FillTestDataRestrictions()
-        {
-            for (int i = 1; i <= 12; i++)
-            {
-                restrictionsHUGridView.Rows.Add($"{i}", $"V{i * 2 - 1}", $"V{i * 2}", $"{i * 50}");
-            }
-        }
-
         // Метод для тестовых данных
         private void TestFillData()
         {
@@ -190,30 +307,12 @@ namespace View
             }
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            // Устанавливаем свойство ReadOnly для всех ячеек в true
-            foreach (DataGridViewRow row in parametersHUGridView.Rows)
-            {
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    cell.ReadOnly = true;
-                }
-            }
-
-            // Недоступность кнопки экспорта по умолчанию
-            exportDBButton.Enabled = false;
-
-            // Подписываемся на событие CellValueChanged
-            parametersHUGridView.CellValidating += dataGridView_CellValidating;
-        }
-
         /// <summary>
         /// Событие на изменение ячеек в датагрид.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        private void DataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             if (e.ColumnIndex == zoneColumn.Index)
             {
@@ -516,5 +615,7 @@ namespace View
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        
     }
 }

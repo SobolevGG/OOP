@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle22 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle23 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle24 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
             toolStrip = new ToolStrip();
             toolStripDropDownButton1 = new ToolStripDropDownButton();
             openFile = new ToolStripMenuItem();
@@ -113,7 +113,7 @@
             textBox1 = new TextBox();
             label6 = new Label();
             label5 = new Label();
-            button1 = new Button();
+            calcHeadButton = new Button();
             groupBox4 = new GroupBox();
             label9 = new Label();
             label7 = new Label();
@@ -602,35 +602,35 @@
             restrictionsHUGridView.ColumnHeadersHeight = 38;
             restrictionsHUGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             restrictionsHUGridView.Columns.AddRange(new DataGridViewColumn[] { HU, RoughZoneFB, RoughZoneSB, MaxLoad });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            restrictionsHUGridView.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle22.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.BackColor = SystemColors.Window;
+            dataGridViewCellStyle22.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle22.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle22.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = DataGridViewTriState.False;
+            restrictionsHUGridView.DefaultCellStyle = dataGridViewCellStyle22;
             restrictionsHUGridView.Location = new Point(3, 2);
             restrictionsHUGridView.Name = "restrictionsHUGridView";
             restrictionsHUGridView.ReadOnly = true;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = SystemColors.Control;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            restrictionsHUGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle23.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle23.BackColor = SystemColors.Control;
+            dataGridViewCellStyle23.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle23.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle23.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = DataGridViewTriState.True;
+            restrictionsHUGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle23;
             restrictionsHUGridView.RowHeadersVisible = false;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            restrictionsHUGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle24.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            restrictionsHUGridView.RowsDefaultCellStyle = dataGridViewCellStyle24;
             restrictionsHUGridView.Size = new Size(237, 338);
             restrictionsHUGridView.TabIndex = 0;
             // 
             // HU
             // 
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            HU.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            HU.DefaultCellStyle = dataGridViewCellStyle19;
             HU.HeaderText = "        ";
             HU.Name = "HU";
             HU.ReadOnly = true;
@@ -641,8 +641,8 @@
             // 
             // RoughZoneFB
             // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            RoughZoneFB.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle20.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            RoughZoneFB.DefaultCellStyle = dataGridViewCellStyle20;
             RoughZoneFB.HeaderText = "";
             RoughZoneFB.Name = "RoughZoneFB";
             RoughZoneFB.ReadOnly = true;
@@ -653,8 +653,8 @@
             // 
             // RoughZoneSB
             // 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            RoughZoneSB.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle21.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            RoughZoneSB.DefaultCellStyle = dataGridViewCellStyle21;
             RoughZoneSB.HeaderText = "";
             RoughZoneSB.Name = "RoughZoneSB";
             RoughZoneSB.ReadOnly = true;
@@ -908,14 +908,15 @@
             label5.TabIndex = 0;
             label5.Text = "НПРЧ, МВт:";
             // 
-            // button1
+            // calcHeadButton
             // 
-            button1.Location = new Point(297, 163);
-            button1.Name = "button1";
-            button1.Size = new Size(111, 23);
-            button1.TabIndex = 7;
-            button1.Text = "Импорт из ОИК";
-            button1.UseVisualStyleBackColor = true;
+            calcHeadButton.Location = new Point(297, 163);
+            calcHeadButton.Name = "calcHeadButton";
+            calcHeadButton.Size = new Size(111, 23);
+            calcHeadButton.TabIndex = 7;
+            calcHeadButton.Text = "Расчёт напора";
+            calcHeadButton.UseVisualStyleBackColor = true;
+            calcHeadButton.Click += CalcHeadButton_Click;
             // 
             // groupBox4
             // 
@@ -994,7 +995,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(457, 424);
             Controls.Add(groupBox4);
-            Controls.Add(button1);
+            Controls.Add(calcHeadButton);
             Controls.Add(calcGroupBox);
             Controls.Add(ULRGroupBox);
             Controls.Add(CalcButton);
@@ -1095,7 +1096,7 @@
         private Label label2;
         private Label label1;
         private GroupBox groupBox1;
-        private Button button1;
+        private Button calcHeadButton;
         private GroupBox groupBox4;
         private TextBox textBox3;
         private TextBox textBox4;
