@@ -114,18 +114,18 @@ namespace View
                 else if (upperReservoirLevel < maxLoadRoughZone.MinUpperReservoirLevel ||
                          upperReservoirLevel > maxLoadRoughZone.MaxUpperReservoirLevel)
                 {
-                    MessageBox.Show($"Значение верхнего бьефа должно быть в диапазоне " +
+                    MessageBox.Show($"Значение уровня верхнего бьефа должно быть \nв диапазоне " +
                         $"от {maxLoadRoughZone.MinUpperReservoirLevel} " +
-                        $"до {maxLoadRoughZone.MaxUpperReservoirLevel}.",
+                        $"до {maxLoadRoughZone.MaxUpperReservoirLevel} м.",
                                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 // Проверка на допустимые значения нижнего бьефа
                 else if (lowerReservoirLevel < maxLoadRoughZone.MinLowerReservoirLevel ||
                          lowerReservoirLevel > maxLoadRoughZone.MaxLowerReservoirLevel)
                 {
-                    MessageBox.Show($"Значение нижнего бьефа должно быть в диапазоне " +
+                    MessageBox.Show($"Значение уровня нижнего бьефа должно быть \nв диапазоне " +
                         $"от {maxLoadRoughZone.MinLowerReservoirLevel} " +
-                        $"до {maxLoadRoughZone.MaxLowerReservoirLevel}.",
+                        $"до {maxLoadRoughZone.MaxLowerReservoirLevel} м.",
                                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 // Проверка на допустимое значение напора
@@ -133,8 +133,11 @@ namespace View
                     (upperReservoirLevel - lowerReservoirLevel) > maxLoadRoughZone.MaxWaterHead)
                 {
                     MessageBox.Show($"Значение напора должно быть в диапазоне " +
-                        $"от {maxLoadRoughZone.MinWaterHead} " +
-                        $"до {maxLoadRoughZone.MaxWaterHead}.",
+                        $"от {maxLoadRoughZone.MinWaterHead} \n" +
+                        $"до {maxLoadRoughZone.MaxWaterHead} м. " +
+                        $"Напор, согласно введённым значениям уровней, " +
+                        $"составляет {upperReservoirLevel - lowerReservoirLevel} м, " +
+                        $"что недопустимо согласно паспортным данным гидротурбин.",
                                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
