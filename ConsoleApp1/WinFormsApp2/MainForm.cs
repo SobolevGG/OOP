@@ -460,32 +460,51 @@ namespace View
                 {
                     // Если Status установлен как "Выведен", устанавливаем Load в 0
                     parametersHUGridView[loadColumn.Index, e.RowIndex].Value = 0;
+                    parametersHUGridView[zoneColumn.Index, e.RowIndex].Value = 1;
                 }
-                else
+                else if (cell.Value != null && cell.Value.ToString() == "В работе")
                 {
-                    // В противном случае, обновляем Load в соответствии с вашей логикой
-                    // (например, из другого столбца или вводим какое-то значение по умолчанию)
+                    // Если Status установлен как "В работе", устанавливаем Load в 50
+                    parametersHUGridView[loadColumn.Index, e.RowIndex].Value = 50;
+                    parametersHUGridView[zoneColumn.Index, e.RowIndex].Value = 1;
                 }
             }
             else if (e.ColumnIndex == loadColumn.Index)
             {
-                DataGridViewCell cell = parametersHUGridView[e.ColumnIndex, e.RowIndex];
+                DataGridViewCell loadCell = parametersHUGridView[e.ColumnIndex, e.RowIndex];
+                double loadValue;
 
-                if (cell.Value != null && Convert.ToDouble(cell.Value) == 0)
+                if (loadCell.Value != null && double.TryParse(loadCell.Value.ToString(), out loadValue))
                 {
                     // Если Load установлен в 0, устанавливаем Status как "Выведен"
-                    parametersHUGridView[statusColumn.Index, e.RowIndex].Value = "Выведен";
+                    if (loadValue == 0)
+                    {
+                        parametersHUGridView[statusColumn.Index, e.RowIndex].Value = "Выведен";
+                    }
+                    else
+                    {
+                        // В противном случае, обновляем Status в соответствии с вашей логикой
+                    }
+
+                    // Если Load меньше 150, устанавливаем Zone в 1, иначе в 3
+                    parametersHUGridView[zoneColumn.Index, e.RowIndex].Value = loadValue < 150 ? 1 : 3;
                 }
                 else
                 {
-                    // В противном случае, обновляем Status в соответствии с вашей логикой
+                    // Обработка некорректного ввода в Load
+                    MessageBox.Show("Некорректное значение в столбце 'Загрузка'.",
+                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // Отменяем изменение значения
+                    parametersHUGridView.CancelEdit();
                 }
             }
         }
 
 
+
         /// <summary>
-        /// Событие на изменение ячеек в датагрид.
+        /// Событие на изменение ячеек в датагрид - проверка.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
