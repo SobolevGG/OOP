@@ -597,7 +597,8 @@ namespace View
             {
                 foreach (DataGridViewCell cell in row.Cells)
                 {
-                    if (cell.ColumnIndex != 0) // Проверяем, что это не первый столбец
+                    // Проверяем, что это не первый столбец и не третий
+                    if (cell.ColumnIndex != 0 && cell.ColumnIndex != 2)
                     {
                         cell.ReadOnly = !isEditingEnabled;
                     }
