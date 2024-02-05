@@ -53,6 +53,9 @@ namespace View
             // Вызываем тестовый метод при загрузке формы
             TestFillData();
             parametersHUGridView.CellValidating += DataGridView_CellValidating;
+
+            // Подписываемся на событие CellEndEdit
+            parametersHUGridView.CellEndEdit += parametersHUGridView_CellEndEdit;
         }
 
         // Метод для настройки формы при загрузке
@@ -447,6 +450,40 @@ namespace View
         }
 
 
+        private void parametersHUGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == statusColumn.Index)
+            {
+                DataGridViewCell cell = parametersHUGridView[e.ColumnIndex, e.RowIndex];
+
+                if (cell.Value != null && cell.Value.ToString() == "Выведен")
+                {
+                    // Если Status установлен как "Выведен", устанавливаем Load в 0
+                    parametersHUGridView[loadColumn.Index, e.RowIndex].Value = 0;
+                }
+                else
+                {
+                    // В противном случае, обновляем Load в соответствии с вашей логикой
+                    // (например, из другого столбца или вводим какое-то значение по умолчанию)
+                }
+            }
+            else if (e.ColumnIndex == loadColumn.Index)
+            {
+                DataGridViewCell cell = parametersHUGridView[e.ColumnIndex, e.RowIndex];
+
+                if (cell.Value != null && Convert.ToDouble(cell.Value) == 0)
+                {
+                    // Если Load установлен в 0, устанавливаем Status как "Выведен"
+                    parametersHUGridView[statusColumn.Index, e.RowIndex].Value = "Выведен";
+                }
+                else
+                {
+                    // В противном случае, обновляем Status в соответствии с вашей логикой
+                }
+            }
+        }
+
+
         /// <summary>
         /// Событие на изменение ячеек в датагрид.
         /// </summary>
@@ -454,19 +491,6 @@ namespace View
         /// <param name="e"></param>
         private void DataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.ColumnIndex == zoneColumn.Index)
-            {
-                string input = e.FormattedValue.ToString();
-
-                if (input != "1" && input != "3")
-                {
-                    MessageBox.Show("Значение в столбце 'Зона' должно быть 1 или 3.",
-                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    e.Cancel = true; // Отменяем изменение значения
-                }
-            }
-
             if (e.ColumnIndex == loadColumn.Index)
             {
                 string input = e.FormattedValue.ToString();
@@ -497,6 +521,7 @@ namespace View
                     e.Cancel = true; // Отменяем изменение значения
                 }
             }
+
         }
 
 
