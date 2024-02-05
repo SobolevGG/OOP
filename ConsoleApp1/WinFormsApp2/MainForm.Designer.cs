@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             toolStrip = new ToolStrip();
             toolStripDropDownButton1 = new ToolStripDropDownButton();
             openFile = new ToolStripMenuItem();
@@ -107,6 +107,7 @@
             label1 = new Label();
             LRTextBox = new TextBox();
             URTextBox = new TextBox();
+            calcHeadButton = new Button();
             LRLabel = new Label();
             URLabel = new Label();
             calcGroupBox = new GroupBox();
@@ -114,7 +115,6 @@
             textBox1 = new TextBox();
             label6 = new Label();
             label5 = new Label();
-            calcHeadButton = new Button();
             groupBox4 = new GroupBox();
             label9 = new Label();
             label7 = new Label();
@@ -122,8 +122,9 @@
             textBox4 = new TextBox();
             label3 = new Label();
             label4 = new Label();
-            timeTextBox = new TextBox();
+            checkoutHourTextBox = new TextBox();
             loadDataButton = new Button();
+            checkoutHourGroupBox = new GroupBox();
             toolStrip.SuspendLayout();
             tabControl.SuspendLayout();
             parametersHUTabPage.SuspendLayout();
@@ -138,6 +139,7 @@
             ULRGroupBox.SuspendLayout();
             calcGroupBox.SuspendLayout();
             groupBox4.SuspendLayout();
+            checkoutHourGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // toolStrip
@@ -613,35 +615,35 @@
             restrictionsHUGridView.ColumnHeadersHeight = 38;
             restrictionsHUGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             restrictionsHUGridView.Columns.AddRange(new DataGridViewColumn[] { HU, RoughZoneFB, RoughZoneSB, MaxLoad });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            restrictionsHUGridView.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = SystemColors.Window;
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle10.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
+            restrictionsHUGridView.DefaultCellStyle = dataGridViewCellStyle10;
             restrictionsHUGridView.Location = new Point(3, 2);
             restrictionsHUGridView.Name = "restrictionsHUGridView";
             restrictionsHUGridView.ReadOnly = true;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = SystemColors.Control;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            restrictionsHUGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = SystemColors.Control;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle11.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            restrictionsHUGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
             restrictionsHUGridView.RowHeadersVisible = false;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            restrictionsHUGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            restrictionsHUGridView.RowsDefaultCellStyle = dataGridViewCellStyle12;
             restrictionsHUGridView.Size = new Size(237, 338);
             restrictionsHUGridView.TabIndex = 0;
             // 
             // HU
             // 
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            HU.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            HU.DefaultCellStyle = dataGridViewCellStyle7;
             HU.HeaderText = "        ";
             HU.Name = "HU";
             HU.ReadOnly = true;
@@ -652,8 +654,8 @@
             // 
             // RoughZoneFB
             // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            RoughZoneFB.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            RoughZoneFB.DefaultCellStyle = dataGridViewCellStyle8;
             RoughZoneFB.HeaderText = "";
             RoughZoneFB.Name = "RoughZoneFB";
             RoughZoneFB.ReadOnly = true;
@@ -664,8 +666,8 @@
             // 
             // RoughZoneSB
             // 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            RoughZoneSB.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            RoughZoneSB.DefaultCellStyle = dataGridViewCellStyle9;
             RoughZoneSB.HeaderText = "";
             RoughZoneSB.Name = "RoughZoneSB";
             RoughZoneSB.ReadOnly = true;
@@ -797,9 +799,9 @@
             // 
             // CalcButton
             // 
-            CalcButton.Location = new Point(297, 294);
+            CalcButton.Location = new Point(303, 390);
             CalcButton.Name = "CalcButton";
-            CalcButton.Size = new Size(111, 23);
+            CalcButton.Size = new Size(98, 23);
             CalcButton.TabIndex = 4;
             CalcButton.Text = "Расчёт РВР";
             CalcButton.UseVisualStyleBackColor = true;
@@ -810,11 +812,12 @@
             ULRGroupBox.Controls.Add(label1);
             ULRGroupBox.Controls.Add(LRTextBox);
             ULRGroupBox.Controls.Add(URTextBox);
+            ULRGroupBox.Controls.Add(calcHeadButton);
             ULRGroupBox.Controls.Add(LRLabel);
             ULRGroupBox.Controls.Add(URLabel);
-            ULRGroupBox.Location = new Point(269, 67);
+            ULRGroupBox.Location = new Point(269, 108);
             ULRGroupBox.Name = "ULRGroupBox";
-            ULRGroupBox.Size = new Size(167, 83);
+            ULRGroupBox.Size = new Size(167, 110);
             ULRGroupBox.TabIndex = 5;
             ULRGroupBox.TabStop = false;
             ULRGroupBox.Text = "Уровни бьефов";
@@ -841,7 +844,7 @@
             // 
             // LRTextBox
             // 
-            LRTextBox.Location = new Point(87, 52);
+            LRTextBox.Location = new Point(87, 49);
             LRTextBox.Name = "LRTextBox";
             LRTextBox.Size = new Size(66, 23);
             LRTextBox.TabIndex = 3;
@@ -855,10 +858,20 @@
             URTextBox.TabIndex = 2;
             URTextBox.TextAlign = HorizontalAlignment.Center;
             // 
+            // calcHeadButton
+            // 
+            calcHeadButton.Location = new Point(34, 78);
+            calcHeadButton.Name = "calcHeadButton";
+            calcHeadButton.Size = new Size(98, 23);
+            calcHeadButton.TabIndex = 7;
+            calcHeadButton.Text = "Расчёт напора";
+            calcHeadButton.UseVisualStyleBackColor = true;
+            calcHeadButton.Click += CalcHeadButton_Click;
+            // 
             // LRLabel
             // 
             LRLabel.AutoSize = true;
-            LRLabel.Location = new Point(9, 56);
+            LRLabel.Location = new Point(9, 53);
             LRLabel.Name = "LRLabel";
             LRLabel.Size = new Size(50, 15);
             LRLabel.TabIndex = 1;
@@ -879,7 +892,7 @@
             calcGroupBox.Controls.Add(textBox1);
             calcGroupBox.Controls.Add(label6);
             calcGroupBox.Controls.Add(label5);
-            calcGroupBox.Location = new Point(269, 198);
+            calcGroupBox.Location = new Point(269, 223);
             calcGroupBox.Name = "calcGroupBox";
             calcGroupBox.Size = new Size(167, 83);
             calcGroupBox.TabIndex = 6;
@@ -920,16 +933,6 @@
             label5.TabIndex = 0;
             label5.Text = "НПРЧ, МВт:";
             // 
-            // calcHeadButton
-            // 
-            calcHeadButton.Location = new Point(297, 163);
-            calcHeadButton.Name = "calcHeadButton";
-            calcHeadButton.Size = new Size(111, 23);
-            calcHeadButton.TabIndex = 7;
-            calcHeadButton.Text = "Расчёт напора";
-            calcHeadButton.UseVisualStyleBackColor = true;
-            calcHeadButton.Click += CalcHeadButton_Click;
-            // 
             // groupBox4
             // 
             groupBox4.Controls.Add(label9);
@@ -938,9 +941,9 @@
             groupBox4.Controls.Add(textBox4);
             groupBox4.Controls.Add(label3);
             groupBox4.Controls.Add(label4);
-            groupBox4.Location = new Point(269, 329);
+            groupBox4.Location = new Point(269, 311);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(167, 83);
+            groupBox4.Size = new Size(167, 110);
             groupBox4.TabIndex = 8;
             groupBox4.TabStop = false;
             groupBox4.Text = "Результаты расчёта РВР";
@@ -1001,38 +1004,48 @@
             label4.TabIndex = 0;
             label4.Text = "P       , МВт:";
             // 
-            // timeTextBox
+            // checkoutHourTextBox
             // 
-            timeTextBox.Location = new Point(252, 57);
-            timeTextBox.Name = "timeTextBox";
-            timeTextBox.Size = new Size(100, 23);
-            timeTextBox.TabIndex = 9;
+            checkoutHourTextBox.Location = new Point(11, 21);
+            checkoutHourTextBox.Name = "checkoutHourTextBox";
+            checkoutHourTextBox.Size = new Size(65, 23);
+            checkoutHourTextBox.TabIndex = 9;
+            checkoutHourTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // loadDataButton
             // 
-            loadDataButton.Location = new Point(380, 51);
+            loadDataButton.Location = new Point(83, 21);
             loadDataButton.Name = "loadDataButton";
-            loadDataButton.Size = new Size(75, 23);
+            loadDataButton.Size = new Size(74, 23);
             loadDataButton.TabIndex = 10;
-            loadDataButton.Text = "button1";
+            loadDataButton.Text = "Обновить";
             loadDataButton.UseVisualStyleBackColor = true;
             loadDataButton.Click += loadDataButton_Click;
+            // 
+            // checkoutHourGroupBox
+            // 
+            checkoutHourGroupBox.Controls.Add(checkoutHourTextBox);
+            checkoutHourGroupBox.Controls.Add(loadDataButton);
+            checkoutHourGroupBox.Location = new Point(269, 47);
+            checkoutHourGroupBox.Name = "checkoutHourGroupBox";
+            checkoutHourGroupBox.Size = new Size(167, 56);
+            checkoutHourGroupBox.TabIndex = 11;
+            checkoutHourGroupBox.TabStop = false;
+            checkoutHourGroupBox.Text = "Расчётный час";
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(457, 424);
-            Controls.Add(loadDataButton);
-            Controls.Add(timeTextBox);
-            Controls.Add(groupBox4);
-            Controls.Add(calcHeadButton);
-            Controls.Add(calcGroupBox);
-            Controls.Add(ULRGroupBox);
             Controls.Add(CalcButton);
+            Controls.Add(groupBox4);
+            Controls.Add(calcGroupBox);
             Controls.Add(toolBar);
             Controls.Add(tabControl);
             Controls.Add(toolStrip);
+            Controls.Add(ULRGroupBox);
+            Controls.Add(checkoutHourGroupBox);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
@@ -1061,6 +1074,8 @@
             calcGroupBox.PerformLayout();
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
+            checkoutHourGroupBox.ResumeLayout(false);
+            checkoutHourGroupBox.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1154,7 +1169,8 @@
         private DataGridViewTextBoxColumn RoughZoneSB;
         private DataGridViewTextBoxColumn MaxLoad;
         private ToolStripMenuItem openMaxLoadPoughZone;
-        private TextBox timeTextBox;
+        private TextBox checkoutHourTextBox;
         private Button loadDataButton;
+        private GroupBox checkoutHourGroupBox;
     }
 }

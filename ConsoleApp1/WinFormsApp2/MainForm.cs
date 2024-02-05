@@ -924,7 +924,7 @@ namespace View
         private void loadDataButton_Click(object sender, EventArgs e)
         {
             // Получите значение из текстового поля
-            string inputText = timeTextBox.Text;
+            string inputText = checkoutHourTextBox.Text;
 
             // Попробуйте преобразовать текст в число
             if (int.TryParse(inputText, out int userHour))
