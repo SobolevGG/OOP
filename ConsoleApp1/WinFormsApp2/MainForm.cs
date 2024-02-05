@@ -607,6 +607,8 @@ namespace View
 
             // Теперь делаем кнопку saveParamsHU доступной или недоступной в зависимости от режима редактирования
             saveParamsHU.Enabled = !isEditingEnabled;
+            paramsHUToolStripMenu.Enabled = !isEditingEnabled;
+            OpenParamsHU.Enabled = !isEditingEnabled;
 
             // Меняем текст кнопки в зависимости от режима редактирования
             if (isEditingEnabled)
@@ -815,7 +817,7 @@ namespace View
             }
         }
 
-        private void openMaxLoadPoughZone_Click(object sender, EventArgs e)
+        private void OpenMaxLoadPoughZone_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
@@ -856,7 +858,7 @@ namespace View
             }
         }
 
-        private void importBMPButton_Click(object sender, EventArgs e)
+        private void ImportBMPButton_Click(object sender, EventArgs e)
         {
             // Получите значение из текстового поля
             string inputText = checkoutHourTextBox.Text;
@@ -895,7 +897,7 @@ namespace View
             // Дополнительные действия при загрузке данных с использованием targetTimeStamp
         }
 
-        private void loadDataButton_Click(object sender, EventArgs e)
+        private void LoadDataButton_Click(object sender, EventArgs e)
         {
             // Получите значение из текстового поля
             string inputText = checkoutHourTextBox.Text;
@@ -911,6 +913,7 @@ namespace View
                     // string targetTimeStamp = $"2024-01-10T{userHour}:00:00Z";
                     // Вызовите метод для загрузки данных с использованием targetTimeStamp
                     LoadDataWithTimeStamp(targetTimeStamp);
+                    
                 }
                 else
                 {
@@ -935,6 +938,140 @@ namespace View
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "generatorsLoad.xml");
             Dictionary<int, double> loadDictionary = GeneratorsLoader.ReadLoadForTimeStamp(filePath, targetTimeStamp, parametersHUGridView);
             // Дополнительные действия при загрузке данных с использованием targetTimeStamp
+        }
+
+        private void ParamsHUToolStripMenu_Click(object sender, EventArgs e)
+        {
+            // Создаем список для хранения данных
+            List<ParametersHU> dataItems = new List<ParametersHU>();
+
+            // Проходим по каждой строке в DataGridView
+            foreach (DataGridViewRow row in parametersHUGridView.Rows)
+            {
+                // Создаем объект DataItem на основе данных в строке
+                ParametersHU item = new ParametersHU
+                {
+                    HU = row.Cells[0].Value?.ToString(),
+                    Load = Convert.ToInt32(row.Cells[1].Value),
+                    Zone = Convert.ToInt32(row.Cells[2].Value),
+                    Status = row.Cells[3].Value?.ToString()
+                };
+
+                // Добавляем объект в список
+                dataItems.Add(item);
+            }
+
+            // Инициализируем SaveFileDialog
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+            saveFileDialog.Title = "Save XML File";
+            saveFileDialog.ShowDialog();
+
+            // Если пользователь выбрал файл
+            if (saveFileDialog.FileName != "")
+            {
+                // Сохраняем данные в выбранный файл
+                XmlSerializer serializer = new XmlSerializer(typeof(List<ParametersHU>));
+
+                using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                {
+                    serializer.Serialize(fs, dataItems);
+                }
+            }
+        }
+
+        private void MaxLoadPoughZoneToolStripMenu_Click(object sender, EventArgs e)
+        {
+            // Создаем список для хранения данных
+            List<MaxLoadRoughZone> dataItems = new List<MaxLoadRoughZone>();
+
+            double waterHead;
+
+            if ((string.IsNullOrWhiteSpace(LRTextBox.Text)) &&
+                (string.IsNullOrWhiteSpace(URTextBox.Text)) &&
+                (restrictionsHUGridView.Rows.Count > 0))
+            {
+                waterHead = 93;
+
+                // Проходим по каждой строке в DataGridView
+                foreach (DataGridViewRow row in restrictionsHUGridView.Rows)
+                {
+                    // Создаем объект MaxLoadRoughZone на основе данных в строке
+                    MaxLoadRoughZone item = new MaxLoadRoughZone(waterHead)
+                    {
+                        HU = row.Cells[0].Value?.ToString(),
+                        MaxPower = Convert.ToDouble(row.Cells[1].Value),
+                        RoughZoneFB = Convert.ToDouble(row.Cells[2].Value),
+                        RoughZoneSB = Convert.ToDouble(row.Cells[3].Value)
+                    };
+
+                    // Добавляем объект в список
+                    dataItems.Add(item);
+                }
+
+                // Инициализируем SaveFileDialog
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+                saveFileDialog.Title = "Save XML File";
+                saveFileDialog.ShowDialog();
+
+                // Если пользователь выбрал файл
+                if (saveFileDialog.FileName != "")
+                {
+                    // Сохраняем данные в выбранный файл
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<MaxLoadRoughZone>));
+
+                    using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                    {
+                        serializer.Serialize(fs, dataItems);
+                    }
+                }
+            }
+            else if (double.TryParse(URTextBox.Text, out double upperReservoirLevel) &&
+                double.TryParse(LRTextBox.Text, out double lowerReservoirLevel))
+            {
+                // Вычисляем напор
+                waterHead = upperReservoirLevel - lowerReservoirLevel;
+
+                // Проходим по каждой строке в DataGridView
+                foreach (DataGridViewRow row in restrictionsHUGridView.Rows)
+                {
+                    // Создаем объект MaxLoadRoughZone на основе данных в строке
+                    MaxLoadRoughZone item = new MaxLoadRoughZone(waterHead)
+                    {
+                        HU = row.Cells[0].Value?.ToString(),
+                        MaxPower = Convert.ToDouble(row.Cells[1].Value),
+                        RoughZoneFB = Convert.ToDouble(row.Cells[2].Value),
+                        RoughZoneSB = Convert.ToDouble(row.Cells[3].Value)
+                    };
+
+                    // Добавляем объект в список
+                    dataItems.Add(item);
+                }
+
+                // Инициализируем SaveFileDialog
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+                saveFileDialog.Title = "Save XML File";
+                saveFileDialog.ShowDialog();
+
+                // Если пользователь выбрал файл
+                if (saveFileDialog.FileName != "")
+                {
+                    // Сохраняем данные в выбранный файл
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<MaxLoadRoughZone>));
+
+                    using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                    {
+                        serializer.Serialize(fs, dataItems);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Невозможно преобразовать одно из значений уровней бьефов в число.",
+                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
