@@ -455,7 +455,7 @@ namespace View
         }
 
 
-        private void Save_Click(object sender, EventArgs e)
+        private void SaveParametersHU_Click(object sender, EventArgs e)
         {
             // Создаем список для хранения данных
             List<ParametersHU> dataItems = new List<ParametersHU>();
@@ -566,27 +566,36 @@ namespace View
 
         private void OpenParamsHU_Click(object sender, EventArgs e)
         {
-            // Создаем объект OpenFileDialog
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+            openFileDialog.Title = "Open XML File";
 
-            // Устанавливаем фильтр для выбора файлов формата XML
-            openFileDialog.Filter = "XML files (*.xml)|*.xml";
-
-            // Устанавливаем заголовок диалогового окна
-            openFileDialog.Title = "Выберите файл XML";
-
-            // Устанавливаем свойство ShowHelp в false, чтобы скрыть опцию "All Files"
-            openFileDialog.ShowHelp = false;
-
-            // Показываем диалоговое окно и проверяем, был ли выбран файл
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                // Получаем путь к выбранному файлу
-                string selectedFilePath = openFileDialog.FileName;
+                try
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<ParametersHU>));
 
-                // Ваш код для обработки выбранного файла
-                // Например, загрузка данных из файла или отображение пути к файлу
-                MessageBox.Show($"Выбран файл XML: {selectedFilePath}", "Выбор файла", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    using (FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open))
+                    {
+                        List<ParametersHU> loadedData = (List<ParametersHU>)serializer.Deserialize(fs);
+
+                        // Очищаем существующие данные в DataGridView
+                        parametersHUGridView.Rows.Clear();
+
+                        // Заполняем DataGridView загруженными данными
+                        foreach (ParametersHU item in loadedData)
+                        {
+                            parametersHUGridView.Rows.Add(item.HU, item.Load, item.Zone, item.Status);
+                        }
+                    }
+
+                    MessageBox.Show("Данные успешно загружены из файла.", "Выполнено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при чтении файла: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

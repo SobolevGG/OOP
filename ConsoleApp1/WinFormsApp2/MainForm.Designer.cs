@@ -186,7 +186,7 @@
             saveParamsHU.Name = "saveParamsHU";
             saveParamsHU.Size = new Size(215, 22);
             saveParamsHU.Text = "Параметры ГА";
-            saveParamsHU.Click += Save_Click;
+            saveParamsHU.Click += SaveParametersHU_Click;
             // 
             // saveMaxLoadRoughZone
             // 
