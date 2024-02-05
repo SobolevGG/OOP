@@ -51,7 +51,7 @@ namespace View
 
 
             // Вызываем тестовый метод при загрузке формы
-            TestFillData();
+            FillDataParametersHU();
             parametersHUGridView.CellValidating += DataGridView_CellValidating;
 
             // Подписываемся на событие CellEndEdit
@@ -387,7 +387,7 @@ namespace View
         }
 
         // Метод для тестовых данных
-        private void TestFillData()
+        private void FillDataParametersHU()
         {
             // Используем метод ReadLoadForTimeStamp для загрузки данных
             DateTime targetTimeStamp = DateTime.Parse("2024-01-10T01:00:00Z");
@@ -858,67 +858,41 @@ namespace View
 
         private void importBMPButton_Click(object sender, EventArgs e)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Generator>));
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
-            openFileDialog.Title = "Open XML File";
+            // Получите значение из текстового поля
+            string inputText = checkoutHourTextBox.Text;
 
-            try
+            DateTime targetTimeStamp = new DateTime(2024, 1, 10, 0, 0, 0, DateTimeKind.Utc);
+
+            // Попробуйте преобразовать текст в число
+            if (int.TryParse(inputText, out int userHour))
             {
-                // Показываем диалоговое окно для выбора файла
-                if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                // Проверка на диапазон от 0 до 23
+                if (userHour >= 0 && userHour <= 23)
                 {
-                    using (FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open))
-                    {
-                        List<Generator> loadedData = (List<Generator>)serializer.Deserialize(fs);
-
-                        // Задаем интересующее нас значение TimeStamp
-                        DateTime targetTimeStamp = DateTime.Parse("2024-01-10T01:00:00Z");
-
-                        // Номер гидроагрегата, для которого нужно обновить/добавить значение Load
-                        int targetHydroUnitNumber = 5; // Установите соответствующий номер
-
-                        // Находим соответствующий генератор и его Load
-                        foreach (Generator item in loadedData)
-                        {
-                            GeneratorsLoad targetLoadItem = item.GeneratorsLoadList
-                                .FirstOrDefault(loadItem => loadItem.TimeStamp == targetTimeStamp);
-
-                            if (targetLoadItem != null)
-                            {
-                                // Находим индекс строки с заданным номером гидроагрегата в DataGridView
-                                int rowIndex = -1;
-                                foreach (DataGridViewRow row in parametersHUGridView.Rows)
-                                {
-                                    int rowHydroUnitNumber;
-                                    if (int.TryParse(row.Cells[0].Value?.ToString(), out rowHydroUnitNumber) && rowHydroUnitNumber == targetHydroUnitNumber)
-                                    {
-                                        rowIndex = row.Index;
-                                        break;
-                                    }
-                                }
-
-                                // Если строка с таким номером гидроагрегата не найдена, добавляем новую
-                                if (rowIndex == -1)
-                                {
-                                    rowIndex = parametersHUGridView.Rows.Add();
-                                    // Устанавливаем номер гидроагрегата в первом столбце
-                                    parametersHUGridView.Rows[rowIndex].Cells[0].Value = targetHydroUnitNumber;
-                                }
-
-                                // Заменяем значение во втором столбце
-                                parametersHUGridView.Rows[rowIndex].Cells[1].Value = targetLoadItem.Load;
-                            }
-                        }
-                    }
-
+                    // Сформируйте DateTime с использованием введенного часа
+                    targetTimeStamp = new DateTime(2024, 1, 10, userHour, 0, 0, DateTimeKind.Utc);
+                    // string targetTimeStamp = $"2024-01-10T{userHour}:00:00Z";
+                    // Вызовите метод для загрузки данных с использованием targetTimeStamp
+                    LoadDataWithTimeStamp(targetTimeStamp);
+                }
+                else
+                {
+                    // Вывод сообщения об ошибке для некорректного часа
+                    MessageBox.Show("Час должен быть в пределах от 0 до 23.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                // Обработка исключений, если они возникнут при чтении файла
-                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Вывод сообщения об ошибке для невозможности преобразования в число
+                MessageBox.Show("Введите корректное число в пределах от 0 до 23.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            // Очистка данных в DataGridView
+            parametersHUGridView.Rows.Clear();
+
+            // Код для загрузки данных с использованием targetTimeStamp
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "generatorsLoad.xml");
+            Dictionary<int, double> loadDictionary = GeneratorsLoader.ReadLoadForTimeStamp(filePath, targetTimeStamp, parametersHUGridView);
+            // Дополнительные действия при загрузке данных с использованием targetTimeStamp
         }
 
         private void loadDataButton_Click(object sender, EventArgs e)
@@ -934,7 +908,7 @@ namespace View
                 {
                     // Сформируйте DateTime с использованием введенного часа
                     DateTime targetTimeStamp = new DateTime(2024, 1, 10, userHour, 0, 0, DateTimeKind.Utc);
-
+                    // string targetTimeStamp = $"2024-01-10T{userHour}:00:00Z";
                     // Вызовите метод для загрузки данных с использованием targetTimeStamp
                     LoadDataWithTimeStamp(targetTimeStamp);
                 }
