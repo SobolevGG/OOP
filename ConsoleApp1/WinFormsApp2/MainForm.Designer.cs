@@ -39,6 +39,7 @@
             toolStripDropDownButton1 = new ToolStripDropDownButton();
             openFile = new ToolStripMenuItem();
             OpenParamsHU = new ToolStripMenuItem();
+            openMaxLoadPoughZone = new ToolStripMenuItem();
             saveFile = new ToolStripMenuItem();
             saveParamsHU = new ToolStripMenuItem();
             saveMaxLoadRoughZone = new ToolStripMenuItem();
@@ -121,7 +122,6 @@
             textBox4 = new TextBox();
             label3 = new Label();
             label4 = new Label();
-            openMaxLoadPoughZone = new ToolStripMenuItem();
             toolStrip.SuspendLayout();
             tabControl.SuspendLayout();
             parametersHUTabPage.SuspendLayout();
@@ -172,6 +172,13 @@
             OpenParamsHU.Size = new Size(211, 22);
             OpenParamsHU.Text = "Параметры ГА";
             OpenParamsHU.Click += OpenParamsHU_Click;
+            // 
+            // openMaxLoadPoughZone
+            // 
+            openMaxLoadPoughZone.Name = "openMaxLoadPoughZone";
+            openMaxLoadPoughZone.Size = new Size(211, 22);
+            openMaxLoadPoughZone.Text = "Ограничения СВМ и БВУ";
+            openMaxLoadPoughZone.Click += openMaxLoadPoughZone_Click;
             // 
             // saveFile
             // 
@@ -735,6 +742,7 @@
             importBMPButton.Name = "importBMPButton";
             importBMPButton.Size = new Size(97, 22);
             importBMPButton.Text = "Импорт ПБР";
+            importBMPButton.Click += importBMPButton_Click;
             // 
             // toolStripSeparator2
             // 
@@ -990,13 +998,6 @@
             label4.Size = new Size(67, 15);
             label4.TabIndex = 0;
             label4.Text = "P       , МВт:";
-            // 
-            // openMaxLoadPoughZone
-            // 
-            openMaxLoadPoughZone.Name = "openMaxLoadPoughZone";
-            openMaxLoadPoughZone.Size = new Size(211, 22);
-            openMaxLoadPoughZone.Text = "Ограничения СВМ и БВУ";
-            openMaxLoadPoughZone.Click += openMaxLoadPoughZone_Click;
             // 
             // MainForm
             // 

@@ -10,6 +10,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Extreme.Statistics;
 using System.Text;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using ConsoleAppNew;
 
 namespace View
 {
@@ -51,6 +52,7 @@ namespace View
 
             // Вызываем тестовый метод при загрузке формы
             TestFillData();
+            parametersHUGridView.CellValidating += DataGridView_CellValidating;
         }
 
         // Метод для настройки формы при загрузке
@@ -384,23 +386,66 @@ namespace View
         // Метод для тестовых данных
         private void TestFillData()
         {
-            // Генерируем тестовые данные и заполняем таблицу
-            Random random = new Random();
-            for (int i = 1; i <= 12; i++)
+            // Используем метод ReadLoadForTimeStamp для загрузки данных
+            DateTime targetTimeStamp = DateTime.Parse("2024-01-10T01:00:00Z");
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "generatorsLoad.xml");
+
+            // Загружаем данные для targetTimeStamp и указываем DataGridView для заполнения
+            Dictionary<int, double> loadDictionary = GeneratorsLoader.ReadLoadForTimeStamp(filePath, targetTimeStamp, parametersHUGridView);
+        }
+
+        public class GeneratorsLoader
+        {
+            public static Dictionary<int, double> ReadLoadForTimeStamp(string filePath, DateTime targetTimeStamp, DataGridView parametersHUGridView)
             {
-                // Выбираем случайный диапазон расходов
-                int[] диапазон = random.Next(2) == 0 ? new[] { 0, 150 } : new[] { 320, 500 };
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Generator>));
 
-                // Генерируем случайный расход внутри выбранного диапазона
-                int расход = random.Next(диапазон[0], диапазон[1] + 1);
+                using (FileStream fs = new FileStream(filePath, FileMode.Open))
+                {
+                    List<Generator> loadedData = (List<Generator>)serializer.Deserialize(fs);
 
-                // Вычисляем зону работы
-                int зона = расход >= 320 ? 3 : (расход <= 150 ? 1 : 2);
+                    Dictionary<int, double> loadDictionary = new Dictionary<int, double>();
+                    int hydroUnitNumberCounter = 1;
 
-                // Добавляем строку с тестовыми данными
-                parametersHUGridView.Rows.Add($"{i}", расход, зона, "В работе");
+                    foreach (Generator item in loadedData)
+                    {
+                        GeneratorsLoad targetLoadItem = item.GeneratorsLoadList
+                            .FirstOrDefault(loadItem => loadItem.TimeStamp == targetTimeStamp);
+
+                        if (targetLoadItem != null)
+                        {
+                            double loadValue = targetLoadItem.Load;
+                            loadDictionary.Add(hydroUnitNumberCounter, loadValue);
+
+                            // Вычисляем зону работы
+                            int zone = loadValue >= 320 ? 3 : (loadValue <= 150 ? 1 : 2);
+
+
+                            // Добавим также запись в DataGridView
+                            ParametersHU parametersHU = new ParametersHU
+                            {
+                                HU = hydroUnitNumberCounter.ToString(),
+                                Load = loadValue,
+                                Zone = zone,
+                                Status = loadValue > 0 ? "В работе" : "Выведен"
+                            };
+
+                            parametersHUGridView.Rows.Add(
+                                parametersHU.HU,
+                                parametersHU.Load,
+                                parametersHU.Zone,
+                                parametersHU.Status
+                            );
+                        }
+
+                        hydroUnitNumberCounter++;
+                    }
+
+                    return loadDictionary;
+                }
             }
         }
+
 
         /// <summary>
         /// Событие на изменение ячеек в датагрид.
@@ -763,6 +808,71 @@ namespace View
                 {
                     MessageBox.Show($"Ошибка при чтении файла: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void importBMPButton_Click(object sender, EventArgs e)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Generator>));
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+            openFileDialog.Title = "Open XML File";
+
+            try
+            {
+                // Показываем диалоговое окно для выбора файла
+                if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    using (FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open))
+                    {
+                        List<Generator> loadedData = (List<Generator>)serializer.Deserialize(fs);
+
+                        // Задаем интересующее нас значение TimeStamp
+                        DateTime targetTimeStamp = DateTime.Parse("2024-01-10T01:00:00Z");
+
+                        // Номер гидроагрегата, для которого нужно обновить/добавить значение Load
+                        int targetHydroUnitNumber = 5; // Установите соответствующий номер
+
+                        // Находим соответствующий генератор и его Load
+                        foreach (Generator item in loadedData)
+                        {
+                            GeneratorsLoad targetLoadItem = item.GeneratorsLoadList
+                                .FirstOrDefault(loadItem => loadItem.TimeStamp == targetTimeStamp);
+
+                            if (targetLoadItem != null)
+                            {
+                                // Находим индекс строки с заданным номером гидроагрегата в DataGridView
+                                int rowIndex = -1;
+                                foreach (DataGridViewRow row in parametersHUGridView.Rows)
+                                {
+                                    int rowHydroUnitNumber;
+                                    if (int.TryParse(row.Cells[0].Value?.ToString(), out rowHydroUnitNumber) && rowHydroUnitNumber == targetHydroUnitNumber)
+                                    {
+                                        rowIndex = row.Index;
+                                        break;
+                                    }
+                                }
+
+                                // Если строка с таким номером гидроагрегата не найдена, добавляем новую
+                                if (rowIndex == -1)
+                                {
+                                    rowIndex = parametersHUGridView.Rows.Add();
+                                    // Устанавливаем номер гидроагрегата в первом столбце
+                                    parametersHUGridView.Rows[rowIndex].Cells[0].Value = targetHydroUnitNumber;
+                                }
+
+                                // Заменяем значение во втором столбце
+                                parametersHUGridView.Rows[rowIndex].Cells[1].Value = targetLoadItem.Load;
+                            }
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // Обработка исключений, если они возникнут при чтении файла
+                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -38,7 +38,7 @@ namespace ConsoleAppNew
         public double Load { get; set; }
     }
 
-    public class RequestGenerator
+    public class CK11
     {
         private string[] Uids;
         private string VersionAccess;
@@ -46,63 +46,71 @@ namespace ConsoleAppNew
         private string TypeMeasurement;
         private string NameServer;
 
-        public void GenerateRequests()
+        public static List<Generator> GetLoad(string filePath)
         {
-            string fileName = "RequestGenLoad.json";
-            string jsonString = File.ReadAllText(fileName);
-            MyProperties? properties = JsonConvert.DeserializeObject<MyProperties>(jsonString);
-
-            Uids = properties.UIDs;
-            VersionAccess = properties.VersionAccess;
-            VersionMeasure = properties.VersionMeasure;
-            TypeMeasurement = properties.TypeMeasure;
-            NameServer = properties.NameServer;
-
-            SettingAccessAPI setting = new(NameServer, VersionAccess);
-            SettingMeasurementAPI settingMeasure = new(NameServer, VersionMeasure);
-
-            AccessMesuremetValues measure = new(Uids, setting, settingMeasure, TypeMeasurement);
-
-            AccessRequestToken accessToken = new AccessRequestToken(setting);
-            AccessAddressesAPI accessAdresses = new(setting);
-            accessAdresses.GetAddressesAPI();
-            AcceessAPI.Object.Token _token = accessToken.GetToken().Result;
-
-            // ListMeasurementValues a = measure.ListMeasurementValues;
-            ListMeasurementValuesExtend a = measure.ListMeasurementValuesExtend;
-
-            List<string> list = a.ToListString();
-
             // Создание экземпляра XmlFileManager для List<Generator>
             var generatorDataFileManager = new XmlFileManager<List<Generator>>();
 
-            // Создание нового списка Generator
-            List<Generator> generatorsDataList = new List<Generator>();
+            // Метод Load для чтения данных из XML-документа
+            List<Generator> generatorsDataList = generatorDataFileManager.Load(filePath);
 
-            foreach (var value in a.ListMeasurement)
-            {
-                // Создание нового объекта Generator
-                var generatorData = new Generator
-                {
-                    UID = value.UID,
-                    GeneratorsLoadList = new List<GeneratorsLoad>()
-                };
+            return generatorsDataList;
 
-                foreach (var item in value.Value)
-                {
-                    // Внесение пары времени и мощности для текущего генератора
-                    generatorData.GeneratorsLoadList.Add(new GeneratorsLoad
-                    {
-                        TimeStamp = item.TimeStamp,
-                        Load = item.Value
-                    });
-                }
-
-                generatorsDataList.Add(generatorData);
-            }
-
-            // Метод Save для сохранения данных в XML-документ
-            generatorDataFileManager.Save("generatorsLoad.xml", generatorsDataList);
+            // string fileName = "RequestGenLoad.json";
+            // string jsonString = File.ReadAllText(fileName);
+            // MyProperties? properties = JsonConvert.DeserializeObject<MyProperties>(jsonString);
+            // 
+            // Uids = properties.UIDs;
+            // VersionAccess = properties.VersionAccess;
+            // VersionMeasure = properties.VersionMeasure;
+            // TypeMeasurement = properties.TypeMeasure;
+            // NameServer = properties.NameServer;
+            // 
+            // SettingAccessAPI setting = new(NameServer, VersionAccess);
+            // SettingMeasurementAPI settingMeasure = new(NameServer, VersionMeasure);
+            // 
+            // AccessMesuremetValues measure = new(Uids, setting, settingMeasure, TypeMeasurement);
+            // 
+            // AccessRequestToken accessToken = new AccessRequestToken(setting);
+            // AccessAddressesAPI accessAdresses = new(setting);
+            // accessAdresses.GetAddressesAPI();
+            // AcceessAPI.Object.Token _token = accessToken.GetToken().Result;
+            // 
+            // // ListMeasurementValues a = measure.ListMeasurementValues;
+            // ListMeasurementValuesExtend a = measure.ListMeasurementValuesExtend;
+            // 
+            // List<string> list = a.ToListString();
+            // 
+            // // Создание экземпляра XmlFileManager для List<Generator>
+            // var generatorDataFileManager = new XmlFileManager<List<Generator>>();
+            // 
+            // // Создание нового списка Generator
+            // List<Generator> generatorsDataList = new List<Generator>();
+            // 
+            // foreach (var value in a.ListMeasurement)
+            // {
+            //     // Создание нового объекта Generator
+            //     var generatorData = new Generator
+            //     {
+            //         UID = value.UID,
+            //         GeneratorsLoadList = new List<GeneratorsLoad>()
+            //     };
+            // 
+            //     foreach (var item in value.Value)
+            //     {
+            //         // Внесение пары времени и мощности для текущего генератора
+            //         generatorData.GeneratorsLoadList.Add(new GeneratorsLoad
+            //         {
+            //             TimeStamp = item.TimeStamp,
+            //             Load = item.Value
+            //         });
+            //     }
+            // 
+            //     generatorsDataList.Add(generatorData);
+            // }
+            // 
+            // // Метод Save для сохранения данных в XML-документ
+            // generatorDataFileManager.Save("generatorsLoad.xml", generatorsDataList);
         }
     }
 }
