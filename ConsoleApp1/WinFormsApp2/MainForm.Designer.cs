@@ -122,6 +122,8 @@
             textBox4 = new TextBox();
             label3 = new Label();
             label4 = new Label();
+            timeTextBox = new TextBox();
+            loadDataButton = new Button();
             toolStrip.SuspendLayout();
             tabControl.SuspendLayout();
             parametersHUTabPage.SuspendLayout();
@@ -162,7 +164,7 @@
             openFile.DropDownItems.AddRange(new ToolStripItem[] { OpenParamsHU, openMaxLoadPoughZone });
             openFile.Image = (Image)resources.GetObject("openFile.Image");
             openFile.Name = "openFile";
-            openFile.Size = new Size(180, 22);
+            openFile.Size = new Size(133, 22);
             openFile.Text = "Открыть";
             // 
             // OpenParamsHU
@@ -185,7 +187,7 @@
             saveFile.DropDownItems.AddRange(new ToolStripItem[] { saveParamsHU, saveMaxLoadRoughZone, saveMaxLoadPoughZone });
             saveFile.Image = (Image)resources.GetObject("saveFile.Image");
             saveFile.Name = "saveFile";
-            saveFile.Size = new Size(180, 22);
+            saveFile.Size = new Size(133, 22);
             saveFile.Text = "Сохранить";
             // 
             // saveParamsHU
@@ -999,11 +1001,30 @@
             label4.TabIndex = 0;
             label4.Text = "P       , МВт:";
             // 
+            // timeTextBox
+            // 
+            timeTextBox.Location = new Point(252, 57);
+            timeTextBox.Name = "timeTextBox";
+            timeTextBox.Size = new Size(100, 23);
+            timeTextBox.TabIndex = 9;
+            // 
+            // loadDataButton
+            // 
+            loadDataButton.Location = new Point(380, 51);
+            loadDataButton.Name = "loadDataButton";
+            loadDataButton.Size = new Size(75, 23);
+            loadDataButton.TabIndex = 10;
+            loadDataButton.Text = "button1";
+            loadDataButton.UseVisualStyleBackColor = true;
+            loadDataButton.Click += loadDataButton_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(457, 424);
+            Controls.Add(loadDataButton);
+            Controls.Add(timeTextBox);
             Controls.Add(groupBox4);
             Controls.Add(calcHeadButton);
             Controls.Add(calcGroupBox);
@@ -1133,5 +1154,7 @@
         private DataGridViewTextBoxColumn RoughZoneSB;
         private DataGridViewTextBoxColumn MaxLoad;
         private ToolStripMenuItem openMaxLoadPoughZone;
+        private TextBox timeTextBox;
+        private Button loadDataButton;
     }
 }

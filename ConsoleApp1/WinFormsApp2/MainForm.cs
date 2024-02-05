@@ -920,5 +920,47 @@ namespace View
                 MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void loadDataButton_Click(object sender, EventArgs e)
+        {
+            // Получите значение из текстового поля
+            string inputText = timeTextBox.Text;
+
+            // Попробуйте преобразовать текст в число
+            if (int.TryParse(inputText, out int userHour))
+            {
+                // Проверка на диапазон от 0 до 23
+                if (userHour >= 0 && userHour <= 23)
+                {
+                    // Сформируйте DateTime с использованием введенного часа
+                    DateTime targetTimeStamp = new DateTime(2024, 1, 10, userHour, 0, 0, DateTimeKind.Utc);
+
+                    // Вызовите метод для загрузки данных с использованием targetTimeStamp
+                    LoadDataWithTimeStamp(targetTimeStamp);
+                }
+                else
+                {
+                    // Вывод сообщения об ошибке для некорректного часа
+                    MessageBox.Show("Час должен быть в пределах от 0 до 23.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                // Вывод сообщения об ошибке для невозможности преобразования в число
+                MessageBox.Show("Введите корректное число в пределах от 0 до 23.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadDataWithTimeStamp(DateTime targetTimeStamp)
+        {
+            // Очистка данных в DataGridView
+            parametersHUGridView.Rows.Clear();
+
+
+            // Код для загрузки данных с использованием targetTimeStamp
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "generatorsLoad.xml");
+            Dictionary<int, double> loadDictionary = GeneratorsLoader.ReadLoadForTimeStamp(filePath, targetTimeStamp, parametersHUGridView);
+            // Дополнительные действия при загрузке данных с использованием targetTimeStamp
+        }
     }
 }
