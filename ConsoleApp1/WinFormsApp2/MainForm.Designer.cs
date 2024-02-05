@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle28 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle29 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle30 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle25 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle26 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle27 = new DataGridViewCellStyle();
             toolStrip = new ToolStrip();
             toolStripDropDownButton1 = new ToolStripDropDownButton();
             openFile = new ToolStripMenuItem();
@@ -52,14 +52,12 @@
             groupBox2 = new GroupBox();
             cubic2Label = new Label();
             cubic1Label = new Label();
-            URIndexLabel = new Label();
-            LRIndexLabel = new Label();
-            LRRestrictionsLabel = new Label();
-            inequalitySignLRComboBox = new ComboBox();
-            inequalitySignURComboBox = new ComboBox();
-            LRRestrictionsTextBox = new TextBox();
-            URRestrictionsTextBox = new TextBox();
-            URRestrictionsLabel = new Label();
+            upperIndexLabel = new Label();
+            lowerIndexLabel = new Label();
+            lowerRestrictionsLabel = new Label();
+            lowerRestrictionsTextBox = new TextBox();
+            upperRestrictionsTextBox = new TextBox();
+            upperRestrictionsLabel = new Label();
             unitsSec1Label = new Label();
             unitsSec2Label = new Label();
             groupBox1 = new GroupBox();
@@ -164,7 +162,7 @@
             openFile.DropDownItems.AddRange(new ToolStripItem[] { OpenParamsHU, openMaxLoadPoughZone });
             openFile.Image = (Image)resources.GetObject("openFile.Image");
             openFile.Name = "openFile";
-            openFile.Size = new Size(180, 22);
+            openFile.Size = new Size(133, 22);
             openFile.Text = "Открыть";
             // 
             // OpenParamsHU
@@ -188,7 +186,7 @@
             saveFile.DropDownItems.AddRange(new ToolStripItem[] { saveParamsHU, saveMaxLoadPoughZone });
             saveFile.Image = (Image)resources.GetObject("saveFile.Image");
             saveFile.Name = "saveFile";
-            saveFile.Size = new Size(180, 22);
+            saveFile.Size = new Size(133, 22);
             saveFile.Text = "Сохранить";
             // 
             // saveParamsHU
@@ -271,17 +269,15 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(cubic2Label);
-            groupBox2.Controls.Add(cubic1Label);
-            groupBox2.Controls.Add(URIndexLabel);
-            groupBox2.Controls.Add(LRIndexLabel);
-            groupBox2.Controls.Add(LRRestrictionsLabel);
-            groupBox2.Controls.Add(inequalitySignLRComboBox);
-            groupBox2.Controls.Add(inequalitySignURComboBox);
-            groupBox2.Controls.Add(LRRestrictionsTextBox);
-            groupBox2.Controls.Add(URRestrictionsTextBox);
-            groupBox2.Controls.Add(URRestrictionsLabel);
-            groupBox2.Controls.Add(unitsSec1Label);
             groupBox2.Controls.Add(unitsSec2Label);
+            groupBox2.Controls.Add(cubic1Label);
+            groupBox2.Controls.Add(upperIndexLabel);
+            groupBox2.Controls.Add(lowerIndexLabel);
+            groupBox2.Controls.Add(lowerRestrictionsLabel);
+            groupBox2.Controls.Add(lowerRestrictionsTextBox);
+            groupBox2.Controls.Add(upperRestrictionsTextBox);
+            groupBox2.Controls.Add(unitsSec1Label);
+            groupBox2.Controls.Add(upperRestrictionsLabel);
             groupBox2.Location = new Point(20, 111);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(205, 82);
@@ -293,7 +289,7 @@
             // 
             cubic2Label.AutoSize = true;
             cubic2Label.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            cubic2Label.Location = new Point(51, 50);
+            cubic2Label.Location = new Point(72, 50);
             cubic2Label.Name = "cubic2Label";
             cubic2Label.Size = new Size(10, 12);
             cubic2Label.TabIndex = 18;
@@ -304,104 +300,85 @@
             // 
             cubic1Label.AutoSize = true;
             cubic1Label.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            cubic1Label.Location = new Point(51, 22);
+            cubic1Label.Location = new Point(72, 22);
             cubic1Label.Name = "cubic1Label";
             cubic1Label.Size = new Size(10, 12);
             cubic1Label.TabIndex = 17;
             cubic1Label.Text = "3";
             cubic1Label.TextAlign = ContentAlignment.BottomLeft;
             // 
-            // URIndexLabel
+            // upperIndexLabel
             // 
-            URIndexLabel.AutoSize = true;
-            URIndexLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            URIndexLabel.Location = new Point(22, 35);
-            URIndexLabel.Name = "URIndexLabel";
-            URIndexLabel.Size = new Size(15, 12);
-            URIndexLabel.TabIndex = 12;
-            URIndexLabel.Text = "ВБ";
+            upperIndexLabel.AutoSize = true;
+            upperIndexLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            upperIndexLabel.Location = new Point(22, 35);
+            upperIndexLabel.Name = "upperIndexLabel";
+            upperIndexLabel.Size = new Size(35, 12);
+            upperIndexLabel.TabIndex = 12;
+            upperIndexLabel.Text = "НБ.max";
             // 
-            // LRIndexLabel
+            // lowerIndexLabel
             // 
-            LRIndexLabel.AutoSize = true;
-            LRIndexLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            LRIndexLabel.Location = new Point(22, 63);
-            LRIndexLabel.Name = "LRIndexLabel";
-            LRIndexLabel.Size = new Size(16, 12);
-            LRIndexLabel.TabIndex = 10;
-            LRIndexLabel.Text = "НБ";
+            lowerIndexLabel.AutoSize = true;
+            lowerIndexLabel.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            lowerIndexLabel.Location = new Point(22, 63);
+            lowerIndexLabel.Name = "lowerIndexLabel";
+            lowerIndexLabel.Size = new Size(33, 12);
+            lowerIndexLabel.TabIndex = 10;
+            lowerIndexLabel.Text = "НБ.min";
             // 
-            // LRRestrictionsLabel
+            // lowerRestrictionsLabel
             // 
-            LRRestrictionsLabel.AutoSize = true;
-            LRRestrictionsLabel.Location = new Point(10, 54);
-            LRRestrictionsLabel.Name = "LRRestrictionsLabel";
-            LRRestrictionsLabel.Size = new Size(46, 15);
-            LRRestrictionsLabel.TabIndex = 11;
-            LRRestrictionsLabel.Text = "Q     , м";
+            lowerRestrictionsLabel.AutoSize = true;
+            lowerRestrictionsLabel.Location = new Point(10, 54);
+            lowerRestrictionsLabel.Name = "lowerRestrictionsLabel";
+            lowerRestrictionsLabel.Size = new Size(67, 15);
+            lowerRestrictionsLabel.TabIndex = 11;
+            lowerRestrictionsLabel.Text = "Q            , м";
             // 
-            // inequalitySignLRComboBox
+            // lowerRestrictionsTextBox
             // 
-            inequalitySignLRComboBox.FormattingEnabled = true;
-            inequalitySignLRComboBox.Items.AddRange(new object[] { ">=", "<=" });
-            inequalitySignLRComboBox.Location = new Point(78, 51);
-            inequalitySignLRComboBox.Name = "inequalitySignLRComboBox";
-            inequalitySignLRComboBox.Size = new Size(39, 23);
-            inequalitySignLRComboBox.TabIndex = 5;
+            lowerRestrictionsTextBox.Location = new Point(123, 51);
+            lowerRestrictionsTextBox.Name = "lowerRestrictionsTextBox";
+            lowerRestrictionsTextBox.Size = new Size(66, 23);
+            lowerRestrictionsTextBox.TabIndex = 3;
+            lowerRestrictionsTextBox.TextAlign = HorizontalAlignment.Center;
             // 
-            // inequalitySignURComboBox
+            // upperRestrictionsTextBox
             // 
-            inequalitySignURComboBox.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            inequalitySignURComboBox.FormattingEnabled = true;
-            inequalitySignURComboBox.Items.AddRange(new object[] { ">=", "<=" });
-            inequalitySignURComboBox.Location = new Point(78, 22);
-            inequalitySignURComboBox.Name = "inequalitySignURComboBox";
-            inequalitySignURComboBox.Size = new Size(39, 23);
-            inequalitySignURComboBox.TabIndex = 4;
+            upperRestrictionsTextBox.Location = new Point(123, 22);
+            upperRestrictionsTextBox.Name = "upperRestrictionsTextBox";
+            upperRestrictionsTextBox.Size = new Size(66, 23);
+            upperRestrictionsTextBox.TabIndex = 2;
+            upperRestrictionsTextBox.TextAlign = HorizontalAlignment.Center;
             // 
-            // LRRestrictionsTextBox
+            // upperRestrictionsLabel
             // 
-            LRRestrictionsTextBox.Location = new Point(123, 51);
-            LRRestrictionsTextBox.Name = "LRRestrictionsTextBox";
-            LRRestrictionsTextBox.Size = new Size(66, 23);
-            LRRestrictionsTextBox.TabIndex = 3;
-            LRRestrictionsTextBox.TextAlign = HorizontalAlignment.Center;
-            // 
-            // URRestrictionsTextBox
-            // 
-            URRestrictionsTextBox.Location = new Point(123, 22);
-            URRestrictionsTextBox.Name = "URRestrictionsTextBox";
-            URRestrictionsTextBox.Size = new Size(66, 23);
-            URRestrictionsTextBox.TabIndex = 2;
-            URRestrictionsTextBox.TextAlign = HorizontalAlignment.Center;
-            // 
-            // URRestrictionsLabel
-            // 
-            URRestrictionsLabel.AutoSize = true;
-            URRestrictionsLabel.Location = new Point(10, 26);
-            URRestrictionsLabel.Name = "URRestrictionsLabel";
-            URRestrictionsLabel.Size = new Size(46, 15);
-            URRestrictionsLabel.TabIndex = 8;
-            URRestrictionsLabel.Text = "Q     , м";
+            upperRestrictionsLabel.AutoSize = true;
+            upperRestrictionsLabel.Location = new Point(10, 26);
+            upperRestrictionsLabel.Name = "upperRestrictionsLabel";
+            upperRestrictionsLabel.Size = new Size(67, 15);
+            upperRestrictionsLabel.TabIndex = 8;
+            upperRestrictionsLabel.Text = "Q            , м";
             // 
             // unitsSec1Label
             // 
             unitsSec1Label.AutoSize = true;
-            unitsSec1Label.Location = new Point(56, 26);
+            unitsSec1Label.Location = new Point(77, 26);
             unitsSec1Label.Name = "unitsSec1Label";
-            unitsSec1Label.Size = new Size(21, 15);
+            unitsSec1Label.Size = new Size(40, 15);
             unitsSec1Label.TabIndex = 19;
-            unitsSec1Label.Text = "/с:";
+            unitsSec1Label.Text = "/с  <=";
             unitsSec1Label.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // unitsSec2Label
             // 
             unitsSec2Label.AutoSize = true;
-            unitsSec2Label.Location = new Point(56, 54);
+            unitsSec2Label.Location = new Point(77, 54);
             unitsSec2Label.Name = "unitsSec2Label";
-            unitsSec2Label.Size = new Size(21, 15);
+            unitsSec2Label.Size = new Size(40, 15);
             unitsSec2Label.TabIndex = 20;
-            unitsSec2Label.Text = "/с:";
+            unitsSec2Label.Text = "/с  <=";
             unitsSec2Label.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // groupBox1
@@ -610,35 +587,35 @@
             restrictionsHUGridView.ColumnHeadersHeight = 38;
             restrictionsHUGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             restrictionsHUGridView.Columns.AddRange(new DataGridViewColumn[] { HU, RoughZoneFB, RoughZoneSB, MaxLoad });
-            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = SystemColors.Window;
-            dataGridViewCellStyle16.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle16.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle16.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.False;
-            restrictionsHUGridView.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle28.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle28.BackColor = SystemColors.Window;
+            dataGridViewCellStyle28.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle28.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle28.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle28.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle28.WrapMode = DataGridViewTriState.False;
+            restrictionsHUGridView.DefaultCellStyle = dataGridViewCellStyle28;
             restrictionsHUGridView.Location = new Point(3, 2);
             restrictionsHUGridView.Name = "restrictionsHUGridView";
             restrictionsHUGridView.ReadOnly = true;
-            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = SystemColors.Control;
-            dataGridViewCellStyle17.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle17.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle17.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
-            restrictionsHUGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle29.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle29.BackColor = SystemColors.Control;
+            dataGridViewCellStyle29.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle29.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle29.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle29.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = DataGridViewTriState.True;
+            restrictionsHUGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle29;
             restrictionsHUGridView.RowHeadersVisible = false;
-            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            restrictionsHUGridView.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle30.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            restrictionsHUGridView.RowsDefaultCellStyle = dataGridViewCellStyle30;
             restrictionsHUGridView.Size = new Size(237, 338);
             restrictionsHUGridView.TabIndex = 0;
             // 
             // HU
             // 
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            HU.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle25.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            HU.DefaultCellStyle = dataGridViewCellStyle25;
             HU.HeaderText = "        ";
             HU.Name = "HU";
             HU.ReadOnly = true;
@@ -649,8 +626,8 @@
             // 
             // RoughZoneFB
             // 
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            RoughZoneFB.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle26.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            RoughZoneFB.DefaultCellStyle = dataGridViewCellStyle26;
             RoughZoneFB.HeaderText = "";
             RoughZoneFB.Name = "RoughZoneFB";
             RoughZoneFB.ReadOnly = true;
@@ -661,8 +638,8 @@
             // 
             // RoughZoneSB
             // 
-            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            RoughZoneSB.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle27.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            RoughZoneSB.DefaultCellStyle = dataGridViewCellStyle27;
             RoughZoneSB.HeaderText = "";
             RoughZoneSB.Name = "RoughZoneSB";
             RoughZoneSB.ReadOnly = true;
@@ -1104,21 +1081,19 @@
         private TextBox powerRestrictions220TextBox;
         private TextBox powerRestrictions500TextBox;
         private GroupBox groupBox2;
-        private TextBox LRRestrictionsTextBox;
-        private TextBox URRestrictionsTextBox;
-        private ComboBox inequalitySignURComboBox;
-        private ComboBox inequalitySignLRComboBox;
+        private TextBox lowerRestrictionsTextBox;
+        private TextBox upperRestrictionsTextBox;
         private Label LRLabel;
         private Label URLabel;
         private TextBox LRTextBox;
         private TextBox URTextBox;
-        private Label LRRestrictionsLabel;
+        private Label lowerRestrictionsLabel;
         private Label powerRestrictions220Label;
-        private Label URIndexLabel;
+        private Label upperIndexLabel;
         private Label label6;
-        private Label LRIndexLabel;
+        private Label lowerIndexLabel;
         private Label restrictions220IndexLabel;
-        private Label URRestrictionsLabel;
+        private Label upperRestrictionsLabel;
         private Label powerRestrictions500Label;
         private TextBox textBox2;
         private TextBox textBox1;
