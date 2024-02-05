@@ -122,22 +122,7 @@ namespace Model
             }
         }
 
-        public double WaterHead
-        {
-            get { return _waterHead; }
-            set
-            {
-                if (value < _minWaterHead || value > _maxWaterHead)
-                {
-                    throw new ArgumentOutOfRangeException($"Значение напора должно быть в диапазоне от {_minWaterHead} до {_maxWaterHead} м.");
-                }
-                if (string.IsNullOrEmpty(value.ToString()))
-                {
-                    throw new Exception("Ввод не может быть пустым.");
-                }
-                _waterHead = value;
-            }
-        }
+        
 
         // Конструктор - это метод, который вызывается при создании нового экземпляра класса(объекта).
         // В данном случае, конструктор принимает аргумент waterHead -
@@ -164,6 +149,23 @@ namespace Model
         public double MaxPower
         { get { return InterpolatePower(WaterHead, _maxPowerGraph); }
             set {  }
+        }
+
+        public double WaterHead
+        {
+            get { return _waterHead; }
+            set
+            {
+                if (value < _minWaterHead || value > _maxWaterHead)
+                {
+                    throw new ArgumentOutOfRangeException($"Значение напора должно быть в диапазоне от {_minWaterHead} до {_maxWaterHead} м.");
+                }
+                if (string.IsNullOrEmpty(value.ToString()))
+                {
+                    throw new Exception("Ввод не может быть пустым.");
+                }
+                _waterHead = value;
+            }
         }
 
         public double RoughZoneFB

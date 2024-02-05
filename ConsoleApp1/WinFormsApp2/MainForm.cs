@@ -168,9 +168,9 @@ namespace View
                 double maxPower = maxLoadRoughZone.MaxPower;
 
                 // Округляем значения для отображения в DataGridView
-                roughZoneFB = Math.Round(roughZoneFB, 2);
-                roughZoneSB = Math.Round(roughZoneSB, 2);
-                maxPower = Math.Round(maxPower, 2);
+                roughZoneFB = Math.Round(roughZoneFB, 3);
+                roughZoneSB = Math.Round(roughZoneSB, 3);
+                maxPower = Math.Round(maxPower, 3);
 
                 // Добавляем значения в restrictionsHUGridView
                 restrictionsHUGridView.Rows.Add($"{i}", roughZoneFB, roughZoneSB, maxPower);
@@ -713,6 +713,47 @@ namespace View
             {
                 MessageBox.Show($"Ошибка при выполнении запроса: {ex.Message}",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void openMaxLoadPoughZone_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+            openFileDialog.Title = "Open XML File";
+
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                // Выбран файл, попробуем прочитать данные
+                try
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<MaxLoadRoughZone>));
+
+                    using (FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open))
+                    {
+                        List<MaxLoadRoughZone> loadedData = (List<MaxLoadRoughZone>)serializer.Deserialize(fs);
+
+                        // Очищаем существующие данные в DataGridView
+                        restrictionsHUGridView.Rows.Clear();
+
+                        // Заполняем DataGridView данными из файла
+                        foreach (MaxLoadRoughZone item in loadedData)
+                        {
+                            restrictionsHUGridView.Rows.Add(
+                                item.HU,
+                                Math.Round(item.MaxPower, 3),
+                                Math.Round(item.RoughZoneFB, 3),
+                                Math.Round(item.RoughZoneSB, 3)
+                            );
+                        }
+
+                        MessageBox.Show("Данные успешно загружены из файла.", "Выполнено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при чтении файла: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

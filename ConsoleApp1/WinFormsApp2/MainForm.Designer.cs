@@ -121,6 +121,7 @@
             textBox4 = new TextBox();
             label3 = new Label();
             label4 = new Label();
+            openMaxLoadPoughZone = new ToolStripMenuItem();
             toolStrip.SuspendLayout();
             tabControl.SuspendLayout();
             parametersHUTabPage.SuspendLayout();
@@ -158,7 +159,7 @@
             // 
             // openFile
             // 
-            openFile.DropDownItems.AddRange(new ToolStripItem[] { OpenParamsHU });
+            openFile.DropDownItems.AddRange(new ToolStripItem[] { OpenParamsHU, openMaxLoadPoughZone });
             openFile.Image = (Image)resources.GetObject("openFile.Image");
             openFile.Name = "openFile";
             openFile.Size = new Size(180, 22);
@@ -168,7 +169,7 @@
             // 
             OpenParamsHU.Image = (Image)resources.GetObject("OpenParamsHU.Image");
             OpenParamsHU.Name = "OpenParamsHU";
-            OpenParamsHU.Size = new Size(155, 22);
+            OpenParamsHU.Size = new Size(211, 22);
             OpenParamsHU.Text = "Параметры ГА";
             OpenParamsHU.Click += OpenParamsHU_Click;
             // 
@@ -990,6 +991,13 @@
             label4.TabIndex = 0;
             label4.Text = "P       , МВт:";
             // 
+            // openMaxLoadPoughZone
+            // 
+            openMaxLoadPoughZone.Name = "openMaxLoadPoughZone";
+            openMaxLoadPoughZone.Size = new Size(211, 22);
+            openMaxLoadPoughZone.Text = "Ограничения СВМ и БВУ";
+            openMaxLoadPoughZone.Click += openMaxLoadPoughZone_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1123,5 +1131,6 @@
         private DataGridViewTextBoxColumn RoughZoneFB;
         private DataGridViewTextBoxColumn RoughZoneSB;
         private DataGridViewTextBoxColumn MaxLoad;
+        private ToolStripMenuItem openMaxLoadPoughZone;
     }
 }
