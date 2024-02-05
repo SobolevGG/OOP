@@ -39,9 +39,15 @@ namespace Model
         public static NpgsqlDataReader SelectProtocol(PostgresConnector connector)
         {
             // Чтение данных из столбцов name, characteristic и change_date из таблицы generator_characteristic_history
-            string selectQuery = "SELECT hydro_generators.name, generator_characteristic_history.characteristic, generator_characteristic_history.change_date " +
-                "FROM generator_characteristic_history " +
-                "JOIN hydro_generators ON generator_characteristic_history.generator_id = hydro_generators.id;";
+            string selectQuery = "SELECT hg.number AS generator_number, " +
+                "gch.characteristic, " +
+                "gch.max_load, " +
+                "gch.rough_zone_fb, " +
+                "gch.rough_zone_sb, " +
+                "gch.change_date FROM generator_characteristic_history gch " +
+                "JOIN hydro_generators hg " +
+                "ON gch.generator_uid = hg.uid " +
+                "ORDER BY hg.number ASC, gch.change_date DESC;";
             var reader = connector.ExecuteQuery(selectQuery);
             return reader;
         }
@@ -49,7 +55,13 @@ namespace Model
         public static NpgsqlDataReader SelectCharacteristics(PostgresConnector connector)
         {
             // Чтение данных из столбцов name, characteristic и change_date из таблицы generator_characteristic_history
-            string selectQuery = "SELECT name, characteristic FROM hydro_generators;";
+            string selectQuery = "SELECT number, " +
+                "characteristic, " +
+                "max_load, " +
+                "rough_zone_fb, " +
+                "rough_zone_sb " +
+                "FROM hydro_generators " +
+                "ORDER BY number;";
             var reader = connector.ExecuteQuery(selectQuery);
             return reader;
         }
