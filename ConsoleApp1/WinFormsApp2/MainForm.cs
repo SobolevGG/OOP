@@ -55,7 +55,7 @@ namespace View
             parametersHUGridView.CellValidating += DataGridView_CellValidating;
 
             // Подписываемся на событие CellEndEdit
-            parametersHUGridView.CellEndEdit += parametersHUGridView_CellEndEdit;
+            parametersHUGridView.CellEndEdit += ParametersHUGridView_CellEndEdit;
         }
 
         // Метод для настройки формы при загрузке
@@ -182,7 +182,7 @@ namespace View
             }
         }
 
-        private void saveMaxLoadPoughZone_Click(object sender, EventArgs e)
+        private void SaveMaxLoadPoughZone_Click(object sender, EventArgs e)
         {
             // Создаем список для хранения данных
             List<MaxLoadRoughZone> dataItems = new List<MaxLoadRoughZone>();
@@ -450,7 +450,7 @@ namespace View
         }
 
 
-        private void parametersHUGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void ParametersHUGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == statusColumn.Index)
             {
@@ -481,9 +481,10 @@ namespace View
                     {
                         parametersHUGridView[statusColumn.Index, e.RowIndex].Value = "Выведен";
                     }
-                    else
+                    else if (loadValue > 0)
                     {
-                        // В противном случае, обновляем Status в соответствии с вашей логикой
+                        // Если Load больше 0, устанавливаем Status как "В работе"
+                        parametersHUGridView[statusColumn.Index, e.RowIndex].Value = "В работе";
                     }
 
                     // Если Load меньше 150, устанавливаем Zone в 1, иначе в 3
@@ -687,6 +688,15 @@ namespace View
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Ошибка при чтении файла: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            // Устанавливаем свойство ReadOnly для всех ячеек
+            foreach (DataGridViewRow row in parametersHUGridView.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    cell.ReadOnly = !isEditingEnabled;
                 }
             }
         }
@@ -895,6 +905,15 @@ namespace View
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "generatorsLoad.xml");
             Dictionary<int, double> loadDictionary = GeneratorsLoader.ReadLoadForTimeStamp(filePath, targetTimeStamp, parametersHUGridView);
             // Дополнительные действия при загрузке данных с использованием targetTimeStamp
+
+            // Устанавливаем свойство ReadOnly для всех ячеек
+            foreach (DataGridViewRow row in parametersHUGridView.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    cell.ReadOnly = !isEditingEnabled;
+                }
+            }
         }
 
         private void LoadDataButton_Click(object sender, EventArgs e)
@@ -925,6 +944,15 @@ namespace View
             {
                 // Вывод сообщения об ошибке для невозможности преобразования в число
                 MessageBox.Show("Введите корректное число в пределах от 0 до 23.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            // Устанавливаем свойство ReadOnly для всех ячеек
+            foreach (DataGridViewRow row in parametersHUGridView.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    cell.ReadOnly = !isEditingEnabled;
+                }
             }
         }
 

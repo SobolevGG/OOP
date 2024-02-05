@@ -205,7 +205,7 @@
             saveMaxLoadPoughZone.Name = "saveMaxLoadPoughZone";
             saveMaxLoadPoughZone.Size = new Size(215, 22);
             saveMaxLoadPoughZone.Text = "Ограничения ЛОМ и ЗНР";
-            saveMaxLoadPoughZone.Click += saveMaxLoadPoughZone_Click;
+            saveMaxLoadPoughZone.Click += SaveMaxLoadPoughZone_Click;
             // 
             // referenceButton
             // 
