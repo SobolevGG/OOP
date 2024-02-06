@@ -1102,11 +1102,11 @@ namespace View
             }
         }
 
-        private void сalcButton_Click(object sender, EventArgs e)
+        private void CalcButton_Click(object sender, EventArgs e)
         {
             double P220 = 0;
             double P500 = 0;
-            int n = 0;
+            int n = 11;
 
             double waterHead = 93;
             if (double.TryParse(URTextBox.Text, out double upperReservoirLevel) &&
@@ -1135,86 +1135,65 @@ namespace View
                     int zone = Convert.ToInt32(row.Cells[2].Value);
                     string status = row.Cells[3].Value.ToString();
 
-                    {
-                        
-                        // Ваш дальнейший код с использованием waterHead
-                    }
-
                     if (zone == 1)
                     {
                         if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) <= 6)
                         {
                             P220 += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._roughZoneFB);
-                            n++;
+
                         }
                         if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) >= 7)
                         {
                             P500 += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._roughZoneFB);
-                            n++;
+
                         }
-                        
+
                     }
                     else if (zone == 3)
                     {
                         if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) <= 6)
                         {
                             P220 += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._maxPowerGraph);
-                            n++;
+
                         }
                         if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) >= 7)
                         {
                             P500 += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._maxPowerGraph);
-                            n++;
+
                         }
                     }
                 }
             }
 
+            // Только что посчитали мощность без ограничений
 
-            
 
-            double powerBWD = 0;
+            // выработка мощности ГЭС
+            double load = P500 + P220;
 
             // Если значения имеются
-            if (!string.IsNullOrEmpty(upperRestrictionsTextBox.Text) && n > 0)
+            if (!string.IsNullOrEmpty(powerRestrictions220TextBox.Text))
             {
                 // Проверяем возможность преобразования
-                if (double.TryParse(upperRestrictionsTextBox.Text, out double upperRestrictions) && 
-                    (7380 >= double.Parse(upperRestrictionsTextBox.Text)))
+                if (double.TryParse(powerRestrictions220TextBox.Text, out double powerSVM) &&
+                    (3000 >= double.Parse(powerRestrictions220TextBox.Text)))
                 {
-                    double sum = 0;
-
-                    // Вычисление суммы
-                    for (int i = 0; i < n; i++)
+                    if (powerSVM > load)
                     {
-                        double term1 = Math.Pow(Math.Abs((upperRestrictions/n) - 490), 1.78) / Math.Pow(22.5, 2);
-                        double term2 = Math.Pow(Math.Abs(waterHead - 93), 1.5) / Math.Pow(4, 2);
-
-                        sum += 96.7 - (term1 + term2);
+                        P220 = powerSVM;
+                        upperCalcRestrictionsTextBox.Text = powerSVM.ToString();
                     }
-
-                    powerBWD = 0.01 * 9.81 * (upperRestrictions / n) * waterHead * 1000 * sum / 1000000;
-
-                    // Используйте значение powerBWD по вашему усмотрению
                 }
                 else
                 {
                     // Обработка ошибки преобразования строки в число
-                    MessageBox.Show("Некорректное значение в верхнем ограничении.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    upperRestrictionsTextBox.Text = "7380";
+                    MessageBox.Show("Ограничение для СВМ 220 кВ не должно превышать 3000 МВт.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    powerRestrictions220TextBox.Text = "";
                 }
             }
 
-            
 
-            double load = P220 + P500;
-
-            if (powerBWD > load)
-            { 
-                load = powerBWD;
-            }
-
-            upperCalcRestrictionsTextBox.Text = $"{Math.Round(powerBWD, 3)}";
+            load = P500 + P220;
             loadMaxTextBox.Text = $"{Math.Round(load, 3)}";
         }
     }
