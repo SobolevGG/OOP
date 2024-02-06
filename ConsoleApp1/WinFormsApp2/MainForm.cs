@@ -1110,7 +1110,7 @@ namespace View
 
             double waterHead = 93;
             if (double.TryParse(URTextBox.Text, out double upperReservoirLevel) &&
-            double.TryParse(LRTextBox.Text, out double lowerReservoirLevel))
+                double.TryParse(LRTextBox.Text, out double lowerReservoirLevel))
             {
                 waterHead = upperReservoirLevel - lowerReservoirLevel;
                 // Проверка на допустимое значение напора
@@ -1124,6 +1124,7 @@ namespace View
                         $"составляет {upperReservoirLevel - lowerReservoirLevel} м, " +
                         $"что недопустимо согласно паспортным данным гидротурбин.",
                                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // Выходим из метода, так как напор не в допустимом диапазоне
                 }
             }
 
@@ -1140,26 +1141,21 @@ namespace View
                         if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) <= 6)
                         {
                             P220 += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._roughZoneFB);
-
                         }
                         if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) >= 7)
                         {
                             P500 += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._roughZoneFB);
-
                         }
-
                     }
                     else if (zone == 3)
                     {
                         if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) <= 6)
                         {
                             P220 += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._maxPowerGraph);
-
                         }
                         if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) >= 7)
                         {
                             P500 += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._maxPowerGraph);
-
                         }
                     }
                 }
@@ -1167,31 +1163,54 @@ namespace View
 
             // Только что посчитали мощность без ограничений
 
-
             // выработка мощности ГЭС
             double load = P500 + P220;
 
-            // Если значения имеются
+            // Если значения имеются в 220
             if (!string.IsNullOrEmpty(powerRestrictions220TextBox.Text))
             {
                 // Проверяем возможность преобразования
                 if (double.TryParse(powerRestrictions220TextBox.Text, out double powerSVM) &&
-                    (3000 >= double.Parse(powerRestrictions220TextBox.Text)))
+                    (3000 >= double.Parse(powerRestrictions220TextBox.Text)) &&
+                    (0 < double.Parse(powerRestrictions220TextBox.Text)))
                 {
-                    if (powerSVM > load)
+                    if (powerSVM < load)
                     {
                         P220 = powerSVM;
-                        upperCalcRestrictionsTextBox.Text = powerSVM.ToString();
+
                     }
                 }
                 else
                 {
                     // Обработка ошибки преобразования строки в число
-                    MessageBox.Show("Ограничение для СВМ 220 кВ не должно превышать 3000 МВт.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ограничение для СВМ 220 кВ должно лежать в диапазоне от 0 до 3000 МВт.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     powerRestrictions220TextBox.Text = "";
+                    return; // Выходим из метода, так как произошла ошибка преобразования
                 }
             }
 
+            // Если значения имеются в 500
+            if (!string.IsNullOrEmpty(powerRestrictions500TextBox.Text))
+            {
+                // Проверяем возможность преобразования
+                if (double.TryParse(powerRestrictions500TextBox.Text, out double powerSVM) &&
+                    (3000 >= double.Parse(powerRestrictions500TextBox.Text)) &&
+                    (0 < double.Parse(powerRestrictions500TextBox.Text)))
+                {
+                    if (powerSVM < load)
+                    {
+                        P500 = powerSVM;
+
+                    }
+                }
+                else
+                {
+                    // Обработка ошибки преобразования строки в число
+                    MessageBox.Show("Ограничение для СВМ 500 кВ должно лежать в диапазоне от 0 до 3000 МВт.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    powerRestrictions220TextBox.Text = "";
+                    return; // Выходим из метода, так как произошла ошибка преобразования
+                }
+            }
 
             load = P500 + P220;
             loadMaxTextBox.Text = $"{Math.Round(load, 3)}";
