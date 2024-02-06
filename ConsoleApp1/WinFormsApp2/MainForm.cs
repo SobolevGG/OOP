@@ -1,4 +1,4 @@
-using Npgsql;
+п»їusing Npgsql;
 using System.Data;
 using System.Diagnostics;
 using System.Xml.Serialization;
@@ -16,16 +16,16 @@ namespace View
 {
     public partial class MainForm : Form
     {
-        // Экземпляр класса для работы с данными о максимальной мощности и зонах
+        // Р­РєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РґР°РЅРЅС‹РјРё Рѕ РјР°РєСЃРёРјР°Р»СЊРЅРѕР№ РјРѕС‰РЅРѕСЃС‚Рё Рё Р·РѕРЅР°С…
         private MaxLoadRoughZone maxLoadRoughZone;
 
-        // Флаг для отслеживания возможности редактирования
+        // Р¤Р»Р°Рі РґР»СЏ РѕС‚СЃР»РµР¶РёРІР°РЅРёСЏ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
         private bool isEditingEnabled = false;
 
-        // Форма для авторизации
+        // Р¤РѕСЂРјР° РґР»СЏ Р°РІС‚РѕСЂРёР·Р°С†РёРё
         private Authorization authorizationForm;
 
-        // Переменные для настройки столбцов в DataGridView
+        // РџРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ РЅР°СЃС‚СЂРѕР№РєРё СЃС‚РѕР»Р±С†РѕРІ РІ DataGridView
         private DataGridViewTextBoxColumn zoneColumn;
         private DataGridViewTextBoxColumn loadColumn;
         private DataGridViewComboBoxColumn statusColumn;
@@ -34,34 +34,34 @@ namespace View
         {
             InitializeComponent();
 
-            // Создаем таблицы
+            // РЎРѕР·РґР°РµРј С‚Р°Р±Р»РёС†С‹
             ParametersHUGridView();
             RestrictionsHUGridView();
 
 
-            // Создаем объект MaxLoadRoughZone
-            // Здесь указывается начальный напор
+            // РЎРѕР·РґР°РµРј РѕР±СЉРµРєС‚ MaxLoadRoughZone
+            // Р—РґРµСЃСЊ СѓРєР°Р·С‹РІР°РµС‚СЃСЏ РЅР°С‡Р°Р»СЊРЅС‹Р№ РЅР°РїРѕСЂ
 
             double waterHead = 93;
             maxLoadRoughZone = new MaxLoadRoughZone(waterHead);
-            // Очищаем restrictionsHUGridView
+            // РћС‡РёС‰Р°РµРј restrictionsHUGridView
             restrictionsHUGridView.Rows.Clear();
-            // Заполняем таблицу данными
+            // Р—Р°РїРѕР»РЅСЏРµРј С‚Р°Р±Р»РёС†Сѓ РґР°РЅРЅС‹РјРё
             FillDataRestrictions();
 
 
-            // Вызываем тестовый метод при загрузке формы
+            // Р’С‹Р·С‹РІР°РµРј С‚РµСЃС‚РѕРІС‹Р№ РјРµС‚РѕРґ РїСЂРё Р·Р°РіСЂСѓР·РєРµ С„РѕСЂРјС‹
             FillDataParametersHU();
             parametersHUGridView.CellValidating += DataGridView_CellValidating;
 
-            // Подписываемся на событие CellEndEdit
+            // РџРѕРґРїРёСЃС‹РІР°РµРјСЃСЏ РЅР° СЃРѕР±С‹С‚РёРµ CellEndEdit
             parametersHUGridView.CellEndEdit += ParametersHUGridView_CellEndEdit;
         }
 
-        // Метод для настройки формы при загрузке
+        // РњРµС‚РѕРґ РґР»СЏ РЅР°СЃС‚СЂРѕР№РєРё С„РѕСЂРјС‹ РїСЂРё Р·Р°РіСЂСѓР·РєРµ
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Устанавливаем свойство ReadOnly для всех ячеек в true
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЃРІРѕР№СЃС‚РІРѕ ReadOnly РґР»СЏ РІСЃРµС… СЏС‡РµРµРє РІ true
             foreach (DataGridViewRow row in parametersHUGridView.Rows)
             {
                 foreach (DataGridViewCell cell in row.Cells)
@@ -70,121 +70,121 @@ namespace View
                 }
             }
 
-            // Недоступность кнопки экспорта по умолчанию
+            // РќРµРґРѕСЃС‚СѓРїРЅРѕСЃС‚СЊ РєРЅРѕРїРєРё СЌРєСЃРїРѕСЂС‚Р° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
             exportDBButton.Enabled = false;
         }
 
-        // Метод для обновления данных и заполнения таблицы RestrictionsHUGridView
+        // РњРµС‚РѕРґ РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ РґР°РЅРЅС‹С… Рё Р·Р°РїРѕР»РЅРµРЅРёСЏ С‚Р°Р±Р»РёС†С‹ RestrictionsHUGridView
         private void UpdateRestrictionsData()
         {
-            // Проверяем, что значения в URTextBox и LRTextBox можно преобразовать в числа
+            // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ Р·РЅР°С‡РµРЅРёСЏ РІ URTextBox Рё LRTextBox РјРѕР¶РЅРѕ РїСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ РІ С‡РёСЃР»Р°
             if (double.TryParse(URTextBox.Text, out double upperReservoirLevel) &&
                 double.TryParse(LRTextBox.Text, out double lowerReservoirLevel))
             {
-                // Вычисляем напор
+                // Р’С‹С‡РёСЃР»СЏРµРј РЅР°РїРѕСЂ
                 double waterHead = upperReservoirLevel - lowerReservoirLevel;
 
-                // Обновляем значения в maxLoadRoughZone
+                // РћР±РЅРѕРІР»СЏРµРј Р·РЅР°С‡РµРЅРёСЏ РІ maxLoadRoughZone
                 maxLoadRoughZone = new MaxLoadRoughZone(waterHead);
 
-                // Очищаем restrictionsHUGridView
+                // РћС‡РёС‰Р°РµРј restrictionsHUGridView
                 restrictionsHUGridView.Rows.Clear();
 
-                // Заполняем таблицу данными
+                // Р—Р°РїРѕР»РЅСЏРµРј С‚Р°Р±Р»РёС†Сѓ РґР°РЅРЅС‹РјРё
                 FillDataRestrictions();
             }
         }
 
-        // Событие, срабатывающее при нажатии кнопки calcHeadButton
+        // РЎРѕР±С‹С‚РёРµ, СЃСЂР°Р±Р°С‚С‹РІР°СЋС‰РµРµ РїСЂРё РЅР°Р¶Р°С‚РёРё РєРЅРѕРїРєРё calcHeadButton
         private void CalcHeadButton_Click(object sender, EventArgs e)
         {
-            // Проверка наличия данных в URTextBox
+            // РџСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ РґР°РЅРЅС‹С… РІ URTextBox
             if (string.IsNullOrWhiteSpace(URTextBox.Text))
             {
-                MessageBox.Show("Введите значение верхнего бьефа.",
-                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Р’РІРµРґРёС‚Рµ Р·РЅР°С‡РµРЅРёРµ РІРµСЂС…РЅРµРіРѕ Р±СЊРµС„Р°.",
+                                    "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            // Проверка наличия данных в LRTextBox
+            // РџСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ РґР°РЅРЅС‹С… РІ LRTextBox
             else if (string.IsNullOrWhiteSpace(LRTextBox.Text))
             {
-                MessageBox.Show("Введите значение нижнего бьефа.",
-                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Р’РІРµРґРёС‚Рµ Р·РЅР°С‡РµРЅРёРµ РЅРёР¶РЅРµРіРѕ Р±СЊРµС„Р°.",
+                                    "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                // Проверка возможности преобразования данных в URTextBox в double
+                // РџСЂРѕРІРµСЂРєР° РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РґР°РЅРЅС‹С… РІ URTextBox РІ double
                 if (!double.TryParse(URTextBox.Text, out double upperReservoirLevel))
                 {
-                    MessageBox.Show("Невозможно преобразовать значение верхнего бьефа в число.",
-                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("РќРµРІРѕР·РјРѕР¶РЅРѕ РїСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ Р·РЅР°С‡РµРЅРёРµ РІРµСЂС…РЅРµРіРѕ Р±СЊРµС„Р° РІ С‡РёСЃР»Рѕ.",
+                                    "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                // Проверка возможности преобразования данных в LRTextBox в double
+                // РџСЂРѕРІРµСЂРєР° РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РґР°РЅРЅС‹С… РІ LRTextBox РІ double
                 else if (!double.TryParse(LRTextBox.Text, out double lowerReservoirLevel))
                 {
-                    MessageBox.Show("Невозможно преобразовать значение нижнего бьефа в число.",
-                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("РќРµРІРѕР·РјРѕР¶РЅРѕ РїСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ Р·РЅР°С‡РµРЅРёРµ РЅРёР¶РЅРµРіРѕ Р±СЊРµС„Р° РІ С‡РёСЃР»Рѕ.",
+                                    "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                // Проверка на допустимые значения верхнего бьефа
+                // РџСЂРѕРІРµСЂРєР° РЅР° РґРѕРїСѓСЃС‚РёРјС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РІРµСЂС…РЅРµРіРѕ Р±СЊРµС„Р°
                 else if (upperReservoirLevel < maxLoadRoughZone.MinUpperReservoirLevel ||
                          upperReservoirLevel > maxLoadRoughZone.MaxUpperReservoirLevel)
                 {
-                    MessageBox.Show($"Значение уровня верхнего бьефа должно быть \nв диапазоне " +
-                        $"от {maxLoadRoughZone.MinUpperReservoirLevel} " +
-                        $"до {maxLoadRoughZone.MaxUpperReservoirLevel} м.",
-                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Р—РЅР°С‡РµРЅРёРµ СѓСЂРѕРІРЅСЏ РІРµСЂС…РЅРµРіРѕ Р±СЊРµС„Р° РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ \nРІ РґРёР°РїР°Р·РѕРЅРµ " +
+                        $"РѕС‚ {maxLoadRoughZone.MinUpperReservoirLevel} " +
+                        $"РґРѕ {maxLoadRoughZone.MaxUpperReservoirLevel} Рј.",
+                                    "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                // Проверка на допустимые значения нижнего бьефа
+                // РџСЂРѕРІРµСЂРєР° РЅР° РґРѕРїСѓСЃС‚РёРјС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РЅРёР¶РЅРµРіРѕ Р±СЊРµС„Р°
                 else if (lowerReservoirLevel < maxLoadRoughZone.MinLowerReservoirLevel ||
                          lowerReservoirLevel > maxLoadRoughZone.MaxLowerReservoirLevel)
                 {
-                    MessageBox.Show($"Значение уровня нижнего бьефа должно быть \nв диапазоне " +
-                        $"от {maxLoadRoughZone.MinLowerReservoirLevel} " +
-                        $"до {maxLoadRoughZone.MaxLowerReservoirLevel} м.",
-                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Р—РЅР°С‡РµРЅРёРµ СѓСЂРѕРІРЅСЏ РЅРёР¶РЅРµРіРѕ Р±СЊРµС„Р° РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ \nРІ РґРёР°РїР°Р·РѕРЅРµ " +
+                        $"РѕС‚ {maxLoadRoughZone.MinLowerReservoirLevel} " +
+                        $"РґРѕ {maxLoadRoughZone.MaxLowerReservoirLevel} Рј.",
+                                    "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                // Проверка на допустимое значение напора
+                // РџСЂРѕРІРµСЂРєР° РЅР° РґРѕРїСѓСЃС‚РёРјРѕРµ Р·РЅР°С‡РµРЅРёРµ РЅР°РїРѕСЂР°
                 else if ((upperReservoirLevel - lowerReservoirLevel) < maxLoadRoughZone.MinWaterHead ||
                     (upperReservoirLevel - lowerReservoirLevel) > maxLoadRoughZone.MaxWaterHead)
                 {
-                    MessageBox.Show($"Значение напора должно быть в диапазоне " +
-                        $"от {maxLoadRoughZone.MinWaterHead} \n" +
-                        $"до {maxLoadRoughZone.MaxWaterHead} м. " +
-                        $"Напор, согласно введённым значениям уровней, " +
-                        $"составляет {upperReservoirLevel - lowerReservoirLevel} м, " +
-                        $"что недопустимо согласно паспортным данным гидротурбин.",
-                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Р—РЅР°С‡РµРЅРёРµ РЅР°РїРѕСЂР° РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РІ РґРёР°РїР°Р·РѕРЅРµ " +
+                        $"РѕС‚ {maxLoadRoughZone.MinWaterHead} \n" +
+                        $"РґРѕ {maxLoadRoughZone.MaxWaterHead} Рј. " +
+                        $"РќР°РїРѕСЂ, СЃРѕРіР»Р°СЃРЅРѕ РІРІРµРґС‘РЅРЅС‹Рј Р·РЅР°С‡РµРЅРёСЏРј СѓСЂРѕРІРЅРµР№, " +
+                        $"СЃРѕСЃС‚Р°РІР»СЏРµС‚ {upperReservoirLevel - lowerReservoirLevel} Рј, " +
+                        $"С‡С‚Рѕ РЅРµРґРѕРїСѓСЃС‚РёРјРѕ СЃРѕРіР»Р°СЃРЅРѕ РїР°СЃРїРѕСЂС‚РЅС‹Рј РґР°РЅРЅС‹Рј РіРёРґСЂРѕС‚СѓСЂР±РёРЅ.",
+                                    "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    // Если все проверки пройдены успешно, обновляем данные
+                    // Р•СЃР»Рё РІСЃРµ РїСЂРѕРІРµСЂРєРё РїСЂРѕР№РґРµРЅС‹ СѓСЃРїРµС€РЅРѕ, РѕР±РЅРѕРІР»СЏРµРј РґР°РЅРЅС‹Рµ
                     UpdateRestrictionsData();
                 }
             }
         }
 
-        // Метод для заполнения таблицы RestrictionsHUGridView тестовыми данными
+        // РњРµС‚РѕРґ РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ С‚Р°Р±Р»РёС†С‹ RestrictionsHUGridView С‚РµСЃС‚РѕРІС‹РјРё РґР°РЅРЅС‹РјРё
         private void FillDataRestrictions()
         {
             for (int i = 1; i <= 12; i++)
             {
-                // Получаем значения RoughZoneFB, RoughZoneSB, MaxPower
+                // РџРѕР»СѓС‡Р°РµРј Р·РЅР°С‡РµРЅРёСЏ RoughZoneFB, RoughZoneSB, MaxPower
                 double roughZoneFB = maxLoadRoughZone.RoughZoneFB;
                 double roughZoneSB = maxLoadRoughZone.RoughZoneSB;
                 double maxPower = maxLoadRoughZone.MaxPower;
 
-                // Округляем значения для отображения в DataGridView
+                // РћРєСЂСѓРіР»СЏРµРј Р·РЅР°С‡РµРЅРёСЏ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ DataGridView
                 roughZoneFB = Math.Round(roughZoneFB, 3);
                 roughZoneSB = Math.Round(roughZoneSB, 3);
                 maxPower = Math.Round(maxPower, 3);
 
-                // Добавляем значения в restrictionsHUGridView
+                // Р”РѕР±Р°РІР»СЏРµРј Р·РЅР°С‡РµРЅРёСЏ РІ restrictionsHUGridView
                 restrictionsHUGridView.Rows.Add($"{i}", roughZoneFB, roughZoneSB, maxPower);
             }
         }
 
         private void SaveMaxLoadPoughZone_Click(object sender, EventArgs e)
         {
-            // Создаем список для хранения данных
+            // РЎРѕР·РґР°РµРј СЃРїРёСЃРѕРє РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РґР°РЅРЅС‹С…
             List<MaxLoadRoughZone> dataItems = new List<MaxLoadRoughZone>();
 
             double waterHead;
@@ -195,10 +195,10 @@ namespace View
             {
                 waterHead = 93;
 
-                // Проходим по каждой строке в DataGridView
+                // РџСЂРѕС…РѕРґРёРј РїРѕ РєР°Р¶РґРѕР№ СЃС‚СЂРѕРєРµ РІ DataGridView
                 foreach (DataGridViewRow row in restrictionsHUGridView.Rows)
                 {
-                    // Создаем объект MaxLoadRoughZone на основе данных в строке
+                    // РЎРѕР·РґР°РµРј РѕР±СЉРµРєС‚ MaxLoadRoughZone РЅР° РѕСЃРЅРѕРІРµ РґР°РЅРЅС‹С… РІ СЃС‚СЂРѕРєРµ
                     MaxLoadRoughZone item = new MaxLoadRoughZone(waterHead)
                     {
                         HU = row.Cells[0].Value?.ToString(),
@@ -207,20 +207,20 @@ namespace View
                         RoughZoneSB = Convert.ToDouble(row.Cells[3].Value)
                     };
 
-                    // Добавляем объект в список
+                    // Р”РѕР±Р°РІР»СЏРµРј РѕР±СЉРµРєС‚ РІ СЃРїРёСЃРѕРє
                     dataItems.Add(item);
                 }
 
-                // Инициализируем SaveFileDialog
+                // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј SaveFileDialog
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
                 saveFileDialog.Title = "Save XML File";
                 saveFileDialog.ShowDialog();
 
-                // Если пользователь выбрал файл
+                // Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІС‹Р±СЂР°Р» С„Р°Р№Р»
                 if (saveFileDialog.FileName != "")
                 {
-                    // Сохраняем данные в выбранный файл
+                    // РЎРѕС…СЂР°РЅСЏРµРј РґР°РЅРЅС‹Рµ РІ РІС‹Р±СЂР°РЅРЅС‹Р№ С„Р°Р№Р»
                     XmlSerializer serializer = new XmlSerializer(typeof(List<MaxLoadRoughZone>));
 
                     using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
@@ -232,13 +232,13 @@ namespace View
             else if (double.TryParse(URTextBox.Text, out double upperReservoirLevel) &&
                 double.TryParse(LRTextBox.Text, out double lowerReservoirLevel))
             {
-                // Вычисляем напор
+                // Р’С‹С‡РёСЃР»СЏРµРј РЅР°РїРѕСЂ
                 waterHead = upperReservoirLevel - lowerReservoirLevel;
 
-                // Проходим по каждой строке в DataGridView
+                // РџСЂРѕС…РѕРґРёРј РїРѕ РєР°Р¶РґРѕР№ СЃС‚СЂРѕРєРµ РІ DataGridView
                 foreach (DataGridViewRow row in restrictionsHUGridView.Rows)
                 {
-                    // Создаем объект MaxLoadRoughZone на основе данных в строке
+                    // РЎРѕР·РґР°РµРј РѕР±СЉРµРєС‚ MaxLoadRoughZone РЅР° РѕСЃРЅРѕРІРµ РґР°РЅРЅС‹С… РІ СЃС‚СЂРѕРєРµ
                     MaxLoadRoughZone item = new MaxLoadRoughZone(waterHead)
                     {
                         HU = row.Cells[0].Value?.ToString(),
@@ -247,20 +247,20 @@ namespace View
                         RoughZoneSB = Convert.ToDouble(row.Cells[3].Value)
                     };
 
-                    // Добавляем объект в список
+                    // Р”РѕР±Р°РІР»СЏРµРј РѕР±СЉРµРєС‚ РІ СЃРїРёСЃРѕРє
                     dataItems.Add(item);
                 }
 
-                // Инициализируем SaveFileDialog
+                // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј SaveFileDialog
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
                 saveFileDialog.Title = "Save XML File";
                 saveFileDialog.ShowDialog();
 
-                // Если пользователь выбрал файл
+                // Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІС‹Р±СЂР°Р» С„Р°Р№Р»
                 if (saveFileDialog.FileName != "")
                 {
-                    // Сохраняем данные в выбранный файл
+                    // РЎРѕС…СЂР°РЅСЏРµРј РґР°РЅРЅС‹Рµ РІ РІС‹Р±СЂР°РЅРЅС‹Р№ С„Р°Р№Р»
                     XmlSerializer serializer = new XmlSerializer(typeof(List<MaxLoadRoughZone>));
 
                     using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
@@ -271,79 +271,79 @@ namespace View
             }
             else
             {
-                MessageBox.Show("Невозможно преобразовать одно из значений уровней бьефов в число.",
-                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("РќРµРІРѕР·РјРѕР¶РЅРѕ РїСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ РѕРґРЅРѕ РёР· Р·РЅР°С‡РµРЅРёР№ СѓСЂРѕРІРЅРµР№ Р±СЊРµС„РѕРІ РІ С‡РёСЃР»Рѕ.",
+                                    "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        // Метод для создания таблицы RestrictionsHU
+        // РњРµС‚РѕРґ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ С‚Р°Р±Р»РёС†С‹ RestrictionsHU
         private void RestrictionsHUGridView()
         {
-            // Настройка выравнивания заголовков столбцов по центру
+            // РќР°СЃС‚СЂРѕР№РєР° РІС‹СЂР°РІРЅРёРІР°РЅРёСЏ Р·Р°РіРѕР»РѕРІРєРѕРІ СЃС‚РѕР»Р±С†РѕРІ РїРѕ С†РµРЅС‚СЂСѓ
             restrictionsHUGridView.Columns["HU"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             restrictionsHUGridView.Columns["RoughZoneFB"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             restrictionsHUGridView.Columns["RoughZoneSB"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             restrictionsHUGridView.Columns["MaxLoad"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            // Настройка выравнивания ячеек по центру
+            // РќР°СЃС‚СЂРѕР№РєР° РІС‹СЂР°РІРЅРёРІР°РЅРёСЏ СЏС‡РµРµРє РїРѕ С†РµРЅС‚СЂСѓ
             foreach (DataGridViewColumn column in restrictionsHUGridView.Columns)
             {
                 column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 column.ReadOnly = true;
             }
 
-            // Размеры
+            // Р Р°Р·РјРµСЂС‹
             HU.Width = 44;
             RoughZoneFB.Width = 63;
             RoughZoneSB.Width = 64;
             MaxLoad.Width = 63;
 
-            // Отключение скролл бара
+            // РћС‚РєР»СЋС‡РµРЅРёРµ СЃРєСЂРѕР»Р» Р±Р°СЂР°
             restrictionsHUGridView.ScrollBars = ScrollBars.None;
 
 
-            // запрет изменения размера
+            // Р·Р°РїСЂРµС‚ РёР·РјРµРЅРµРЅРёСЏ СЂР°Р·РјРµСЂР°
             restrictionsHUGridView.AllowUserToResizeRows = false;
             restrictionsHUGridView.AllowUserToResizeColumns = false;
 
-            // Запрет добавления новых строк
+            // Р—Р°РїСЂРµС‚ РґРѕР±Р°РІР»РµРЅРёСЏ РЅРѕРІС‹С… СЃС‚СЂРѕРє
             restrictionsHUGridView.AllowUserToAddRows = false;
 
-            // Разрешение переноса заголовков на вторую строку
+            // Р Р°Р·СЂРµС€РµРЅРёРµ РїРµСЂРµРЅРѕСЃР° Р·Р°РіРѕР»РѕРІРєРѕРІ РЅР° РІС‚РѕСЂСѓСЋ СЃС‚СЂРѕРєСѓ
             foreach (DataGridViewColumn column in restrictionsHUGridView.Columns)
             {
                 column.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
             }
         }
 
-        // Метод для создания таблицы ParametersHU
+        // РњРµС‚РѕРґ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ С‚Р°Р±Р»РёС†С‹ ParametersHU
         private void ParametersHUGridView()
         {
-            // Создаем колонки
+            // РЎРѕР·РґР°РµРј РєРѕР»РѕРЅРєРё
             DataGridViewTextBoxColumn HUColumn = new DataGridViewTextBoxColumn();
-            HUColumn.HeaderText = "ГА ";
-            // Устанавливаем ширину для столбца "ГА"
+            HUColumn.HeaderText = "Р“Рђ ";
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј С€РёСЂРёРЅСѓ РґР»СЏ СЃС‚РѕР»Р±С†Р° "Р“Рђ"
             HUColumn.Width = 44;
             HUColumn.ReadOnly = true;
 
             loadColumn = new DataGridViewTextBoxColumn();
-            loadColumn.HeaderText = "Загрузка, МВт";
+            loadColumn.HeaderText = "Р—Р°РіСЂСѓР·РєР°, РњР’С‚";
             loadColumn.Width = 70;
 
             zoneColumn = new DataGridViewTextBoxColumn();
-            zoneColumn.HeaderText = "Зона";
+            zoneColumn.HeaderText = "Р—РѕРЅР°";
             zoneColumn.Width = 40;
 
-            // Создаем комбобокс для столбца "Статус"
+            // РЎРѕР·РґР°РµРј РєРѕРјР±РѕР±РѕРєСЃ РґР»СЏ СЃС‚РѕР»Р±С†Р° "РЎС‚Р°С‚СѓСЃ"
             statusColumn = new DataGridViewComboBoxColumn();
-            statusColumn.HeaderText = "Статус";
-            statusColumn.Items.AddRange("В работе", "Выведен");
+            statusColumn.HeaderText = "РЎС‚Р°С‚СѓСЃ";
+            statusColumn.Items.AddRange("Р’ СЂР°Р±РѕС‚Рµ", "Р’С‹РІРµРґРµРЅ");
             statusColumn.Width = 80;
 
-            // Перенос названия столбца на новую строку, если он не помещается
+            // РџРµСЂРµРЅРѕСЃ РЅР°Р·РІР°РЅРёСЏ СЃС‚РѕР»Р±С†Р° РЅР° РЅРѕРІСѓСЋ СЃС‚СЂРѕРєСѓ, РµСЃР»Рё РѕРЅ РЅРµ РїРѕРјРµС‰Р°РµС‚СЃСЏ
             loadColumn.HeaderCell.Style.WrapMode = DataGridViewTriState.True;
 
-            // Устанавливаем выравнивание по центру для ячеек и заголовков столбцов
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІС‹СЂР°РІРЅРёРІР°РЅРёРµ РїРѕ С†РµРЅС‚СЂСѓ РґР»СЏ СЏС‡РµРµРє Рё Р·Р°РіРѕР»РѕРІРєРѕРІ СЃС‚РѕР»Р±С†РѕРІ
             DataGridViewCellStyle centerAlignmentStyle = new DataGridViewCellStyle();
             centerAlignmentStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
@@ -359,41 +359,41 @@ namespace View
             statusColumn.DefaultCellStyle = centerAlignmentStyle;
             statusColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            // Добавляем колонки на DataGridView
+            // Р”РѕР±Р°РІР»СЏРµРј РєРѕР»РѕРЅРєРё РЅР° DataGridView
             parametersHUGridView.Columns.Add(HUColumn);
             parametersHUGridView.Columns.Add(loadColumn);
             parametersHUGridView.Columns.Add(zoneColumn);
             parametersHUGridView.Columns.Add(statusColumn);
 
-            // Устанавливаем DataGridView на вкладку tabPage1
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј DataGridView РЅР° РІРєР»Р°РґРєСѓ tabPage1
             parametersHUTabPage.Controls.Add(parametersHUGridView);
 
-            // Устанавливаем размеры таблицы
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЂР°Р·РјРµСЂС‹ С‚Р°Р±Р»РёС†С‹
             parametersHUGridView.Width = 237;
             parametersHUGridView.Height = 340;
 
-            // запрет изменения размера
+            // Р·Р°РїСЂРµС‚ РёР·РјРµРЅРµРЅРёСЏ СЂР°Р·РјРµСЂР°
             parametersHUGridView.AllowUserToResizeRows = false;
             parametersHUGridView.AllowUserToResizeColumns = false;
 
-            // Запрет добавления новых строк
+            // Р—Р°РїСЂРµС‚ РґРѕР±Р°РІР»РµРЅРёСЏ РЅРѕРІС‹С… СЃС‚СЂРѕРє
             parametersHUGridView.AllowUserToAddRows = false;
 
-            // для всех колонок отключена сортировка
+            // РґР»СЏ РІСЃРµС… РєРѕР»РѕРЅРѕРє РѕС‚РєР»СЋС‡РµРЅР° СЃРѕСЂС‚РёСЂРѕРІРєР°
             foreach (DataGridViewColumn column in parametersHUGridView.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
         }
 
-        // Метод для тестовых данных
+        // РњРµС‚РѕРґ РґР»СЏ С‚РµСЃС‚РѕРІС‹С… РґР°РЅРЅС‹С…
         private void FillDataParametersHU()
         {
-            // Используем метод ReadLoadForTimeStamp для загрузки данных
+            // РСЃРїРѕР»СЊР·СѓРµРј РјРµС‚РѕРґ ReadLoadForTimeStamp РґР»СЏ Р·Р°РіСЂСѓР·РєРё РґР°РЅРЅС‹С…
             DateTime targetTimeStamp = DateTime.Parse("2024-01-10T01:00:00Z");
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "generatorsLoad.xml");
 
-            // Загружаем данные для targetTimeStamp и указываем DataGridView для заполнения
+            // Р—Р°РіСЂСѓР¶Р°РµРј РґР°РЅРЅС‹Рµ РґР»СЏ targetTimeStamp Рё СѓРєР°Р·С‹РІР°РµРј DataGridView РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ
             Dictionary<int, double> loadDictionary = GeneratorsLoader.ReadLoadForTimeStamp(filePath, targetTimeStamp, parametersHUGridView);
         }
 
@@ -420,17 +420,17 @@ namespace View
                             double loadValue = targetLoadItem.Load;
                             loadDictionary.Add(hydroUnitNumberCounter, loadValue);
 
-                            // Вычисляем зону работы
+                            // Р’С‹С‡РёСЃР»СЏРµРј Р·РѕРЅСѓ СЂР°Р±РѕС‚С‹
                             int zone = loadValue >= 320 ? 3 : (loadValue <= 150 ? 1 : 2);
 
 
-                            // Добавим также запись в DataGridView
+                            // Р”РѕР±Р°РІРёРј С‚Р°РєР¶Рµ Р·Р°РїРёСЃСЊ РІ DataGridView
                             ParametersHU parametersHU = new ParametersHU
                             {
                                 HU = hydroUnitNumberCounter.ToString(),
                                 Load = loadValue,
                                 Zone = zone,
-                                Status = loadValue > 0 ? "В работе" : "Выведен"
+                                Status = loadValue > 0 ? "Р’ СЂР°Р±РѕС‚Рµ" : "Р’С‹РІРµРґРµРЅ"
                             };
 
                             parametersHUGridView.Rows.Add(
@@ -456,15 +456,15 @@ namespace View
             {
                 DataGridViewCell cell = parametersHUGridView[e.ColumnIndex, e.RowIndex];
 
-                if (cell.Value != null && cell.Value.ToString() == "Выведен")
+                if (cell.Value != null && cell.Value.ToString() == "Р’С‹РІРµРґРµРЅ")
                 {
-                    // Если Status установлен как "Выведен", устанавливаем Load в 0
+                    // Р•СЃР»Рё Status СѓСЃС‚Р°РЅРѕРІР»РµРЅ РєР°Рє "Р’С‹РІРµРґРµРЅ", СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј Load РІ 0
                     parametersHUGridView[loadColumn.Index, e.RowIndex].Value = 0;
                     parametersHUGridView[zoneColumn.Index, e.RowIndex].Value = 1;
                 }
-                else if (cell.Value != null && cell.Value.ToString() == "В работе")
+                else if (cell.Value != null && cell.Value.ToString() == "Р’ СЂР°Р±РѕС‚Рµ")
                 {
-                    // Если Status установлен как "В работе", устанавливаем Load в 50
+                    // Р•СЃР»Рё Status СѓСЃС‚Р°РЅРѕРІР»РµРЅ РєР°Рє "Р’ СЂР°Р±РѕС‚Рµ", СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј Load РІ 50
                     parametersHUGridView[loadColumn.Index, e.RowIndex].Value = 50;
                     parametersHUGridView[zoneColumn.Index, e.RowIndex].Value = 1;
                 }
@@ -476,27 +476,27 @@ namespace View
 
                 if (loadCell.Value != null && double.TryParse(loadCell.Value.ToString(), out loadValue))
                 {
-                    // Если Load установлен в 0, устанавливаем Status как "Выведен"
+                    // Р•СЃР»Рё Load СѓСЃС‚Р°РЅРѕРІР»РµРЅ РІ 0, СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј Status РєР°Рє "Р’С‹РІРµРґРµРЅ"
                     if (loadValue == 0)
                     {
-                        parametersHUGridView[statusColumn.Index, e.RowIndex].Value = "Выведен";
+                        parametersHUGridView[statusColumn.Index, e.RowIndex].Value = "Р’С‹РІРµРґРµРЅ";
                     }
                     else if (loadValue > 0)
                     {
-                        // Если Load больше 0, устанавливаем Status как "В работе"
-                        parametersHUGridView[statusColumn.Index, e.RowIndex].Value = "В работе";
+                        // Р•СЃР»Рё Load Р±РѕР»СЊС€Рµ 0, СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј Status РєР°Рє "Р’ СЂР°Р±РѕС‚Рµ"
+                        parametersHUGridView[statusColumn.Index, e.RowIndex].Value = "Р’ СЂР°Р±РѕС‚Рµ";
                     }
 
-                    // Если Load меньше 150, устанавливаем Zone в 1, иначе в 3
+                    // Р•СЃР»Рё Load РјРµРЅСЊС€Рµ 150, СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј Zone РІ 1, РёРЅР°С‡Рµ РІ 3
                     parametersHUGridView[zoneColumn.Index, e.RowIndex].Value = loadValue < 150 ? 1 : 3;
                 }
                 else
                 {
-                    // Обработка некорректного ввода в Load
-                    MessageBox.Show("Некорректное значение в столбце 'Загрузка'.",
-                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // РћР±СЂР°Р±РѕС‚РєР° РЅРµРєРѕСЂСЂРµРєС‚РЅРѕРіРѕ РІРІРѕРґР° РІ Load
+                    MessageBox.Show("РќРµРєРѕСЂСЂРµРєС‚РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ СЃС‚РѕР»Р±С†Рµ 'Р—Р°РіСЂСѓР·РєР°'.",
+                                    "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    // Отменяем изменение значения
+                    // РћС‚РјРµРЅСЏРµРј РёР·РјРµРЅРµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ
                     parametersHUGridView.CancelEdit();
                 }
             }
@@ -505,7 +505,7 @@ namespace View
 
 
         /// <summary>
-        /// Событие на изменение ячеек в датагрид - проверка.
+        /// РЎРѕР±С‹С‚РёРµ РЅР° РёР·РјРµРЅРµРЅРёРµ СЏС‡РµРµРє РІ РґР°С‚Р°РіСЂРёРґ - РїСЂРѕРІРµСЂРєР°.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -517,28 +517,28 @@ namespace View
 
                 if (string.IsNullOrEmpty(input))
                 {
-                    MessageBox.Show("Ввод не может быть пустым.",
-                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Р’РІРѕРґ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј.",
+                                    "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    e.Cancel = true; // Отменяем изменение значения
+                    e.Cancel = true; // РћС‚РјРµРЅСЏРµРј РёР·РјРµРЅРµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ
                     return;
                 }
 
                 if (!double.TryParse(input, out double loadValue))
                 {
-                    MessageBox.Show("Значение в столбце 'Загрузка' должно быть числовым.",
-                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Р—РЅР°С‡РµРЅРёРµ РІ СЃС‚РѕР»Р±С†Рµ 'Р—Р°РіСЂСѓР·РєР°' РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ С‡РёСЃР»РѕРІС‹Рј.",
+                                    "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    e.Cancel = true; // Отменяем изменение значения
+                    e.Cancel = true; // РћС‚РјРµРЅСЏРµРј РёР·РјРµРЅРµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ
                     return;
                 }
 
                 if (loadValue < 0 || loadValue > 508)
                 {
-                    MessageBox.Show($"Значение в столбце 'Загрузка' должно быть в диапазоне от 0 до {ParametersHU.MaxLoad} МВт.",
-                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Р—РЅР°С‡РµРЅРёРµ РІ СЃС‚РѕР»Р±С†Рµ 'Р—Р°РіСЂСѓР·РєР°' РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РІ РґРёР°РїР°Р·РѕРЅРµ РѕС‚ 0 РґРѕ {ParametersHU.MaxLoad} РњР’С‚.",
+                                    "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    e.Cancel = true; // Отменяем изменение значения
+                    e.Cancel = true; // РћС‚РјРµРЅСЏРµРј РёР·РјРµРЅРµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ
                 }
             }
 
@@ -547,13 +547,13 @@ namespace View
 
         private void SaveParametersHU_Click(object sender, EventArgs e)
         {
-            // Создаем список для хранения данных
+            // РЎРѕР·РґР°РµРј СЃРїРёСЃРѕРє РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РґР°РЅРЅС‹С…
             List<ParametersHU> dataItems = new List<ParametersHU>();
 
-            // Проходим по каждой строке в DataGridView
+            // РџСЂРѕС…РѕРґРёРј РїРѕ РєР°Р¶РґРѕР№ СЃС‚СЂРѕРєРµ РІ DataGridView
             foreach (DataGridViewRow row in parametersHUGridView.Rows)
             {
-                // Создаем объект DataItem на основе данных в строке
+                // РЎРѕР·РґР°РµРј РѕР±СЉРµРєС‚ DataItem РЅР° РѕСЃРЅРѕРІРµ РґР°РЅРЅС‹С… РІ СЃС‚СЂРѕРєРµ
                 ParametersHU item = new ParametersHU
                 {
                     HU = row.Cells[0].Value?.ToString(),
@@ -562,20 +562,20 @@ namespace View
                     Status = row.Cells[3].Value?.ToString()
                 };
 
-                // Добавляем объект в список
+                // Р”РѕР±Р°РІР»СЏРµРј РѕР±СЉРµРєС‚ РІ СЃРїРёСЃРѕРє
                 dataItems.Add(item);
             }
 
-            // Инициализируем SaveFileDialog
+            // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј SaveFileDialog
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
             saveFileDialog.Title = "Save XML File";
             saveFileDialog.ShowDialog();
 
-            // Если пользователь выбрал файл
+            // Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІС‹Р±СЂР°Р» С„Р°Р№Р»
             if (saveFileDialog.FileName != "")
             {
-                // Сохраняем данные в выбранный файл
+                // РЎРѕС…СЂР°РЅСЏРµРј РґР°РЅРЅС‹Рµ РІ РІС‹Р±СЂР°РЅРЅС‹Р№ С„Р°Р№Р»
                 XmlSerializer serializer = new XmlSerializer(typeof(List<ParametersHU>));
 
                 using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
@@ -587,18 +587,18 @@ namespace View
 
         private void EditingModeButton_Click(object sender, EventArgs e)
         {
-            // Сохраняем данные перед изменением режима редактирования
+            // РЎРѕС…СЂР°РЅСЏРµРј РґР°РЅРЅС‹Рµ РїРµСЂРµРґ РёР·РјРµРЅРµРЅРёРµРј СЂРµР¶РёРјР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
             parametersHUGridView.EndEdit();
 
-            // Переключаем режим редактирования
+            // РџРµСЂРµРєР»СЋС‡Р°РµРј СЂРµР¶РёРј СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
             isEditingEnabled = !isEditingEnabled;
 
-            // Устанавливаем свойство ReadOnly для всех ячеек, кроме первого столбца, в зависимости от режима редактирования
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЃРІРѕР№СЃС‚РІРѕ ReadOnly РґР»СЏ РІСЃРµС… СЏС‡РµРµРє, РєСЂРѕРјРµ РїРµСЂРІРѕРіРѕ СЃС‚РѕР»Р±С†Р°, РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЂРµР¶РёРјР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
             foreach (DataGridViewRow row in parametersHUGridView.Rows)
             {
                 foreach (DataGridViewCell cell in row.Cells)
                 {
-                    // Проверяем, что это не первый столбец и не третий
+                    // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ СЌС‚Рѕ РЅРµ РїРµСЂРІС‹Р№ СЃС‚РѕР»Р±РµС† Рё РЅРµ С‚СЂРµС‚РёР№
                     if (cell.ColumnIndex != 0 && cell.ColumnIndex != 2)
                     {
                         cell.ReadOnly = !isEditingEnabled;
@@ -606,54 +606,54 @@ namespace View
                 }
             }
 
-            // Теперь делаем кнопку saveParamsHU доступной или недоступной в зависимости от режима редактирования
+            // РўРµРїРµСЂСЊ РґРµР»Р°РµРј РєРЅРѕРїРєСѓ saveParamsHU РґРѕСЃС‚СѓРїРЅРѕР№ РёР»Рё РЅРµРґРѕСЃС‚СѓРїРЅРѕР№ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЂРµР¶РёРјР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
             saveParamsHU.Enabled = !isEditingEnabled;
             paramsHUToolStripMenu.Enabled = !isEditingEnabled;
             OpenParamsHU.Enabled = !isEditingEnabled;
 
-            // Меняем текст кнопки в зависимости от режима редактирования
+            // РњРµРЅСЏРµРј С‚РµРєСЃС‚ РєРЅРѕРїРєРё РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЂРµР¶РёРјР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
             if (isEditingEnabled)
             {
-                editingModeButton.Text = "Сохранить (включен режим правки)";
+                editingModeButton.Text = "РЎРѕС…СЂР°РЅРёС‚СЊ (РІРєР»СЋС‡РµРЅ СЂРµР¶РёРј РїСЂР°РІРєРё)";
             }
             else
             {
-                editingModeButton.Text = "Режим правки";
+                editingModeButton.Text = "Р РµР¶РёРј РїСЂР°РІРєРё";
             }
         }
 
         /// <summary>
-        /// Открытие руководства пользователя.
+        /// РћС‚РєСЂС‹С‚РёРµ СЂСѓРєРѕРІРѕРґСЃС‚РІР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OpenGuide_Click(object sender, EventArgs e)
         {
-            // Формируем путь к файлу "Руководство пользователя.pdf" в директории приложения
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Руководство пользователя.pdf");
+            // Р¤РѕСЂРјРёСЂСѓРµРј РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ "Р СѓРєРѕРІРѕРґСЃС‚РІРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ.pdf" РІ РґРёСЂРµРєС‚РѕСЂРёРё РїСЂРёР»РѕР¶РµРЅРёСЏ
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Р СѓРєРѕРІРѕРґСЃС‚РІРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ.pdf");
 
             try
             {
                 if (File.Exists(filePath))
                 {
-                    // Пытаемся запустить процесс для открытия файла
+                    // РџС‹С‚Р°РµРјСЃСЏ Р·Р°РїСѓСЃС‚РёС‚СЊ РїСЂРѕС†РµСЃСЃ РґР»СЏ РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°
                     Process.Start(new ProcessStartInfo
                     {
-                        // Указываем имя файла для запуска
+                        // РЈРєР°Р·С‹РІР°РµРј РёРјСЏ С„Р°Р№Р»Р° РґР»СЏ Р·Р°РїСѓСЃРєР°
                         FileName = filePath,
-                        // Используем оболочку операционной системы для открытия файла
+                        // РСЃРїРѕР»СЊР·СѓРµРј РѕР±РѕР»РѕС‡РєСѓ РѕРїРµСЂР°С†РёРѕРЅРЅРѕР№ СЃРёСЃС‚РµРјС‹ РґР»СЏ РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°
                         UseShellExecute = true
                     });
                 }
 
                 else
                 {
-                    MessageBox.Show("Файл 'Руководство пользователя.pdf' не найден в директории: ..\\bin\\Debug\\net8.0-windows.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Р¤Р°Р№Р» 'Р СѓРєРѕРІРѕРґСЃС‚РІРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ.pdf' РЅРµ РЅР°Р№РґРµРЅ РІ РґРёСЂРµРєС‚РѕСЂРёРё: ..\\bin\\Debug\\net8.0-windows.", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°: {ex.Message}", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -673,25 +673,25 @@ namespace View
                     {
                         List<ParametersHU> loadedData = (List<ParametersHU>)serializer.Deserialize(fs);
 
-                        // Очищаем существующие данные в DataGridView
+                        // РћС‡РёС‰Р°РµРј СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёРµ РґР°РЅРЅС‹Рµ РІ DataGridView
                         parametersHUGridView.Rows.Clear();
 
-                        // Заполняем DataGridView загруженными данными
+                        // Р—Р°РїРѕР»РЅСЏРµРј DataGridView Р·Р°РіСЂСѓР¶РµРЅРЅС‹РјРё РґР°РЅРЅС‹РјРё
                         foreach (ParametersHU item in loadedData)
                         {
                             parametersHUGridView.Rows.Add(item.HU, item.Load, item.Zone, item.Status);
                         }
                     }
 
-                    MessageBox.Show("Данные успешно загружены из файла.", "Выполнено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Р”Р°РЅРЅС‹Рµ СѓСЃРїРµС€РЅРѕ Р·Р°РіСЂСѓР¶РµРЅС‹ РёР· С„Р°Р№Р»Р°.", "Р’С‹РїРѕР»РЅРµРЅРѕ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ошибка при чтении файла: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"РћС€РёР±РєР° РїСЂРё С‡С‚РµРЅРёРё С„Р°Р№Р»Р°: {ex.Message}", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
-            // Устанавливаем свойство ReadOnly для всех ячеек
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЃРІРѕР№СЃС‚РІРѕ ReadOnly РґР»СЏ РІСЃРµС… СЏС‡РµРµРє
             foreach (DataGridViewRow row in parametersHUGridView.Rows)
             {
                 foreach (DataGridViewCell cell in row.Cells)
@@ -703,13 +703,13 @@ namespace View
 
         private void AuthorizationButton_Click(object sender, EventArgs e)
         {
-            // Вывести диалоговое окно для авторизации
+            // Р’С‹РІРµСЃС‚Рё РґРёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ РґР»СЏ Р°РІС‚РѕСЂРёР·Р°С†РёРё
             authorizationForm = new Authorization();
             System.Windows.Forms.DialogResult result = authorizationForm.ShowDialog();
 
             if (result == System.Windows.Forms.DialogResult.OK)
             {
-                // Разблокировать кнопку после успешной авторизации
+                // Р Р°Р·Р±Р»РѕРєРёСЂРѕРІР°С‚СЊ РєРЅРѕРїРєСѓ РїРѕСЃР»Рµ СѓСЃРїРµС€РЅРѕР№ Р°РІС‚РѕСЂРёР·Р°С†РёРё
                 exportDBButton.Enabled = true;
             }
         }
@@ -719,10 +719,10 @@ namespace View
         {
             using (var cred = new Credential())
             {
-                // Указываем таргет
+                // РЈРєР°Р·С‹РІР°РµРј С‚Р°СЂРіРµС‚
                 cred.Target = Authorization.TargetDB;
 
-                // Находим сохраненные учетные данные
+                // РќР°С…РѕРґРёРј СЃРѕС…СЂР°РЅРµРЅРЅС‹Рµ СѓС‡РµС‚РЅС‹Рµ РґР°РЅРЅС‹Рµ
                 if (cred.Load())
                 {
                     var connector = new PostgresConnector("localhost", "HPPs", cred.Username, cred.Password);
@@ -738,11 +738,11 @@ namespace View
                             DataTable dataTable = new DataTable("GeneratorCharacteristicHistory");
                             dataTable.Load(reader);
 
-                            // Создание XML-файла и запись в него данных
+                            // РЎРѕР·РґР°РЅРёРµ XML-С„Р°Р№Р»Р° Рё Р·Р°РїРёСЃСЊ РІ РЅРµРіРѕ РґР°РЅРЅС‹С…
                             SaveFileDialog saveFileDialog = new SaveFileDialog
                             {
                                 Filter = "XML files (*.xml)|*.xml",
-                                Title = "Сохранить данные в XML"
+                                Title = "РЎРѕС…СЂР°РЅРёС‚СЊ РґР°РЅРЅС‹Рµ РІ XML"
                             };
 
                             if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -750,8 +750,8 @@ namespace View
                                 string filePath = saveFileDialog.FileName;
                                 dataTable.WriteXml(filePath);
 
-                                MessageBox.Show("Данные успешно сохранены в XML файл.",
-                                    "Выполнено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Р”Р°РЅРЅС‹Рµ СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅС‹ РІ XML С„Р°Р№Р».",
+                                    "Р’С‹РїРѕР»РЅРµРЅРѕ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
 
                             reader.Close();
@@ -759,25 +759,25 @@ namespace View
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Ошибка при чтении данных из базы данных: {ex.Message}",
-                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"РћС€РёР±РєР° РїСЂРё С‡С‚РµРЅРёРё РґР°РЅРЅС‹С… РёР· Р±Р°Р·С‹ РґР°РЅРЅС‹С…: {ex.Message}",
+                            "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     finally
                     {
-                        // Закрытие соединения
+                        // Р—Р°РєСЂС‹С‚РёРµ СЃРѕРµРґРёРЅРµРЅРёСЏ
                         connector.CloseConnection();
                     }
                 }
                 else
                 {
-                    // Учетные данные не найдены или пользователь отменил ввод
-                    MessageBox.Show("Данные не найдены или ввод отменен.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // РЈС‡РµС‚РЅС‹Рµ РґР°РЅРЅС‹Рµ РЅРµ РЅР°Р№РґРµРЅС‹ РёР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РѕС‚РјРµРЅРёР» РІРІРѕРґ
+                    MessageBox.Show("Р”Р°РЅРЅС‹Рµ РЅРµ РЅР°Р№РґРµРЅС‹ РёР»Рё РІРІРѕРґ РѕС‚РјРµРЅРµРЅ.", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         /// <summary>
-        /// Сохранение актуальных характерситик.
+        /// РЎРѕС…СЂР°РЅРµРЅРёРµ Р°РєС‚СѓР°Р»СЊРЅС‹С… С…Р°СЂР°РєС‚РµСЂСЃРёС‚РёРє.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -787,7 +787,7 @@ namespace View
         }
 
         /// <summary>
-        /// Сохранение протокола актуализации.
+        /// РЎРѕС…СЂР°РЅРµРЅРёРµ РїСЂРѕС‚РѕРєРѕР»Р° Р°РєС‚СѓР°Р»РёР·Р°С†РёРё.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -799,31 +799,31 @@ namespace View
 
         private void ExportDBButton_Click(object sender, EventArgs e)
         {
-            // Проверка доступности кнопки
+            // РџСЂРѕРІРµСЂРєР° РґРѕСЃС‚СѓРїРЅРѕСЃС‚Рё РєРЅРѕРїРєРё
             if (!exportDBButton.Enabled)
             {
-                MessageBox.Show("Авторизация не выполнена. Введите правильный пароль.",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("РђРІС‚РѕСЂРёР·Р°С†РёСЏ РЅРµ РІС‹РїРѕР»РЅРµРЅР°. Р’РІРµРґРёС‚Рµ РїСЂР°РІРёР»СЊРЅС‹Р№ РїР°СЂРѕР»СЊ.",
+                    "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Вызов нового метода для вставки/обновления данных
+            // Р’С‹Р·РѕРІ РЅРѕРІРѕРіРѕ РјРµС‚РѕРґР° РґР»СЏ РІСЃС‚Р°РІРєРё/РѕР±РЅРѕРІР»РµРЅРёСЏ РґР°РЅРЅС‹С…
             try
             {
-                // Получение пароля и логина из формы авторизации
+                // РџРѕР»СѓС‡РµРЅРёРµ РїР°СЂРѕР»СЏ Рё Р»РѕРіРёРЅР° РёР· С„РѕСЂРјС‹ Р°РІС‚РѕСЂРёР·Р°С†РёРё
                 string enteredPassword = authorizationForm.GetEnteredPassword();
                 string enteredLogin = authorizationForm.GetEnteredLogin();
 
-                Model.PostgresQueries.InsertOrUpdateHydroGenerator(11, "Гидрогенератор 11",
+                Model.PostgresQueries.InsertOrUpdateHydroGenerator(11, "Р“РёРґСЂРѕРіРµРЅРµСЂР°С‚РѕСЂ 11",
                     "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))",
                     enteredLogin, enteredPassword);
-                MessageBox.Show("Данные успешно вставлены/обновлены.", "Выполнено",
+                MessageBox.Show("Р”Р°РЅРЅС‹Рµ СѓСЃРїРµС€РЅРѕ РІСЃС‚Р°РІР»РµРЅС‹/РѕР±РЅРѕРІР»РµРЅС‹.", "Р’С‹РїРѕР»РЅРµРЅРѕ",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при выполнении запроса: {ex.Message}",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"РћС€РёР±РєР° РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё Р·Р°РїСЂРѕСЃР°: {ex.Message}",
+                    "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -835,7 +835,7 @@ namespace View
 
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                // Выбран файл, попробуем прочитать данные
+                // Р’С‹Р±СЂР°РЅ С„Р°Р№Р», РїРѕРїСЂРѕР±СѓРµРј РїСЂРѕС‡РёС‚Р°С‚СЊ РґР°РЅРЅС‹Рµ
                 try
                 {
                     XmlSerializer serializer = new XmlSerializer(typeof(List<MaxLoadRoughZone>));
@@ -844,10 +844,10 @@ namespace View
                     {
                         List<MaxLoadRoughZone> loadedData = (List<MaxLoadRoughZone>)serializer.Deserialize(fs);
 
-                        // Очищаем существующие данные в DataGridView
+                        // РћС‡РёС‰Р°РµРј СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёРµ РґР°РЅРЅС‹Рµ РІ DataGridView
                         restrictionsHUGridView.Rows.Clear();
 
-                        // Заполняем DataGridView данными из файла
+                        // Р—Р°РїРѕР»РЅСЏРµРј DataGridView РґР°РЅРЅС‹РјРё РёР· С„Р°Р№Р»Р°
                         foreach (MaxLoadRoughZone item in loadedData)
                         {
                             restrictionsHUGridView.Rows.Add(
@@ -858,55 +858,55 @@ namespace View
                             );
                         }
 
-                        MessageBox.Show("Данные успешно загружены из файла.", "Выполнено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Р”Р°РЅРЅС‹Рµ СѓСЃРїРµС€РЅРѕ Р·Р°РіСЂСѓР¶РµРЅС‹ РёР· С„Р°Р№Р»Р°.", "Р’С‹РїРѕР»РЅРµРЅРѕ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ошибка при чтении файла: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"РћС€РёР±РєР° РїСЂРё С‡С‚РµРЅРёРё С„Р°Р№Р»Р°: {ex.Message}", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void ImportBMPButton_Click(object sender, EventArgs e)
         {
-            // Получите значение из текстового поля
+            // РџРѕР»СѓС‡РёС‚Рµ Р·РЅР°С‡РµРЅРёРµ РёР· С‚РµРєСЃС‚РѕРІРѕРіРѕ РїРѕР»СЏ
             string inputText = checkoutHourTextBox.Text;
 
             DateTime targetTimeStamp = new DateTime(2024, 1, 10, 0, 0, 0, DateTimeKind.Utc);
 
-            // Попробуйте преобразовать текст в число
+            // РџРѕРїСЂРѕР±СѓР№С‚Рµ РїСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ С‚РµРєСЃС‚ РІ С‡РёСЃР»Рѕ
             if (int.TryParse(inputText, out int userHour))
             {
-                // Проверка на диапазон от 0 до 23
+                // РџСЂРѕРІРµСЂРєР° РЅР° РґРёР°РїР°Р·РѕРЅ РѕС‚ 0 РґРѕ 23
                 if (userHour >= 0 && userHour <= 23)
                 {
-                    // Сформируйте DateTime с использованием введенного часа
+                    // РЎС„РѕСЂРјРёСЂСѓР№С‚Рµ DateTime СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј РІРІРµРґРµРЅРЅРѕРіРѕ С‡Р°СЃР°
                     targetTimeStamp = new DateTime(2024, 1, 10, userHour, 0, 0, DateTimeKind.Utc);
                     // string targetTimeStamp = $"2024-01-10T{userHour}:00:00Z";
-                    // Вызовите метод для загрузки данных с использованием targetTimeStamp
+                    // Р’С‹Р·РѕРІРёС‚Рµ РјРµС‚РѕРґ РґР»СЏ Р·Р°РіСЂСѓР·РєРё РґР°РЅРЅС‹С… СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј targetTimeStamp
                     LoadDataWithTimeStamp(targetTimeStamp);
                 }
                 else
                 {
-                    // Вывод сообщения об ошибке для некорректного часа
-                    MessageBox.Show("Час должен быть в пределах от 0 до 23.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Р’С‹РІРѕРґ СЃРѕРѕР±С‰РµРЅРёСЏ РѕР± РѕС€РёР±РєРµ РґР»СЏ РЅРµРєРѕСЂСЂРµРєС‚РЅРѕРіРѕ С‡Р°СЃР°
+                    MessageBox.Show("Р§Р°СЃ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РІ РїСЂРµРґРµР»Р°С… РѕС‚ 0 РґРѕ 23.", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                // Вывод сообщения об ошибке для невозможности преобразования в число
-                MessageBox.Show("Введите корректное число в пределах от 0 до 23.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Р’С‹РІРѕРґ СЃРѕРѕР±С‰РµРЅРёСЏ РѕР± РѕС€РёР±РєРµ РґР»СЏ РЅРµРІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РІ С‡РёСЃР»Рѕ
+                MessageBox.Show("Р’РІРµРґРёС‚Рµ РєРѕСЂСЂРµРєС‚РЅРѕРµ С‡РёСЃР»Рѕ РІ РїСЂРµРґРµР»Р°С… РѕС‚ 0 РґРѕ 23.", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            // Очистка данных в DataGridView
+            // РћС‡РёСЃС‚РєР° РґР°РЅРЅС‹С… РІ DataGridView
             parametersHUGridView.Rows.Clear();
 
-            // Код для загрузки данных с использованием targetTimeStamp
+            // РљРѕРґ РґР»СЏ Р·Р°РіСЂСѓР·РєРё РґР°РЅРЅС‹С… СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј targetTimeStamp
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "generatorsLoad.xml");
             Dictionary<int, double> loadDictionary = GeneratorsLoader.ReadLoadForTimeStamp(filePath, targetTimeStamp, parametersHUGridView);
-            // Дополнительные действия при загрузке данных с использованием targetTimeStamp
+            // Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РґРµР№СЃС‚РІРёСЏ РїСЂРё Р·Р°РіСЂСѓР·РєРµ РґР°РЅРЅС‹С… СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј targetTimeStamp
 
-            // Устанавливаем свойство ReadOnly для всех ячеек
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЃРІРѕР№СЃС‚РІРѕ ReadOnly РґР»СЏ РІСЃРµС… СЏС‡РµРµРє
             foreach (DataGridViewRow row in parametersHUGridView.Rows)
             {
                 foreach (DataGridViewCell cell in row.Cells)
@@ -918,35 +918,35 @@ namespace View
 
         private void LoadDataButton_Click(object sender, EventArgs e)
         {
-            // Получите значение из текстового поля
+            // РџРѕР»СѓС‡РёС‚Рµ Р·РЅР°С‡РµРЅРёРµ РёР· С‚РµРєСЃС‚РѕРІРѕРіРѕ РїРѕР»СЏ
             string inputText = checkoutHourTextBox.Text;
 
-            // Попробуйте преобразовать текст в число
+            // РџРѕРїСЂРѕР±СѓР№С‚Рµ РїСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ С‚РµРєСЃС‚ РІ С‡РёСЃР»Рѕ
             if (int.TryParse(inputText, out int userHour))
             {
-                // Проверка на диапазон от 0 до 23
+                // РџСЂРѕРІРµСЂРєР° РЅР° РґРёР°РїР°Р·РѕРЅ РѕС‚ 0 РґРѕ 23
                 if (userHour >= 0 && userHour <= 23)
                 {
-                    // Сформируйте DateTime с использованием введенного часа
+                    // РЎС„РѕСЂРјРёСЂСѓР№С‚Рµ DateTime СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј РІРІРµРґРµРЅРЅРѕРіРѕ С‡Р°СЃР°
                     DateTime targetTimeStamp = new DateTime(2024, 1, 10, userHour, 0, 0, DateTimeKind.Utc);
                     // string targetTimeStamp = $"2024-01-10T{userHour}:00:00Z";
-                    // Вызовите метод для загрузки данных с использованием targetTimeStamp
+                    // Р’С‹Р·РѕРІРёС‚Рµ РјРµС‚РѕРґ РґР»СЏ Р·Р°РіСЂСѓР·РєРё РґР°РЅРЅС‹С… СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј targetTimeStamp
                     LoadDataWithTimeStamp(targetTimeStamp);
 
                 }
                 else
                 {
-                    // Вывод сообщения об ошибке для некорректного часа
-                    MessageBox.Show("Час должен быть в пределах от 0 до 23.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Р’С‹РІРѕРґ СЃРѕРѕР±С‰РµРЅРёСЏ РѕР± РѕС€РёР±РєРµ РґР»СЏ РЅРµРєРѕСЂСЂРµРєС‚РЅРѕРіРѕ С‡Р°СЃР°
+                    MessageBox.Show("Р§Р°СЃ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РІ РїСЂРµРґРµР»Р°С… РѕС‚ 0 РґРѕ 23.", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                // Вывод сообщения об ошибке для невозможности преобразования в число
-                MessageBox.Show("Введите корректное число в пределах от 0 до 23.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Р’С‹РІРѕРґ СЃРѕРѕР±С‰РµРЅРёСЏ РѕР± РѕС€РёР±РєРµ РґР»СЏ РЅРµРІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РІ С‡РёСЃР»Рѕ
+                MessageBox.Show("Р’РІРµРґРёС‚Рµ РєРѕСЂСЂРµРєС‚РЅРѕРµ С‡РёСЃР»Рѕ РІ РїСЂРµРґРµР»Р°С… РѕС‚ 0 РґРѕ 23.", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            // Устанавливаем свойство ReadOnly для всех ячеек
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЃРІРѕР№СЃС‚РІРѕ ReadOnly РґР»СЏ РІСЃРµС… СЏС‡РµРµРє
             foreach (DataGridViewRow row in parametersHUGridView.Rows)
             {
                 foreach (DataGridViewCell cell in row.Cells)
@@ -958,25 +958,25 @@ namespace View
 
         private void LoadDataWithTimeStamp(DateTime targetTimeStamp)
         {
-            // Очистка данных в DataGridView
+            // РћС‡РёСЃС‚РєР° РґР°РЅРЅС‹С… РІ DataGridView
             parametersHUGridView.Rows.Clear();
 
 
-            // Код для загрузки данных с использованием targetTimeStamp
+            // РљРѕРґ РґР»СЏ Р·Р°РіСЂСѓР·РєРё РґР°РЅРЅС‹С… СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј targetTimeStamp
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "generatorsLoad.xml");
             Dictionary<int, double> loadDictionary = GeneratorsLoader.ReadLoadForTimeStamp(filePath, targetTimeStamp, parametersHUGridView);
-            // Дополнительные действия при загрузке данных с использованием targetTimeStamp
+            // Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РґРµР№СЃС‚РІРёСЏ РїСЂРё Р·Р°РіСЂСѓР·РєРµ РґР°РЅРЅС‹С… СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј targetTimeStamp
         }
 
         private void ParamsHUToolStripMenu_Click(object sender, EventArgs e)
         {
-            // Создаем список для хранения данных
+            // РЎРѕР·РґР°РµРј СЃРїРёСЃРѕРє РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РґР°РЅРЅС‹С…
             List<ParametersHU> dataItems = new List<ParametersHU>();
 
-            // Проходим по каждой строке в DataGridView
+            // РџСЂРѕС…РѕРґРёРј РїРѕ РєР°Р¶РґРѕР№ СЃС‚СЂРѕРєРµ РІ DataGridView
             foreach (DataGridViewRow row in parametersHUGridView.Rows)
             {
-                // Создаем объект DataItem на основе данных в строке
+                // РЎРѕР·РґР°РµРј РѕР±СЉРµРєС‚ DataItem РЅР° РѕСЃРЅРѕРІРµ РґР°РЅРЅС‹С… РІ СЃС‚СЂРѕРєРµ
                 ParametersHU item = new ParametersHU
                 {
                     HU = row.Cells[0].Value?.ToString(),
@@ -985,20 +985,20 @@ namespace View
                     Status = row.Cells[3].Value?.ToString()
                 };
 
-                // Добавляем объект в список
+                // Р”РѕР±Р°РІР»СЏРµРј РѕР±СЉРµРєС‚ РІ СЃРїРёСЃРѕРє
                 dataItems.Add(item);
             }
 
-            // Инициализируем SaveFileDialog
+            // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј SaveFileDialog
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
             saveFileDialog.Title = "Save XML File";
             saveFileDialog.ShowDialog();
 
-            // Если пользователь выбрал файл
+            // Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІС‹Р±СЂР°Р» С„Р°Р№Р»
             if (saveFileDialog.FileName != "")
             {
-                // Сохраняем данные в выбранный файл
+                // РЎРѕС…СЂР°РЅСЏРµРј РґР°РЅРЅС‹Рµ РІ РІС‹Р±СЂР°РЅРЅС‹Р№ С„Р°Р№Р»
                 XmlSerializer serializer = new XmlSerializer(typeof(List<ParametersHU>));
 
                 using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
@@ -1010,7 +1010,7 @@ namespace View
 
         private void MaxLoadPoughZoneToolStripMenu_Click(object sender, EventArgs e)
         {
-            // Создаем список для хранения данных
+            // РЎРѕР·РґР°РµРј СЃРїРёСЃРѕРє РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РґР°РЅРЅС‹С…
             List<MaxLoadRoughZone> dataItems = new List<MaxLoadRoughZone>();
 
             double waterHead;
@@ -1021,10 +1021,10 @@ namespace View
             {
                 waterHead = 93;
 
-                // Проходим по каждой строке в DataGridView
+                // РџСЂРѕС…РѕРґРёРј РїРѕ РєР°Р¶РґРѕР№ СЃС‚СЂРѕРєРµ РІ DataGridView
                 foreach (DataGridViewRow row in restrictionsHUGridView.Rows)
                 {
-                    // Создаем объект MaxLoadRoughZone на основе данных в строке
+                    // РЎРѕР·РґР°РµРј РѕР±СЉРµРєС‚ MaxLoadRoughZone РЅР° РѕСЃРЅРѕРІРµ РґР°РЅРЅС‹С… РІ СЃС‚СЂРѕРєРµ
                     MaxLoadRoughZone item = new MaxLoadRoughZone(waterHead)
                     {
                         HU = row.Cells[0].Value?.ToString(),
@@ -1033,20 +1033,20 @@ namespace View
                         RoughZoneSB = Convert.ToDouble(row.Cells[3].Value)
                     };
 
-                    // Добавляем объект в список
+                    // Р”РѕР±Р°РІР»СЏРµРј РѕР±СЉРµРєС‚ РІ СЃРїРёСЃРѕРє
                     dataItems.Add(item);
                 }
 
-                // Инициализируем SaveFileDialog
+                // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј SaveFileDialog
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
                 saveFileDialog.Title = "Save XML File";
                 saveFileDialog.ShowDialog();
 
-                // Если пользователь выбрал файл
+                // Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІС‹Р±СЂР°Р» С„Р°Р№Р»
                 if (saveFileDialog.FileName != "")
                 {
-                    // Сохраняем данные в выбранный файл
+                    // РЎРѕС…СЂР°РЅСЏРµРј РґР°РЅРЅС‹Рµ РІ РІС‹Р±СЂР°РЅРЅС‹Р№ С„Р°Р№Р»
                     XmlSerializer serializer = new XmlSerializer(typeof(List<MaxLoadRoughZone>));
 
                     using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
@@ -1058,13 +1058,13 @@ namespace View
             else if (double.TryParse(URTextBox.Text, out double upperReservoirLevel) &&
                 double.TryParse(LRTextBox.Text, out double lowerReservoirLevel))
             {
-                // Вычисляем напор
+                // Р’С‹С‡РёСЃР»СЏРµРј РЅР°РїРѕСЂ
                 waterHead = upperReservoirLevel - lowerReservoirLevel;
 
-                // Проходим по каждой строке в DataGridView
+                // РџСЂРѕС…РѕРґРёРј РїРѕ РєР°Р¶РґРѕР№ СЃС‚СЂРѕРєРµ РІ DataGridView
                 foreach (DataGridViewRow row in restrictionsHUGridView.Rows)
                 {
-                    // Создаем объект MaxLoadRoughZone на основе данных в строке
+                    // РЎРѕР·РґР°РµРј РѕР±СЉРµРєС‚ MaxLoadRoughZone РЅР° РѕСЃРЅРѕРІРµ РґР°РЅРЅС‹С… РІ СЃС‚СЂРѕРєРµ
                     MaxLoadRoughZone item = new MaxLoadRoughZone(waterHead)
                     {
                         HU = row.Cells[0].Value?.ToString(),
@@ -1073,20 +1073,20 @@ namespace View
                         RoughZoneSB = Convert.ToDouble(row.Cells[3].Value)
                     };
 
-                    // Добавляем объект в список
+                    // Р”РѕР±Р°РІР»СЏРµРј РѕР±СЉРµРєС‚ РІ СЃРїРёСЃРѕРє
                     dataItems.Add(item);
                 }
 
-                // Инициализируем SaveFileDialog
+                // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј SaveFileDialog
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
                 saveFileDialog.Title = "Save XML File";
                 saveFileDialog.ShowDialog();
 
-                // Если пользователь выбрал файл
+                // Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІС‹Р±СЂР°Р» С„Р°Р№Р»
                 if (saveFileDialog.FileName != "")
                 {
-                    // Сохраняем данные в выбранный файл
+                    // РЎРѕС…СЂР°РЅСЏРµРј РґР°РЅРЅС‹Рµ РІ РІС‹Р±СЂР°РЅРЅС‹Р№ С„Р°Р№Р»
                     XmlSerializer serializer = new XmlSerializer(typeof(List<MaxLoadRoughZone>));
 
                     using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
@@ -1097,8 +1097,8 @@ namespace View
             }
             else
             {
-                MessageBox.Show("Невозможно преобразовать одно из значений уровней бьефов в число.",
-                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("РќРµРІРѕР·РјРѕР¶РЅРѕ РїСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ РѕРґРЅРѕ РёР· Р·РЅР°С‡РµРЅРёР№ СѓСЂРѕРІРЅРµР№ Р±СЊРµС„РѕРІ РІ С‡РёСЃР»Рѕ.",
+                                    "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1107,28 +1107,29 @@ namespace View
             double P220 = 0;
             double P500 = 0;
             int n = 11;
+            double load_min = 0;
 
             double waterHead = 93;
             if (double.TryParse(URTextBox.Text, out double upperReservoirLevel) &&
                 double.TryParse(LRTextBox.Text, out double lowerReservoirLevel))
             {
                 waterHead = upperReservoirLevel - lowerReservoirLevel;
-                // Проверка на допустимое значение напора
+                // РџСЂРѕРІРµСЂРєР° РЅР° РґРѕРїСѓСЃС‚РёРјРѕРµ Р·РЅР°С‡РµРЅРёРµ РЅР°РїРѕСЂР°
                 if ((upperReservoirLevel - lowerReservoirLevel) < maxLoadRoughZone.MinWaterHead ||
                     (upperReservoirLevel - lowerReservoirLevel) > maxLoadRoughZone.MaxWaterHead)
                 {
-                    MessageBox.Show($"Значение напора должно быть в диапазоне " +
-                        $"от {maxLoadRoughZone.MinWaterHead} \n" +
-                        $"до {maxLoadRoughZone.MaxWaterHead} м. " +
-                        $"Напор, согласно введённым значениям уровней, " +
-                        $"составляет {upperReservoirLevel - lowerReservoirLevel} м, " +
-                        $"что недопустимо согласно паспортным данным гидротурбин.",
-                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return; // Выходим из метода, так как напор не в допустимом диапазоне
+                    MessageBox.Show($"Р—РЅР°С‡РµРЅРёРµ РЅР°РїРѕСЂР° РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РІ РґРёР°РїР°Р·РѕРЅРµ " +
+                        $"РѕС‚ {maxLoadRoughZone.MinWaterHead} \n" +
+                        $"РґРѕ {maxLoadRoughZone.MaxWaterHead} Рј. " +
+                        $"РќР°РїРѕСЂ, СЃРѕРіР»Р°СЃРЅРѕ РІРІРµРґС‘РЅРЅС‹Рј Р·РЅР°С‡РµРЅРёСЏРј СѓСЂРѕРІРЅРµР№, " +
+                        $"СЃРѕСЃС‚Р°РІР»СЏРµС‚ {upperReservoirLevel - lowerReservoirLevel} Рј, " +
+                        $"С‡С‚Рѕ РЅРµРґРѕРїСѓСЃС‚РёРјРѕ СЃРѕРіР»Р°СЃРЅРѕ РїР°СЃРїРѕСЂС‚РЅС‹Рј РґР°РЅРЅС‹Рј РіРёРґСЂРѕС‚СѓСЂР±РёРЅ.",
+                                    "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // Р’С‹С…РѕРґРёРј РёР· РјРµС‚РѕРґР°, С‚Р°Рє РєР°Рє РЅР°РїРѕСЂ РЅРµ РІ РґРѕРїСѓСЃС‚РёРјРѕРј РґРёР°РїР°Р·РѕРЅРµ
                 }
             }
 
-            // Предполагается, что parametersHUGridView - это ваш DataGridView
+            // РџСЂРµРґРїРѕР»Р°РіР°РµС‚СЃСЏ, С‡С‚Рѕ parametersHUGridView - СЌС‚Рѕ РІР°С€ DataGridView
             foreach (DataGridViewRow row in parametersHUGridView.Rows)
             {
                 if (row.Cells[2].Value != null && row.Cells[3].Value != null)
@@ -1138,22 +1139,22 @@ namespace View
 
                     if (zone == 1)
                     {
-                        if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) <= 6)
+                        if (status == "Р’ СЂР°Р±РѕС‚Рµ" && Convert.ToInt32(row.Cells[0].Value) <= 6)
                         {
                             P220 += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._roughZoneFB);
                         }
-                        if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) >= 7)
+                        if (status == "Р’ СЂР°Р±РѕС‚Рµ" && Convert.ToInt32(row.Cells[0].Value) >= 7)
                         {
                             P500 += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._roughZoneFB);
                         }
                     }
                     else if (zone == 3)
                     {
-                        if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) <= 6)
+                        if (status == "Р’ СЂР°Р±РѕС‚Рµ" && Convert.ToInt32(row.Cells[0].Value) <= 6)
                         {
                             P220 += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._maxPowerGraph);
                         }
-                        if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) >= 7)
+                        if (status == "Р’ СЂР°Р±РѕС‚Рµ" && Convert.ToInt32(row.Cells[0].Value) >= 7)
                         {
                             P500 += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._maxPowerGraph);
                         }
@@ -1161,15 +1162,15 @@ namespace View
                 }
             }
 
-            // Только что посчитали мощность без ограничений
+            // РўРѕР»СЊРєРѕ С‡С‚Рѕ РїРѕСЃС‡РёС‚Р°Р»Рё РјРѕС‰РЅРѕСЃС‚СЊ Р±РµР· РѕРіСЂР°РЅРёС‡РµРЅРёР№
 
-            // выработка мощности ГЭС
+            // РІС‹СЂР°Р±РѕС‚РєР° РјРѕС‰РЅРѕСЃС‚Рё Р“Р­РЎ
             double load = P500 + P220;
 
-            // Если значения имеются в 220
+            // Р•СЃР»Рё Р·РЅР°С‡РµРЅРёСЏ РёРјРµСЋС‚СЃСЏ РІ 220
             if (!string.IsNullOrEmpty(powerRestrictions220TextBox.Text))
             {
-                // Проверяем возможность преобразования
+                // РџСЂРѕРІРµСЂСЏРµРј РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ
                 if (double.TryParse(powerRestrictions220TextBox.Text, out double powerSVM) &&
                     (3000 >= double.Parse(powerRestrictions220TextBox.Text)) &&
                     (0 < double.Parse(powerRestrictions220TextBox.Text)))
@@ -1182,17 +1183,17 @@ namespace View
                 }
                 else
                 {
-                    // Обработка ошибки преобразования строки в число
-                    MessageBox.Show("Ограничение для СВМ 220 кВ должно лежать в диапазоне от 0 до 3000 МВт.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // РћР±СЂР°Р±РѕС‚РєР° РѕС€РёР±РєРё РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ СЃС‚СЂРѕРєРё РІ С‡РёСЃР»Рѕ
+                    MessageBox.Show("РћРіСЂР°РЅРёС‡РµРЅРёРµ РґР»СЏ РЎР’Рњ 220 РєР’ РґРѕР»Р¶РЅРѕ Р»РµР¶Р°С‚СЊ РІ РґРёР°РїР°Р·РѕРЅРµ РѕС‚ 0 РґРѕ 3000 РњР’С‚.", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     powerRestrictions220TextBox.Text = "";
-                    return; // Выходим из метода, так как произошла ошибка преобразования
+                    return; // Р’С‹С…РѕРґРёРј РёР· РјРµС‚РѕРґР°, С‚Р°Рє РєР°Рє РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ
                 }
             }
 
-            // Если значения имеются в 500
+            // Р•СЃР»Рё Р·РЅР°С‡РµРЅРёСЏ РёРјРµСЋС‚СЃСЏ РІ 500
             if (!string.IsNullOrEmpty(powerRestrictions500TextBox.Text))
             {
-                // Проверяем возможность преобразования
+                // РџСЂРѕРІРµСЂСЏРµРј РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ
                 if (double.TryParse(powerRestrictions500TextBox.Text, out double powerSVM) &&
                     (3000 >= double.Parse(powerRestrictions500TextBox.Text)) &&
                     (0 < double.Parse(powerRestrictions500TextBox.Text)))
@@ -1205,10 +1206,10 @@ namespace View
                 }
                 else
                 {
-                    // Обработка ошибки преобразования строки в число
-                    MessageBox.Show("Ограничение для СВМ 500 кВ должно лежать в диапазоне от 0 до 3000 МВт.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // РћР±СЂР°Р±РѕС‚РєР° РѕС€РёР±РєРё РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ СЃС‚СЂРѕРєРё РІ С‡РёСЃР»Рѕ
+                    MessageBox.Show("РћРіСЂР°РЅРёС‡РµРЅРёРµ РґР»СЏ РЎР’Рњ 500 РєР’ РґРѕР»Р¶РЅРѕ Р»РµР¶Р°С‚СЊ РІ РґРёР°РїР°Р·РѕРЅРµ РѕС‚ 0 РґРѕ 3000 РњР’С‚.", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     powerRestrictions220TextBox.Text = "";
-                    return; // Выходим из метода, так как произошла ошибка преобразования
+                    return; // Р’С‹С…РѕРґРёРј РёР· РјРµС‚РѕРґР°, С‚Р°Рє РєР°Рє РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ
                 }
             }
 
@@ -1223,8 +1224,8 @@ namespace View
                 }
                 else
                 {
-                    MessageBox.Show("Значение мощности для НПРЧ должно лежать в диапазоне от 0 до 500 МВт.", 
-                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Р—РЅР°С‡РµРЅРёРµ РјРѕС‰РЅРѕСЃС‚Рё РґР»СЏ РќРџР Р§ РґРѕР»Р¶РЅРѕ Р»РµР¶Р°С‚СЊ РІ РґРёР°РїР°Р·РѕРЅРµ РѕС‚ 0 РґРѕ 500 РњР’С‚.", 
+                        "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     textBox1.Text = null;
                 }
             }
@@ -1237,14 +1238,72 @@ namespace View
                 }
                 else
                 {
-                    MessageBox.Show("Значение мощности для \nОГ должно лежать в диапазоне от 0 до 500 МВт.",
-                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Р—РЅР°С‡РµРЅРёРµ РјРѕС‰РЅРѕСЃС‚Рё РґР»СЏ \nРћР“ РґРѕР»Р¶РЅРѕ Р»РµР¶Р°С‚СЊ РІ РґРёР°РїР°Р·РѕРЅРµ РѕС‚ 0 РґРѕ 500 РњР’С‚.",
+                        "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     textBox2.Text = null;
                 }
             }
 
+            // РґР°Р»РµРµ Р±РІСѓ
+            if (double.TryParse(URTextBox.Text, out upperReservoirLevel) &&
+                double.TryParse(LRTextBox.Text, out lowerReservoirLevel))
+            {
+                waterHead = upperReservoirLevel - lowerReservoirLevel;
+            }
 
+            if (!string.IsNullOrEmpty(upperRestrictionsTextBox.Text))
+            {
+                upperCalcRestrictionsTextBox.Text = CalculateHydroPower(double.Parse(upperRestrictionsTextBox.Text) / 11, waterHead).ToString();
+                
+                // РЈРЎР»РѕРІРёСЏ РґРѕР±Р°РІРёС‚СЊ
+                if (CalculateHydroPower(double.Parse(upperRestrictionsTextBox.Text) / 11, waterHead) < load)
+                {
+                    load = CalculateHydroPower(double.Parse(upperRestrictionsTextBox.Text) / 11, waterHead);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(lowerRestrictionsTextBox.Text))
+            {
+                lowerCalcRestrictionsTextBox.Text = CalculateHydroPower(double.Parse(lowerRestrictionsTextBox.Text) / 11, waterHead).ToString();
+                
+                // РЈРЎР»РѕРІРёСЏ РґРѕР±Р°РІРёС‚СЊ
+                if (CalculateHydroPower(double.Parse(lowerRestrictionsTextBox.Text) / 11, waterHead) > load_min)
+                {
+                    load_min = CalculateHydroPower(double.Parse(lowerRestrictionsTextBox.Text) / 11, waterHead);
+                }
+            }
+            
             loadMaxTextBox.Text = $"{Math.Round(load, 3)}";
+            textBox3.Text = $"{Math.Round(load_min, 3)}";
+        }
+
+        // РњРµС‚РѕРґ РґР»СЏ СЂР°СЃС‡РµС‚Р° РјРѕС‰РЅРѕСЃС‚Рё Р“Р­РЎ
+        public static double CalculateHydroPower(double Q, double H)
+        {
+            // Р“СЂР°РІРёС‚Р°С†РёРѕРЅРЅР°СЏ РїРѕСЃС‚РѕСЏРЅРЅР°СЏ (Рј/СЃ^2)
+            double g = 9.81;
+            // РџР»РѕС‚РЅРѕСЃС‚СЊ РІРѕРґС‹ (РєРі/Рј^3)
+            double ПЃ = 1000;
+
+            // РљРѕР»РёС‡РµСЃС‚РІРѕ РіРµРЅРµСЂР°С‚РѕСЂРѕРІ
+            int n = 11;
+
+            // РЎСѓРјРјР°СЂРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ Р“Р­РЎ
+            double P_GES = 0;
+
+            // Р Р°СЃСЃС‡РёС‚С‹РІР°РµРј РјРѕС‰РЅРѕСЃС‚СЊ Р“Р­РЎ РґР»СЏ РєР°Р¶РґРѕРіРѕ РіРµРЅРµСЂР°С‚РѕСЂР° Рё СЃСѓРјРјРёСЂСѓРµРј
+            for (int i = 1; i <= n; i++)
+            {
+                // Р Р°СЃСЃС‡РёС‚С‹РІР°РµРј РјРѕС‰РЅРѕСЃС‚СЊ РґР»СЏ С‚РµРєСѓС‰РµРіРѕ РіРµРЅРµСЂР°С‚РѕСЂР°
+                double Qi = Q; // Р’ РїСЂРµРґРїРѕР»РѕР¶РµРЅРёРё, С‡С‚Рѕ СЂР°СЃС…РѕРґ РІРѕРґС‹ РѕРґРёРЅР°РєРѕРІ РґР»СЏ РІСЃРµС… РіРµРЅРµСЂР°С‚РѕСЂРѕРІ
+                double part1 = 96.7 - (((Math.Pow(Math.Abs(Qi - 490), 1.78)) / Math.Pow(22.5, 2)) + ((Math.Pow(Math.Abs(H - 93), 1.5)) / Math.Pow(4, 2)));
+                double part2 = 0.01 * H * g * ПЃ * Qi * part1;
+
+                // Р”РѕР±Р°РІР»СЏРµРј РјРѕС‰РЅРѕСЃС‚СЊ С‚РµРєСѓС‰РµРіРѕ РіРµРЅРµСЂР°С‚РѕСЂР° Рє СЃСѓРјРјР°СЂРЅРѕР№ РјРѕС‰РЅРѕСЃС‚Рё Р“Р­РЎ
+                P_GES += part2;
+            }
+
+            return Math.Round((P_GES /1000000), 3);
         }
     }
 }
