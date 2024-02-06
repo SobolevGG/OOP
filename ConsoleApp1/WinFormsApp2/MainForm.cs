@@ -1213,6 +1213,37 @@ namespace View
             }
 
             load = P500 + P220;
+
+            if (!string.IsNullOrEmpty(textBox1.Text))
+            {
+                if (double.TryParse(textBox1.Text, out double existingLoad) &&
+                    existingLoad >= 0 && existingLoad <= 500)
+                {
+                    load -= existingLoad;
+                }
+                else
+                {
+                    MessageBox.Show("Значение мощности для НПРЧ должно лежать в диапазоне от 0 до 500 МВт.", 
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textBox1.Text = null;
+                }
+            }
+            if (!string.IsNullOrEmpty(textBox2.Text))
+            {
+                if (double.TryParse(textBox2.Text, out double existingLoad) &&
+                    existingLoad >= 0 && existingLoad <= 500)
+                {
+                    load -= existingLoad;
+                }
+                else
+                {
+                    MessageBox.Show("Значение мощности для \nОГ должно лежать в диапазоне от 0 до 500 МВт.",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textBox2.Text = null;
+                }
+            }
+
+
             loadMaxTextBox.Text = $"{Math.Round(load, 3)}";
         }
     }
