@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DataGridViewCellStyle dataGridViewCellStyle46 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle47 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle48 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle43 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle44 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle45 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             toolStrip = new ToolStrip();
             toolStripDropDownButton1 = new ToolStripDropDownButton();
             openFile = new ToolStripMenuItem();
@@ -49,17 +49,29 @@
             parametersHUTabPage = new TabPage();
             parametersHUGridView = new DataGridView();
             inputRestrictionsTabPage = new TabPage();
+            groupBox3 = new GroupBox();
+            groupBox5 = new GroupBox();
+            label10 = new Label();
+            label11 = new Label();
+            label12 = new Label();
+            label13 = new Label();
+            label14 = new Label();
+            label15 = new Label();
+            lowerCalcRestrictionsTextBox = new TextBox();
+            upperCalcRestrictionsTextBox = new TextBox();
+            label16 = new Label();
+            label17 = new Label();
             groupBox2 = new GroupBox();
             cubic2Label = new Label();
+            unitsSec2Label = new Label();
             cubic1Label = new Label();
             upperIndexLabel = new Label();
             lowerIndexLabel = new Label();
             lowerRestrictionsLabel = new Label();
             lowerRestrictionsTextBox = new TextBox();
             upperRestrictionsTextBox = new TextBox();
-            upperRestrictionsLabel = new Label();
             unitsSec1Label = new Label();
-            unitsSec2Label = new Label();
+            upperRestrictionsLabel = new Label();
             groupBox1 = new GroupBox();
             powerDRGroupBox = new GroupBox();
             label8 = new Label();
@@ -97,7 +109,7 @@
             protocolToolStripMenu = new ToolStripMenuItem();
             authorizationButton = new ToolStripButton();
             exportDBButton = new ToolStripButton();
-            CalcButton = new Button();
+            сalcButton = new Button();
             ULRGroupBox = new GroupBox();
             label2 = new Label();
             label1 = new Label();
@@ -115,7 +127,7 @@
             label9 = new Label();
             label7 = new Label();
             textBox3 = new TextBox();
-            textBox4 = new TextBox();
+            loadMaxTextBox = new TextBox();
             label3 = new Label();
             label4 = new Label();
             checkoutHourTextBox = new TextBox();
@@ -126,6 +138,8 @@
             parametersHUTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)parametersHUGridView).BeginInit();
             inputRestrictionsTabPage.SuspendLayout();
+            groupBox3.SuspendLayout();
+            groupBox5.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             powerDRGroupBox.SuspendLayout();
@@ -256,6 +270,7 @@
             // 
             // inputRestrictionsTabPage
             // 
+            inputRestrictionsTabPage.Controls.Add(groupBox3);
             inputRestrictionsTabPage.Controls.Add(groupBox2);
             inputRestrictionsTabPage.Controls.Add(groupBox1);
             inputRestrictionsTabPage.Location = new Point(4, 24);
@@ -265,6 +280,129 @@
             inputRestrictionsTabPage.TabIndex = 1;
             inputRestrictionsTabPage.Text = "СВМ и БВУ";
             inputRestrictionsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(groupBox5);
+            groupBox3.Location = new Point(6, 212);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(229, 115);
+            groupBox3.TabIndex = 4;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Вычисляются";
+            // 
+            // groupBox5
+            // 
+            groupBox5.Controls.Add(label10);
+            groupBox5.Controls.Add(label11);
+            groupBox5.Controls.Add(label12);
+            groupBox5.Controls.Add(label13);
+            groupBox5.Controls.Add(label14);
+            groupBox5.Controls.Add(label15);
+            groupBox5.Controls.Add(lowerCalcRestrictionsTextBox);
+            groupBox5.Controls.Add(upperCalcRestrictionsTextBox);
+            groupBox5.Controls.Add(label16);
+            groupBox5.Controls.Add(label17);
+            groupBox5.Location = new Point(12, 22);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new Size(205, 82);
+            groupBox5.TabIndex = 2;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "Бассейновое водное управление";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label10.Location = new Point(72, 50);
+            label10.Name = "label10";
+            label10.Size = new Size(0, 12);
+            label10.TabIndex = 18;
+            label10.TextAlign = ContentAlignment.BottomLeft;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(77, 54);
+            label11.Name = "label11";
+            label11.Size = new Size(0, 15);
+            label11.TabIndex = 20;
+            label11.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label12.Location = new Point(72, 22);
+            label12.Name = "label12";
+            label12.Size = new Size(0, 12);
+            label12.TabIndex = 17;
+            label12.TextAlign = ContentAlignment.BottomLeft;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label13.Location = new Point(21, 35);
+            label13.Name = "label13";
+            label13.Size = new Size(35, 12);
+            label13.TabIndex = 12;
+            label13.Text = "НБ.max";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label14.Location = new Point(22, 63);
+            label14.Name = "label14";
+            label14.Size = new Size(33, 12);
+            label14.TabIndex = 10;
+            label14.Text = "НБ.min";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(10, 54);
+            label15.Name = "label15";
+            label15.Size = new Size(79, 15);
+            label15.TabIndex = 11;
+            label15.Text = "P            , МВт";
+            // 
+            // lowerCalcRestrictionsTextBox
+            // 
+            lowerCalcRestrictionsTextBox.Location = new Point(123, 51);
+            lowerCalcRestrictionsTextBox.Name = "lowerCalcRestrictionsTextBox";
+            lowerCalcRestrictionsTextBox.ReadOnly = true;
+            lowerCalcRestrictionsTextBox.Size = new Size(66, 23);
+            lowerCalcRestrictionsTextBox.TabIndex = 3;
+            lowerCalcRestrictionsTextBox.TextAlign = HorizontalAlignment.Center;
+            // 
+            // upperCalcRestrictionsTextBox
+            // 
+            upperCalcRestrictionsTextBox.Location = new Point(123, 22);
+            upperCalcRestrictionsTextBox.Name = "upperCalcRestrictionsTextBox";
+            upperCalcRestrictionsTextBox.ReadOnly = true;
+            upperCalcRestrictionsTextBox.Size = new Size(66, 23);
+            upperCalcRestrictionsTextBox.TabIndex = 2;
+            upperCalcRestrictionsTextBox.TextAlign = HorizontalAlignment.Center;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(77, 26);
+            label16.Name = "label16";
+            label16.Size = new Size(0, 15);
+            label16.TabIndex = 19;
+            label16.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(10, 26);
+            label17.Name = "label17";
+            label17.Size = new Size(79, 15);
+            label17.TabIndex = 8;
+            label17.Text = "P            , МВт";
             // 
             // groupBox2
             // 
@@ -295,6 +433,16 @@
             cubic2Label.TabIndex = 18;
             cubic2Label.Text = "3";
             cubic2Label.TextAlign = ContentAlignment.BottomLeft;
+            // 
+            // unitsSec2Label
+            // 
+            unitsSec2Label.AutoSize = true;
+            unitsSec2Label.Location = new Point(77, 54);
+            unitsSec2Label.Name = "unitsSec2Label";
+            unitsSec2Label.Size = new Size(21, 15);
+            unitsSec2Label.TabIndex = 20;
+            unitsSec2Label.Text = "/с:";
+            unitsSec2Label.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // cubic1Label
             // 
@@ -352,15 +500,6 @@
             upperRestrictionsTextBox.TabIndex = 2;
             upperRestrictionsTextBox.TextAlign = HorizontalAlignment.Center;
             // 
-            // upperRestrictionsLabel
-            // 
-            upperRestrictionsLabel.AutoSize = true;
-            upperRestrictionsLabel.Location = new Point(10, 26);
-            upperRestrictionsLabel.Name = "upperRestrictionsLabel";
-            upperRestrictionsLabel.Size = new Size(67, 15);
-            upperRestrictionsLabel.TabIndex = 8;
-            upperRestrictionsLabel.Text = "Q            , м";
-            // 
             // unitsSec1Label
             // 
             unitsSec1Label.AutoSize = true;
@@ -371,20 +510,19 @@
             unitsSec1Label.Text = "/с:";
             unitsSec1Label.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // unitsSec2Label
+            // upperRestrictionsLabel
             // 
-            unitsSec2Label.AutoSize = true;
-            unitsSec2Label.Location = new Point(77, 54);
-            unitsSec2Label.Name = "unitsSec2Label";
-            unitsSec2Label.Size = new Size(21, 15);
-            unitsSec2Label.TabIndex = 20;
-            unitsSec2Label.Text = "/с:";
-            unitsSec2Label.TextAlign = ContentAlignment.MiddleLeft;
+            upperRestrictionsLabel.AutoSize = true;
+            upperRestrictionsLabel.Location = new Point(10, 26);
+            upperRestrictionsLabel.Name = "upperRestrictionsLabel";
+            upperRestrictionsLabel.Size = new Size(67, 15);
+            upperRestrictionsLabel.TabIndex = 8;
+            upperRestrictionsLabel.Text = "Q            , м";
             // 
             // groupBox1
             // 
             groupBox1.Controls.Add(powerDRGroupBox);
-            groupBox1.Location = new Point(8, 6);
+            groupBox1.Location = new Point(6, 8);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(229, 198);
             groupBox1.TabIndex = 3;
@@ -587,35 +725,35 @@
             restrictionsHUGridView.ColumnHeadersHeight = 38;
             restrictionsHUGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             restrictionsHUGridView.Columns.AddRange(new DataGridViewColumn[] { HU, RoughZoneFB, RoughZoneSB, MaxLoad });
-            dataGridViewCellStyle46.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle46.BackColor = SystemColors.Window;
-            dataGridViewCellStyle46.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle46.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle46.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle46.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle46.WrapMode = DataGridViewTriState.False;
-            restrictionsHUGridView.DefaultCellStyle = dataGridViewCellStyle46;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = SystemColors.Window;
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle10.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
+            restrictionsHUGridView.DefaultCellStyle = dataGridViewCellStyle10;
             restrictionsHUGridView.Location = new Point(3, 2);
             restrictionsHUGridView.Name = "restrictionsHUGridView";
             restrictionsHUGridView.ReadOnly = true;
-            dataGridViewCellStyle47.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle47.BackColor = SystemColors.Control;
-            dataGridViewCellStyle47.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle47.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle47.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle47.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle47.WrapMode = DataGridViewTriState.True;
-            restrictionsHUGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle47;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = SystemColors.Control;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle11.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            restrictionsHUGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
             restrictionsHUGridView.RowHeadersVisible = false;
-            dataGridViewCellStyle48.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            restrictionsHUGridView.RowsDefaultCellStyle = dataGridViewCellStyle48;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            restrictionsHUGridView.RowsDefaultCellStyle = dataGridViewCellStyle12;
             restrictionsHUGridView.Size = new Size(237, 338);
             restrictionsHUGridView.TabIndex = 0;
             // 
             // HU
             // 
-            dataGridViewCellStyle43.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            HU.DefaultCellStyle = dataGridViewCellStyle43;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            HU.DefaultCellStyle = dataGridViewCellStyle7;
             HU.HeaderText = "        ";
             HU.Name = "HU";
             HU.ReadOnly = true;
@@ -626,8 +764,8 @@
             // 
             // RoughZoneFB
             // 
-            dataGridViewCellStyle44.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            RoughZoneFB.DefaultCellStyle = dataGridViewCellStyle44;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            RoughZoneFB.DefaultCellStyle = dataGridViewCellStyle8;
             RoughZoneFB.HeaderText = "";
             RoughZoneFB.Name = "RoughZoneFB";
             RoughZoneFB.ReadOnly = true;
@@ -638,8 +776,8 @@
             // 
             // RoughZoneSB
             // 
-            dataGridViewCellStyle45.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            RoughZoneSB.DefaultCellStyle = dataGridViewCellStyle45;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            RoughZoneSB.DefaultCellStyle = dataGridViewCellStyle9;
             RoughZoneSB.HeaderText = "";
             RoughZoneSB.Name = "RoughZoneSB";
             RoughZoneSB.ReadOnly = true;
@@ -764,14 +902,15 @@
             exportDBButton.ToolTipText = "Для экспорта в БД требуется авторизация";
             exportDBButton.Click += ExportDBButton_Click;
             // 
-            // CalcButton
+            // сalcButton
             // 
-            CalcButton.Location = new Point(303, 390);
-            CalcButton.Name = "CalcButton";
-            CalcButton.Size = new Size(98, 23);
-            CalcButton.TabIndex = 4;
-            CalcButton.Text = "Расчёт РВР";
-            CalcButton.UseVisualStyleBackColor = true;
+            сalcButton.Location = new Point(303, 390);
+            сalcButton.Name = "сalcButton";
+            сalcButton.Size = new Size(98, 23);
+            сalcButton.TabIndex = 4;
+            сalcButton.Text = "Расчёт РВР";
+            сalcButton.UseVisualStyleBackColor = true;
+            сalcButton.Click += сalcButton_Click;
             // 
             // ULRGroupBox
             // 
@@ -827,11 +966,11 @@
             // 
             // calcHeadButton
             // 
-            calcHeadButton.Location = new Point(34, 78);
+            calcHeadButton.Location = new Point(25, 78);
             calcHeadButton.Name = "calcHeadButton";
-            calcHeadButton.Size = new Size(98, 23);
+            calcHeadButton.Size = new Size(119, 23);
             calcHeadButton.TabIndex = 7;
-            calcHeadButton.Text = "Расчёт напора";
+            calcHeadButton.Text = "Расчёт ЛОМ и ЗНР";
             calcHeadButton.UseVisualStyleBackColor = true;
             calcHeadButton.Click += CalcHeadButton_Click;
             // 
@@ -905,7 +1044,7 @@
             groupBox4.Controls.Add(label9);
             groupBox4.Controls.Add(label7);
             groupBox4.Controls.Add(textBox3);
-            groupBox4.Controls.Add(textBox4);
+            groupBox4.Controls.Add(loadMaxTextBox);
             groupBox4.Controls.Add(label3);
             groupBox4.Controls.Add(label4);
             groupBox4.Location = new Point(269, 311);
@@ -944,14 +1083,14 @@
             textBox3.TabIndex = 3;
             textBox3.TextAlign = HorizontalAlignment.Center;
             // 
-            // textBox4
+            // loadMaxTextBox
             // 
-            textBox4.Location = new Point(87, 23);
-            textBox4.Name = "textBox4";
-            textBox4.ReadOnly = true;
-            textBox4.Size = new Size(66, 23);
-            textBox4.TabIndex = 2;
-            textBox4.TextAlign = HorizontalAlignment.Center;
+            loadMaxTextBox.Location = new Point(87, 23);
+            loadMaxTextBox.Name = "loadMaxTextBox";
+            loadMaxTextBox.ReadOnly = true;
+            loadMaxTextBox.Size = new Size(66, 23);
+            loadMaxTextBox.TabIndex = 2;
+            loadMaxTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // label3
             // 
@@ -1005,7 +1144,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(457, 424);
-            Controls.Add(CalcButton);
+            Controls.Add(сalcButton);
             Controls.Add(groupBox4);
             Controls.Add(calcGroupBox);
             Controls.Add(toolBar);
@@ -1025,6 +1164,9 @@
             parametersHUTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)parametersHUGridView).EndInit();
             inputRestrictionsTabPage.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox1.ResumeLayout(false);
@@ -1065,7 +1207,7 @@
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripDropDownButton referenceButton;
         private ToolStripMenuItem openGuide;
-        private Button CalcButton;
+        private Button сalcButton;
         private GroupBox ULRGroupBox;
         private ToolStripButton exportDBButton;
         private ToolStripButton importBMPButton;
@@ -1109,7 +1251,7 @@
         private Button calcHeadButton;
         private GroupBox groupBox4;
         private TextBox textBox3;
-        private TextBox textBox4;
+        private TextBox loadMaxTextBox;
         private Label label3;
         private Label label4;
         private Label label7;
@@ -1135,5 +1277,17 @@
         private TextBox checkoutHourTextBox;
         private Button loadDataButton;
         private GroupBox checkoutHourGroupBox;
+        private GroupBox groupBox3;
+        private GroupBox groupBox5;
+        private Label label10;
+        private Label label11;
+        private Label label12;
+        private Label label13;
+        private Label label14;
+        private Label label15;
+        private TextBox lowerCalcRestrictionsTextBox;
+        private TextBox upperCalcRestrictionsTextBox;
+        private Label label16;
+        private Label label17;
     }
 }

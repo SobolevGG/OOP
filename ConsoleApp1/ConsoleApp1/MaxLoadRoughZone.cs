@@ -17,7 +17,7 @@ namespace Model
         }
 
         // График максимальной мощности
-        private readonly Dictionary<double, double> _maxPowerGraph = new Dictionary<double, double>
+        public static readonly Dictionary<double, double> _maxPowerGraph = new Dictionary<double, double>
         {
             { 76, 400 },
             { 87, 484.565 },
@@ -26,14 +26,14 @@ namespace Model
         };
 
         // График ЗНР1
-        private readonly Dictionary<double, double> _roughZoneFB = new Dictionary<double, double>
+        public static readonly Dictionary<double, double> _roughZoneFB = new Dictionary<double, double>
         {
             { 76, 50 },
             { 100.5, 103.991 }
         };
 
         // График ЗНР2
-        private readonly Dictionary<double, double> _roughZoneSB = new Dictionary<double, double>
+        public readonly Dictionary<double, double> _roughZoneSB = new Dictionary<double, double>
         {
             { 76, 191.549 },
             { 84, 210.798 },

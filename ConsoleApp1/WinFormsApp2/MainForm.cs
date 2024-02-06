@@ -660,7 +660,7 @@ namespace View
         private void OpenParamsHU_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+            openFileDialog.Filter = "XML files (*.xml)|*.xml";
             openFileDialog.Title = "Open XML File";
 
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -932,7 +932,7 @@ namespace View
                     // string targetTimeStamp = $"2024-01-10T{userHour}:00:00Z";
                     // Вызовите метод для загрузки данных с использованием targetTimeStamp
                     LoadDataWithTimeStamp(targetTimeStamp);
-                    
+
                 }
                 else
                 {
@@ -1100,6 +1100,122 @@ namespace View
                 MessageBox.Show("Невозможно преобразовать одно из значений уровней бьефов в число.",
                                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void сalcButton_Click(object sender, EventArgs e)
+        {
+            double P220 = 0;
+            double P500 = 0;
+            int n = 0;
+
+            double waterHead = 93;
+            if (double.TryParse(URTextBox.Text, out double upperReservoirLevel) &&
+            double.TryParse(LRTextBox.Text, out double lowerReservoirLevel))
+            {
+                waterHead = upperReservoirLevel - lowerReservoirLevel;
+                // Проверка на допустимое значение напора
+                if ((upperReservoirLevel - lowerReservoirLevel) < maxLoadRoughZone.MinWaterHead ||
+                    (upperReservoirLevel - lowerReservoirLevel) > maxLoadRoughZone.MaxWaterHead)
+                {
+                    MessageBox.Show($"Значение напора должно быть в диапазоне " +
+                        $"от {maxLoadRoughZone.MinWaterHead} \n" +
+                        $"до {maxLoadRoughZone.MaxWaterHead} м. " +
+                        $"Напор, согласно введённым значениям уровней, " +
+                        $"составляет {upperReservoirLevel - lowerReservoirLevel} м, " +
+                        $"что недопустимо согласно паспортным данным гидротурбин.",
+                                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            // Предполагается, что parametersHUGridView - это ваш DataGridView
+            foreach (DataGridViewRow row in parametersHUGridView.Rows)
+            {
+                if (row.Cells[2].Value != null && row.Cells[3].Value != null)
+                {
+                    int zone = Convert.ToInt32(row.Cells[2].Value);
+                    string status = row.Cells[3].Value.ToString();
+
+                    {
+                        
+                        // Ваш дальнейший код с использованием waterHead
+                    }
+
+                    if (zone == 1)
+                    {
+                        if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) <= 6)
+                        {
+                            P220 += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._roughZoneFB);
+                            n++;
+                        }
+                        if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) >= 7)
+                        {
+                            P500 += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._roughZoneFB);
+                            n++;
+                        }
+                        
+                    }
+                    else if (zone == 3)
+                    {
+                        if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) <= 6)
+                        {
+                            P220 += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._maxPowerGraph);
+                            n++;
+                        }
+                        if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) >= 7)
+                        {
+                            P500 += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._maxPowerGraph);
+                            n++;
+                        }
+                    }
+                }
+            }
+
+
+            
+
+            double powerBWD = 0;
+
+            // Если значения имеются
+            if (!string.IsNullOrEmpty(upperRestrictionsTextBox.Text) && n > 0)
+            {
+                // Проверяем возможность преобразования
+                if (double.TryParse(upperRestrictionsTextBox.Text, out double upperRestrictions) && 
+                    (7380 >= double.Parse(upperRestrictionsTextBox.Text)))
+                {
+                    double sum = 0;
+
+                    // Вычисление суммы
+                    for (int i = 0; i < n; i++)
+                    {
+                        double term1 = Math.Pow(Math.Abs((upperRestrictions/n) - 490), 1.78) / Math.Pow(22.5, 2);
+                        double term2 = Math.Pow(Math.Abs(waterHead - 93), 1.5) / Math.Pow(4, 2);
+
+                        sum += 96.7 - (term1 + term2);
+                    }
+
+                    powerBWD = 0.01 * 9.81 * (upperRestrictions / n) * waterHead * 1000 * sum / 1000000;
+
+                    // Используйте значение powerBWD по вашему усмотрению
+                }
+                else
+                {
+                    // Обработка ошибки преобразования строки в число
+                    MessageBox.Show("Некорректное значение в верхнем ограничении.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    upperRestrictionsTextBox.Text = "7380";
+                }
+            }
+
+            
+
+            double load = P220 + P500;
+
+            if (powerBWD > load)
+            { 
+                load = powerBWD;
+            }
+
+            upperCalcRestrictionsTextBox.Text = $"{Math.Round(powerBWD, 3)}";
+            loadMaxTextBox.Text = $"{Math.Round(load, 3)}";
         }
     }
 }
