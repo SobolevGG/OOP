@@ -814,9 +814,18 @@ namespace View
                 string enteredPassword = authorizationForm.GetEnteredPassword();
                 string enteredLogin = authorizationForm.GetEnteredLogin();
 
-                Model.PostgresQueries.InsertOrUpdateHydroGenerator(11, "Гидрогенератор 11",
-                    "Qi * (96.7 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))",
-                    enteredLogin, enteredPassword);
+                // Здесь предполагается, что вы имеете значения для остальных параметров метода,
+                // такие как номер гидрогенератора, идентификатор привязанной ГЭС, характеристика и т. д.
+                int number = 1;
+                string hydroPowerPlantUid = "da1f339e-d4f0-4717-b01a-32a10f1b26a6";
+                string characteristic = "Qi * (100 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))";
+                string maxLoad = "{\"graph\": [{\"76\": 501}, {\"87\": 550}, {\"93\": 600}, {\"100.5\": 600}]}";
+                string roughZoneFb = "{\"graph\": [{\"76\": 61}, {\"100.5\": 120}]}";
+                string roughZoneSb = "{\"graph\": [{\"76\": 211}, {\"84\": 230}, {\"93\": 270}, {\"100.5\": 290}]}";
+
+                // Вызов метода InsertOrUpdateHydroGenerator с передачей логина и пароля
+                Model.PostgresQueries.InsertOrUpdateHydroGenerator(number, hydroPowerPlantUid, characteristic, maxLoad, roughZoneFb, roughZoneSb, enteredLogin, enteredPassword);
+
                 MessageBox.Show("Данные успешно вставлены/обновлены.", "Выполнено",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

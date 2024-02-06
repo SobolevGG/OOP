@@ -18,23 +18,29 @@ namespace Model
         /// <param name="characteristic">Текущая эксплуатационная характеристика.</param>
         /// <param name="enteredLogin">Введенное значение логина.</param>
         /// <param name="enteredPassword">Введенное значение пароля.</param>
-        public static void InsertOrUpdateHydroGenerator(int id, string name, string characteristic, string enteredLogin, string enteredPassword)
+        public static void InsertOrUpdateHydroGenerator(int number, string hydroPowerPlantUid, string characteristic, string maxLoad, string roughZoneFb, string roughZoneSb, string enteredLogin, string enteredPassword)
         {
             var connector = new PostgresConnector("localhost", "HPPs", enteredLogin, enteredPassword);
             string sqlQuery = $@"
-            INSERT INTO hydro_generators (id, name, 
-            hydro_power_plant_id, characteristic, last_change_date)
-            VALUES ({id}, '{name}', 1, '{characteristic}', CURRENT_TIMESTAMP)
-            ON CONFLICT (id) DO UPDATE
+            INSERT INTO hydro_generators (number, hydro_power_plant_uid, characteristic, max_load, rough_zone_fb, rough_zone_sb, last_change_date)
+            VALUES (
+                {number},
+                '{hydroPowerPlantUid}',
+                '{characteristic}',
+                '{maxLoad}',
+                '{roughZoneFb}',
+                '{roughZoneSb}',
+                CURRENT_TIMESTAMP
+            )
+            ON CONFLICT (hydro_power_plant_uid, number) DO UPDATE
             SET
-            name = EXCLUDED.name,
-            hydro_power_plant_id = EXCLUDED.hydro_power_plant_id,
-            characteristic = EXCLUDED.characteristic,
-            last_change_date = EXCLUDED.last_change_date;";
-
+                characteristic = EXCLUDED.characteristic,
+                max_load = EXCLUDED.max_load,
+                rough_zone_fb = EXCLUDED.rough_zone_fb,
+                rough_zone_sb = EXCLUDED.rough_zone_sb,
+                last_change_date = EXCLUDED.last_change_date;";
             connector.ExecuteNonQuery(sqlQuery);
         }
-
 
         public static NpgsqlDataReader SelectProtocol(PostgresConnector connector)
         {
