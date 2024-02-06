@@ -1162,6 +1162,18 @@ namespace View
                 }
             }
 
+
+
+
+
+
+
+
+
+
+
+
+
             // Только что посчитали мощность без ограничений
 
             // выработка мощности ГЭС
@@ -1272,7 +1284,36 @@ namespace View
                     load_min = CalculateHydroPower(double.Parse(lowerRestrictionsTextBox.Text) / 11, waterHead);
                 }
             }
-            
+
+            if (!string.IsNullOrEmpty(textBox1.Text))
+            {
+                if (double.TryParse(textBox1.Text, out double existingLoad) &&
+                    existingLoad >= 0 && existingLoad <= 500)
+                {
+                    load_min -= existingLoad;
+                }
+                else
+                {
+                    MessageBox.Show("Значение мощности для НПРЧ должно лежать в диапазоне от 0 до 500 МВт.",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textBox1.Text = null;
+                }
+            }
+            if (!string.IsNullOrEmpty(textBox2.Text))
+            {
+                if (double.TryParse(textBox2.Text, out double existingLoad) &&
+                    existingLoad >= 0 && existingLoad <= 500)
+                {
+                    load_min -= existingLoad;
+                }
+                else
+                {
+                    MessageBox.Show("Значение мощности для \nОГ должно лежать в диапазоне от 0 до 500 МВт.",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textBox2.Text = null;
+                }
+            }
+
             loadMaxTextBox.Text = $"{Math.Round(load, 3)}";
             textBox3.Text = $"{Math.Round(load_min, 3)}";
         }
