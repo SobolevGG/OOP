@@ -1106,8 +1106,9 @@ namespace View
         {
             double P220 = 0;
             double P500 = 0;
+            double P220_min = 0;
+            double P500_min = 0;
             int n = 11;
-            double load_min = 0;
 
             double waterHead = 93;
             if (double.TryParse(URTextBox.Text, out double upperReservoirLevel) &&
@@ -1167,7 +1168,38 @@ namespace View
 
 
 
+            // Предполагается, что parametersHUGridView - это ваш DataGridView
+            foreach (DataGridViewRow row in parametersHUGridView.Rows)
+            {
+                if (row.Cells[2].Value != null && row.Cells[3].Value != null)
+                {
+                    int zone = Convert.ToInt32(row.Cells[2].Value);
+                    string status = row.Cells[3].Value.ToString();
 
+                    if (zone == 1)
+                    {
+                        if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) <= 6)
+                        {
+                            P220_min += 0;
+                        }
+                        if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) >= 7)
+                        {
+                            P500_min += 0;
+                        }
+                    }
+                    else if (zone == 3)
+                    {
+                        if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) <= 6)
+                        {
+                            P220_min += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._roughZoneSB);
+                        }
+                        if (status == "В работе" && Convert.ToInt32(row.Cells[0].Value) >= 7)
+                        {
+                            P500_min += MaxLoadRoughZone.InterpolatePower(waterHead, MaxLoadRoughZone._roughZoneSB);
+                        }
+                    }
+                }
+            }
 
 
 
@@ -1175,7 +1207,7 @@ namespace View
 
 
             // Только что посчитали мощность без ограничений
-
+            double load_min = P500_min + P220_min;
             // выработка мощности ГЭС
             double load = P500 + P220;
 
@@ -1220,41 +1252,12 @@ namespace View
                 {
                     // Обработка ошибки преобразования строки в число
                     MessageBox.Show("Ограничение для СВМ 500 кВ должно лежать в диапазоне от 0 до 3000 МВт.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    powerRestrictions220TextBox.Text = "";
+                    powerRestrictions500TextBox.Text = "";
                     return; // Выходим из метода, так как произошла ошибка преобразования
                 }
             }
 
             load = P500 + P220;
-
-            if (!string.IsNullOrEmpty(textBox1.Text))
-            {
-                if (double.TryParse(textBox1.Text, out double existingLoad) &&
-                    existingLoad >= 0 && existingLoad <= 500)
-                {
-                    load -= existingLoad;
-                }
-                else
-                {
-                    MessageBox.Show("Значение мощности для НПРЧ должно лежать в диапазоне от 0 до 500 МВт.", 
-                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    textBox1.Text = null;
-                }
-            }
-            if (!string.IsNullOrEmpty(textBox2.Text))
-            {
-                if (double.TryParse(textBox2.Text, out double existingLoad) &&
-                    existingLoad >= 0 && existingLoad <= 500)
-                {
-                    load -= existingLoad;
-                }
-                else
-                {
-                    MessageBox.Show("Значение мощности для \nОГ должно лежать в диапазоне от 0 до 500 МВт.",
-                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    textBox2.Text = null;
-                }
-            }
 
             // далее бву
             if (double.TryParse(URTextBox.Text, out upperReservoirLevel) &&
@@ -1285,6 +1288,46 @@ namespace View
                 }
             }
 
+
+
+
+
+
+
+            if (!string.IsNullOrEmpty(textBox1.Text))
+            {
+                if (double.TryParse(textBox1.Text, out double existingLoad) &&
+                    existingLoad >= 0 && existingLoad <= 500)
+                {
+                    load -= existingLoad;
+                }
+                else
+                {
+                    MessageBox.Show("Значение мощности для НПРЧ должно лежать в диапазоне от 0 до 500 МВт.",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textBox1.Text = null;
+                }
+            }
+            if (!string.IsNullOrEmpty(textBox2.Text))
+            {
+                if (double.TryParse(textBox2.Text, out double existingLoad) &&
+                    existingLoad >= 0 && existingLoad <= 500)
+                {
+                    load -= existingLoad;
+                }
+                else
+                {
+                    MessageBox.Show("Значение мощности для \nОГ должно лежать в диапазоне от 0 до 500 МВт.",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textBox2.Text = null;
+                }
+            }
+
+
+
+
+
+
             if (!string.IsNullOrEmpty(textBox1.Text))
             {
                 if (double.TryParse(textBox1.Text, out double existingLoad) &&
@@ -1313,6 +1356,12 @@ namespace View
                     textBox2.Text = null;
                 }
             }
+
+
+
+
+
+
 
             loadMaxTextBox.Text = $"{Math.Round(load, 3)}";
             textBox3.Text = $"{Math.Round(load_min, 3)}";

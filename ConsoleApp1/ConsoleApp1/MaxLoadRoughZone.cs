@@ -33,7 +33,7 @@ namespace Model
         };
 
         // График ЗНР2
-        public readonly Dictionary<double, double> _roughZoneSB = new Dictionary<double, double>
+        public static readonly Dictionary<double, double> _roughZoneSB = new Dictionary<double, double>
         {
             { 76, 191.549 },
             { 84, 210.798 },
