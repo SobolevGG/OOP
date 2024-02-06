@@ -11,6 +11,7 @@ using Extreme.Statistics;
 using System.Text;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using ConsoleAppNew;
+using System.Xml;
 
 namespace View
 {
@@ -807,34 +808,54 @@ namespace View
                 return;
             }
 
-            // Вызов нового метода для вставки/обновления данных
-            try
+            // Открытие системного диалога выбора файла
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "XML files (*.xml)|*.xml";
+            openFileDialog.Title = "Выберите XML файл";
+
+            // Если пользователь выбрал файл и нажал "OK"
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                // Получение пароля и логина из формы авторизации
-                string enteredPassword = authorizationForm.GetEnteredPassword();
-                string enteredLogin = authorizationForm.GetEnteredLogin();
+                try
+                {
+                    // Чтение данных из выбранного XML файла
+                    XmlDocument xmlDoc = new XmlDocument();
+                    xmlDoc.Load(openFileDialog.FileName);
 
-                // Здесь предполагается, что вы имеете значения для остальных параметров метода,
-                // такие как номер гидрогенератора, идентификатор привязанной ГЭС, характеристика и т. д.
-                int number = 1;
-                string hydroPowerPlantUid = "da1f339e-d4f0-4717-b01a-32a10f1b26a6";
-                string characteristic = "Qi * (100 - (Math.Pow(Math.Abs(Qi - 490), 1.78) / Math.Pow(22.5, 2) + Math.Pow(Math.Abs(head - 93), 1.5) / Math.Pow(4, 2)))";
-                string maxLoad = "{\"graph\": [{\"76\": 501}, {\"87\": 550}, {\"93\": 600}, {\"100.5\": 600}]}";
-                string roughZoneFb = "{\"graph\": [{\"76\": 61}, {\"100.5\": 120}]}";
-                string roughZoneSb = "{\"graph\": [{\"76\": 211}, {\"84\": 230}, {\"93\": 270}, {\"100.5\": 290}]}";
+                    // Получение пароля и логина из формы авторизации
+                    string enteredPassword = authorizationForm.GetEnteredPassword();
+                    string enteredLogin = authorizationForm.GetEnteredLogin();
 
-                // Вызов метода InsertOrUpdateHydroGenerator с передачей логина и пароля
-                Model.PostgresQueries.InsertOrUpdateHydroGenerator(number, hydroPowerPlantUid, characteristic, maxLoad, roughZoneFb, roughZoneSb, enteredLogin, enteredPassword);
+                    // Получение списка элементов GeneratorCharacteristicHistory из XML
+                    XmlNodeList generatorNodes = xmlDoc.SelectNodes("//GeneratorCharacteristicHistory");
 
-                MessageBox.Show("Данные успешно вставлены/обновлены.", "Выполнено",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при выполнении запроса: {ex.Message}",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Перебор каждого элемента и вызов метода InsertOrUpdateHydroGenerator для вставки/обновления данных
+                    foreach (XmlNode generatorNode in generatorNodes)
+                    {
+                        int number = int.Parse(generatorNode.SelectSingleNode("number").InnerText);
+                        string hydroPowerPlantUid = "da1f339e-d4f0-4717-b01a-32a10f1b26a6";
+                        string characteristic = generatorNode.SelectSingleNode("characteristic").InnerText;
+                        string maxLoad = generatorNode.SelectSingleNode("max_load").InnerText;
+                        string roughZoneFb = generatorNode.SelectSingleNode("rough_zone_fb").InnerText;
+                        string roughZoneSb = generatorNode.SelectSingleNode("rough_zone_sb").InnerText;
+
+                        // Вызов метода InsertOrUpdateHydroGenerator с передачей логина и пароля
+                        Model.PostgresQueries.InsertOrUpdateHydroGenerator(number, hydroPowerPlantUid, characteristic, maxLoad, roughZoneFb, roughZoneSb, enteredLogin, enteredPassword);
+                    }
+
+                    MessageBox.Show("Данные успешно вставлены/обновлены.", "Выполнено",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при выполнении запроса: {ex.Message}",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
+
+
+
 
         private void OpenMaxLoadPoughZone_Click(object sender, EventArgs e)
         {
